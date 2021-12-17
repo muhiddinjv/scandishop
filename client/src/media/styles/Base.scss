@@ -1,0 +1,72 @@
+// FONT
+@font-face {
+    font-family: 'Raleway-Regular';
+    src: local('Raleway'), url(../Raleway/static/Raleway-Regular.ttf) format('truetype');
+    font-weight:400;
+};
+
+@font-face {
+  font-family: 'Raleway-Light';
+  src: local('Raleway'), url(../Raleway/static/Raleway-Light.ttf) format('truetype');
+  font-weight:300;
+};
+
+@font-face {
+  font-family: 'Raleway-SemiBold';
+  src: local('Raleway'), url(../Raleway/static/Raleway-SemiBold.ttf) format('truetype');
+  font-weight:600;
+};
+
+// RESPONSIVE BREAKPOINTS
+// $bp-largest: 75.0625rem; // 1201px
+// $bp-large: 64.0625rem; // 1025px
+$bp-medium: 54.6rem; // 858px
+$bp-small: 36rem; // 481px
+
+// COLORS
+$--c-primary:#5ECE7B;
+$--c-text:#1D1F22;
+$--c-black:#1D1F22;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  /* REM for size, margin, padding */
+  font-size: 62.5%; /* = 10px = 1rem */
+
+//   @media only screen and (max-width: $bp-medium) {
+//     font-size: 52.5%;
+//   }
+
+//   @media only screen and (max-width: $bp-small) {
+//     font-size: 46.5%;
+//   }
+}
+
+body {
+  padding:0 10rem;
+}
+
+img {
+  // Responsive
+  width: 100%;
+  object-fit:center;
+}
+
+ul {
+  list-style: none;
+}
+
+a{
+  text-decoration:none;
+}

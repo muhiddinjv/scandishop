@@ -1,0 +1,46 @@
+@import "Base";
+
+.navbar {
+  display: flex;
+  font-family: "Raleway-Regular", sans-serif;
+  justify-content: space-between;
+  border: 1px solid red;
+  font-size: 1.6rem;
+  padding-top: 2.4rem;
+  text-transform: uppercase;
+
+  &__nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 23rem;
+    height: 5.6rem;
+
+    &-link {
+      align-self: stretch;
+      &:hover {
+        border-bottom: 0.2rem solid $--c-primary;
+      }
+
+      a {
+        color: $--c-text;
+        // transition: 0.8s;
+      }
+
+      a:hover {
+        color: $--c-primary;
+        font-family: "Raleway-SemiBold", sans-serif;
+      }
+    }
+  }
+
+  &__logo {
+    border: 1px solid blue;
+  }
+
+  &__actions{
+      display:flex;
+      align-items:center;
+      height:4rem;
+  }
+}

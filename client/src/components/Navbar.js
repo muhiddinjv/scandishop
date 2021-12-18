@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../media/styles/Navbar.scss'
 import { ReactComponent as Logo } from '../media/icons/logo.svg';
 import { ReactComponent as EmptyCart } from '../media/icons/empty-cart.svg';
-import Currency from './Currency';
+import Dropdown from './Dropdown';
 
 export default class Navbar extends Component {
     render() {
@@ -23,7 +23,7 @@ export default class Navbar extends Component {
                     <Logo />
                 </div>
                 <div className='navbar__actions'>
-                    <Currency />
+                    <Dropdown />
                     <div className="navbar__actions-cart">
                         <EmptyCart />
                     </div>

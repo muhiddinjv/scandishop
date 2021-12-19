@@ -1,7 +1,6 @@
 // import { gql } from "@apollo/client";
 
-// const LOAD_CATEGORIES = gql`
-const LOAD_CATEGORIES = `
+const LOAD_DATA = `
   {
     categories {
       name
@@ -23,8 +22,9 @@ const LOAD_CATEGORIES = `
         gallery
       }
     }
+    currencies
   }
 `;
 
 
-export default LOAD_CATEGORIES;
+export default LOAD_DATA;

@@ -1,53 +1,60 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import "../media/sass/Dropdown.scss";
 
 export default class Dropdown extends Component {
-    constructor() {
-        super();
-        this.state = {
-            currencies: [],
-        };
-    }
+  constructor(props) {
+    super(props);
+   this.state = {setSymbol: "$"}
+  }
 
-    componentDidMount() {
-        let initialCurrencies = [];
-        fetch('http://localhost:4000/', {
-            method: "POST",
-            headers: {"Content-Type" : "application/json"},
-            body: JSON.stringify({query: `{ currencies }`})
-        }).then(response => response.json())
-            .then(data => {
-            initialCurrencies = data.data.currencies.map((currency) => {
-                return currency
-            });
-            // console.log(initialCurrencies);
-            this.setState({
-                currencies: initialCurrencies,
-            });
-        });
-    }
+  symbols = (selectedOpt) => {
+    let symbol;
+    switch (selectedOpt) {
+      case "USD":
+        symbol = "\u0024";
+        break;
+      case "GBP":
+        symbol = "\u00A3";
+        break;
+      case "AUD":
+        symbol = "\u20B3";
+        break;
+      case "JPY":
+        symbol = "\u00A5";
+        break;
+      case "RUB":
+        symbol = "\u20BD";
+        break;
+      default:
+        symbol = "not found";
+    }    
+    this.setState({setSymbol: symbol});
+  };
 
-    render() {
-        return ( <Currency state={this.state}/> )
+  setCurrency = () => {
+    let currencies = this.props.state;
+    if (currencies) {
+      return currencies.map((currency) => (
+        <option className="dropdown__option" key={currency}>
+          {currency}
+        </option>
+      ));
     }
-}
+  };
 
-class Currency extends Component {
-    constructor() {
-        super();
-    }
-
-    render () {
-        let currencies = this.props.state.currencies;
-        let optionItems = currencies.map((currency) =>
-                <option key={currency}>{currency}</option>
-            );
-
-        return (
-         <div>
-             <select>
-                {optionItems}
-             </select>
-         </div>
-        )
-    }
+  render() {
+    return (
+      <div className="dropdown">
+        <label htmlFor="dropdown__select">{this.state.setSymbol}</label>
+        <select
+          id="dropdown__select"
+          onChange={(e) => {
+            this.symbols(e.target.value);
+          }}
+        >
+          {this.setCurrency()}
+        </select>
+      </div>
+    );
+  }
 }

@@ -4,7 +4,13 @@ import "../media/sass/Dropdown.scss";
 export default class Dropdown extends Component {
   constructor(props) {
     super(props);
-   this.state = {setSymbol: "$"}
+    this.myRef = React.createRef();
+   this.state = {
+    setSymbol: "$",
+    setClass: "",
+    getSymbols: ["\u0024","\u00A3","\u20B3","\u00A5","\u20BD"],
+    // id: this.props.id
+   }
   }
 
   symbols = (selectedOpt) => {
@@ -31,29 +37,35 @@ export default class Dropdown extends Component {
     this.setState({setSymbol: symbol});
   };
 
+  
   setCurrency = () => {
     let currencies = this.props.state;
-    if (currencies) {
+    let symbols = this.state.getSymbols;
+    
+    if (currencies && symbols) {
       return currencies.map((currency) => (
-        <option className="dropdown__option" key={currency}>
-          {currency}
-        </option>
+        <li className="dropdown__options" key={currency}>
+          <span></span>
+          <span onClick={(e) =>{this.symbols(e.target.value)}}>{currency}</span>
+        </li>
       ));
     }
   };
+  
+  showList = (classlist) => {
+    classlist.toggle("arrow-down");
+    // console.log(this.state.setClass);
+    this.setState({setClass: "show"});
+  }
 
   render() {
     return (
       <div className="dropdown">
-        <label htmlFor="dropdown__select">{this.state.setSymbol}</label>
-        <select
-          id="dropdown__select"
-          onChange={(e) => {
-            this.symbols(e.target.value);
-          }}
-        >
+        <label className="dropdown__label" htmlFor="dropdown">{this.state.setSymbol}</label>
+        <button className="dropdown__btn" onClick={(e) =>this.showList(e.target.classList)}>Drop</button>
+        <ul className="dropdown__content">
           {this.setCurrency()}
-        </select>
+        </ul>
       </div>
     );
   }

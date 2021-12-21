@@ -64,7 +64,7 @@ export default class Dropdown extends Component {
     return (
       <div className="dropdown">
         <label className="dropdown__label" htmlFor="dropdown" ref={this.dpdLabelRef}>$</label>
-        <button className="dropdown__btn" onClick={(e) =>this.showCurrencies(e.target.classList)} ref={this.dpdBtnRef}>Drop</button>
+        <button className="dropdown__btn" onClick={(e) =>this.showCurrencies(e.target.classList)} ref={this.dpdBtnRef}></button>
         <ul className="dropdown__content" ref={this.dpdContentRef}>
           {this.createDropdownList  ()}
         </ul>

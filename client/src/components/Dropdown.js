@@ -4,18 +4,16 @@ import "../media/sass/Dropdown.scss";
 export default class Dropdown extends Component {
   constructor(props) {
     super(props);
-    this.dropdownRef = React.createRef();
-    // this.showList = this.showList.bind(this);
-    this.state = {
-      setSymbol: "$",
-      getSymbols: ["\u0024","\u00A3","\u20B3","\u00A5","\u20BD"],
-      // id: this.props.id
-    }
+    this.dpdListSignRef = React.createRef();
+    this.dpdContentRef = React.createRef();
+    this.dpdLabelRef = React.createRef();
+    this.dpdBtnRef = React.createRef();
+    // this.showCurrencies = this.showCurrencies.bind(this);
   }
 
-  symbols = (selectedOpt) => {
+  symbols = (currency) => {
     let symbol;
-    switch (selectedOpt) {
+    switch (currency) {
       case "USD":
         symbol = "\u0024";
         break;
@@ -34,38 +32,41 @@ export default class Dropdown extends Component {
       default:
         symbol = "not found";
     }    
-    this.setState({setSymbol: symbol});
+    return symbol;
   };
-
   
-  setCurrency = () => {
+  
+  createDropdownList   = () => {
     let currencies = this.props.state;
-    let symbols = this.state.getSymbols;
     
-    if (currencies && symbols) {
+    if (currencies) {
       return currencies.map((currency) => (
         <li className="dropdown__options" key={currency}>
-          <span></span>
-          <span onClick={(e) =>{this.symbols(e.target.value)}}>{currency}</span>
+          <span ref={this.dpdListSignRef}>{this.symbols(currency)}</span>
+          <span onClick={() =>{this.changeCurrency(currency)}}>{currency}</span>
         </li>
       ));
     }
   };
   
-  showList = (classlist) => {
+  showCurrencies = (classlist) => {
     classlist.toggle("arrow-down");
-    // console.log(this.state.setClass);
-    this.setState({setClass: "show"});
-    this.dropdownRef.current.classList.toggle("show");
+    this.dpdContentRef.current.classList.toggle("show");
+  }
+
+  changeCurrency = (currency) => {
+    this.dpdBtnRef.current.classList.toggle("arrow-down");
+    this.dpdLabelRef.current.innerText = this.symbols(currency);
+    this.dpdContentRef.current.classList.toggle("show");
   }
 
   render() {
     return (
       <div className="dropdown">
-        <label className="dropdown__label" htmlFor="dropdown">{this.state.setSymbol}</label>
-        <button className="dropdown__btn" onClick={(e) =>this.showList(e.target.classList)}>Drop</button>
-        <ul className="dropdown__content" ref={this.dropdownRef}>
-          {this.setCurrency()}
+        <label className="dropdown__label" htmlFor="dropdown" ref={this.dpdLabelRef}>$</label>
+        <button className="dropdown__btn" onClick={(e) =>this.showCurrencies(e.target.classList)} ref={this.dpdBtnRef}>Drop</button>
+        <ul className="dropdown__content" ref={this.dpdContentRef}>
+          {this.createDropdownList  ()}
         </ul>
       </div>
     );

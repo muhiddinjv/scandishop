@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-// import {ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from} from '@apollo/client';
-// import {onError} from '@apollo/client/link/error';
 import Navbar from './components/Navbar'
 import LOAD_DATA from './graphql/Categories';
 import './media/sass/App.scss'

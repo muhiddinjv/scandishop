@@ -4,13 +4,13 @@ import "../media/sass/Dropdown.scss";
 export default class Dropdown extends Component {
   constructor(props) {
     super(props);
-    this.myRef = React.createRef();
-   this.state = {
-    setSymbol: "$",
-    setClass: "",
-    getSymbols: ["\u0024","\u00A3","\u20B3","\u00A5","\u20BD"],
-    // id: this.props.id
-   }
+    this.dropdownRef = React.createRef();
+    // this.showList = this.showList.bind(this);
+    this.state = {
+      setSymbol: "$",
+      getSymbols: ["\u0024","\u00A3","\u20B3","\u00A5","\u20BD"],
+      // id: this.props.id
+    }
   }
 
   symbols = (selectedOpt) => {
@@ -56,6 +56,7 @@ export default class Dropdown extends Component {
     classlist.toggle("arrow-down");
     // console.log(this.state.setClass);
     this.setState({setClass: "show"});
+    this.dropdownRef.current.classList.toggle("show");
   }
 
   render() {
@@ -63,7 +64,7 @@ export default class Dropdown extends Component {
       <div className="dropdown">
         <label className="dropdown__label" htmlFor="dropdown">{this.state.setSymbol}</label>
         <button className="dropdown__btn" onClick={(e) =>this.showList(e.target.classList)}>Drop</button>
-        <ul className="dropdown__content">
+        <ul className="dropdown__content" ref={this.dropdownRef}>
           {this.setCurrency()}
         </ul>
       </div>

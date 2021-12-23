@@ -1,6 +1,3 @@
-// import { gql } from "@apollo/client";
-
-// const LOAD_PRODUCT = gql`
 const LOAD_PRODUCT = `
   {
     product(id: "huarache-x-stussy-le") {

@@ -1,6 +1,32 @@
 @import "Base.scss";
 
 .category{
+    font-family: "Raleway-Regular", sans-serif;
     border:1px solid #333;
-    height:80vh;
+    color: $--c-text;
+
+    &__name{
+        font-size: 4.5rem;
+        font-weight: lighter;
+        margin: 8.5rem 0 12.5rem 0;
+        text-transform: capitalize;
+    }
+
+    &__product  {
+        margin: 0 1.5rem;
+        display: flex;
+
+        &--card{
+            border: 1px solid red;
+            margin-right: 7rem;
+            height: 42rem;
+        }
+        
+        &--image{
+            height: 33rem;
+            width: 35rem;
+            border: 1px solid blue;
+            margin-bottom: 3rem;
+        }
+    }
 }

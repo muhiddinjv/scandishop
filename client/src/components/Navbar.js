@@ -6,7 +6,6 @@ import '../media/sass/Navbar.scss'
 
 export default class Navbar extends Component {
     render() {
-        let response = this.props.state.fetchedData.currencies;
         return (
             <nav className='navbar'>
                 <ul className='navbar__nav'>
@@ -24,7 +23,7 @@ export default class Navbar extends Component {
                     <Logo />
                 </div>
                 <div className='navbar__actions'>
-                    <Dropdown state={response}/>
+                    <Dropdown state={this.props.state}/>
                     <div className="navbar__actions-cart">
                         <EmptyCart />
                     </div>

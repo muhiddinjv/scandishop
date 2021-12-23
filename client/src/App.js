@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Navbar from './components/Navbar'
+import Category from './components/Category'
 import LOAD_DATA from './graphql/Categories';
 import './media/sass/App.scss'
 
@@ -29,6 +30,7 @@ export default class App extends Component {
     return (
       <div className='app'>
         <Navbar state={this.state}/>
+        <Category state={this.state}/>
       </div>
     );
   }

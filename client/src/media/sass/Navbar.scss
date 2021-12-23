@@ -36,11 +36,14 @@
 
   &__logo {
     border: 1px solid blue;
+    margin-right: 7.4rem;
+    margin-top: -0.5rem;
   }
 
   &__actions{
       display:flex;
       align-items:center;
+      margin-top: -0.5rem;
       height:4rem;
   }
 }

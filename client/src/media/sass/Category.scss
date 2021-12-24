@@ -14,19 +14,26 @@
 
     &__product  {
         margin: 0 1.5rem;
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 7.5rem;
 
         &--card{
             border: 1px solid red;
-            margin-right: 7rem;
             height: 42rem;
+            margin-bottom: 5.5rem;
         }
         
         &--image{
-            height: 33rem;
+            height: 33.5rem;
             width: 35rem;
             border: 1px solid blue;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        &--price{
+            margin-top: 1.4rem;
+            font-size: 1.6rem;
         }
     }
 }

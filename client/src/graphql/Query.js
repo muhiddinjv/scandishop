@@ -1,11 +1,11 @@
-const LOAD_CLOTHES = `
-query clothes($input: CategoryInput = {title: "clothes"}) {
+const LOAD_QUERY = `
+query Clothes($input: CategoryInput) {
   category(input: $input){
     name
     products{
       id
       name
-      inStock
+      inStock 
       description
       prices{
         currency
@@ -23,4 +23,4 @@ query clothes($input: CategoryInput = {title: "clothes"}) {
   currencies
 }
 `;
-export default LOAD_CLOTHES;
+export default LOAD_QUERY;

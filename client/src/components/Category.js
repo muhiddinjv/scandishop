@@ -9,9 +9,11 @@ export default class Category extends Component {
 
   componentDidMount() {    
     setTimeout(() => {
-      this.setState({category: this.props.state})
+      this.setState({category: this.props.category})
     },500)
   }
+
+  
 
   generateProduct = () => {    
     let products = this.state.category.products;
@@ -20,13 +22,11 @@ export default class Category extends Component {
       return products.map((product) => {     
         // console.log(product.gallery, product.prices[0].amount, product.prices[0].currency);                    
         return <li className="category__product--card" key={product.id}>
-          <figure className="category__product--figure">
-            <img className="category__product--image" src={product.gallery[0]} alt={product.name}/>
-          </figure>
+          <img className="category__product--image" src={product.gallery[0]} alt={product.name}/>
           <div className="category__product--body">
             <h2 className="category__product--name">{product.name}</h2>
             <div className="category__product--price">
-              {product.prices[0].currency}, {product.prices[0].amount}
+              {product.prices[0].currency} {product.prices[0].amount}
             </div>
           </div>
         </li>

@@ -30,13 +30,13 @@ export default class Dropdown extends Component {
         symbol = "\u20BD";
         break;
       default:
-        symbol = "not found";
+        symbol = "?";
     }    
     return symbol;
   };
   
   
-  createDropdownList   = () => {
+  createDropdownList = () => {
     let currencies = this.props.state; //data received from server
     
     if (currencies) {

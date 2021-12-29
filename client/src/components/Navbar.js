@@ -9,13 +9,13 @@ export default class Navbar extends Component {
         return (
             <nav className='navbar'>
                 <ul className='navbar__nav'>
-                    <li className="navbar__nav--link women" onClick={()=>this.props.filterProduct('clothes')}>
+                    <li className="navbar__nav--link women" onClick={()=>this.props.filterProduct('jacket-canada-goosee')}>
                         women
                     </li>
-                    <li className="navbar__nav--link men" onClick={()=>this.props.filterProduct('clothes')}>
+                    <li className="navbar__nav--link men" onClick={()=>this.props.filterProduct('huarache-x-stussy-le')}>
                         men
                     </li>
-                    <li className="navbar__nav--link kids" onClick={()=>this.props.filterProduct('tech')}>
+                    <li className="navbar__nav--link kids" onClick={()=>this.props.filterProduct('ps-5')}>
                         kids
                     </li>
                 </ul>

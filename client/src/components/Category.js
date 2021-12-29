@@ -4,6 +4,7 @@ import "../media/sass/Category.scss";
 export default class Category extends Component {
   generateProduct = () => {    
     let products = this.props.category;
+    // console.log("genProd",products);
     
       if (products) {
         return products.map((product) => {   
@@ -28,7 +29,7 @@ export default class Category extends Component {
     return (
       <div className="category">
         <div className="category__header">
-          <h1 className="category__name">{this.props.name}</h1>
+          <h1 className="category__name">{this.props.category.name}</h1>
         </div>
           <ul className="category__product">{this.generateProduct()}</ul>
       </div>

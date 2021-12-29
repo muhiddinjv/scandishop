@@ -9,12 +9,13 @@ export default class App extends Component {
     super(props);
     this.filterProduct = this.filterProduct.bind(this);
     this.state = {
+      // loading:true,
       allData: [],
       category: [],
     };
   }
 
-  componentDidMount(){this.fetchData()}
+  componentDidMount() {this.fetchData()}
 
   fetchData = () => {
     fetch("http://localhost:4000/", {
@@ -24,29 +25,39 @@ export default class App extends Component {
     })
       .then((res) => res.json())
       .then((data) => {
+        // this.setState({loading:true});
         this.setState({ allData: data.data });
-        this.setState({ category: data.data.categories[0]});
-        console.log("fetch", data.data);
+        this.setState({ category: [data.data.categories[0].products[0]] });
+        // this.setState({loading:false});
+        // console.log("fetch", data.data);
       })
       .catch((error) => console.log(error));
+    //   if(this.state.loading){
+    //     return <h1>Loading...</h1>
+    //  }
   };
 
-  filterProduct = (catName) => {
-    const cats = this.state.allData.categories;    
-    const updatedList = cats.filter((cat) => cat.name === catName);
-    this.setState({category: updatedList[0]})    
+  filterProduct = (productId) => {
+    const cats = this.state.allData.categories;
+
+    cats.map((c) =>
+      c.products.filter((p) => {                
+        return (p.id === productId
+          ? this.setState({ category: [p] })
+          : null)
+      })
+    );
   };
 
   render() {
     console.log("render",this.state.category);
-    
     return (
       <div className="app">
         <Navbar
           curr={this.state.allData.currencies}
           filterProduct={this.filterProduct}
         />
-        <Category category={this.state.category.products} />
+        <Category category={this.state.category} />
       </div>
     );
   }

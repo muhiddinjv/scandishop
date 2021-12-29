@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Helper from './Helper';
 import "../media/sass/Dropdown.scss";
 
 export default class Dropdown extends Component {
@@ -8,33 +9,7 @@ export default class Dropdown extends Component {
     this.dropContentRef = React.createRef();
     this.dropLabelRef = React.createRef();
     this.dropBtnRef = React.createRef();
-    // this.showCurrencies = this.showCurrencies.bind(this);
   }
-
-  symbols = (currency) => {
-    let symbol;
-    switch (currency) {
-      case "USD":
-        symbol = "\u0024";
-        break;
-      case "GBP":
-        symbol = "\u00A3";
-        break;
-      case "AUD":
-        symbol = "\u20B3";
-        break;
-      case "JPY":
-        symbol = "\u00A5";
-        break;
-      case "RUB":
-        symbol = "\u20BD";
-        break;
-      default:
-        symbol = "?";
-    }    
-    return symbol;
-  };
-  
   
   createDropdownList = () => {
     let currencies = this.props.state; //data received from server
@@ -42,7 +17,7 @@ export default class Dropdown extends Component {
     if (currencies) {
       return currencies.map((currency) => (
         <li className="dropdown__options" key={currency}>
-          <span className="dropdown__options--symbol" ref={this.dropListSignRef}>{this.symbols(currency)}</span>
+          <span className="dropdown__options--symbol" ref={this.dropListSignRef}>{Helper.switchCurrency(currency)}</span>
           <span className="dropdown__options--currency" onClick={() =>{this.changeCurrency(currency)}}>{currency}</span>
         </li>
       ));
@@ -56,7 +31,7 @@ export default class Dropdown extends Component {
 
   changeCurrency = (currency) => {
     this.dropBtnRef.current.classList.toggle("arrow-spin");
-    this.dropLabelRef.current.innerText = this.symbols(currency);
+    this.dropLabelRef.current.innerText = Helper.switchCurrency(currency);
     this.dropContentRef.current.classList.toggle("show");
   }
 

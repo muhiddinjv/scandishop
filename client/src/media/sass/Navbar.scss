@@ -18,16 +18,9 @@
 
     &--link {
       align-self: stretch;
+      // transition: 0.3s;
       &:hover {
         border-bottom: 0.2rem solid $--c-primary;
-      }
-
-      span {
-        color: $--c-text;
-        // trspannsition: 0.8s;
-      }
-
-      span:hover {
         color: $--c-primary;
         font-family: "Raleway-SemiBold", sans-serif;
         cursor: pointer;

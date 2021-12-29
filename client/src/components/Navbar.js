@@ -9,13 +9,13 @@ export default class Navbar extends Component {
         return (
             <nav className='navbar'>
                 <ul className='navbar__nav'>
-                    <li className="navbar__nav--link women" onClick={()=>this.props.filterProduct('jacket-canada-goosee')}>
+                    <li className="navbar__nav--link" onClick={()=>this.props.filterProduct('jacket-canada-goosee')}>
                         women
                     </li>
-                    <li className="navbar__nav--link men" onClick={()=>this.props.filterProduct('huarache-x-stussy-le')}>
+                    <li className="navbar__nav--link" onClick={()=>this.props.filterProduct('huarache-x-stussy-le')}>
                         men
                     </li>
-                    <li className="navbar__nav--link kids" onClick={()=>this.props.filterProduct('ps-5')}>
+                    <li className="navbar__nav--link" onClick={()=>this.props.filterProduct('ps-5')}>
                         kids
                     </li>
                 </ul>
@@ -24,7 +24,7 @@ export default class Navbar extends Component {
                 </div>
                 <div className='navbar__actions'>
                     <Dropdown state={this.props.curr}/>
-                    <div className="navbar__actions-cart">
+                    <div className="navbar__actions--cart">
                         <EmptyCart />
                     </div>
                 </div>

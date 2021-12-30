@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Helper from './Helper'
+import Helper from "./Helper";
 import "../media/sass/Category.scss";
+import { NavLink } from "react-router-dom";
 
 export default class Category extends Component {
   generateProduct = () => {
@@ -10,15 +11,22 @@ export default class Category extends Component {
       return products.map((product) => {
         return (
           <li className="category__product--card" key={product.id}>
+            <NavLink to="/product">
             <img
               className="category__product--image"
               src={product.gallery[0]}
               alt={product.name}
             />
+
+            </NavLink>
+            
             <div className="category__product--body">
-              <h2 className="category__product--name">{product.name}</h2>
+              <h2 className="category__product--name">
+                <NavLink to="/product">{product.name}</NavLink>
+              </h2>
               <div className="category__product--price">
-              {Helper.switchCurrency(product.prices[0].currency)} {product.prices[0].amount}
+                {Helper.switchCurrency(product.prices[0].currency)}{" "}
+                {product.prices[0].amount}
               </div>
             </div>
           </li>
@@ -30,7 +38,6 @@ export default class Category extends Component {
   };
 
   render() {
-    
     return (
       <div className="category">
         <div className="category__header">

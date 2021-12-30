@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { ReactComponent as Logo } from '../media/icons/logo.svg';
 import { ReactComponent as EmptyCart } from '../media/icons/empty-cart.svg';
+import { NavLink } from 'react-router-dom';
 import Dropdown from './Dropdown';
-import '../media/sass/Navbar.scss'
+import '../media/sass/Navbar.scss';
 
 export default class Navbar extends Component {
     render() {
@@ -20,7 +21,7 @@ export default class Navbar extends Component {
                     </li>
                 </ul>
                 <div className='navbar__logo'>
-                    <Logo />
+                    <NavLink to="/"><Logo /></NavLink>
                 </div>
                 <div className='navbar__actions'>
                     <Dropdown state={this.props.curr}/>

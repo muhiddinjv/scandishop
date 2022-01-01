@@ -8,42 +8,40 @@ import { ReactComponent as EmptyCart } from '../media/icons/cart-white.svg';
 export default class Category extends Component {
   constructor(props) {
     super(props);
-    this.handleMouseOver = this.handleMouseOver.bind(this);
-    this.handleMouseOut = this.handleMouseOut.bind(this);
+    this.mouseEnter = this.mouseEnter.bind(this);
+    this.mouseLeave = this.mouseLeave.bind(this);
     this.state = {
-      isHovering: false
+      display: "none",
     };
   }
 
-  handleMouseOver() {
+  mouseEnter() {
     this.setState(() => ({
-      isHovering: true
+      display: "block",
     }));
   }
 
-  handleMouseOut() {
+  mouseLeave() {
     this.setState(() => ({
-      isHovering: false
+      display: "none",
     }));
   }
 
- 
-
-  generateProduct() {
+  generateProduct = () => {
     let products = this.props.category;
     // console.log("genProd",products);
     if (products) {
       return products.map((product) => {
         return (
-          <li className="category__product--card" key={product.id} onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseOut}>
+          <li className="category__product--card" key={product.id} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
             <div className="category__product--image-wrapper">
               <img
                 className="category__product--image"
                 src={product.gallery[0]}
                 alt={product.name}
               />   
-              <NavLink className="category__product--btn" to="/product">
-                {this.state.isHovering && <EmptyCart />}
+              <NavLink className="category__product--btn" to="/product" style={{display: this.state.display}} >
+                <EmptyCart />
               </NavLink>
             </div>           
             <div className="category__product--body">

@@ -4,7 +4,7 @@
   display: flex;
   font-family: "Raleway-Regular", sans-serif;
   justify-content: space-between;
-  border: 1px solid red;
+  border: 1px solid #999;
   font-size: 1.6rem;
   padding-top: 2.4rem;
   text-transform: uppercase;
@@ -29,7 +29,6 @@
   }
 
   &__logo {
-    border: 1px solid blue;
     margin-right: 16.4rem;
     margin-top: -0.5rem;
   }

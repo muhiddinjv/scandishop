@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Helper from "./Helper";
 import "../media/sass/Category.scss";
 import { NavLink } from "react-router-dom";
+import { ReactComponent as EmptyCart } from '../media/icons/empty-cart.svg';
 
 export default class Category extends Component {
   generateProduct = () => {
@@ -11,15 +12,16 @@ export default class Category extends Component {
       return products.map((product) => {
         return (
           <li className="category__product--card" key={product.id}>
-            <NavLink to="/product">
-            <img
-              className="category__product--image"
-              src={product.gallery[0]}
-              alt={product.name}
-            />
-
-            </NavLink>
-            
+            <div className="category__product--image-wrapper">
+              <img
+                className="category__product--image"
+                src={product.gallery[0]}
+                alt={product.name}
+              />   
+              <NavLink className="category__product--btn" to="/product" >
+                <EmptyCart />
+              </NavLink>
+            </div>           
             <div className="category__product--body">
               <h2 className="category__product--name">
                 <NavLink to="/product">{product.name}</NavLink>

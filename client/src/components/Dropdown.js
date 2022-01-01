@@ -11,7 +11,7 @@ export default class Dropdown extends Component {
     this.dropBtnRef = React.createRef();
   }
   
-  createDropdownList = () => {
+  createDropdownList() {
     let currencies = this.props.state; //data received from server
     if (currencies) {
       return currencies.map((currency) => (

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Carousel from "./Carousel";
+
 
 
 export default class Product extends Component {
@@ -11,7 +13,7 @@ export default class Product extends Component {
       return images.map((img) => {          
         return (
             <div className="product__carousel--img">
-                {img.gallery.map((im, ind)=><img src={im} alt={img.name} key={ind}/>)}
+                {/* {img.gallery.map((im, ind)=><img src={im} alt={img.name} key={ind}/>)} */}
             </div>
         );
       });
@@ -24,8 +26,9 @@ export default class Product extends Component {
       <div className="product">
         product page
         <div className="product__carousel">
-          <div className="product__carousel--imgs">{this.carousel   ()}</div>
+          <div className="product__carousel--imgs">{this.carousel()}</div>
         </div>
+        <Carousel />
       </div>
     );
   }

@@ -27,9 +27,9 @@ export default class Category extends Component {
     }));
   }
 
-  generateProduct = () => {
+  generateProduct() {
     let products = this.props.category;
-    // console.log("genProd",products);
+    // console.log("genProd",products); 
     if (products) {
       return products.map((product) => {
         return (
@@ -40,7 +40,7 @@ export default class Category extends Component {
                 src={product.gallery[0]}
                 alt={product.name}
               />   
-              <NavLink className="category__product--btn" to="/product" style={{display: this.state.display}} >
+              <NavLink className="category__product--cart" to="/product" style={{display: this.state.display}} >
                 <EmptyCart />
               </NavLink>
             </div>           

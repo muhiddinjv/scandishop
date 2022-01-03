@@ -1,6 +1,8 @@
 .slider {
   display: flex;
-  justify-content: center;
+  // justify-content: center;
+  // min-width: 85rem;
+  border: 1px solid #999;
 
   &__thumbnails {
     display: flex;
@@ -16,8 +18,10 @@
     }
 
     img {
-      width: 30vmin;
-      height: 20vmin;
+      margin-bottom: 4rem;
+      border: 1px solid #999;
+      width: 15vmin;
+      height: 15vmin;
       object-fit: cover;
       object-position: top;
     }
@@ -40,7 +44,10 @@
     }
 
     img {
-      height: 100vmin;
+      height: 92vmin;
+      width: 107vmin;
+      margin-left: 6vmin;
+      border: 1px solid #999;
       object-fit: cover;
       object-position: top;
     }

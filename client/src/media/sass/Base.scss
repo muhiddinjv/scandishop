@@ -28,18 +28,16 @@ $--c-primary:#5ECE7B;
 $--c-text:#1D1F22;
 $--c-black:#1D1F22;
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
 *,
 *::before,
 *::after {
   box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 html {
+  height: 100%;
   box-sizing: border-box;
   /* REM for size, margin, padding */
   font-size: 62.5%; /* = 10px = 1rem */

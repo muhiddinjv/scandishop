@@ -1,0 +1,48 @@
+.slider {
+  display: flex;
+  justify-content: center;
+
+  &__thumbnails {
+    display: flex;
+    flex-direction: column;
+    line-height: 0;
+
+    li {
+      flex: auto;
+    }
+
+    a {
+      display: block;
+    }
+
+    img {
+      width: 30vmin;
+      height: 20vmin;
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+
+  &__slides {
+    overflow: hidden;
+    width: 75vmin;
+    height: 100vmin;
+
+    li {
+      width: 75vmin;
+      height: 100vmin;
+      position: absolute;
+      z-index: 1;
+
+      &:target {
+        z-index: 3;
+      }
+    }
+
+    img {
+      height: 100vmin;
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+}

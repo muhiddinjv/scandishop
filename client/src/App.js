@@ -53,7 +53,7 @@ export default class App extends Component {
   };
 
   render() {
-    // console.log("render", this.state.category);
+    console.log("render", this.state.allData);
     return (
       <div className="app">
         <Navbar

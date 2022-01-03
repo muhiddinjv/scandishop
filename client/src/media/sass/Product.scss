@@ -11,36 +11,39 @@
   &__info {
     border: 1px solid #999;
     width: 32.5rem;
-    height: 58rem;
+    height: 57.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
-  &__title {
+  &__brand {
     font-size: 3rem;
     letter-spacing: 2px;
   }
 
-  &__subtitle {
+  &__name {
     font-size: 2.9rem;
     letter-spacing: 2.3px;
     margin: 1.4rem 0;
   }
 
   &__attr {
-    margin: 4.4rem 0;
+    // margin: 4.4rem 0;
     text-transform: uppercase;
 
     &--title {
       font-size: 2rem;
     }
 
-    &--sizes {
+    &--items {
       display: flex;
       justify-content: space-between;
-      margin-top: 0.6rem;
+      // margin-top: 0.6rem;
       margin-right: 0.4rem;
     }
 
-    &--size {
+    &--item {
       display: flex;
       border: 1px solid #999;
       justify-content: center;
@@ -49,6 +52,12 @@
       height: 5rem;
       font-size: 2rem;
       cursor: pointer;
+      transition: 0.3s;
+      
+      &:hover{
+          background:#444;
+          color: white;
+      }
     }
   }
   
@@ -57,7 +66,7 @@
     text-transform: uppercase;
 
     &--amount {
-      margin-top: 2rem;
+      // margin-top: 2rem;
       font-size: 2.5rem;
       letter-spacing: 1px;
     }
@@ -69,15 +78,20 @@
     background: $--c-primary;
     color: white;
     border: none;
-    margin-top: 3.2rem;
+    // margin-top: 3.2rem;
     font-size: 1.5rem;
     padding: 2rem;
     cursor: pointer;
     width: 100%;
+    transition: 0.3s;
+
+    &:hover{
+        background:#4ca564;
+    }
   }
 
   &__desc {
-    margin-top: 4.4rem;
+    // margin-top: 4.4rem;
     font-size: 1.6rem;
     line-height: 1.8;
   }

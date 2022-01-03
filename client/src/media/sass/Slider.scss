@@ -2,20 +2,20 @@
   display: flex;
   // justify-content: center;
   // min-width: 85rem;
-  border: 1px solid #999;
+  // border: 1px solid red;
 
   &__thumbnails {
     display: flex;
     flex-direction: column;
     line-height: 0;
 
-    li {
-      flex: auto;
-    }
+    // li {
+    //   flex: auto;
+    // }
 
-    a {
-      display: block;
-    }
+    // a {
+    //   display: block;
+    // }
 
     img {
       margin-bottom: 4rem;

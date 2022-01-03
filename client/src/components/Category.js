@@ -70,8 +70,6 @@ export default class Category extends Component {
           </h1>
         </div>
         <ul className="category__product">{this.generateProduct()}</ul>
-        
-
       </div>
     );
   }

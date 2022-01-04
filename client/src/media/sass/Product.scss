@@ -29,7 +29,6 @@
   }
 
   &__attr {
-    // margin: 4.4rem 0;
     text-transform: uppercase;
 
     &--title {
@@ -38,14 +37,13 @@
 
     &--items {
       display: flex;
-      justify-content: space-between;
-      // margin-top: 0.6rem;
       margin-right: 0.4rem;
     }
 
     &--item {
       display: flex;
       border: 1px solid #999;
+      margin: 0.5rem 1rem 1.5rem 0;
       justify-content: center;
       align-items: center;
       width: 7rem;
@@ -66,7 +64,6 @@
     text-transform: uppercase;
 
     &--amount {
-      // margin-top: 2rem;
       font-size: 2.5rem;
       letter-spacing: 1px;
     }
@@ -78,7 +75,6 @@
     background: $--c-primary;
     color: white;
     border: none;
-    // margin-top: 3.2rem;
     font-size: 1.5rem;
     padding: 2rem;
     cursor: pointer;
@@ -91,7 +87,6 @@
   }
 
   &__desc {
-    // margin-top: 4.4rem;
     font-size: 1.6rem;
     line-height: 1.8;
   }

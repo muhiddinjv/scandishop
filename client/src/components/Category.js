@@ -35,14 +35,16 @@ export default class Category extends Component {
         return (
           <li className="category__product--card" key={product.id} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
             <div className="category__product--image-wrapper">
-              <img
-                className="category__product--image"
-                src={product.gallery[0]}
-                alt={product.name}
-              />   
-              <NavLink className="category__product--cart" to="/product" style={{display: this.state.display}} >
-                <EmptyCart />
+              <NavLink to="/product">
+                <img
+                  className="category__product--image"
+                  src={product.gallery[0]}
+                  alt={product.name}
+                />
               </NavLink>
+              <div onClick={()=>alert('clicked cart button')} className="category__product--cart" style={{display: this.state.display}} >
+                <EmptyCart />
+              </div>
             </div>           
             <div className="category__product--body">
               <h2 className="category__product--name">

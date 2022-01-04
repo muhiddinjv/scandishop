@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Slider from "./Slider";
+import Helper from "./Helper";
 import "../media/sass/Product.scss";
 
 export default class Product extends Component {
@@ -44,7 +45,7 @@ export default class Product extends Component {
   product() {
     let p = this.props.category[0];
     if (p) {      
-      console.log("p",p.attributes.length > 1 ? p.attributes[1].items.map(x=>x.value) : "only 1 attribute");
+      console.log("p",p);
       
       return <div className="product__info">
       <header className="product__header">
@@ -54,10 +55,10 @@ export default class Product extends Component {
       {this.attributes()}
       <div className="product__price">
         <h3 className="product__price--title">price</h3>
-        <div className="product__price--amount">$50.00</div>
+        <div className="product__price--amount">{Helper.switchCurrency(p.prices[0].currency)}{p.prices[0].amount}</div>
       </div>
       <button className="product__btn">add to cart</button>
-      <div className="product__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias nemo laborum sit cum! Reiciendis voluptatum nulla, numquam odit dicta rem eveniet fuga.</div>
+      <div className="product__desc" dangerouslySetInnerHTML={{ __html: p.description }}></div>
     </div>
     } else {
       return <div className="loader"></div>;

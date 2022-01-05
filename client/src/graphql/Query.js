@@ -1,5 +1,5 @@
 const LOAD_QUERY = `
-query Clothes($input: CategoryInput) {
+query All($input: CategoryInput) {
   category(input: $input){
     name
     products{

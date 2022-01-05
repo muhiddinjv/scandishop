@@ -6,6 +6,7 @@ import "../media/sass/Product.scss";
 export default class Product extends Component {
   attributes(){
     let p = this.props.category[0];
+    
     if (p.attributes.length > 1) {            
       return <div className="product__attrs">
         <div className="product__attr1">
@@ -44,9 +45,8 @@ export default class Product extends Component {
 
   product() {
     let p = this.props.category[0];
-    if (p) {      
-      console.log("p",p);
-      
+
+    if (p) {            
       return <div className="product__info">
       <header className="product__header">
         <h1 className="product__brand">{p.brand}</h1>

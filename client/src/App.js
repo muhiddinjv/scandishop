@@ -64,7 +64,7 @@ export default class App extends Component {
           <Route exact path="/" element={<Category category={this.state.category} />} />
           <Route path="/product" element={<Product category={this.state.category} />} />
         </Routes>
-      </div>
+        </div>
     );
   }
 }

@@ -6,6 +6,7 @@ import Dropdown from './Dropdown';
 import '../media/sass/Navbar.scss';
 
 export default class Navbar extends Component {
+    
     render() {
         return (
             <nav className='navbar'>

@@ -4,7 +4,6 @@ import LOAD_QUERY from "../../graphql/Query";
 
 const initState = {
     items: [],
-    price:[],
     currencies: [],
     addedItems:[],
     total: 0
@@ -20,18 +19,17 @@ fetch("http://localhost:4000/", {
     .then((res) => res.json())
     .then((data) => {        
         data.data.category.products.map(p=>initState.items.push(p))        
-        data.data.category.products.map(p=>initState.price.push(p.prices[0].amount))        
         data.data.currencies.map(c=>initState.currencies.push(c))  
     })
     .catch((error) => console.log(error));
 };
 
-fetchData();
+    fetchData();
 
 
-// console.log(initState.items);
-// console.log(initState.price);
-// console.log(initState.currencies);
+// console.log("items",initState.items);
+// console.log("prices",initState.price);
+// console.log("currencies",initState.currencies);
 
 const cartReducer= (state = initState, action)=>{
    

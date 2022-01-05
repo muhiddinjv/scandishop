@@ -5,66 +5,48 @@ import Product from "./components/Product";
 // import LOAD_QUERY from "./graphql/Query";
 import LOAD_PRODUCT from "./graphql/Products";  
 import { Routes, Route } from "react-router-dom";
+import { connect } from 'react-redux';
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.filterProduct = this.filterProduct.bind(this);
-    this.state = {
-      // loading:true,
-      allData: [],
-      category: [],
-    };
+    this.state = { products: [] };
   }
 
   componentDidMount() {
-    this.fetchData();
+    setTimeout(() => {
+      this.setState({products: [this.props.items[0]]}) 
+    }, 500);     
   }
 
-  fetchData = () => {
-    fetch("http://localhost:4000/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query: LOAD_PRODUCT }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // this.setState({loading:true});
-        this.setState({ allData: data.data });
-        this.setState({ category: [data.data.categories[0].products[0]] });
-        // this.setState({loading:false});
-        // console.log("fetch",this.state.allData);
-        
-      })
-      .catch((error) => console.log(error));
-      //   if(this.state.loading){
-      //     return <h1>Loading...</h1>
-      //  }
-  };
-
   filterProduct = (productId) => {
-    const cats = this.state.allData.categories;
-
-    cats.map((c) =>
-      c.products.filter((p) => {
-        return p.id === productId ? this.setState({ category: [p] }) : null;
-      })
-    );
+    const items = this.props.items;
+    items.filter((p) => p.id === productId ? this.setState({ products: [p] }) : <div className="loader"></div>)    
   };
 
   render() {
-    // console.log("render", this.state.allData);
+    console.log("App render: ", this.state.products);
     return (
       <div className="app">
         <Navbar
-          curr={this.state.allData.currencies}
+          curr={this.props.currencies}
           filterProduct={this.filterProduct}
         />
         <Routes>
-          <Route exact path="/" element={<Category category={this.state.category} />} />
-          <Route path="/product" element={<Product category={this.state.category} />} />
+          <Route exact path="/" element={<Category products={this.state.products} />} />
+          <Route path="/product" element={<Product products={this.state.products} />} />
         </Routes>
         </div>
     );
   }
 }
+
+const mapStateToProps = (state)=>{
+  return {
+      items: state.items,
+      currencies: state.currencies
+      }
+  }
+
+export default connect(mapStateToProps)(App)

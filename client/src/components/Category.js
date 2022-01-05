@@ -28,8 +28,10 @@ export default class Category extends Component {
   }
 
   generateProduct() {
-    let products = this.props.category;
-    // console.log("genProd",products); 
+    let products = this.props.products;
+
+    console.log("Category => genProd: ",products); 
+    
     if (products) {
       return products.map((product) => {
         return (
@@ -68,7 +70,7 @@ export default class Category extends Component {
       <div className="category">
         <div className="category__header">
           <h1 className="category__name">
-            {this.props.category.map((x) => x.category)}
+            {this.props.products.map((x) => x.category)}
           </h1>
         </div>
         <ul className="category__product">{this.generateProduct()}</ul>

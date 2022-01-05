@@ -5,7 +5,9 @@ query All($input: CategoryInput) {
     products{
       id
       name
+      brand
       inStock 
+      category
       description
       prices{
         currency

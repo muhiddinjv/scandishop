@@ -5,7 +5,7 @@ import "../media/sass/Product.scss";
 
 export default class Product extends Component {
   attributes(){
-    let p = this.props.category[0];
+    let p = this.props.products[0];
     
     if (p.attributes.length > 1) {            
       return <div className="product__attrs">
@@ -13,7 +13,6 @@ export default class Product extends Component {
           <h3 className="product__attr--title">{p.attributes[0].name}</h3>
           <div className="product__attr--items">
             {p.attributes[0].items.map(item=>{
-              console.log("item value",item.value);
               if (item.value.includes("#")){
                 return <div className="product__attr--item" style={{background: item.value}} key={item.id} id={item.id}></div>
               } else {
@@ -44,7 +43,7 @@ export default class Product extends Component {
   }
 
   product() {
-    let p = this.props.category[0];
+    let p = this.props.products[0];
 
     if (p) {            
       return <div className="product__info">
@@ -68,7 +67,7 @@ export default class Product extends Component {
   render() {
     return (
       <div className="product">
-        <Slider images={this.props.category.map(img=>img.gallery)} />
+        <Slider images={this.props.products.map(img=>img.gallery)} />
         {this.product()}
       </div>
     );

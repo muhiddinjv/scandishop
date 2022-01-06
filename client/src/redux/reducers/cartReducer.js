@@ -24,7 +24,7 @@ fetch("http://localhost:4000/", {
     .catch((error) => console.log(error));
 };
 
-    fetchData();
+fetchData();
 
 
 // console.log("items",initState.items);

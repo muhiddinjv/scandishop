@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "./components/Navbar";
 import Category from "./components/Category";
-import Product from "./components/Product";
-// import LOAD_QUERY from "./graphql/Query";
-import LOAD_PRODUCT from "./graphql/Products";  
+import Product from "./components/Product"; 
 import { Routes, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 
@@ -22,7 +20,7 @@ class App extends Component {
 
   filterProduct = (productId) => {
     const items = this.props.items;
-    items.filter((p) => p.id === productId ? this.setState({ products: [p] }) : <div className="loader"></div>)    
+    items.filter((p) => p.id === productId ? this.setState({ products: [p] }) : <div className="loader"/>)    
   };
 
   render() {

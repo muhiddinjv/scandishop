@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import Navbar from "./components/Navbar";
 import Category from "./components/Category";
 import Product from "./components/Product"; 
+// import Cart from "./components/Cart";
 import { Routes, Route } from "react-router-dom";
 import { connect } from 'react-redux';
+import { addToCart } from './redux/actions/cartActions'
 
 class App extends Component {
   constructor(props) {
@@ -35,6 +37,7 @@ class App extends Component {
           <Route exact path="/" element={<Category products={this.state.products} />} />
           <Route path="/product" element={<Product products={this.state.products} />} />
         </Routes>
+        {/* <Cart /> */}
         </div>
     );
   }
@@ -42,9 +45,15 @@ class App extends Component {
 
 const mapStateToProps = (state)=>{
   return {
-      items: state.items,
-      currencies: state.currencies
-      }
+    items: state.items,
+    currencies: state.currencies
+    }
   }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps= (dispatch)=>{
+  return{
+    addToCart: (id)=>{dispatch(addToCart(id))}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

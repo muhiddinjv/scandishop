@@ -29,30 +29,29 @@ export default class Category extends Component {
 
   generateProduct() {
     let products = this.props.products;
-
-    console.log("Category => genProd: ",products); 
+    // console.log("Category => genProd: ",products); 
     
     if (products) {
-      return products.map((product) => {
+      return products.map((product, i) => {        
         return (
-          <li className="category__product--card" key={product.id} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
-            <div className="category__product--image-wrapper">
+          <li className="category__product--card" key={i} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
+            <div className="category__product--image-wrapper" >
               <NavLink to="/product">
-                <img
+                <img 
                   className="category__product--image"
                   src={product.gallery[0]}
                   alt={product.name}
                 />
               </NavLink>
-              <div onClick={()=>alert('clicked cart button')} className="category__product--cart" style={{display: this.state.display}} >
+              <div  onClick={()=>alert('clicked cart button')} className="category__product--cart" style={{display: this.state.display}} >
                 <EmptyCart />
               </div>
             </div>           
-            <div className="category__product--body">
-              <h2 className="category__product--name">
+            <div  className="category__product--body">
+              <h2  className="category__product--name">
                 <NavLink to="/product">{product.name}</NavLink>
               </h2>
-              <div className="category__product--price">
+              <div  className="category__product--price">
                 {Helper.switchCurrency(product.prices[0].currency)}
                 {product.prices[0].amount}
               </div>

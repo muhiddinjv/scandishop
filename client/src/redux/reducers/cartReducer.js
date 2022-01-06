@@ -33,7 +33,7 @@ fetchData();
 
 const cartReducer= (state = initState, action)=>{
    
-    //INSIDE HOME COMPONENT
+    //INSIDE APP COMPONENT
     if(action.type === ADD_TO_CART){
           let addedItem = state.items.find(item=> item.id === action.id)
           //check if the action id exists in the addedItems

@@ -8,7 +8,7 @@ export default class Product extends Component {
     super(props);
     this.toggleClass= this.toggleClass.bind(this);
     this.state = {
-        active: "",
+        active: '',
     };
   }
 

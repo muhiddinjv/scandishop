@@ -4,6 +4,18 @@ import Helper from "./Helper";
 import "../media/sass/Product.scss";
 
 export default class Product extends Component {
+  constructor(props) {
+    super(props);
+    this.toggleClass= this.toggleClass.bind(this);
+    this.state = {
+        active: "",
+    };
+  }
+
+  toggleClass(item) {
+    this.setState(()=> { return { active: item } });
+  };
+
   attributes(){
     let p = this.props.products[0];
     
@@ -35,8 +47,8 @@ export default class Product extends Component {
         <h3 className="product__attr--title">{p.attributes[0].name}</h3>
         <div className="product__attr--items">
           {p.attributes[0].items.map((item, i)=>{
-            return <div key={i} className="product__attr--item" id={item.id}>{item.value}</div>
-          })}        
+            return <div key={i} style={item === this.state.active ? {background: '#4ca564', color:"white"} : null} className="product__attr--item" onClick={this.toggleClass.bind(null, item)} id={item.id}>{item.value}</div>
+          })}      
         </div>
       </div>
     }

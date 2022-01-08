@@ -27,7 +27,9 @@ export default class Navbar extends Component {
                 <div className='navbar__actions'>
                     <Dropdown state={this.props.curr}/>
                     <div className="navbar__actions--cart">
+                    <NavLink to="/cart">
                         <EmptyCart />
+                    </NavLink>
                     </div>
                 </div>
             </nav>

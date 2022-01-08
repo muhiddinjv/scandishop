@@ -47,7 +47,7 @@ export default class Product extends Component {
   }
 
   product() {
-    let p = this.props.products[0];
+    let p = this.props.products[0];    
 
     if (p) {            
       return <div className="product__info" >
@@ -68,7 +68,7 @@ export default class Product extends Component {
     }
   }
 
-  render() {
+  render() {    
     return (
       <div className="product"  >
         <Slider images={this.props.products.map(img=>img.gallery)}/>

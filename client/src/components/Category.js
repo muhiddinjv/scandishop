@@ -27,6 +27,10 @@ export default class Category extends Component {
     }));
   }
 
+  handleClick = (id)=>{
+    this.props.addToCart(id);
+  }
+
   generateProduct() {
     let products = this.props.products;
     // console.log("Category => genProd: ",products); 
@@ -43,8 +47,10 @@ export default class Category extends Component {
                   alt={product.name}
                 />
               </NavLink>
-              <div  onClick={()=>alert('clicked cart button')} className="category__product--cart" style={{display: this.state.display}} >
+              <div  onClick={()=>{this.handleClick(product.id)}} className="category__product--cart" style={{display: this.state.display}} >
+              <NavLink to="/cart">
                 <EmptyCart />
+              </NavLink>
               </div>
             </div>           
             <div  className="category__product--body">

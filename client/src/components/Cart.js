@@ -10,22 +10,22 @@ class Cart extends Component {
 
     if (item.attributes.length > 1) { 
     <div className="item__attrs">
-      <div className="product__attr1">
-        <h3 className="product__attr--title">{item.attributes[0].name}</h3>
-        <div className="product__attr--items">
+      <div className="cart__attr1">
+        {/* <h3 className="cart__attr--title">{item.attributes[0].name}</h3> */}
+        <div className="cart__attr--items">
           {item.attributes[0].items.map((it, i) => {
             if (it.value.includes("#")) {
               return (
                 <div
                   key={i}
-                  className="product__attr--item"
+                  className="cart__attr--item"
                   style={{ background: it.value }}
                   id={it.id}
                 ></div>
               );
             } else {
               return (
-                <div className="product__attr--item" id={it.id}>
+                <div className="cart__attr--item" id={it.id}>
                   {it.value}
                 </div>
               );
@@ -33,12 +33,12 @@ class Cart extends Component {
           })}
         </div>
       </div>
-      <div className="product__attr2">
-        <h3 className="product__attr--title">{item.attributes[1].name}</h3>
-        <div className="product__attr--items">
+      <div className="cart__attr2">
+        {/* <h3 className="cart__attr--title">{item.attributes[1].name}</h3> */}
+        <div className="cart__attr--items">
           {item.attributes[1].items.map((it, i) => {
             return (
-              <div key={i} className="product__attr--item" id={it.id}>
+              <div key={i} className="cart__attr--item" id={it.id}>
                 {it.value}
               </div>
             );
@@ -47,11 +47,11 @@ class Cart extends Component {
       </div>
     </div>;
     } else {
-      return <div className="product__attr1">
-        <h3 className="product__attr--title">{item.attributes[0].name}</h3>
-        <div className="product__attr--items">
+      return <div className="cart__attr1">
+        {/* <h3 className="cart__attr--title">{item.attributes[0].name}</h3> */}
+        <div className="cart__attr--items">
           {item.attributes[0].items.map((it, i)=>{
-            return <div key={i} className="product__attr--item" id={it.id}>{it.value}</div>
+            return <div key={i} className="cart__attr--item" id={it.id}>{it.value}</div>
           })}        
         </div>
       </div>
@@ -65,37 +65,35 @@ class Cart extends Component {
       this.props.items.map((item) => {
         return (
           <li className="cart__item" key={item.id}>
-            <h3 className="cart__item--brand">{item.brand}</h3>
-            <h4 className="cart__item--name">{item.name}</h4>
-            <div className="cart__item--price">
-              {Helper.switchCurrency(item.prices[0].currency)}
-              {item.prices[0].amount}
-            </div>
-            <div className="cart__item--image" style={{ width: "200px" }}>
-              <img src={item.gallery[0]} alt={item.name} />
+            <div className="cart__item--left">
+              <div className="cart__item--header">
+                <h3 className="cart__item--brand">{item.brand}</h3>
+                <h4 className="cart__item--name">{item.name}</h4>
+              </div>
+              <div className="cart__item--price">
+                {Helper.switchCurrency(item.prices[0].currency)}
+                {item.prices[0].amount}
+              </div>
+              {this.attributes()}
             </div>
 
-            <div className="item-desc">
-              <div className="add-remove">
+            <div className="cart__item--right">
+              <div className="cart__item--buttons">
                 <Link to="/cart">
-                  <i className="material-icons" style={{ fontSize: "22px" }}>
-                    +
-                  </i>
+                  <div className="cart__item--button">+</div>
                 </Link>
-                <p>
+                <div className="cart__item--quantity">
                   <b>{item.quantity}</b>
-                </p>
+                </div>
                 <Link to="/cart">
-                  <i className="material-icons" style={{ fontSize: "22px" }}>
-                    -
-                  </i>
+                  <div className="cart__item--button">-</div>
                 </Link>
               </div>
-              <button className="waves-effect waves-light btn pink remove">
-                del
-              </button>
+              {/* <button className="cart__item--delete remove">del</button> */}
+              {/* <div > */}
+                <img className="cart__item--image" src={item.gallery[0]} alt={item.name} />
+              {/* </div> */}
             </div>
-            {this.attributes()}
           </li>
         );
       })
@@ -105,7 +103,7 @@ class Cart extends Component {
     );
     return (
       <div className="cart">
-        <h1 className="cart__page">Cart </h1>
+        <h1 className="cart__page-name">cart </h1>
         <ul className="cart__items">{addedItems}</ul>
       </div>
     );

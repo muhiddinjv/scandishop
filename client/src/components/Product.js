@@ -7,9 +7,7 @@ export default class Product extends Component {
   constructor(props) {
     super(props);
     this.toggleClass= this.toggleClass.bind(this);
-    this.state = {
-        active: '',
-    };
+    this.state = { active: '', };
   }
 
   toggleClass(item) {

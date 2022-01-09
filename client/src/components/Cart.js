@@ -70,10 +70,10 @@ class Cart extends Component {
                 <h3 className="cart__item--brand">{item.brand}</h3>
                 <h4 className="cart__item--name">{item.name}</h4>
               </div>
-              <div className="cart__item--price">
+              <b className="cart__item--price">
                 {Helper.switchCurrency(item.prices[0].currency)}
                 {item.prices[0].amount}
-              </div>
+              </b>
               {this.attributes()}
             </div>
 
@@ -90,9 +90,7 @@ class Cart extends Component {
                 </Link>
               </div>
               {/* <button className="cart__item--delete remove">del</button> */}
-              {/* <div > */}
-                <img className="cart__item--image" src={item.gallery[0]} alt={item.name} />
-              {/* </div> */}
+              <img className="cart__item--image" src={item.gallery[0]} alt={item.name} />
             </div>
           </li>
         );

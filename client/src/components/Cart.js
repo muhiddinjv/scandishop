@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Helper from "./Helper";
 import "../media/sass/Cart.scss";
+import CartSlider from "./CartSlider";
+
 
 class Cart extends Component {
   attributes() {
@@ -79,15 +81,11 @@ class Cart extends Component {
 
             <div className="cart__item--right">
               <div className="cart__item--buttons">
-                <Link to="/cart">
-                  <div className="cart__item--button">+</div>
-                </Link>
+                <Link to="/cart" className="cart__item--button">+</Link>
                 <div className="cart__item--quantity">
                   <b>{item.quantity}</b>
                 </div>
-                <Link to="/cart">
-                  <div className="cart__item--button">-</div>
-                </Link>
+                <Link to="/cart" className="cart__item--button">-</Link>
               </div>
               {/* <button className="cart__item--delete remove">del</button> */}
               <img className="cart__item--image" src={item.gallery[0]} alt={item.name} />
@@ -99,19 +97,20 @@ class Cart extends Component {
       <p>The cart is empty</p>
       // <div className="loader" key="loader"></div>
     );
-    return (
+    this.props.items.map(x=>x.gallery)
+    
+    return (      
       <div className="cart">
         <h1 className="cart__page-name">cart </h1>
         <ul className="cart__items">{addedItems}</ul>
+        <CartSlider slides={this.props.items.map(x=>x.gallery)}/>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  return {
-    items: state.addedItems,
-  };
+  return { items: state.addedItems, };
 };
 
 export default connect(mapStateToProps)(Cart);

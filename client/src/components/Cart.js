@@ -13,7 +13,6 @@ class Cart extends Component {
     if (item.attributes.length > 1) { 
     <div className="item__attrs">
       <div className="cart__attr1">
-        {/* <h3 className="cart__attr--title">{item.attributes[0].name}</h3> */}
         <div className="cart__attr--items">
           {item.attributes[0].items.map((it, i) => {
             if (it.value.includes("#")) {
@@ -36,7 +35,6 @@ class Cart extends Component {
         </div>
       </div>
       <div className="cart__attr2">
-        {/* <h3 className="cart__attr--title">{item.attributes[1].name}</h3> */}
         <div className="cart__attr--items">
           {item.attributes[1].items.map((it, i) => {
             return (
@@ -50,7 +48,6 @@ class Cart extends Component {
     </div>;
     } else {
       return <div className="cart__attr1">
-        {/* <h3 className="cart__attr--title">{item.attributes[0].name}</h3> */}
         <div className="cart__attr--items">
           {item.attributes[0].items.map((it, i)=>{
             return <div key={i} className="cart__attr--item" id={it.id}>{it.value}</div>
@@ -61,7 +58,6 @@ class Cart extends Component {
   }
 
   render() {
-    // this.props.items.map((i) => console.log("attr", i.attributes.length));
 
     let addedItems = this.props.items.length ? (
       this.props.items.map((item) => {

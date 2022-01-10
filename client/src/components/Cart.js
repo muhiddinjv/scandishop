@@ -65,6 +65,8 @@ class Cart extends Component {
 
     let addedItems = this.props.items.length ? (
       this.props.items.map((item) => {
+        console.log("cart gallery: ",item.gallery);
+        
         return (
           <li className="cart__item" key={item.id}>
             <div className="cart__item--left">
@@ -88,7 +90,8 @@ class Cart extends Component {
                 <Link to="/cart" className="cart__item--button">-</Link>
               </div>
               {/* <button className="cart__item--delete remove">del</button> */}
-              <img className="cart__item--image" src={item.gallery[0]} alt={item.name} />
+              {/* <img className="cart__item--image" src={item.gallery[0]} alt={item.name} />               */}
+              <CartSlider slides={item.gallery} />
             </div>
           </li>
         );
@@ -103,7 +106,6 @@ class Cart extends Component {
       <div className="cart">
         <h1 className="cart__page-name">cart </h1>
         <ul className="cart__items">{addedItems}</ul>
-        <CartSlider slides={this.props.items.map(x=>x.gallery)}/>
       </div>
     );
   }

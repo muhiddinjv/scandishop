@@ -11,12 +11,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.filterProduct = this.filterProduct.bind(this);
-    this.state = { products: [] };
+    this.state = { products: [], currencies:[] };
   }
 
   componentDidMount() {
     setTimeout(() => {
       this.setState({products: [this.props.items[0]]}) 
+      this.setState({currencies: this.props.currencies}) 
     }, 500);     
   }
 
@@ -30,7 +31,7 @@ class App extends Component {
     return (
       <div className="app">
         <Navbar
-          curr={this.props.currencies}
+          curr={this.state.currencies}
           filterProduct={this.filterProduct}
         />
         <Routes>
@@ -46,7 +47,8 @@ class App extends Component {
 const mapStateToProps = (state)=>{
   return {
     items: state.items,
-    currencies: state.currencies
+    currencies: state.currencies,
+    total: state.total
     }
   }
 

@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { ReactComponent as Logo } from '../media/icons/logo.svg';
 import { ReactComponent as EmptyCart } from '../media/icons/empty-cart.svg';
 import { NavLink } from 'react-router-dom';
+import { connect } from "react-redux";
 import Dropdown from './Dropdown';
 import '../media/sass/Navbar.scss';
 
-export default class Navbar extends Component {
-    
+class Navbar extends Component {
+    func(){
+        this.props.items.map(item=>console.log(item.quantity))
+    }
     render() {
         return (
             <nav className='navbar'>
@@ -29,6 +32,7 @@ export default class Navbar extends Component {
                     <div className="navbar__actions--cart">
                     <NavLink to="/cart">
                         <EmptyCart />
+                        {this.func()}
                     </NavLink>
                     </div>
                 </div>
@@ -36,3 +40,9 @@ export default class Navbar extends Component {
         )
     }
 }
+
+const mapStateToProps = (state)=>{
+return { items: state.items }
+}
+
+export default connect(mapStateToProps)(Navbar)

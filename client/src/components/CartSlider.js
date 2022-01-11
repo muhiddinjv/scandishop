@@ -31,7 +31,9 @@ export default class CartSlider extends Component {
     
     return (
       <div className="slides">
-        {slides.map((slide, index) => <div className="slider__image" data-active={index === this.state.activeSlide} style={{ backgroundImage: `url( ${slide})` }}/>)}
+        {slides.map((slide, index) => <div className="slider__image" data-active={index === this.state.activeSlide} style={{ backgroundImage: `url( ${slide})` }}>
+        {/* <img src={slide} style={{visibility: "hidden", width: "100%"}} alt="clothes"/> */}
+        </div>)}
         <div className="prev" onClick={this.prevSlide.bind(this)}>&#10094;</div>
         <div className="next" onClick={this.nextSlide.bind(this)}>&#10095;</div>
       </div>

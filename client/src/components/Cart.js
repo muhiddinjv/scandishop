@@ -86,7 +86,6 @@ class Cart extends Component {
                 <Link to="/cart" className="cart__item--button">-</Link>
               </div>
               {/* <button className="cart__item--delete remove">del</button> */}
-              {/* <img className="cart__item--image" src={item.gallery[0]} alt={item.name} />               */}
               <CartSlider slides={item.gallery} />
             </div>
           </li>
@@ -94,7 +93,6 @@ class Cart extends Component {
       })
     ) : (
       <p>The cart is empty</p>
-      // <div className="loader" key="loader"></div>
     );
     this.props.items.map(x=>x.gallery)
     

@@ -26,7 +26,7 @@ class App extends Component {
   };
 
   render() {
-    console.log("App render: ", this.state.products);
+    // console.log("App render: ", this.state.products);
     return (
       <div className="app">
         <Navbar
@@ -36,7 +36,7 @@ class App extends Component {
         <Routes>
           <Route exact path="/" element={<Category products={this.state.products} addToCart={this.props.addToCart}/>} />
           <Route path="/product" element={<Product products={this.state.products} addToCart={this.props.addToCart} />} />
-          <Route exact path="/cart" element={<Cart />} />
+          <Route exact path="/cart" element={<Cart/>} />
         </Routes>
         </div>
     );

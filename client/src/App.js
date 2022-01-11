@@ -33,6 +33,7 @@ class App extends Component {
         <Navbar
           curr={this.state.currencies}
           filterProduct={this.filterProduct}
+          qty={this.props.addedItems.map(x=>x.quantity)}
         />
         <Routes>
           <Route exact path="/" element={<Category products={this.state.products} addToCart={this.props.addToCart}/>} />
@@ -48,6 +49,7 @@ const mapStateToProps = (state)=>{
   return {
     items: state.items,
     currencies: state.currencies,
+    addedItems: state.addedItems,
     total: state.total
     }
   }

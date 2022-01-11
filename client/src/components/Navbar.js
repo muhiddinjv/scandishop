@@ -31,7 +31,7 @@ export default class Navbar extends Component {
                         <NavLink className="empty" to="/cart">
                             <EmptyCart />
                         </NavLink>
-                        <span className="navbar__actions--qty">{quantity}</span>
+                        <span className="navbar__actions--qty">{quantity === 0 ? "" : quantity}</span>
                     </div>
                 </div>
             </nav>

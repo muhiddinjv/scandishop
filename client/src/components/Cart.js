@@ -112,7 +112,7 @@ class Cart extends Component {
       <div className="cart">
         <h1 className="cart__page-name">cart </h1>
         <ul className="cart__items">{addedItems}</ul>
-        <div className="cart__total">Total: {this.props.total} $</div>
+        <div className="cart__total">{this.props.total === 0 ? "" : `Total: ${this.props.total}$`}</div>
       </div>
     );
   }

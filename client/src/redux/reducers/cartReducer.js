@@ -53,6 +53,7 @@ const cartReducer = (state = initState, action) => {
         total: state.total + price,
       };
     } else {
+      
       addedItem.quantity = 1;
       //calculating the total
       let newTotal = state.total + price;
@@ -67,6 +68,7 @@ const cartReducer = (state = initState, action) => {
       };
     }
   }
+  
   if (action.type === REMOVE_ITEM) {
     let itemToRemove = state.addedItems.find((item) => action.id === item.id);
     let price = Math.round(itemToRemove.prices[0].amount);

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Navbar from "./components/Navbar";
-import Category from "./components/Category";
-import Product from "./components/Product"; 
-import Cart from "./components/Cart";
-// import Redux from "./components/Redux";
+import Navbar from "./Navbar";
+import Category from "./Category";
+import Product from "./Product"; 
+import Cart from "./Cart";
 import { Routes, Route } from "react-router-dom";
 import { connect } from 'react-redux';
-import { addToCart } from './actions'
+import { addToCart } from '../actions'
+// import Redux from "./components/Redux";
 
 class App extends Component {
   constructor(props) {

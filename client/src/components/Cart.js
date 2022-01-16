@@ -6,6 +6,7 @@ import "../media/sass/Cart.scss";
 import CartSlider from "./CartSlider";
 import { removeItem,addQuantity,subtractQuantity} from '../actions';
 
+
 class Cart extends Component {
   //to remove the item completely
   handleRemove = (id)=>{
@@ -18,6 +19,19 @@ class Cart extends Component {
   //to substruct from the quantity
   handleSubtractQuantity = (id)=>{
       this.props.subtractQuantity(id);
+  }
+
+  sizeActive(item){
+    console.log("item.id: ",this.props.items[0].id);
+    console.log("attr.id: ",this.props.attrs.id);
+    
+    
+    
+    if (item.value === this.props.attrs.size){
+      return "cart__attr--item active"
+    } else {
+      return "cart__attr--item"
+    }
   }
 
   attributes() {
@@ -39,7 +53,7 @@ class Cart extends Component {
               );
             } else {
               return (
-                <div className="cart__attr--item" id={it.id}>
+                <div  className="cart__attr--item" id={it.id}>
                   {it.value}
                 </div>
               );
@@ -49,9 +63,9 @@ class Cart extends Component {
       </div>
       <div className="cart__attr2">
         <div className="cart__attr--items">
-          {item.attributes[1].items.map((it, i) => {
+          {item.attributes[1].items.map((it, i) => {            
             return (
-              <div key={i} className="cart__attr--item" id={it.id}>
+              <div key={i} className={this.sizeActive(it)} id={it.id}>
                 {it.value}
               </div>
             );
@@ -63,7 +77,7 @@ class Cart extends Component {
       return <div className="cart__attr1">
         <div className="cart__attr--items">
           {item.attributes[0].items.map((it, i)=>{
-            return <div key={i} className="cart__attr--item" id={it.id}>{it.value}</div>
+            return <div key={i} className={this.sizeActive(it)}  id={it.id}>{it.value}</div>
           })}        
         </div>
       </div>
@@ -121,7 +135,8 @@ class Cart extends Component {
 const mapStateToProps = (state)=>{
   return{
       items: state.addedItems,
-      total: state.total
+      total: state.total,
+      attrs: state.attrs
   }
 }
 
@@ -129,7 +144,8 @@ const mapDispatchToProps = (dispatch)=>{
   return{
       removeItem: (id)=>{dispatch(removeItem(id))},
       addQuantity: (id)=>{dispatch(addQuantity(id))},
-      subtractQuantity: (id)=>{dispatch(subtractQuantity(id))}
+      subtractQuantity: (id)=>{dispatch(subtractQuantity(id))},
   }
 }
+
 export default connect(mapStateToProps,mapDispatchToProps)(Cart)

@@ -2,16 +2,19 @@ import React, { Component } from "react";
 import Slider from "./Slider";
 import Helper from "./Helper";
 import "../media/sass/Product.scss";
+import { connect } from 'react-redux';
+import { selectSize } from '../actions';
 
-export default class Product extends Component {
+class Product extends Component {
   constructor(props) {
     super(props);
     this.toggleClass= this.toggleClass.bind(this);
     this.state = { active: '', };
   }
 
-  toggleClass(item) {
+  toggleClass(item) {        
     this.setState(()=> { return { active: item } });
+    this.props.selectSize(item.value, this.props.products[0].id)
   };
 
   attributes(){
@@ -87,3 +90,10 @@ export default class Product extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {    
+  return { sizes: state.sizes };  
+}
+
+
+export default connect(mapStateToProps,{selectSize})(Product)

@@ -4,6 +4,7 @@ const initState = {
   items: [],
   currencies: [],
   addedItems: [],
+  size: [],
   total: 0,
 };
 
@@ -41,15 +42,10 @@ const cartReducer = (state = initState, action) => {
         ...state,
         total: state.total + price,
       };
-    } else {
-      
+    } else {   
       addedItem.quantity = 1;
       //calculating the total
       let newTotal = state.total + price;
-      console.log(price);
-      
-      console.log("added",newTotal);
-
       return {
         ...state,
         addedItems: [...state.addedItems, addedItem],
@@ -107,6 +103,16 @@ const cartReducer = (state = initState, action) => {
     }
   }
 
+  if (action.type === 'SIZE_SELECTED'){
+    // let addedItem = state.items.find((item) => item.id === action.payload.id);
+    // console.log("addedItem.id: ", addedItem.id);
+    // if (addedItem){
+      console.log("reducer: ",action.payload);
+      return {...state, attrs: action.payload}
+    // }
+    
+  }
+
   if (action.type === "ADD_SHIPPING") {
     return {
       ...state,
@@ -122,6 +128,8 @@ const cartReducer = (state = initState, action) => {
   } else {
     return state;
   }
+
+  
 };
 
 export default cartReducer;

@@ -6,7 +6,6 @@ import Cart from "./Cart";
 import { Routes, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import { addToCart } from '../actions'
-// import Redux from "./components/Redux";
 
 class App extends Component {
   constructor(props) {

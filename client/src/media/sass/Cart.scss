@@ -1,9 +1,16 @@
 @import "Base.scss";
 
+
+
 .cart {
   border: 1px solid #999;
   color: $--c-text;
   font-size: 2rem;
+
+  .active{
+    background: #4ca564;
+    color: white;
+  }
 
   &__page-name {
     padding: 8rem 0 6rem 0;
@@ -117,6 +124,8 @@
       font-size: 2rem;
       cursor: pointer;
       transition: 0.3s;
+
+      
 
       &:hover {
         background: #444;

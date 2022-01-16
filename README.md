@@ -49,4 +49,4 @@ See some more specific information on the main requirements below. Remember - if
 1. Push your code to the Github and send us the link to your repository that is shared with a user with hr@scandiweb.com email.
 2. Make sure it is public so our evaluators could see it!
 3. terminal: 1) mkdir src/reducers (creates a folder)  
-4. terminal: 2) echo "" > src/reducers/rotateReducer.js (creates a file)
+4. terminal: 2) echo "" > src/reducers/rotateReducer.js (creates a file).

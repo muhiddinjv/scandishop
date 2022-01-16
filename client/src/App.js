@@ -3,9 +3,10 @@ import Navbar from "./components/Navbar";
 import Category from "./components/Category";
 import Product from "./components/Product"; 
 import Cart from "./components/Cart";
+// import Redux from "./components/Redux";
 import { Routes, Route } from "react-router-dom";
 import { connect } from 'react-redux';
-import { addToCart } from './redux/actions/cartActions'
+import { addToCart } from './actions'
 
 class App extends Component {
   constructor(props) {

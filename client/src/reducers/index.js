@@ -1,11 +1,4 @@
-import {
-  ADD_TO_CART,
-  REMOVE_ITEM,
-  SUB_QUANTITY,
-  ADD_QUANTITY,
-  ADD_SHIPPING,
-} from "../actions/action-types/cart-actions";
-import LOAD_QUERY from "../../graphql/Query";
+import LOAD_QUERY from "../graphql/Query";
 
 const initState = {
   items: [],
@@ -33,14 +26,10 @@ const fetchData = () => {
 
 fetchData();
 
-// console.log("items",initState.items);
-// console.log("prices",initState.price);
-// console.log("currencies",initState.currencies);
-
 const cartReducer = (state = initState, action) => {
   //INSIDE APP COMPONENT
   
-  if (action.type === ADD_TO_CART) {
+  if (action.type === "ADD_TO_CART") {
     let addedItem = state.items.find((item) => item.id === action.id);
     let price = Math.round(addedItem.prices[0].amount);    
     
@@ -69,7 +58,7 @@ const cartReducer = (state = initState, action) => {
     }
   }
   
-  if (action.type === REMOVE_ITEM) {
+  if (action.type === "REMOVE_ITEM") {
     let itemToRemove = state.addedItems.find((item) => action.id === item.id);
     let price = Math.round(itemToRemove.prices[0].amount);
     let new_items = state.addedItems.filter((item) => action.id !== item.id);
@@ -85,7 +74,7 @@ const cartReducer = (state = initState, action) => {
   }
 
   //INSIDE CART COMPONENT
-  if (action.type === ADD_QUANTITY) {
+  if (action.type === "ADD_QUANTITY") {
     let addedItem = state.items.find((item) => item.id === action.id);
     let price = Math.round(addedItem.prices[0].amount);
     addedItem.quantity += 1;
@@ -96,7 +85,7 @@ const cartReducer = (state = initState, action) => {
     };
   }
 
-  if (action.type === SUB_QUANTITY) {
+  if (action.type === "SUB_QUANTITY") {
     let addedItem = state.items.find((item) => item.id === action.id);
     let price = Math.round(addedItem.prices[0].amount);
     //if the qt == 0 then it should be removed
@@ -118,7 +107,7 @@ const cartReducer = (state = initState, action) => {
     }
   }
 
-  if (action.type === ADD_SHIPPING) {
+  if (action.type === "ADD_SHIPPING") {
     return {
       ...state,
       total: state.total + 6,

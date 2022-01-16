@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Helper from "./Helper";
 import "../media/sass/Cart.scss";
 import CartSlider from "./CartSlider";
-import { removeItem,addQuantity,subtractQuantity} from '../redux/actions/cartActions';
+import { removeItem,addQuantity,subtractQuantity} from '../actions';
 
 class Cart extends Component {
   //to remove the item completely

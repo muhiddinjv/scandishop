@@ -107,9 +107,8 @@ const cartReducer = (state = initState, action) => {
   if (action.type === 'SIZE_SELECTED'){
     let addedItem = state.items.find((item) => item.id === action.id);
     let addedSize = addedItem.attributes[0].items.find(item=>item.value === action.size)
-    console.log('addedSize: ', addedSize.value);
-    
-    console.log("action.id: ",action.id);
+    // console.log('addedSize: ', addedSize.value);
+    // console.log("action.id: ",action.id);
     return {...state, attr: [...state.attr, addedSize.value]}
   }
 

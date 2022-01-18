@@ -22,6 +22,12 @@ class Cart extends Component {
   }
 
   sizeActive(item){
+    console.clear();
+    let a = this.props.attributes;
+    let b = this.props.attributes.map(x=>x + " " + x.length)
+    console.log(a);
+    console.log(b);
+    
     for (const i of this.props.attributes) {      
       if (item.value === i) return "active";
     }    
@@ -39,7 +45,6 @@ class Cart extends Component {
                   key={i}
                   className="cart__attr--item"
                   style={{ background: it.value }}
-                  
                 ></div>
               );
             } else {

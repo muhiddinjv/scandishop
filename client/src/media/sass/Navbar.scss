@@ -16,12 +16,18 @@
     width: 23rem;
     height: 5rem;
 
+    .link{
+      color: $--c-text;
+      &:hover{
+        color: $--c-primary;
+      }
+    }
+
     &--link {
       align-self: stretch;
       // transition: 0.3s;
       &:hover {
         border-bottom: 0.2rem solid $--c-primary;
-        color: $--c-primary;
         font-family: "Raleway-SemiBold", sans-serif;
         cursor: pointer;
       }

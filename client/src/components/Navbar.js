@@ -13,13 +13,19 @@ export default class Navbar extends Component {
             <nav className='navbar'>
                 <ul className='navbar__nav'>
                     <li className="navbar__nav--link" onClick={()=>this.props.filterProduct('jacket-canada-goosee')}>
-                        women
+                        <NavLink className="link" to="/">
+                           women
+                        </NavLink>
                     </li>
                     <li className="navbar__nav--link" onClick={()=>this.props.filterProduct('huarache-x-stussy-le')}>
-                        men
+                        <NavLink className="link" to="/">
+                           men
+                        </NavLink>
                     </li>
                     <li className="navbar__nav--link" onClick={()=>this.props.filterProduct('ps-5')}>
-                        kids
+                        <NavLink className="link" to="/">
+                           kids
+                        </NavLink>
                     </li>
                 </ul>
                 <div className='navbar__logo'>

@@ -8,13 +8,13 @@ import { selectSize } from '../actions';
 class Product extends Component {
   constructor(props) {
     super(props);
-    this.toggleClass= this.toggleClass.bind(this);
+    // this.toggleClass= this.toggleClass.bind(this);
     this.state = { active: '', };
   }
 
-  toggleClass(item) {        
+  toggleClass = (item) => {   
     this.setState(()=> { return { active: item } });
-    this.props.selectSize(item.value, this.props.products[0].id)
+    // this.props.selectSize(item.value, this.props.products[0].id)
   };
 
   attributes(){
@@ -29,7 +29,7 @@ class Product extends Component {
               if (item.value.includes("#")){
                 return <div key={i} className="product__attr--item" style={{background: item.value}} id={item.id}></div>
               } else {
-                return <div className="product__attr--item" id={item.id}>{item.value}</div>
+                return <div className="product__attr--item">{item.value}</div>
               }
             })}        
           </div>
@@ -38,7 +38,7 @@ class Product extends Component {
           <h3 className="product__attr--title">{p.attributes[1].name}</h3>
           <div className="product__attr--items">
             {p.attributes[1].items.map((item, i)=>{
-                return <div key={i} className="product__attr--item" id={item.id}>{item.value}</div>
+                return <div key={i} className="product__attr--item">{item.value}</div>
               })}
           </div>
         </div>
@@ -48,7 +48,7 @@ class Product extends Component {
         <h3 className="product__attr--title">{p.attributes[0].name}</h3>
         <div className="product__attr--items">
           {p.attributes[0].items.map((item, i)=>{
-            return <div key={i} style={item === this.state.active ? {background: '#4ca564', color:"white"} : null} className="product__attr--item" onClick={this.toggleClass.bind(null, item)} id={item.id}>{item.value}</div>
+            return <div key={i} style={item === this.state.active ? {background: '#4ca564', color:"white"} : null} className="product__attr--item" onClick={()=>{this.toggleClass(item);this.props.selectSize(item.value, p.id)}}>{item.value}</div>
           })}      
         </div>
       </div>
@@ -92,7 +92,7 @@ class Product extends Component {
 }
 
 const mapStateToProps = state => {    
-  return { sizes: state.sizes };  
+  return { attr: state.attr };  
 }
 
 

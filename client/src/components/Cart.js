@@ -22,21 +22,12 @@ class Cart extends Component {
   }
 
   sizeActive(item){
-    console.log("item.id: ",this.props.items[0].id);
-    console.log("attr.id: ",this.props.attrs.id);
-    
-    
-    
-    if (item.value === this.props.attrs.size){
-      return "cart__attr--item active"
-    } else {
-      return "cart__attr--item"
-    }
+    for (const i of this.props.attributes) {      
+      if (item.value === i) return "active";
+    }    
   }
 
-  attributes() {
-    const item = this.props.items[0];
-
+  attributes(item) {
     if (item.attributes.length > 1) { 
     <div className="item__attrs">
       <div className="cart__attr1">
@@ -48,12 +39,12 @@ class Cart extends Component {
                   key={i}
                   className="cart__attr--item"
                   style={{ background: it.value }}
-                  id={it.id}
+                  
                 ></div>
               );
             } else {
               return (
-                <div  className="cart__attr--item" id={it.id}>
+                <div  className="cart__attr--item" >
                   {it.value}
                 </div>
               );
@@ -65,7 +56,7 @@ class Cart extends Component {
         <div className="cart__attr--items">
           {item.attributes[1].items.map((it, i) => {            
             return (
-              <div key={i} className={this.sizeActive(it)} id={it.id}>
+              <div key={i} className={this.sizeActive(it)} >
                 {it.value}
               </div>
             );
@@ -77,7 +68,7 @@ class Cart extends Component {
       return <div className="cart__attr1">
         <div className="cart__attr--items">
           {item.attributes[0].items.map((it, i)=>{
-            return <div key={i} className={this.sizeActive(it)}  id={it.id}>{it.value}</div>
+            return <div key={i} className={`cart__attr--item ${this.sizeActive(it)}`}  >{it.value}</div>
           })}        
         </div>
       </div>
@@ -99,7 +90,7 @@ class Cart extends Component {
                 {Helper.switchCurrency(item.prices[0].currency)}
                 {item.prices[0].amount}
               </b>
-              {this.attributes()}
+              {this.attributes(item)}
             </div>
 
             <div className="cart__item--right">
@@ -136,7 +127,7 @@ const mapStateToProps = (state)=>{
   return{
       items: state.addedItems,
       total: state.total,
-      attrs: state.attrs
+      attributes: state.attr
   }
 }
 

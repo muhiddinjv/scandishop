@@ -29,10 +29,6 @@ export const addQuantity = (id) => {
 
 export const selectSize = (size, id) => {
   return {
-    type: "SIZE_SELECTED",
-    payload: {
-      size: size,
-      id: id,
-    },
+    type: "SIZE_SELECTED",size,id,
   };
 };

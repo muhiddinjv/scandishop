@@ -13,8 +13,8 @@ class Product extends Component {
   }
 
   toggleClass = (item) => {   
+    console.log(item);
     this.setState(()=> { return { active: item } });
-    // this.props.selectSize(item.value, this.props.products[0].id)
   };
 
   attributes(){
@@ -38,7 +38,7 @@ class Product extends Component {
           <h3 className="product__attr--title">{p.attributes[1].name}</h3>
           <div className="product__attr--items">
             {p.attributes[1].items.map((item, i)=>{
-                return <div key={i} className="product__attr--item">{item.value}</div>
+                return <div key={i} style={item === this.state.active ? {background: '#4ca564', color:"white"} : null} className="product__attr--item" onClick={()=>{this.toggleClass(item);this.props.selectSize(item.value, p.id)}}>{item.value}</div>
               })}
           </div>
         </div>

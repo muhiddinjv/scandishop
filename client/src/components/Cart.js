@@ -22,19 +22,21 @@ class Cart extends Component {
   }
 
   sizeActive(item){
-    // console.clear();
-    // let a = this.props.attributes;
-    // let b = this.props.attributes.map(x=>x + " " + x.length)
-    // console.log(a);
-    // console.log(b);
-    for (const i of this.props.attributes) {      
-      if (item.value === i) return "active";
+    console.clear();
+    console.log('sizeActive: ',item);
+    
+    for (const i of this.props.attributes) {  
+      console.log('i: ',i);
+                
+      if (item.value === i) {
+        return "active"
+      } else if (item.value.includes("#")) {
+        return "ok"
+      };
     }    
   }
 
-  attributes(item) {    
-    item.attributes[0].items.map(i=>console.log(i.value));
-    
+  attributes(item) {        
     if (item.attributes.length > 1) { 
     return <div className="item__attrs">
       <div className="cart__attr1">
@@ -44,9 +46,9 @@ class Cart extends Component {
               return (
                 <div
                   key={i}
-                  className="cart__attr--item"
+                  className="cart__attr--item" 
                   style={{ background: it.value }}
-                ></div>
+                >{this.sizeActive(it)}</div>
               );
             } else {
               return (

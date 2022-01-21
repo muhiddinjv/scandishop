@@ -3,18 +3,23 @@ import Slider from "./Slider";
 import Helper from "./Helper";
 import "../media/sass/Product.scss";
 import { connect } from 'react-redux';
-import { selectSize } from '../actions';
+import { selectAttribute } from '../actions';
 
 class Product extends Component {
   constructor(props) {
     super(props);
     // this.toggleClass= this.toggleClass.bind(this);
-    this.state = { active: '', };
+    this.state = { active: '', value:''};
   }
 
   toggleClass = (item) => {   
-    console.log(item);
+    console.log("toggleclass: ",item);
     this.setState(()=> { return { active: item } });
+  };
+
+  toggleValue = (item) => {   
+    console.log("togglevalue: ",item);
+    this.setState(()=> { return { value: item } });
   };
 
   attributes(){
@@ -27,9 +32,7 @@ class Product extends Component {
           <div className="product__attr--items">
             {p.attributes[0].items.map((item, i)=>{
               if (item.value.includes("#")){
-                return <div key={i} className="product__attr--item" style={{background: item.value}} id={item.id}></div>
-              } else {
-                return <div className="product__attr--item">{item.value}</div>
+              return <div key={i} className="product__attr--item color" style={{background: item.value}} onClick={(e)=>{this.toggleValue(item);this.props.selectAttribute(item.value, p.id, e)}}>{item === this.state.value ? "get":null}</div>
               }
             })}        
           </div>
@@ -38,7 +41,7 @@ class Product extends Component {
           <h3 className="product__attr--title">{p.attributes[1].name}</h3>
           <div className="product__attr--items">
             {p.attributes[1].items.map((item, i)=>{
-                return <div key={i} style={item === this.state.active ? {background: '#4ca564', color:"white"} : null} className="product__attr--item" onClick={()=>{this.toggleClass(item);this.props.selectSize(item.value, p.id)}}>{item.value}</div>
+                return <div key={i} style={item === this.state.active ? {background: '#4ca564', color:"white"} : null} className="product__attr--item capacity" onClick={(e)=>{this.toggleClass(item);this.props.selectAttribute(item.value, p.id, e)}}>{item.value}</div>
               })}
           </div>
         </div>
@@ -48,7 +51,7 @@ class Product extends Component {
         <h3 className="product__attr--title">{p.attributes[0].name}</h3>
         <div className="product__attr--items">
           {p.attributes[0].items.map((item, i)=>{
-            return <div key={i} style={item === this.state.active ? {background: '#4ca564', color:"white"} : null} className="product__attr--item" onClick={()=>{this.toggleClass(item);this.props.selectSize(item.value, p.id)}}>{item.value}</div>
+            return <div key={i} style={item === this.state.active ? {background: '#4ca564', color:"white"} : null} className="product__attr--item size" onClick={(e)=>{this.toggleClass(item);this.props.selectAttribute(item.value, p.id,e)}}>{item.value}</div>
           })}      
         </div>
       </div>
@@ -96,4 +99,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps,{selectSize})(Product)
+export default connect(mapStateToProps,{selectAttribute})(Product)

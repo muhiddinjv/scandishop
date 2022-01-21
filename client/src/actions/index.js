@@ -27,8 +27,8 @@ export const addQuantity = (id) => {
   };
 };
 
-export const selectSize = (size, id) => {
+export const selectAttribute = (attr, id,e) => {
   return {
-    type: "SIZE_SELECTED",size,id,
+    type: "ATTRIBUTE_SELECTED",attr,id,e
   };
 };

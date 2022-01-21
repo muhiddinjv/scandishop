@@ -102,11 +102,15 @@ const cartReducer = (state = initState, action) => {
     }
   }
 
-  if (action.type === 'SIZE_SELECTED'){
+  if (action.type === 'ATTRIBUTE_SELECTED'){
     let addedItem = state.items.find((item) => item.id === action.id);
-    let addedSize = addedItem.attributes[addedItem.attributes.length > 1 ? 1 : 0].items.find(item=>item.value === action.size)
-    // console.log(addedItem.attributes.length);
-    return {...state, attr: [...state.attr, addedSize.value]}
+    // console.log("addedItem.attributes: ",addedItem.attributes);   
+    let target = action.e.target.classList.value.includes("capacity") ? 1 : 0;
+
+    console.log("e",target);
+
+    let addedAttr = addedItem.attributes[target].items.find(item=>item.value === action.attr)
+    return {...state, attr: [...state.attr, addedAttr.value]}
   }
 
   if (action.type === "ADD_SHIPPING") {

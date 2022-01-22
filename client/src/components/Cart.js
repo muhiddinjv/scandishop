@@ -34,14 +34,6 @@ class Cart extends Component {
     }     
   }
 
-  // colorActive(item){
-  //   for (const i of this.props.attrs) {            
-  //     if (item.value === i) {
-  //       return "25%"
-  //     }
-  //   }     
-  // }
-
   attributes(item) {        
     if (item.attributes.length > 1) { 
     return <div className="item__attrs">

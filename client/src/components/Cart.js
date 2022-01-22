@@ -16,13 +16,15 @@ class Cart extends Component {
   handleAddQuantity = (id)=>{
       this.props.addQuantity(id);
   }
-  //to substruct from the quantity
+  //to subtract from the quantity
   handleSubtractQuantity = (id)=>{
       this.props.subtractQuantity(id);
   }
-
+  // add active class to size attribute
   sizeActive(item){
-    // console.clear();
+    console.clear();
+    console.log('sizeActive this.props.attr: ',this.props.attrs);
+
     for (const i of this.props.attrs) {            
       if (item.value.includes('#')) {
         if (item.value === i){

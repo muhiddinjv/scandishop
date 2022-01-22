@@ -3,7 +3,7 @@ import Slider from "./Slider";
 import Helper from "./Helper";
 import "../media/sass/Product.scss";
 import { connect } from "react-redux";
-import { selectAttribute } from "../actions";
+import { selectAttribute, selectImage } from "../actions";
 
 class Product extends Component {
   constructor(props) {
@@ -12,7 +12,10 @@ class Product extends Component {
     this.state = { active: "", border: "" };
   }
 
-  toggleClass = (item) => {
+  toggleClass = (item) => {   
+    console.clear();
+    console.log('toggleClass this.props.attr: ',this.props.attr);
+
     this.setState(() => {
       return { active: item };
     });
@@ -49,7 +52,7 @@ class Product extends Component {
                       }}
                     ></div>
                   );
-                }
+                }return;
               })}
             </div>
           </div>
@@ -161,7 +164,7 @@ class Product extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { attr: state.attr };
+  return { attr: state.attr, image: state.addedImage };
 };
 
 export default connect(mapStateToProps, { selectAttribute })(Product);

@@ -2,10 +2,19 @@ import LOAD_QUERY from "../graphql/Query";
 
 const initState = {
   items: [],
+  images:[],
   currencies: [],
+  addedImage: [],
   addedItems: [],
   attr: [],
   total: 0,
+  // selectedSong: [],
+  // songs:[
+  //   {id: 0, title: 'No scrubs', duration: '4:05'},
+  //   {id: 1, title: 'Macarena', duration: '2:35'},
+  //   {id: 2, title: 'All Star', duration: '3:15'},
+  //   {id: 3, title: 'Titanic', duration: '1:45'},
+  // ],
 };
 
 const fetchData = () => {
@@ -21,6 +30,7 @@ const fetchData = () => {
     .then((data) => {
       data.data.category.products.map((ps) => initState.items.push(ps));
       data.data.currencies.map((c) => initState.currencies.push(c));
+      data.data.category.products[0].gallery.map(i => initState.images.push(i));
     })
     .catch((error) => console.log(error));
 };
@@ -31,7 +41,7 @@ const cartReducer = (state = initState, action) => {
   //INSIDE APP COMPONENT
   
   if (action.type === "ADD_TO_CART") {
-    let addedItem = state.items.find((item) => item.id === action.id);
+    let addedItem = state.items.find((item) => item.id === action.id);    
     let price = Math.round(addedItem.prices[0].amount);    
     
     //check if the action id exists in the addedItems
@@ -117,6 +127,18 @@ const cartReducer = (state = initState, action) => {
     };
   }
 
+  if (action.type === 'ADD_GALLERY'){
+    // let addedItem = state.items.find((item) => item.id === action.id);
+    // console.clear();
+    // console.log('addedItem: ',addedItem);
+    return {...state, images: action.gallery}
+  }
+
+  if (action.type === 'SELECT_IMAGE'){
+    return {...state, addedImage: action.image, images: state.images}
+  } 
+  // else { return {...state, songs: selectedSong} }
+
   if (action.type === "SUB_SHIPPING") {
     return {
       ...state,
@@ -124,9 +146,7 @@ const cartReducer = (state = initState, action) => {
     };
   } else {
     return state;
-  }
-
-  
+  }  
 };
 
 export default cartReducer;

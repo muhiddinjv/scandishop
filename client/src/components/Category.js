@@ -3,9 +3,11 @@ import Helper from "./Helper";
 import "../media/sass/Category.scss";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as EmptyCart } from '../media/icons/cart-white.svg';
+import { connect } from 'react-redux';
+import { addGallery } from '../actions';
 
 
-export default class Category extends Component {
+class Category extends Component {
   constructor(props) {
     super(props);
     this.mouseEnter = this.mouseEnter.bind(this);
@@ -41,7 +43,7 @@ export default class Category extends Component {
           <li className="category__product--card" key={i} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
             <div className="category__product--image-wrapper" >
               <NavLink to="/product">
-                <img 
+                <img onClick={()=>{this.props.addGallery(product.gallery)}}
                   className="category__product--image"
                   src={product.gallery[0]}
                   alt={product.name}
@@ -83,3 +85,9 @@ export default class Category extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {    
+  return { images: state.images } 
+}
+
+export default connect(mapStateToProps,{addGallery})(Category);

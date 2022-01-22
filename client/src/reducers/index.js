@@ -127,11 +127,11 @@ const cartReducer = (state = initState, action) => {
     };
   }
 
-  if (action.type === 'ADD_GALLERY'){
+  if (action.type === 'ADD_IMAGES'){
     // let addedItem = state.items.find((item) => item.id === action.id);
     // console.clear();
     // console.log('addedItem: ',addedItem);
-    return {...state, images: action.gallery}
+    return {...state, images: action.images}
   }
 
   if (action.type === 'SELECT_IMAGE'){

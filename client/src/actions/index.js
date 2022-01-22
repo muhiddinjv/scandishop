@@ -25,10 +25,10 @@ export const selectAttribute = (attr, id,e) => {
   return {type: "ATTRIBUTE_SELECTED",attr,id,e};
 };
 
-export const addGallery = (gallery) => {
-  console.log('addGallery action: ',gallery);
+export const addImages = (images) => {
+  console.log('addImages action: ',images);
   
-  return {type: "ADD_GALLERY",gallery};
+  return {type: "ADD_IMAGES",images};
 };
 
 export const selectImage = (image) => {

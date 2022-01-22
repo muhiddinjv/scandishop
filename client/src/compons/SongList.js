@@ -11,7 +11,7 @@ class SongList extends Component {
             <div className="right floated content">
                 <img src={image} alt="" style={{border:'1px solid #777', padding:'5px', cursor:'pointer',width:'15rem'}} className="ui button primary" onClick={()=>this.props.selectImage(image)} />
             </div>
-            <div className="content">{index}b</div>
+            <div className="content">{index}</div>
         </div>
         )
         })

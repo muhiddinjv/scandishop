@@ -13,12 +13,10 @@ class Product extends Component {
   }
 
   toggleClass = (item) => {   
-    console.log("toggleclass: ",item);
     this.setState(()=> { return { active: item } });
   };
 
-  toggleValue = (item) => {   
-    console.log("togglevalue: ",item);
+  toggleBorder = (item) => {   
     this.setState(()=> { return { value: item } });
   };
 
@@ -32,7 +30,7 @@ class Product extends Component {
           <div className="product__attr--items">
             {p.attributes[0].items.map((item, i)=>{
               if (item.value.includes("#")){
-              return <div key={i} className="product__attr--item color" style={{background: item.value}} onClick={(e)=>{this.toggleValue(item);this.props.selectAttribute(item.value, p.id, e)}}>{item === this.state.value ? "get":null}</div>
+              return <div key={i} className="product__attr--item color" style={{background: item.value, borderRadius:item === this.state.value ? '25%':null}} onClick={(e)=>{this.toggleBorder(item);this.props.selectAttribute(item.value, p.id, e)}}></div>
               }
             })}        
           </div>

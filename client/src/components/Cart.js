@@ -22,19 +22,25 @@ class Cart extends Component {
   }
 
   sizeActive(item){
-    console.clear();
-    console.log('sizeActive: ',item);
-    
-    for (const i of this.props.attributes) {  
-      console.log('i: ',i);
-                
-      if (item.value === i) {
-        return "active"
-      } else if (item.value.includes("#")) {
-        return "ok"
-      };
-    }    
+    // console.clear();
+    for (const i of this.props.attrs) {            
+      if (item.value.includes('#')) {
+        if (item.value === i){
+          return '25%'
+        }
+      } else if (item.value === i) {
+        return 'active'
+      }
+    }     
   }
+
+  // colorActive(item){
+  //   for (const i of this.props.attrs) {            
+  //     if (item.value === i) {
+  //       return "25%"
+  //     }
+  //   }     
+  // }
 
   attributes(item) {        
     if (item.attributes.length > 1) { 
@@ -47,8 +53,8 @@ class Cart extends Component {
                 <div
                   key={i}
                   className="cart__attr--item" 
-                  style={{ background: it.value }}
-                >{this.sizeActive(it)}</div>
+                  style={{ background: it.value, borderRadius:this.sizeActive(it) }}
+                ></div>
               );
             } else {
               return (
@@ -135,7 +141,7 @@ const mapStateToProps = (state)=>{
   return{
       items: state.addedItems,
       total: state.total,
-      attributes: state.attr
+      attrs: state.attr
   }
 }
 

@@ -27,7 +27,6 @@ class App extends Component {
   };
 
   render() {
-    // console.log("App render: ", this.state.products);
     return (
       <div className="app">
         <Navbar

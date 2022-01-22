@@ -27,7 +27,7 @@ export const addQuantity = (id) => {
   };
 };
 
-export const selectAttribute = (attr, id,e) => {
+export const selectAttribute = (attr, id,e) => {  
   return {
     type: "ATTRIBUTE_SELECTED",attr,id,e
   };

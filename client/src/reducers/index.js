@@ -107,7 +107,7 @@ const cartReducer = (state = initState, action) => {
 
   if (action.type === 'ATTRIBUTE_SELECTED'){
     let addedItem = state.items.find((item) => item.id === action.id);
-    let target = action.e.target.classList.value.includes("capacity") ? 1 : 0;
+    let target = action.e.target.classList.value.includes("capacity") ? 1 : 0;    
     let addedAttr = addedItem.attributes[target].items.find(item=>item.value === action.attr)   
      
     return {...state, attr: [...state.attr, addedAttr.value]}

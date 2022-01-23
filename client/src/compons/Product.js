@@ -3,7 +3,7 @@ import Slider from "./Slider";
 import Helper from "./Helper";
 import "../media/sass/Product.scss";
 import { connect } from "react-redux";
-import { selectAttribute, selectImage } from "../actions";
+import { selectAttribute } from "../actions";
 
 class Product extends Component {
   constructor(props) {
@@ -27,6 +27,25 @@ class Product extends Component {
     });
   };
 
+  color = (item,i,p) => {
+    if (item.value.includes("#")) {
+      return (
+        <div
+          key={i}
+          className="product__attr--item color"
+          style={{
+            background: item.value,
+            borderRadius: item === this.state.border ? "25%" : null,
+          }}
+          onClick={(e) => {
+            this.toggleBorder(item);
+            this.props.selectAttribute(item.value, p.id, e);
+          }}
+        ></div>
+      );
+    }
+  }
+
   attributes = () => {
     let p = this.props.products[0];
 
@@ -36,24 +55,7 @@ class Product extends Component {
           <div className="product__attr1">
             <h3 className="product__attr--title">{p.attributes[0].name}</h3>
             <div className="product__attr--items">
-              {p.attributes[0].items.map((item, i) => {
-                if (item.value.includes("#")) {
-                  return (
-                    <div
-                      key={i}
-                      className="product__attr--item color"
-                      style={{
-                        background: item.value,
-                        borderRadius: item === this.state.border ? "25%" : null,
-                      }}
-                      onClick={(e) => {
-                        this.toggleBorder(item);
-                        this.props.selectAttribute(item.value, p.id, e);
-                      }}
-                    ></div>
-                  );
-                }return;
-              })}
+              {p.attributes[0].items.map((item, i) => this.color(item, i, p))}
             </div>
           </div>
           <div className="product__attr2">

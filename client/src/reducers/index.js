@@ -3,9 +3,9 @@ import LOAD_QUERY from "../graphql/Query";
 const initState = {
   items: [],
   images:[],
-  currencies: [],
-  addedImage: [],
   addedItems: [],
+  addedImage: [],
+  currencies: [],
   attr: [],
   total: 0,
 };

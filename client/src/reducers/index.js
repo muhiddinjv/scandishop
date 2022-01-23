@@ -8,13 +8,6 @@ const initState = {
   addedItems: [],
   attr: [],
   total: 0,
-  // selectedSong: [],
-  // songs:[
-  //   {id: 0, title: 'No scrubs', duration: '4:05'},
-  //   {id: 1, title: 'Macarena', duration: '2:35'},
-  //   {id: 2, title: 'All Star', duration: '3:15'},
-  //   {id: 3, title: 'Titanic', duration: '1:45'},
-  // ],
 };
 
 const fetchData = () => {
@@ -134,7 +127,7 @@ const cartReducer = (state = initState, action) => {
   if (action.type === 'SELECT_IMAGE'){
     return {...state, addedImage: action.image, images: state.images}
   } 
-  
+
   if (action.type === "SUB_SHIPPING") {
     return {
       ...state,

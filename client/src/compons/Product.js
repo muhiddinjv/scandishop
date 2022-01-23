@@ -13,9 +13,6 @@ class Product extends Component {
   }
 
   toggleClass = (item) => {   
-    console.clear();
-    console.log('toggleClass this.props.attr: ',this.props.attr);
-
     this.setState(() => {
       return { active: item };
     });

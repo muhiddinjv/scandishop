@@ -22,17 +22,9 @@ class Cart extends Component {
   }
   // add active class to size attribute
   sizeActive(item){
-    console.clear();
-    console.log('sizeActive this.props.attr: ',this.props.attrs);
-
     for (const i of this.props.attrs) {            
-      if (item.value.includes('#')) {
-        if (item.value === i){
-          return '25%'
-        }
-      } else if (item.value === i) {
-        return 'active'
-      }
+      if (item.value.includes('#')) {if (item.value === i) return '25%'} 
+      if (item.value === i) return 'active';
     }     
   }
 

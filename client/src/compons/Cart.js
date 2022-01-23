@@ -6,7 +6,6 @@ import "../media/sass/Cart.scss";
 import CartSlider from "./CartSlider";
 import { removeItem,addQuantity,subtractQuantity} from '../actions';
 
-
 class Cart extends Component {
   //to remove the item completely
   handleRemove = (id)=>{

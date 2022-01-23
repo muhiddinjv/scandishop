@@ -24,7 +24,7 @@ class Product extends Component {
     });
   };
 
-  color = (item,i,p) => {
+  roundBorder = (item,i,p) => {
     if (item.value.includes("#")) {
       return (
         <div
@@ -52,7 +52,7 @@ class Product extends Component {
           <div className="product__attr1">
             <h3 className="product__attr--title">{p.attributes[0].name}</h3>
             <div className="product__attr--items">
-              {p.attributes[0].items.map((item, i) => this.color(item, i, p))}
+              {p.attributes[0].items.map((item, i) => this.roundBorder(item, i, p))}
             </div>
           </div>
           <div className="product__attr2">
@@ -155,7 +155,6 @@ class Product extends Component {
   render() {    
     return (
       <div className="product">
-        {/* <Slider images={this.props.products.map((img) => img.gallery)} /> */}
         <Slider images={this.props.images} />
         {this.product()}
       </div>

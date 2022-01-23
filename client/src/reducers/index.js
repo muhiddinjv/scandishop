@@ -77,10 +77,7 @@ const cartReducer = (state = initState, action) => {
     let price = Math.round(addedItem.prices[0].amount);
     addedItem.quantity += 1;
     let newTotal = state.total + price;
-    return {
-      ...state,
-      total: newTotal,
-    };
+    return {...state, total: newTotal};
   }
 
   if (action.type === "SUB_QUANTITY") {
@@ -98,10 +95,7 @@ const cartReducer = (state = initState, action) => {
     } else {
       addedItem.quantity -= 1;
       let newTotal = state.total - price;
-      return {
-        ...state,
-        total: newTotal,
-      };
+      return {...state, total: newTotal};
     }
   }
 
@@ -113,13 +107,6 @@ const cartReducer = (state = initState, action) => {
     return {...state, attr: [...state.attr, addedAttr.value]}
   }
 
-  if (action.type === "ADD_SHIPPING") {
-    return {
-      ...state,
-      total: state.total + 6,
-    };
-  }
-
   if (action.type === 'ADD_IMAGES'){
     return {...state, images: action.images}
   }
@@ -128,11 +115,12 @@ const cartReducer = (state = initState, action) => {
     return {...state, addedImage: action.image, images: state.images}
   } 
 
+  if (action.type === "ADD_SHIPPING") {
+    return {...state, total: state.total + 6};
+  }
+
   if (action.type === "SUB_SHIPPING") {
-    return {
-      ...state,
-      total: state.total - 6,
-    };
+    return {...state, total: state.total - 6};
   } else {
     return state;
   }  

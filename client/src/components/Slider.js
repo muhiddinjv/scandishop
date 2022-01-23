@@ -12,9 +12,9 @@ class Slider extends Component {
         <ul className="slider__thumbnails">
           {images.map((img, ind) => <li key={ind}><img src={img} alt={ind} onClick={()=>this.props.selectImage(img)}/></li>)}
         </ul>
-        <ul className="slider__slides">
+        <div className="slider__slides">
           {<img src={this.props.image}  alt=""/>}
-        </ul>
+        </div>
       </div>
     } else {
       return <div className="loader"></div>;

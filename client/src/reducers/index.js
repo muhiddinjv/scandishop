@@ -31,6 +31,9 @@ const fetchData = () => {
       data.data.category.products.map((ps) => initState.items.push(ps));
       data.data.currencies.map((c) => initState.currencies.push(c));
       data.data.category.products[0].gallery.map(i => initState.images.push(i));
+      // let singleImage = data.data.category.products[0].gallery[0];
+      // initState.addedImage.push(singleImage);
+      
     })
     .catch((error) => console.log(error));
 };
@@ -128,9 +131,6 @@ const cartReducer = (state = initState, action) => {
   }
 
   if (action.type === 'ADD_IMAGES'){
-    // let addedItem = state.items.find((item) => item.id === action.id);
-    // console.clear();
-    // console.log('addedItem: ',addedItem);
     return {...state, images: action.images}
   }
 

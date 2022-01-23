@@ -153,10 +153,11 @@ class Product extends Component {
     }
   }
 
-  render() {
+  render() {    
     return (
       <div className="product">
-        <Slider images={this.props.products.map((img) => img.gallery)} />
+        {/* <Slider images={this.props.products.map((img) => img.gallery)} /> */}
+        <Slider images={this.props.images} />
         {this.product()}
       </div>
     );
@@ -164,7 +165,7 @@ class Product extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { attr: state.attr, image: state.addedImage };
+  return { attr: state.attr, images: state.images };
 };
 
 export default connect(mapStateToProps, { selectAttribute })(Product);

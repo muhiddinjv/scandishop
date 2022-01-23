@@ -1,8 +1,6 @@
 .slider {
   display: flex;
-  // justify-content: center;
-  // min-width: 85rem;
-  // border: 1px solid red;
+  border: 1px solid #999;
 
   &__thumbnails {
     display: flex;
@@ -20,24 +18,9 @@
   }
 
   &__slides {
-    overflow: hidden;
-    width: 75vmin;
-    height: 100vmin;
-
-    li {
-      width: 75vmin;
-      height: 100vmin;
-      position: absolute;
-      z-index: 1;
-
-      &:target {
-        z-index: 3;
-      }
-    }
-
     img {
-      height: 57rem;
-      width: 57rem;
+      height: 45vw;
+      width: 45vw;
       margin-left: 6vmin;
       border: 1px solid #999;
       object-fit: cover;

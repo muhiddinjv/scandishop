@@ -25,9 +25,7 @@ export const selectAttribute = (attr, id,e) => {
   return {type: "ATTRIBUTE_SELECTED",attr,id,e};
 };
 
-export const addImages = (images) => {
-  console.log('addImages action: ',images);
-  
+export const addImages = (images) => {  
   return {type: "ADD_IMAGES",images};
 };
 

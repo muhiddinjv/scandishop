@@ -30,10 +30,7 @@ const fetchData = () => {
     .then((data) => {
       data.data.category.products.map((ps) => initState.items.push(ps));
       data.data.currencies.map((c) => initState.currencies.push(c));
-      data.data.category.products[0].gallery.map(i => initState.images.push(i));
-      // let singleImage = data.data.category.products[0].gallery[0];
-      // initState.addedImage.push(singleImage);
-      
+      data.data.category.products[0].gallery.map(i => initState.images.push(i));      
     })
     .catch((error) => console.log(error));
 };
@@ -137,8 +134,7 @@ const cartReducer = (state = initState, action) => {
   if (action.type === 'SELECT_IMAGE'){
     return {...state, addedImage: action.image, images: state.images}
   } 
-  // else { return {...state, songs: selectedSong} }
-
+  
   if (action.type === "SUB_SHIPPING") {
     return {
       ...state,

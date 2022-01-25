@@ -30,11 +30,11 @@ export default class CartMiniSlider extends Component {
     let slides = this.props.slides;
     
     return (
-      <div className="slides">
-        {slides.map((slide, index) => <div key={index} className="slider__image" data-active={index === this.state.activeSlide} style={{ backgroundImage: `url( ${slide})` }}>
+      <div className="cartmini__slides">
+        {slides.map((slide, index) => <div key={index} className="cartmini__slides--image" data-active={index === this.state.activeSlide} style={{ backgroundImage: `url( ${slide})` }}>
         </div>)}
-        <div className="prev" onClick={this.prevSlide.bind(this)}>&#10094;</div>
-        <div className="next" onClick={this.nextSlide.bind(this)}>&#10095;</div>
+        <div className="cartmini__slides--prev" onClick={this.prevSlide.bind(this)}>&#10094;</div>
+        <div className="cartmini__slides--next" onClick={this.nextSlide.bind(this)}>&#10095;</div>
       </div>
     );
   }

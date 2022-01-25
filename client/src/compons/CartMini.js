@@ -82,8 +82,8 @@ class CartMini extends Component {
           <li className="cartmini__item" key={item.id}>
             <div className="cartmini__item--left">
               <div className="cartmini__item--header">
-                <h3 className="cartmini__item--brand">{item.brand}</h3>
-                <h4 className="cartmini__item--name">{item.name}</h4>
+                <h5 className="cartmini__item--brand">{item.brand}</h5>
+                <h5 className="cartmini__item--name">{item.name}</h5>
               </div>
               <b className="cartmini__item--price">
                 {Helper.switchCurrency(item.prices[0].currency)}
@@ -102,7 +102,7 @@ class CartMini extends Component {
               </div>
               <div className="cartmini__item--slider">
                 <CartMiniSlider slides={item.gallery} />
-                <button className="cartmini__item--delete" onClick={()=>{this.handleRemove(item.id)}}>X</button>
+                {/* <button className="cartmini__item--delete" onClick={()=>{this.handleRemove(item.id)}}>X</button> */}
               </div>
             </div>
           </li>
@@ -114,9 +114,15 @@ class CartMini extends Component {
     
     return (      
       <div className="cartmini">
-        <h1 className="cartmini__page-name">my bag </h1>
-        <ul className="cartmini__items">{addedItems}</ul>
-        <div className="cartmini__total">{this.props.total === 0 ? "" : `Total: ${this.props.total}$`}</div>
+        <div className="cartmini__dropdown">
+          <h5 className="cartmini__page-name">my bag </h5>
+          <ul className="cartmini__items">{addedItems}</ul>
+          <div className="cartmini__total">{this.props.total === 0 ? "" : `Total: ${this.props.total}$`}</div>
+          <div className="cartmini__btns">
+            <button className="cartmini__btn1">view bag</button>
+            <button className="cartmini__btn2">check out</button>
+          </div>
+        </div>
       </div>
     );
   }

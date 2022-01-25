@@ -50,7 +50,7 @@ class Category extends Component {
                 />
               </NavLink>
               <div  onClick={()=>{this.handleClick(product.id)}} className="category__product--cart" style={{display: this.state.display}} >
-              <NavLink to="/cart">
+              <NavLink to="/cartmini">
                 <EmptyCart />
               </NavLink>
               </div>

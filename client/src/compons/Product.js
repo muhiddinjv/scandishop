@@ -3,6 +3,7 @@ import Slider from "./Slider";
 import Helper from "./Helper";
 import "../media/sass/Product.scss";
 import { connect } from "react-redux";
+import { NavLink } from 'react-router-dom';
 import { selectAttribute } from "../actions";
 
 class Product extends Component {
@@ -64,7 +65,7 @@ class Product extends Component {
                     key={i}
                     style={
                       item === this.state.active
-                        ? { background: "#4ca564", color: "white" }
+                        ? { background: "#333", color: "white" }
                         : null
                     }
                     className="product__attr--item capacity"
@@ -92,7 +93,7 @@ class Product extends Component {
                   key={i}
                   style={
                     item === this.state.active
-                      ? { background: "#4ca564", color: "white" }
+                      ? { background: "#333", color: "white" }
                       : null
                   }
                   className="product__attr--item size"
@@ -133,14 +134,15 @@ class Product extends Component {
               {p.prices[0].amount}
             </div>
           </div>
-          <button
+          <NavLink
+            to="/cart"
             className="product__btn"
             onClick={() => {
               this.handleClick(p.id);
             }}
           >
             add to cart
-          </button>
+          </NavLink>
           <div
             className="product__desc"
             dangerouslySetInnerHTML={{ __html: p.description }}

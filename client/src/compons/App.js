@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Category from "./Category";
 import Product from "./Product"; 
 import Cart from "./Cart";
+import CartMini from "./CartMini";
 import { Routes, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import { addToCart } from '../actions';
@@ -37,7 +38,8 @@ class App extends Component {
         <Routes>
           <Route exact path="/" element={<Category products={this.state.products} addToCart={this.props.addToCart}/>} />
           <Route path="/product" element={<Product products={this.state.products} addToCart={this.props.addToCart} />} />
-          <Route exact path="/cart" element={<Cart/>} />
+          <Route exact path="/cartmini" element={<CartMini/>} />
+          <Route exact path="/cart/*" element={<Cart/>} />
         </Routes>
         </div>
     );

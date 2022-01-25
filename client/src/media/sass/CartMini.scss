@@ -1,8 +1,6 @@
 @import "Base.scss";
 
-
-
-.cart {
+.cartmini {
   border: 1px solid #999;
   color: $--c-text;
   font-size: 2rem;
@@ -13,7 +11,7 @@
   }
 
   &__page-name {
-    padding: 8rem 0 6rem 0;
+    // padding: 8rem 0 6rem 0;
     text-transform: uppercase;
     border-bottom: 1px solid lightgrey;
     font-size: 3rem;
@@ -103,6 +101,10 @@
     &--image {
       width: 18rem;
     }
+  }
+
+  &__attrs{
+    color: red;
   }
 
   &__attr {

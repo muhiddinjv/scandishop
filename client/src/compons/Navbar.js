@@ -3,14 +3,25 @@ import { ReactComponent as Logo } from '../media/icons/logo.svg';
 import { ReactComponent as EmptyCart } from '../media/icons/empty-cart.svg';
 import { NavLink } from 'react-router-dom';
 import Dropdown from './Dropdown';
+import CartMini from "./CartMini";
 import '../media/sass/Navbar.scss';
 
 export default class Navbar extends Component {
+    constructor(props) {
+    super(props);
+    this.dropContentRef = React.createRef();
+    }
+
+    showMiniCart = () => {
+        this.dropContentRef.current.classList.toggle("show");
+    }
+
     render() {
         let quantity = this.props.qty.reduce((sum, a) => sum + a, 0);
         
         return (
-            <nav className='navbar'>
+            <div>
+                <nav className='navbar'>
                 <ul className='navbar__nav'>
                     <li className="navbar__nav--link" onClick={()=>this.props.filterProduct('jacket-canada-goosee')}>
                         <NavLink className="link" to="/">
@@ -34,13 +45,18 @@ export default class Navbar extends Component {
                 <div className='navbar__actions'>
                     <Dropdown state={this.props.curr}/>
                     <div className="navbar__actions--cart">
-                        <NavLink className="empty" to="/cartmini">
-                            <EmptyCart />
-                        </NavLink>
+                        <EmptyCart onClick={() => this.showMiniCart()} className="navbar__actions--icon"/>
                         <span className="navbar__actions--qty">{quantity === 0 ? "" : quantity}</span>
                     </div>
+                    
                 </div>
             </nav>
+            <div className="navbar__minicart">
+                <div ref={this.dropContentRef} className='navbar__minicart--dropdown'>
+                  <CartMini />
+                </div>
+            </div>
+            </div>
         )
     }
 }

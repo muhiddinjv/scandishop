@@ -8,7 +8,22 @@
   font-size: 1.6rem;
   padding: 2.4rem 5.5rem 0 5.5rem;
   text-transform: uppercase;
-  // padding: 0 5.5rem;
+
+  &__minicart{
+    position: relative;
+    // transition: 3s;
+
+    .show { display: block; }
+    
+    &--dropdown{
+      position: absolute;
+      display: none;
+      right: 1rem;
+      z-index: 9;
+    }
+  }
+
+  
 
   &__nav {
     display: flex;
@@ -46,6 +61,10 @@
       margin-top: -0.5rem;
       height:4rem;
       position: relative;
+      
+      &--icon{
+        cursor: pointer;
+      }
 
       &--qty{
         position: absolute;

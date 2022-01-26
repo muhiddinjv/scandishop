@@ -20,12 +20,12 @@
 
   &__slides {
     img {
-      height: 45vw;
-      width: 45vw;
+      height: 42vw;
+      width: 46vw;
       margin-left: 6vmin;
       border: 1px solid #999;
-      object-fit: cover;
-      object-position: top;
+      // object-fit: cover;
+      // object-position: center;
     }
   }
 }

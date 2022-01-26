@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import Helper from "./Helper";
 import "../media/sass/CartMini.scss";
 import CartMiniSlider from "./CartMiniSlider";
@@ -75,7 +74,8 @@ class CartMini extends Component {
   }
 
   render() {
-
+    console.log(this.props.qty);
+    
     let addedItems = this.props.items.length ? (
       this.props.items.map((item) => {        
         return (
@@ -94,11 +94,11 @@ class CartMini extends Component {
 
             <div className="cartmini__item--right">
               <div className="cartmini__item--buttons">
-                <Link to="/cartmini" className="cartmini__item--button" onClick={()=>{this.handleAddQuantity(item.id)}}>+</Link>
+                <div className="cartmini__item--button" onClick={()=>{this.handleAddQuantity(item.id)}}>+</div>
                 <div className="cartmini__item--quantity">
                   <b>{item.quantity}</b>
                 </div>
-                <Link to="/cartmini" className="cartmini__item--button" onClick={()=>{this.handleSubtractQuantity(item.id)}}>-</Link>
+                <div className="cartmini__item--button" onClick={()=>{this.handleSubtractQuantity(item.id)}}>-</div>
               </div>
               <div className="cartmini__item--slider">
                 <CartMiniSlider slides={item.gallery} />
@@ -118,7 +118,7 @@ class CartMini extends Component {
           <h5 className="cartmini__page-name">my bag </h5>
           <ul className="cartmini__items">{addedItems}</ul>
           <div className="cartmini__total">{this.props.total === 0 ? "" : `Total: ${this.props.total}$`}</div>
-          <div className="cartmini__btns">
+          <div className="cartmini__btns" style={{display: this.props.qty === 0 ? 'none':'block'}}>
             <button className="cartmini__btn1">view bag</button>
             <button className="cartmini__btn2">check out</button>
           </div>

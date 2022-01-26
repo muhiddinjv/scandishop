@@ -53,7 +53,7 @@ export default class Navbar extends Component {
             </nav>
             <div className="navbar__minicart">
                 <div ref={this.dropContentRef} className='navbar__minicart--dropdown'>
-                  <CartMini />
+                  <CartMini qty={quantity} />
                 </div>
             </div>
             </div>

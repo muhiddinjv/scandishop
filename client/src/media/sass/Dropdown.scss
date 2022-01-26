@@ -3,6 +3,7 @@
 .dropdown {
   position: relative;
   margin-right: 1rem;
+  z-index: 99;
 
   &__label{
       margin-right: 0.3rem;

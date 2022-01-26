@@ -6,14 +6,13 @@
   font-size: 2rem;
   display: flex;
   justify-content: right;
+  margin-right: 3rem;
 
   &__dropdown{
     background: white;
     height: fit-content;
-    padding-right: 1.5rem;
-    padding: 1rem 1.8rem;
+    padding: 1.8rem;
   }
-  
 
   .active{
     background: #333;
@@ -122,6 +121,7 @@
     }
 
     &--item {
+      cursor: pointer;
       display: flex;
       border: 1px solid #999;
       margin: 0.2rem 0.6rem 0 0;
@@ -130,13 +130,30 @@
       width: 3rem;
       height: 2.5rem;
       font-size: 1.2rem;
-      cursor: pointer;
       transition: 0.3s;
 
       &:hover {
         background: #444;
         color: white;
       }
+    }
+  }
+
+  &__btns{
+    justify-content: space-between;
+  }
+
+  &__btn{
+    margin-top: 2rem;
+    padding: 1.3rem;
+    width: 14rem;
+    text-transform: uppercase;
+    background: none;
+    border: 1px solid #333;
+    &:hover{
+      border: none;
+      color: white;
+      background: $--c-primary;
     }
   }
 

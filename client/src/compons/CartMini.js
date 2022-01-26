@@ -73,9 +73,9 @@ class CartMini extends Component {
     }
   }
 
-  render() {
-    console.log(this.props.qty);
-    
+  render() {    
+    let quantity = this.props.qty;
+
     let addedItems = this.props.items.length ? (
       this.props.items.map((item) => {        
         return (
@@ -115,12 +115,12 @@ class CartMini extends Component {
     return (      
       <div className="cartmini">
         <div className="cartmini__dropdown">
-          <h5 className="cartmini__page-name">my bag </h5>
+          <h5 className="cartmini__page-name">my bag, {quantity} items</h5>
           <ul className="cartmini__items">{addedItems}</ul>
           <div className="cartmini__total">{this.props.total === 0 ? "" : `Total: ${this.props.total}$`}</div>
-          <div className="cartmini__btns" style={{display: this.props.qty === 0 ? 'none':'block'}}>
-            <button className="cartmini__btn1">view bag</button>
-            <button className="cartmini__btn2">check out</button>
+          <div className="cartmini__btns" style={{display: quantity === 0 ? 'none':'flex'}}>
+            <button className="cartmini__btn">view bag</button>
+            <button className="cartmini__btn">check out</button>
           </div>
         </div>
       </div>

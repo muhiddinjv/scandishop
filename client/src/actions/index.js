@@ -32,3 +32,7 @@ export const addImages = (images) => {
 export const selectImage = (image) => {
   return {type: "SELECT_IMAGE",image};
 };
+
+export const selectCurrency = (currency) => {
+  return {type: "SELECT_CURRENCY",currency};
+};

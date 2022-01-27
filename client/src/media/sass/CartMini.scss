@@ -3,13 +3,13 @@
 .cartmini {
   
   
-  &__bg-layer{
+  &__overlay{
     position: absolute;
     display: flex;
     justify-content: right;
-    background: rgba(153, 153, 153, 0.425);
+    // background: rgba(153, 153, 153, 0.425);
     width: 100%;
-    min-height: 91%;
+    min-height: 100%;
     z-index: 9;
   }
   

@@ -32,6 +32,11 @@ fetchData();
 
 const cartReducer = (state = initState, action) => {
   //INSIDE APP COMPONENT
+
+  if (action.type === 'SELECT_CURRENCY'){
+    console.log("reducer SEL_CUR: ",action.currency);
+    // return {...state, addedImage: action.image, images: state.images}
+  } 
   
   if (action.type === "ADD_TO_CART") {
     let addedItem = state.items.find((item) => item.id === action.id);    

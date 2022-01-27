@@ -115,7 +115,7 @@ class CartMini extends Component {
     
     return (      
       <div className="cartmini">
-        <div className="cartmini__bg-layer">
+        <div className="cartmini__overlay" style={{background: quantity === 0 ? 'none' : 'rgba(153, 153, 153, 0.425)'}}>
           <div className="cartmini__dropdown">
             <h5 className="cartmini__page-name">my bag, {quantity} items</h5>
             <ul className="cartmini__items">{addedItems}</ul>

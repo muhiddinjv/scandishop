@@ -1,17 +1,26 @@
 @import "Base.scss";
 
 .cartmini {
-  border: 1px solid #999;
-  color: $--c-text;
-  font-size: 2rem;
-  display: flex;
-  justify-content: right;
-  margin-right: 3rem;
-
+  
+  
+  &__bg-layer{
+    position: absolute;
+    display: flex;
+    justify-content: right;
+    background: rgba(153, 153, 153, 0.425);
+    width: 100%;
+    min-height: 100%;
+    z-index: 9;
+  }
+  
   &__dropdown{
     background: white;
+    margin-right: 3rem;
+    color: $--c-text;
+    font-size: 2rem;
+    border: 1px solid #999;
     height: fit-content;
-    padding: 1.8rem;
+    padding: 1rem 1.8rem 1.8rem 1.8rem;
   }
 
   .active{
@@ -27,9 +36,11 @@
     margin-top: 2.5rem;
   }
 
+  &__empty{font-size: 1.6rem;}
+
   &__item {
     display: flex;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     padding-bottom: 3rem;
 
     &:last-child {
@@ -139,30 +150,34 @@
     }
   }
 
-  &__btns{
-    justify-content: space-between;
-  }
-
-  &__btn{
-    margin-top: 2rem;
-    padding: 1.3rem;
-    width: 14rem;
-    text-transform: uppercase;
-    background: none;
-    border: 1px solid #333;
-    &:hover{
-      border: none;
-      color: white;
-      background: $--c-primary;
-    }
-  }
-
   &__attr2{
     margin-top: 1rem;
   }
 
   &__total{
+    display: flex;
+    justify-content: space-between;
     font-weight: bold;
     font-size: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  &__btns{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__btn{
+    padding: 1.3rem;
+    width: 14rem;
+    text-transform: uppercase;
+    background: none;
+    border: 1px solid #999;
+    &:hover{
+      border: none;
+      color: white;
+      cursor: pointer;
+      background: $--c-primary;
+    }
   }
 }

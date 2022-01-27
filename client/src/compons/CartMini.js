@@ -75,6 +75,7 @@ class CartMini extends Component {
 
   render() {    
     let quantity = this.props.qty;
+    let total = this.props.total;
 
     let addedItems = this.props.items.length ? (
       this.props.items.map((item) => {        
@@ -114,13 +115,20 @@ class CartMini extends Component {
     
     return (      
       <div className="cartmini">
-        <div className="cartmini__dropdown">
-          <h5 className="cartmini__page-name">my bag, {quantity} items</h5>
-          <ul className="cartmini__items">{addedItems}</ul>
-          <div className="cartmini__total">{this.props.total === 0 ? "" : `Total: ${this.props.total}$`}</div>
-          <div className="cartmini__btns" style={{display: quantity === 0 ? 'none':'flex'}}>
-            <button className="cartmini__btn">view bag</button>
-            <button className="cartmini__btn">check out</button>
+        <div className="cartmini__bg-layer">
+          <div className="cartmini__dropdown">
+            <h5 className="cartmini__page-name">my bag, {quantity} items</h5>
+            <ul className="cartmini__items">{addedItems}</ul>
+            <div style={{display: quantity === 0 ? 'none':'block'}}>
+              <div className="cartmini__total">
+                <span>Total:</span>
+                <span>${total}</span>
+              </div>
+              <div className="cartmini__btns" >
+                <button className="cartmini__btn" onClick={()=>alert('Viewed the bag!')}>view bag</button>
+                <button className="cartmini__btn" onClick={()=>alert('Checked out!')}>check out</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

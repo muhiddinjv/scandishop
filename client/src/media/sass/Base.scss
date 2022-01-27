@@ -38,7 +38,9 @@ $--c-black:#1E1F23;
 
 html {
   font-family: 'Raleway-Regular';
-  height: 100%;
+  // height: 100%;
+  position: relative;
+  min-height: 100%;
   box-sizing: border-box;
   /* REM for size, margin, padding */
   font-size: 62.5%; /* = 10px = 1rem */
@@ -55,6 +57,7 @@ html {
 body {
   // padding: 0 5.5rem;
   // padding-bottom: 10rem;
+  
 }
 
 img {

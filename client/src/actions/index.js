@@ -1,8 +1,8 @@
 // Action creators (customers with forms)
 
-export const selectCurrency = (currency) => {  
+export const selectCurrency = (currency, id) => {  
   return {// return action (form)
-    type: "SELECT_CURRENCY",currency
+    type: "SELECT_CURRENCY",currency,id
   };
 };
 

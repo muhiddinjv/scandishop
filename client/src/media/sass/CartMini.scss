@@ -3,22 +3,20 @@
 .cartmini {
   display: flex;
   justify-content: right;
-  // min-height:100vh;
-  // position:relative;  
+  position:relative;
   
   &__overlay{
     top:0;left:0;
     position: fixed;
     background: rgba(153, 153, 153, 0.425);
     width: 100%;
-    background-size:100%;
     min-height: 100vh;
+    transition: 0.3s;
     z-index:1;
   }
   
   &__dropdown{
     z-index: 2;
-    transition: display 3s;
     background: white;
     position:absolute;
     margin-right: 3rem;

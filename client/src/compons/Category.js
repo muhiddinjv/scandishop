@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Helper from "./Helper";
+// import Helper from "./Helper";
 import "../media/sass/Category.scss";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as EmptyCart } from '../media/icons/cart-white.svg';
@@ -60,7 +60,8 @@ class Category extends Component {
                 <NavLink to="/product">{product.name}</NavLink>
               </h2>
               <div  className="category__product--price">
-                {Helper.switchCurrency(product.prices[0].currency)}
+                {/* {Helper.switchCurrency(product.prices[0].currency)} */}
+                {this.props.currSymbol}
                 {product.prices[0].amount}
               </div>
             </div>
@@ -87,7 +88,7 @@ class Category extends Component {
 }
 
 const mapStateToProps = state => {    
-  return { images: state.images } 
+  return { images: state.images, currSymbol: state.currSymbol } 
 }
 
 export default connect(mapStateToProps,{addImages})(Category);

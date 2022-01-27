@@ -6,6 +6,7 @@ const initState = {
   addedItems: [],
   addedImage: [],
   currencies: [],
+  currSymbol: ["\u0024"],
   attr: [],
   total: 0,
 };
@@ -34,13 +35,42 @@ const cartReducer = (state = initState, action) => {
   //INSIDE APP COMPONENT
 
   if (action.type === 'SELECT_CURRENCY'){
-    console.log("reducer SEL_CUR: ",action.currency);
-    // return {...state, addedImage: action.image, images: state.images}
+    const switchCurrency = (currency) => {
+      let symbol;
+      switch (currency) {
+        case "USD":
+          symbol = "\u0024";
+          break;
+        case "GBP":
+          symbol = "\u00A3";
+          break;
+        case "AUD":
+          symbol = "\u20B3";
+          break;
+        case "JPY":
+          symbol = "\u00A5";
+          break;
+        case "RUB":
+          symbol = "\u20BD";
+          break;
+        default:
+          symbol = "?";
+      }
+      return symbol;
+    };
+    let x = switchCurrency(action.currency)
+    console.log("reducer SEL_CUR: ",x);
+    
+    
+    return {
+      ...state,
+      currSymbol: x,
+    };
   } 
   
   if (action.type === "ADD_TO_CART") {
     let addedItem = state.items.find((item) => item.id === action.id);    
-    let price = Math.round(addedItem.prices[0].amount);    
+    let price = Math.round(addedItem.prices[0].amount);        
     
     //check if the action id exists in the addedItems
     let existed_item = state.addedItems.find((item) => action.id === item.id);

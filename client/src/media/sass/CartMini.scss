@@ -1,26 +1,33 @@
 @import "Base.scss";
 
 .cartmini {
-  
+  display: flex;
+  justify-content: right;
+  // min-height:100vh;
+  // position:relative;  
   
   &__overlay{
-    position: absolute;
-    display: flex;
-    justify-content: right;
-    // background: rgba(153, 153, 153, 0.425);
+    top:0;left:0;
+    position: fixed;
+    background: rgba(153, 153, 153, 0.425);
     width: 100%;
-    min-height: 100%;
-    z-index: 9;
+    background-size:100%;
+    min-height: 100vh;
+    z-index:1;
   }
   
   &__dropdown{
+    z-index: 2;
+    transition: display 3s;
     background: white;
+    position:absolute;
     margin-right: 3rem;
     color: $--c-text;
     font-size: 2rem;
     border: 1px solid #999;
     height: fit-content;
     padding: 1rem 1.8rem 1.8rem 1.8rem;
+    // transition: display 2s;
   }
 
   .active{

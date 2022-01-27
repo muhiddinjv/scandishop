@@ -1,8 +1,14 @@
 // Action creators (customers with forms)
 
+export const selectCurrency = (currency) => {  
+  return {// return action (form)
+    type: "SELECT_CURRENCY",currency
+  };
+};
+
 //add cart action
 export const addToCart = (id) => {
-  return { // return action (form)
+  return {
     type: "ADD_TO_CART",id};
 };
 
@@ -31,8 +37,4 @@ export const addImages = (images) => {
 
 export const selectImage = (image) => {
   return {type: "SELECT_IMAGE",image};
-};
-
-export const selectCurrency = (currency) => {
-  return {type: "SELECT_CURRENCY",currency};
 };

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Helper from './Helper';
 import "../media/sass/Dropdown.scss";
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { selectCurrency } from '../actions';
 
-export default class Dropdown extends Component {
+class Dropdown extends Component {
   constructor(props) {
     super(props);
     this.dropListSignRef = React.createRef();
@@ -34,7 +34,7 @@ export default class Dropdown extends Component {
     this.dropBtnRef.current.classList.toggle("arrow-spin");
     this.dropLabelRef.current.innerText = Helper.switchCurrency(currency);
     this.dropContentRef.current.classList.toggle("show");
-    selectCurrency(currency)
+    this.props.selectCurrency(currency)
   }
 
   render() {
@@ -50,8 +50,8 @@ export default class Dropdown extends Component {
   }
 }
 
-// const mapStateToProps = state => {    
-//   return { images: state.images } 
-// }
+const mapStateToProps = state => {    
+  return { images: state.images } 
+}
 
-// export default connect({selectCurrency})(Dropdown);
+export default connect(mapStateToProps,{selectCurrency})(Dropdown);

@@ -112,22 +112,21 @@ class CartMini extends Component {
     ) : (
       <p className="cartmini__empty">The cart is empty</p>
     );
-    
+
     return (      
       <div className="cartmini">
-        <div className="cartmini__overlay" style={{background: quantity === 0 ? 'none' : 'rgba(153, 153, 153, 0.425)'}}>
-          <div className="cartmini__dropdown">
-            <h5 className="cartmini__page-name">my bag, {quantity} items</h5>
-            <ul className="cartmini__items">{addedItems}</ul>
-            <div style={{display: quantity === 0 ? 'none':'block'}}>
-              <div className="cartmini__total">
-                <span>Total:</span>
-                <span>${total}</span>
-              </div>
-              <div className="cartmini__btns" >
-                <button className="cartmini__btn" onClick={()=>alert('Viewed the bag!')}>view bag</button>
-                <button className="cartmini__btn" onClick={()=>alert('Checked out!')}>check out</button>
-              </div>
+        <div className="cartmini__overlay"></div>
+        <div className="cartmini__dropdown">
+          <h5 className="cartmini__page-name">my bag, {quantity} items</h5>
+          <ul className="cartmini__items">{addedItems}</ul>
+          <div style={{display: quantity === 0 ? 'none':'block'}}>
+            <div className="cartmini__total">
+              <span>Total:</span>
+              <span>${total}</span>
+            </div>
+            <div className="cartmini__btns" >
+              <button className="cartmini__btn" onClick={()=>alert('Viewed the bag!')}>view bag</button>
+              <button className="cartmini__btn" onClick={()=>alert('Checked out!')}>check out</button>
             </div>
           </div>
         </div>

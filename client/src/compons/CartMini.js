@@ -122,7 +122,7 @@ class CartMini extends Component {
           <div style={{display: quantity === 0 ? 'none':'block'}}>
             <div className="cartmini__total">
               <span>Total:</span>
-              <span>${total}</span>
+              <span>{this.props.currSymbol}{total}</span>
             </div>
             <div className="cartmini__btns" >
               <button className="cartmini__btn" onClick={()=>alert('Viewed the bag!')}>view bag</button>
@@ -139,7 +139,8 @@ const mapStateToProps = (state)=>{
   return{
       items: state.addedItems,
       total: state.total,
-      attrs: state.attr
+      attrs: state.attr,
+      currSymbol: state.currSymbol
   }
 }
 

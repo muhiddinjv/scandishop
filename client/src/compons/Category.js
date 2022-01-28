@@ -88,7 +88,7 @@ class Category extends Component {
 }
 
 const mapStateToProps = state => {    
-  return { images: state.images, currSymbol: state.currSymbol } 
+  return { images: state.images, price: state.price, currSymbol: state.currSymbol } 
 }
 
 export default connect(mapStateToProps,{addImages})(Category);

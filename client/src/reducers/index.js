@@ -7,8 +7,8 @@ const initState = {
   addedImage: [],
   currencies: [],
   currSymbol: ["\u0024"],
-  price:'250',
   selCurrSym: "USD",
+  price:[],
   attr: [],
   total: 0,
 };
@@ -26,7 +26,8 @@ const fetchData = () => {
     .then((data) => {
       data.data.category.products.map((ps) => initState.items.push(ps));
       data.data.currencies.map((c) => initState.currencies.push(c));
-      data.data.category.products[0].gallery.map(i => initState.images.push(i));      
+      data.data.category.products[0].gallery.map(i => initState.images.push(i)); 
+      initState.price.push(data.data.category.products[0].prices[0].amount)     
     })
     .catch((error) => console.log(error));
 };
@@ -59,25 +60,41 @@ const cartReducer = (state = initState, action) => {
     return symbol;
   };
 
+  const filterItem = id => {
+    let addedItem = state.items.find((item) => item.id === id); 
+    let cost = addedItem.prices.filter(price=> price.currency === state.selCurrSym ? price.amount : null);
+    let new_items = state.addedItems.filter((item) => id !== item.id);
+    let price = Math.round(cost[0].amount); 
+    
+    console.clear();
+    console.log('filterItem cost: ',cost);
+    return {addedItem, price, new_items}
+  }
+
   if (action.type === 'SELECT_CURRENCY'){
     let symbol = switchCurrency(action.currency)
-    console.log("reducer SEL_CUR: ",symbol);
+    // let addedItem = state.items.find((item) => item.id === action.id); 
+    // let cost = addedItem.prices.filter(price=> price.currency === state.selCurrSym ? price.amount : null) 
+    // let price = Math.round(cost[0].amount); 
+    let filtered = filterItem(action.id);    
 
     return {
       ...state,
       currSymbol: symbol,
-      selCurrSym: action.currency
+      selCurrSym: action.currency,
+      price: filtered.price
     };
   } 
   
   if (action.type === "ADD_TO_CART") {
-    let addedItem = state.items.find((item) => item.id === action.id); 
-    let cost = addedItem.prices.filter(price=> price.currency === state.selCurrSym ? price.amount : null) 
-    console.log('add2cart: ',cost[0].currency);
-      
-    let price = Math.round(cost[0].amount);  
-    console.log('price: ',price);
-          
+    // let price = Math.round(addedItem.prices[0].amount); 
+    // let addedItem = state.items.find((item) => item.id === action.id); 
+    // let cost = addedItem.prices.filter(price=> price.currency === state.selCurrSym ? price.amount : null) 
+    // let price = Math.round(cost[0].amount); 
+    let filtered = filterItem(action.id);
+    const { price, addedItem } = filtered;
+
+    console.log("ADD_CART: ",price);
     
     //check if the action id exists in the addedItems
     let existed_item = state.addedItems.find((item) => action.id === item.id);
@@ -86,7 +103,6 @@ const cartReducer = (state = initState, action) => {
       return {
         ...state,
         total: state.total + price,
-        price: price
       };
     } else {   
       addedItem.quantity = 1;
@@ -102,8 +118,10 @@ const cartReducer = (state = initState, action) => {
   
   if (action.type === "REMOVE_ITEM") {
     let itemToRemove = state.addedItems.find((item) => action.id === item.id);
-    let price = Math.round(itemToRemove.prices[0].amount);
-    let new_items = state.addedItems.filter((item) => action.id !== item.id);
+    // let price = Math.round(itemToRemove.prices[0].amount);
+    // let new_items = state.addedItems.filter((item) => action.id !== item.id);
+    let filtered = filterItem(action.id);
+    const { price, new_items } = filtered;
 
     //calculating the total
     let newTotal = state.total - price * itemToRemove.quantity;
@@ -116,19 +134,26 @@ const cartReducer = (state = initState, action) => {
 
   //INSIDE CART COMPONENT
   if (action.type === "ADD_QUANTITY") {
-    let addedItem = state.items.find((item) => item.id === action.id);
-    let price = Math.round(addedItem.prices[0].amount);
+    // let addedItem = state.items.find((item) => item.id === action.id);
+    // let price = Math.round(addedItem.prices[0].amount);
+    let filtered = filterItem(action.id);
+    const { price, addedItem } = filtered;
+
     addedItem.quantity += 1;
     let newTotal = state.total + price;
     return {...state, total: newTotal};
   }
 
   if (action.type === "SUB_QUANTITY") {
-    let addedItem = state.items.find((item) => item.id === action.id);
-    let price = Math.round(addedItem.prices[0].amount);
+    // let addedItem = state.items.find((item) => item.id === action.id);
+    // let price = Math.round(addedItem.prices[0].amount);
+    let filtered = filterItem(action.id);
+    const { price, addedItem, new_items } = filtered;
+    
     //if the qt == 0 then it should be removed
     if (addedItem.quantity === 1) {
-      let new_items = state.addedItems.filter((item) => item.id !== action.id);
+      // let new_items = state.addedItems.filter((item) => item.id !== action.id);
+      
       let newTotal = state.total - price;
       return {
         ...state,
@@ -143,7 +168,9 @@ const cartReducer = (state = initState, action) => {
   }
 
   if (action.type === 'ATTRIBUTE_SELECTED'){
-    let addedItem = state.items.find((item) => item.id === action.id);
+    // let addedItem = state.items.find((item) => item.id === action.id);
+    let filtered = filterItem(action.id);
+    const { addedItem } = filtered;
     let target = action.e.target.classList.value.includes("capacity") ? 1 : 0;    
     let addedAttr = addedItem.attributes[target].items.find(item=>item.value === action.attr)   
      

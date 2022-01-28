@@ -32,6 +32,7 @@ class App extends Component {
         <Navbar
           curr={this.state.currencies}
           filterProduct={this.filterProduct}
+          products={this.state.products}
           qty={this.props.addedItems.map(x=>x.quantity)}
         />
         <Routes>

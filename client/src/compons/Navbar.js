@@ -43,7 +43,7 @@ export default class Navbar extends Component {
                     <NavLink to="/"><Logo /></NavLink>
                 </div>
                 <div className='navbar__actions'>
-                    <Dropdown state={this.props.curr}/>
+                    <Dropdown state={this.props.curr} products={this.props.products}/>
                     <div className="navbar__actions--cart">
                         <EmptyCart onClick={() => this.showMiniCart()} className="navbar__actions--icon"/>
                         <span className="navbar__actions--qty">{quantity === 0 ? "" : quantity}</span>

@@ -62,7 +62,8 @@ class Category extends Component {
               <div  className="category__product--price">
                 {/* {Helper.switchCurrency(product.prices[0].currency)} */}
                 {this.props.currSymbol}
-                {product.prices[0].amount}
+                {/* {product.prices[0].amount} */}
+                {this.props.price}
               </div>
             </div>
           </li>
@@ -88,7 +89,9 @@ class Category extends Component {
 }
 
 const mapStateToProps = state => {    
-  return { images: state.images, price: state.price, currSymbol: state.currSymbol } 
+  const {images, price, currSymbol } = state;
+  // return { images: state.images, price: state.price, currSymbol: state.currSymbol } 
+  return { images, price, currSymbol }
 }
 
 export default connect(mapStateToProps,{addImages})(Category);

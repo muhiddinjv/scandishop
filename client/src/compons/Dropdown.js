@@ -34,7 +34,9 @@ class Dropdown extends Component {
     this.dropBtnRef.current.classList.toggle("arrow-spin");
     this.dropLabelRef.current.innerText = Helper.switchCurrency(currency);
     this.dropContentRef.current.classList.toggle("show");
-    this.props.selectCurrency(currency)    
+    this.props.selectCurrency(currency, this.props.products[0].id)  
+    console.log('dropdown input: ',currency,this.props.products[0].id);
+          
   }
 
   render() {

@@ -6,7 +6,7 @@ const initState = {
   addedItems: [],
   addedImage: [],
   currencies: [],
-  currSymbol: ["\u0024"],
+  // currSymbol: ["\u0024"],
   selCurrSym: "USD",
   price:[],
   attr: [],
@@ -36,29 +36,29 @@ fetchData();
 
 const cartReducer = (state = initState, action) => {
   //INSIDE APP COMPONENT
-  const switchCurrency = (currency) => {
-    let symbol;
-    switch (currency) {
-      case "USD":
-        symbol = "\u0024";
-        break;
-      case "GBP":
-        symbol = "\u00A3";
-        break;
-      case "AUD":
-        symbol = "\u20B3";
-        break;
-      case "JPY":
-        symbol = "\u00A5";
-        break;
-      case "RUB":
-        symbol = "\u20BD";
-        break;
-      default:
-        symbol = "?";
-    }
-    return symbol;
-  };
+  // const switchCurrency = (currency) => {
+  //   let symbol;
+  //   switch (currency) {
+  //     case "USD":
+  //       symbol = "\u0024";
+  //       break;
+  //     case "GBP":
+  //       symbol = "\u00A3";
+  //       break;
+  //     case "AUD":
+  //       symbol = "\u20B3";
+  //       break;
+  //     case "JPY":
+  //       symbol = "\u00A5";
+  //       break;
+  //     case "RUB":
+  //       symbol = "\u20BD";
+  //       break;
+  //     default:
+  //       symbol = "?";
+  //   }
+  //   return symbol;
+  // };
 
   const filterItem = id => {
     let addedItem = state.items.find((item) => item.id === id); 
@@ -72,7 +72,7 @@ const cartReducer = (state = initState, action) => {
   }
 
   if (action.type === 'SELECT_CURRENCY'){
-    let symbol = switchCurrency(action.currency)
+    // let symbol = switchCurrency(action.currency)
     // let addedItem = state.items.find((item) => item.id === action.id); 
     // let cost = addedItem.prices.filter(price=> price.currency === state.selCurrSym ? price.amount : null) 
     // let price = Math.round(cost[0].amount); 
@@ -80,7 +80,7 @@ const cartReducer = (state = initState, action) => {
 
     return {
       ...state,
-      currSymbol: symbol,
+      // currSymbol: symbol,
       selCurrSym: action.currency,
       price: filtered.price
     };

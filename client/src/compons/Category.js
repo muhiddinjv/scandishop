@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import Helper from "./Helper";
+import Helper from "./Helper";
 import "../media/sass/Category.scss";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as EmptyCart } from '../media/icons/cart-white.svg';
@@ -18,6 +18,8 @@ class Category extends Component {
   }
 
   mouseEnter() {
+    console.log(this.props.selCurrSym);
+    
     this.setState(() => ({
       display: "block",
     }));
@@ -35,7 +37,6 @@ class Category extends Component {
 
   generateProduct() {
     let products = this.props.products;
-    // console.log("Category => genProd: ",products); 
     
     if (products) {
       return products.map((product, i) => {        
@@ -60,8 +61,8 @@ class Category extends Component {
                 <NavLink to="/product">{product.name}</NavLink>
               </h2>
               <div  className="category__product--price">
-                {/* {Helper.switchCurrency(product.prices[0].currency)} */}
-                {this.props.currSymbol}
+                {Helper.switchCurrency(this.props.selCurrSym)}
+                {/* {this.props.currSymbol} */}
                 {/* {product.prices[0].amount} */}
                 {this.props.price}
               </div>
@@ -89,9 +90,8 @@ class Category extends Component {
 }
 
 const mapStateToProps = state => {    
-  const {images, price, currSymbol } = state;
-  // return { images: state.images, price: state.price, currSymbol: state.currSymbol } 
-  return { images, price, currSymbol }
+  const {images, price, selCurrSym } = state;
+  return { images, price, selCurrSym   }
 }
 
 export default connect(mapStateToProps,{addImages})(Category);

@@ -20,7 +20,7 @@ class CartMini extends Component {
   }
   // add active class to size attribute
   sizeActive(item){
-    for (const i of this.props.attrs) {            
+    for (const i of this.props.attr) {            
       if (item.value.includes('#')) {if (item.value === i) return '25%'} 
       if (item.value === i) return 'active';
     }     
@@ -76,9 +76,11 @@ class CartMini extends Component {
   render() {    
     let quantity = this.props.qty;
     let total = this.props.total;
+    let items = this.props.addedItems;
+    let currency = this.props.selCurrSym;
 
-    let addedItems = this.props.items.length ? (
-      this.props.items.map((item) => {        
+    let addedItems = items.length ? (
+      items.map((item) => {        
         return (
           <li className="cartmini__item" key={item.id}>
             <div className="cartmini__item--left">
@@ -87,7 +89,7 @@ class CartMini extends Component {
                 <h5 className="cartmini__item--name">{item.name}</h5>
               </div>
               <b className="cartmini__item--price">
-                {Helper.switchCurrency(item.prices[0].currency)}
+                {Helper.switchCurrency(currency)}
                 {item.prices[0].amount}
               </b>
               {this.attributes(item)}
@@ -122,7 +124,7 @@ class CartMini extends Component {
           <div style={{display: quantity === 0 ? 'none':'block'}}>
             <div className="cartmini__total">
               <span>Total:</span>
-              <span>{this.props.currSymbol}{total}</span>
+              <span>{Helper.switchCurrency(currency)}{total}</span>
             </div>
             <div className="cartmini__btns" >
               <button className="cartmini__btn" onClick={()=>alert('Viewed the bag!')}>view bag</button>
@@ -136,12 +138,8 @@ class CartMini extends Component {
 }
 
 const mapStateToProps = (state)=>{
-  return{
-      items: state.addedItems,
-      total: state.total,
-      attrs: state.attr,
-      currSymbol: state.currSymbol
-  }
+  const { addedItems, total, attr, selCurrSym } = state;
+  return{ addedItems, total, attr, selCurrSym }
 }
 
 const mapDispatchToProps = (dispatch)=>{

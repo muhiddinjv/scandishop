@@ -18,6 +18,7 @@ class App extends Component {
     setTimeout(() => {
       this.setState({products: [this.props.items[0]]}) 
       this.setState({currencies: this.props.currencies}) 
+      this.setState({price: this.props.price}) 
     }, 500);     
   }
 
@@ -46,12 +47,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state)=>{
-  return {
-    items: state.items,
-    currencies: state.currencies,
-    addedItems: state.addedItems,
-    total: state.total
-    }
+  const {items, currencies, addedItems, total, price} = state;
+  return { items, currencies, addedItems, total, price  }
   }
 
 const mapDispatchToProps= (dispatch)=>{

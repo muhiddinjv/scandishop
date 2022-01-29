@@ -165,7 +165,8 @@ class Product extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { attr: state.attr, images: state.images };
+  const { attr, images } = state;
+  return { attr, images };
 };
 
 export default connect(mapStateToProps, { selectAttribute })(Product);

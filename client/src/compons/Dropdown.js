@@ -32,11 +32,13 @@ class Dropdown extends Component {
 
   changeCurrency = (currency) => {
     this.dropBtnRef.current.classList.toggle("arrow-spin");
+    this.props.selectCurrency(currency, this.props.products[0].id)  
+    // setTimeout(() => {
+    //   this.dropLabelRef.current.innerText = this.props.currSymbol;
+    // }, 0);
     this.dropLabelRef.current.innerText = Helper.switchCurrency(currency);
     this.dropContentRef.current.classList.toggle("show");
-    this.props.selectCurrency(currency, this.props.products[0].id)  
-    console.log('dropdown input: ',currency,this.props.products[0].id);
-          
+    console.log('dropdown input: ',currency,this.props.products[0].id);    
   }
 
   render() {
@@ -53,7 +55,7 @@ class Dropdown extends Component {
 }
 
 const mapStateToProps = state => {    
-  return { images: state.images, items: state.addedItems } 
+  return { currSymbol: state.currSymbol } 
 }
 
 export default connect(mapStateToProps,{selectCurrency})(Dropdown);

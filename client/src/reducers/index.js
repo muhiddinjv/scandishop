@@ -7,7 +7,7 @@ const initState = {
   addedImage: [],
   currencies: [],
   // currSymbol: ["\u0024"],
-  selCurrSym: "USD",
+  selCurrency: 'USD',
   price:[],
   attr: [],
   total: 0,
@@ -60,28 +60,33 @@ const cartReducer = (state = initState, action) => {
   //   return symbol;
   // };
 
+
   const filterItem = id => {
     let addedItem = state.items.find((item) => item.id === id); 
-    let cost = addedItem.prices.filter(price=> price.currency === state.selCurrSym ? price.amount : null);
-    let new_items = state.addedItems.filter((item) => id !== item.id);
-    let price = Math.round(cost[0].amount); 
     
-    console.clear();
-    console.log('filterItem cost: ',cost);
+    let cost = addedItem.prices.filter(price=> price.currency === state.selCurrency ? price.amount : null);
+    let new_items = state.addedItems.filter((item) => id !== item.id);
+    let price = Math.round(cost[0].amount);
+    
     return {addedItem, price, new_items}
-  }
+  }  
 
   if (action.type === 'SELECT_CURRENCY'){
     // let symbol = switchCurrency(action.currency)
     // let addedItem = state.items.find((item) => item.id === action.id); 
-    // let cost = addedItem.prices.filter(price=> price.currency === state.selCurrSym ? price.amount : null) 
+    // let cost = addedItem.prices.filter(price=> price.currency === state.selCurrency ? price.amount : null) 
     // let price = Math.round(cost[0].amount); 
-    let filtered = filterItem(action.id);    
+    let filtered = filterItem(action.id);  
+    
+    console.clear();
+    console.log('selCurrency: ',state.selCurrency);
+    console.log('action.currency: ',action.currency);
+      
 
     return {
       ...state,
       // currSymbol: symbol,
-      selCurrSym: action.currency,
+      selCurrency: action.currency,
       price: filtered.price
     };
   } 
@@ -89,7 +94,7 @@ const cartReducer = (state = initState, action) => {
   if (action.type === "ADD_TO_CART") {
     // let price = Math.round(addedItem.prices[0].amount); 
     // let addedItem = state.items.find((item) => item.id === action.id); 
-    // let cost = addedItem.prices.filter(price=> price.currency === state.selCurrSym ? price.amount : null) 
+    // let cost = addedItem.prices.filter(price=> price.currency === state.selCurrency ? price.amount : null) 
     // let price = Math.round(cost[0].amount); 
     let filtered = filterItem(action.id);
     const { price, addedItem } = filtered;

@@ -17,9 +17,7 @@ class Category extends Component {
     };
   }
 
-  mouseEnter() {
-    console.log(this.props.selCurrSym);
-    
+  mouseEnter() {    
     this.setState(() => ({
       display: "block",
     }));
@@ -61,7 +59,7 @@ class Category extends Component {
                 <NavLink to="/product">{product.name}</NavLink>
               </h2>
               <div  className="category__product--price">
-                {Helper.switchCurrency(this.props.selCurrSym)}
+                {Helper.switchCurrency(this.props.selCurrency)}
                 {/* {this.props.currSymbol} */}
                 {/* {product.prices[0].amount} */}
                 {this.props.price}
@@ -90,8 +88,8 @@ class Category extends Component {
 }
 
 const mapStateToProps = state => {    
-  const {images, price, selCurrSym } = state;
-  return { images, price, selCurrSym   }
+  const {images, price, selCurrency } = state;
+  return { images, price, selCurrency   }
 }
 
 export default connect(mapStateToProps,{addImages})(Category);

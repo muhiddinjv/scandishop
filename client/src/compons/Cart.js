@@ -75,9 +75,11 @@ class Cart extends Component {
   }
 
   render() {
+    let total = this.props.total;
+    let items = this.props.items;
 
-    let addedItems = this.props.items.length ? (
-      this.props.items.map((item) => {        
+    let addedItems = items.length ? (
+      items.map((item) => {        
         return (
           <li className="cart__item" key={item.id}>
             <div className="cart__item--left">
@@ -116,7 +118,7 @@ class Cart extends Component {
       <div className="cart">
         <h1 className="cart__page-name">cart </h1>
         <ul className="cart__items">{addedItems}</ul>
-        <div className="cart__total">{this.props.total === 0 ? "" : `Total: ${this.props.total}$`}</div>
+        <div className="cart__total">{total === 0 ? "" : `Total: ${total.toFixed(2)}$`}</div>
       </div>
     );
   }

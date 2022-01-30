@@ -35,9 +35,12 @@ class Category extends Component {
 
   generateProduct() {
     let products = this.props.products;
-    
+        
     if (products) {
-      return products.map((product, i) => {        
+      return products.map((product, i) => {  
+        let price = this.props.price;
+        let amount = product.prices[0].amount;
+
         return (
           <li className="category__product--card" key={i} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
             <div className="category__product--image-wrapper" >
@@ -62,7 +65,7 @@ class Category extends Component {
                 {Helper.switchCurrency(this.props.selCurrency)}
                 {/* {this.props.currSymbol} */}
                 {/* {product.prices[0].amount} */}
-                {this.props.price}
+                {price.length === 0 ? amount : price}
               </div>
             </div>
           </li>

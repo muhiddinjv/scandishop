@@ -8,7 +8,7 @@ const initState = {
   currencies: [],
   // currSymbol: ["\u0024"],
   selCurrency: 'USD',
-  price:[],
+  price: [],
   attr: [],
   total: 0,
 };
@@ -27,7 +27,7 @@ const fetchData = () => {
       data.data.category.products.map((ps) => initState.items.push(ps));
       data.data.currencies.map((c) => initState.currencies.push(c));
       data.data.category.products[0].gallery.map(i => initState.images.push(i)); 
-      initState.price.push(data.data.category.products[0].prices[0].amount)     
+      // initState.price.push(data.data.category.products[0].prices[0].amount)     
     })
     .catch((error) => console.log(error));
 };
@@ -66,10 +66,16 @@ const cartReducer = (state = initState, action) => {
     
     let cost = addedItem.prices.filter(price=> price.currency === state.selCurrency ? price.amount : null);
     let new_items = state.addedItems.filter((item) => id !== item.id);
-    let price = Math.round(cost[0].amount);
-    
+    // let price = Math.round(cost[0].amount * 100) / 100;
+    let price = cost[0].amount;
     return {addedItem, price, new_items}
-  }  
+  } 
+  
+  if (action.type === 'SET_PRICE'){
+    console.log('action.id: ',action.id);
+    console.log(action.price);
+    
+  }
 
   if (action.type === 'SELECT_CURRENCY'){
     // let symbol = switchCurrency(action.currency)

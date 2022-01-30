@@ -117,7 +117,7 @@ class CartMini extends Component {
 
     return (      
       <div className="cartmini">
-        <div className="cartmini__overlay"></div>
+        <div className="cartmini__overlay" onClick={()=>this.props.showMiniCart()}></div>
         <div className="cartmini__dropdown">
           <h5 className="cartmini__page-name">my bag, {quantity} items</h5>
           <ul className="cartmini__items">{addedItems}</ul>

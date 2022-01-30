@@ -47,31 +47,15 @@ const cartReducer = (state = initState, action) => {
   }
   
 
-  if (action.type === 'SELECT_CURRENCY'){
-    let filtered = filterItem(action.id);  
-    const { price } = filtered;
-    
-    console.clear();
-    // console.log('selCurrency: ',state.selCurrency);
-    // console.log('action.currency: ',action.currency);
-    // addedItem.price = state.selCurrency
-    // console.log(addedItem);
-    
-      
-
-    return {
-      ...state,
-      // currSymbol: symbol,
-      selCurrency: action.currency,
-      price: price
-    };
+  if (action.type === 'SELECT_CURRENCY'){ 
+    return {...state, selCurrency: action.currency };
   } 
   
   if (action.type === "ADD_TO_CART") {
     let filtered = filterItem(action.id);
     const { price, addedItem } = filtered;
 
-    console.log("ADD_CART: ",price);
+    // console.log("ADD_CART: ",price);
     
     //check if the action id exists in the addedItems
     let existed_item = state.addedItems.find((item) => action.id === item.id);
@@ -151,19 +135,7 @@ const cartReducer = (state = initState, action) => {
 
   if (action.type === 'SELECT_IMAGE'){
     return {...state, addedImage: action.image, images: state.images}
-  } 
-
-  if (action.type === "ADD_SHIPPING") {
-    return {...state, total: state.total + 6};
-  }
-
-  console.log('selCurrency: ',state.selCurrency);
-
-  if (action.type === "SUB_SHIPPING") {
-    return {...state, total: state.total - 6};
-  } else {
-    return state;
-  }  
+  } else { return state }  
 };
 
 export default cartReducer;

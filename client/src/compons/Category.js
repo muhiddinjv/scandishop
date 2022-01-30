@@ -38,12 +38,7 @@ class Category extends Component {
     let products = this.props.products;
         
     if (products) {
-      return products.map((product, i) => {  
-        // let price = this.props.price;
-        // let amount = product.prices[0].amount;
-        console.log('price: ',this.props.selCurrency);
-        
-
+      return products.map((product, i) => {         
         return (
           <li className="category__product--card" key={i} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
             <div className="category__product--image-wrapper" >
@@ -67,7 +62,6 @@ class Category extends Component {
               <div  className="category__product--price">
                 {Helper.switchCurrency(this.props.selCurrency)}
                 {Helper.switchAmount(this.props.selCurrency, product.prices)}
-                {/* {price.length === 0 ? amount : price} */}
               </div>
             </div>
           </li>
@@ -93,8 +87,8 @@ class Category extends Component {
 }
 
 const mapStateToProps = state => {    
-  const {images, price, selCurrency } = state;
-  return { images, price, selCurrency   }
+  const {images, selCurrency } = state;
+  return { images, selCurrency   }
 }
 
 export default connect(mapStateToProps,{addImages})(Category);

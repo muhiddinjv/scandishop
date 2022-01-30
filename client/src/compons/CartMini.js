@@ -90,7 +90,7 @@ class CartMini extends Component {
               </div>
               <b className="cartmini__item--price">
                 {Helper.switchCurrency(currency)}
-                {item.prices[0].amount}
+                {Helper.switchAmount(currency, item.prices)}
               </b>
               {this.attributes(item)}
             </div>

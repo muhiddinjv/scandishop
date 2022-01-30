@@ -88,8 +88,8 @@ class Cart extends Component {
                 <h4 className="cart__item--name">{item.name}</h4>
               </div>
               <b className="cart__item--price">
-                {Helper.switchCurrency(item.prices[0].currency)}
-                {item.prices[0].amount}
+                {Helper.switchCurrency(this.props.selCurrency)}
+                {Helper.switchAmount(this.props.selCurrency, item.prices)}
               </b>
               {this.attributes(item)}
             </div>
@@ -118,7 +118,7 @@ class Cart extends Component {
       <div className="cart">
         <h1 className="cart__page-name">cart </h1>
         <ul className="cart__items">{addedItem}</ul>
-        <div className="cart__total">{total < 1 ? "" : `Total: ${total.toFixed(2)}`}</div>
+        <div className="cart__total">{items.length < 1 ? "" : `Total: ${Helper.switchCurrency(this.props.selCurrency)}${total.toFixed(2)}`}</div>
       </div>
     );
   }

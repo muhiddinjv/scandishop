@@ -1,16 +1,10 @@
 // Action creators (customers with forms)
 
-export const selectCurrency = (currency, id) => {  
+export const selectCurrency = (currency) => {  
   return {// return action (form)
-    type: "SELECT_CURRENCY",currency,id
+    type: "SELECT_CURRENCY",currency
   };
 };
-
-// export const setPrice = (id, price) => {  
-//   return {
-//     type: "SET_PRICE",id, price
-//   };
-// };
 
 //add cart action
 export const addToCart = (id) => {

@@ -77,7 +77,9 @@ class CartMini extends Component {
     let quantity = this.props.qty;
     let total = this.props.total;
     let items = this.props.addedItems;
-    let currency = this.props.selCurrSym;
+    let currency = this.props.selCurrency;
+    console.log('cartmini: ',currency);
+    
 
     let addedItems = items.length ? (
       items.map((item) => {        
@@ -124,7 +126,7 @@ class CartMini extends Component {
           <div style={{display: quantity === 0 ? 'none':'block'}}>
             <div className="cartmini__total">
               <span>Total:</span>
-              <span>{Helper.switchCurrency(currency)}{total}</span>
+              <span>{Helper.switchCurrency(currency)}{total.toFixed(2)}</span>
             </div>
             <div className="cartmini__btns" >
               <button className="cartmini__btn" onClick={()=>alert('Viewed the bag!')}>view bag</button>
@@ -138,8 +140,8 @@ class CartMini extends Component {
 }
 
 const mapStateToProps = (state)=>{
-  const { addedItems, total, attr, selCurrSym } = state;
-  return{ addedItems, total, attr, selCurrSym }
+  const { addedItems, total, attr, selCurrency } = state;
+  return{ addedItems, total, attr, selCurrency }
 }
 
 const mapDispatchToProps = (dispatch)=>{

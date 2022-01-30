@@ -118,7 +118,7 @@ class Cart extends Component {
       <div className="cart">
         <h1 className="cart__page-name">cart </h1>
         <ul className="cart__items">{addedItems}</ul>
-        <div className="cart__total">{total === 0 ? "" : `Total: ${total.toFixed(2)}$`}</div>
+        <div className="cart__total">{total < 1 ? "" : `Total: ${total.toFixed(2)}$`}</div>
       </div>
     );
   }

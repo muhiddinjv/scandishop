@@ -6,11 +6,11 @@ export const selectCurrency = (currency, id) => {
   };
 };
 
-export const setPrice = (id, price) => {  
-  return {
-    type: "SET_PRICE",id, price
-  };
-};
+// export const setPrice = (id, price) => {  
+//   return {
+//     type: "SET_PRICE",id, price
+//   };
+// };
 
 //add cart action
 export const addToCart = (id) => {

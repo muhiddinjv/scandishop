@@ -32,6 +32,7 @@ class Category extends Component {
   handleClick = (id)=>{
     this.props.addToCart(id);
   }
+  
 
   generateProduct() {
     let products = this.props.products;
@@ -63,8 +64,6 @@ class Category extends Component {
               </h2>
               <div  className="category__product--price">
                 {Helper.switchCurrency(this.props.selCurrency)}
-                {/* {this.props.currSymbol} */}
-                {/* {product.prices[0].amount} */}
                 {price.length === 0 ? amount : price}
               </div>
             </div>

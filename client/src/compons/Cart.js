@@ -21,7 +21,7 @@ class Cart extends Component {
   }
   // add active class to size attribute
   sizeActive(item){
-    for (const i of this.props.attrs) {            
+    for (const i of this.props.attr) {            
       if (item.value.includes('#')) {if (item.value === i) return '25%'} 
       if (item.value === i) return 'active';
     }     
@@ -76,9 +76,9 @@ class Cart extends Component {
 
   render() {
     let total = this.props.total;
-    let items = this.props.items;
+    let items = this.props.addedItems;
 
-    let addedItems = items.length ? (
+    let addedItem = items.length ? (
       items.map((item) => {        
         return (
           <li className="cart__item" key={item.id}>
@@ -117,19 +117,16 @@ class Cart extends Component {
     return (      
       <div className="cart">
         <h1 className="cart__page-name">cart </h1>
-        <ul className="cart__items">{addedItems}</ul>
-        <div className="cart__total">{total < 1 ? "" : `Total: ${total.toFixed(2)}$`}</div>
+        <ul className="cart__items">{addedItem}</ul>
+        <div className="cart__total">{total < 1 ? "" : `Total: ${total.toFixed(2)}`}</div>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state)=>{
-  return{
-      items: state.addedItems,
-      total: state.total,
-      attrs: state.attr
-  }
+  const { addedItems, total, attr, selCurrency } = state;
+  return { addedItems, total, attr, selCurrency }
 }
 
 const mapDispatchToProps = (dispatch)=>{

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { selectImage } from '../actions';
 
 class Slider extends Component {
-  componentDidMount(){this.render()}
   slider = () => {
     let images = this.props.images;
 

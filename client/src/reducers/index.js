@@ -35,31 +35,6 @@ const fetchData = () => {
 fetchData();
 
 const cartReducer = (state = initState, action) => {
-  //INSIDE APP COMPONENT
-  // const switchCurrency = (currency) => {
-  //   let symbol;
-  //   switch (currency) {
-  //     case "USD":
-  //       symbol = "\u0024";
-  //       break;
-  //     case "GBP":
-  //       symbol = "\u00A3";
-  //       break;
-  //     case "AUD":
-  //       symbol = "\u20B3";
-  //       break;
-  //     case "JPY":
-  //       symbol = "\u00A5";
-  //       break;
-  //     case "RUB":
-  //       symbol = "\u20BD";
-  //       break;
-  //     default:
-  //       symbol = "?";
-  //   }
-  //   return symbol;
-  // };
-
 
   const filterItem = id => {
     let addedItem = state.items.find((item) => item.id === id); 
@@ -71,17 +46,13 @@ const cartReducer = (state = initState, action) => {
     return {addedItem, price, new_items}
   } 
   
-  if (action.type === 'SET_PRICE'){
-    console.log('action.id: ',action.id);
-    console.log(action.price);
+  // if (action.type === 'SET_PRICE'){
+  //   console.log('action.id: ',action.id);
+  //   console.log(action.price);
     
-  }
+  // }
 
   if (action.type === 'SELECT_CURRENCY'){
-    // let symbol = switchCurrency(action.currency)
-    // let addedItem = state.items.find((item) => item.id === action.id); 
-    // let cost = addedItem.prices.filter(price=> price.currency === state.selCurrency ? price.amount : null) 
-    // let price = Math.round(cost[0].amount); 
     let filtered = filterItem(action.id);  
     
     console.clear();
@@ -98,10 +69,6 @@ const cartReducer = (state = initState, action) => {
   } 
   
   if (action.type === "ADD_TO_CART") {
-    // let price = Math.round(addedItem.prices[0].amount); 
-    // let addedItem = state.items.find((item) => item.id === action.id); 
-    // let cost = addedItem.prices.filter(price=> price.currency === state.selCurrency ? price.amount : null) 
-    // let price = Math.round(cost[0].amount); 
     let filtered = filterItem(action.id);
     const { price, addedItem } = filtered;
 
@@ -129,8 +96,6 @@ const cartReducer = (state = initState, action) => {
   
   if (action.type === "REMOVE_ITEM") {
     let itemToRemove = state.addedItems.find((item) => action.id === item.id);
-    // let price = Math.round(itemToRemove.prices[0].amount);
-    // let new_items = state.addedItems.filter((item) => action.id !== item.id);
     let filtered = filterItem(action.id);
     const { price, new_items } = filtered;
 
@@ -145,8 +110,6 @@ const cartReducer = (state = initState, action) => {
 
   //INSIDE CART COMPONENT
   if (action.type === "ADD_QUANTITY") {
-    // let addedItem = state.items.find((item) => item.id === action.id);
-    // let price = Math.round(addedItem.prices[0].amount);
     let filtered = filterItem(action.id);
     const { price, addedItem } = filtered;
 
@@ -156,15 +119,11 @@ const cartReducer = (state = initState, action) => {
   }
 
   if (action.type === "SUB_QUANTITY") {
-    // let addedItem = state.items.find((item) => item.id === action.id);
-    // let price = Math.round(addedItem.prices[0].amount);
     let filtered = filterItem(action.id);
     const { price, addedItem, new_items } = filtered;
     
     //if the qt == 0 then it should be removed
-    if (addedItem.quantity === 1) {
-      // let new_items = state.addedItems.filter((item) => item.id !== action.id);
-      
+    if (addedItem.quantity === 1) {      
       let newTotal = state.total - price;
       return {
         ...state,
@@ -179,7 +138,6 @@ const cartReducer = (state = initState, action) => {
   }
 
   if (action.type === 'ATTRIBUTE_SELECTED'){
-    // let addedItem = state.items.find((item) => item.id === action.id);
     let filtered = filterItem(action.id);
     const { addedItem } = filtered;
     let target = action.e.target.classList.value.includes("capacity") ? 1 : 0;    
@@ -199,6 +157,8 @@ const cartReducer = (state = initState, action) => {
   if (action.type === "ADD_SHIPPING") {
     return {...state, total: state.total + 6};
   }
+
+  console.log('selCurrency: ',state.selCurrency);
 
   if (action.type === "SUB_SHIPPING") {
     return {...state, total: state.total - 6};

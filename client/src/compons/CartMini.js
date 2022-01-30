@@ -77,9 +77,7 @@ class CartMini extends Component {
     let quantity = this.props.qty;
     let total = this.props.total;
     let items = this.props.addedItems;
-    let currency = this.props.selCurrency;
-    console.log('cartmini: ',currency);
-    
+    let currency = this.props.selCurrency;    
 
     let addedItems = items.length ? (
       items.map((item) => {        

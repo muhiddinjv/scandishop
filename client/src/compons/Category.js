@@ -39,8 +39,10 @@ class Category extends Component {
         
     if (products) {
       return products.map((product, i) => {  
-        let price = this.props.price;
-        let amount = product.prices[0].amount;
+        // let price = this.props.price;
+        // let amount = product.prices[0].amount;
+        console.log('price: ',this.props.selCurrency);
+        
 
         return (
           <li className="category__product--card" key={i} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
@@ -64,7 +66,8 @@ class Category extends Component {
               </h2>
               <div  className="category__product--price">
                 {Helper.switchCurrency(this.props.selCurrency)}
-                {price.length === 0 ? amount : price}
+                {Helper.switchAmount(this.props.selCurrency, product.prices)}
+                {/* {price.length === 0 ? amount : price} */}
               </div>
             </div>
           </li>

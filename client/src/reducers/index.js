@@ -44,27 +44,26 @@ const cartReducer = (state = initState, action) => {
     // let price = Math.round(cost[0].amount * 100) / 100;
     let price = cost[0].amount;
     return {addedItem, price, new_items}
-  } 
+  }
   
-  // if (action.type === 'SET_PRICE'){
-  //   console.log('action.id: ',action.id);
-  //   console.log(action.price);
-    
-  // }
 
   if (action.type === 'SELECT_CURRENCY'){
     let filtered = filterItem(action.id);  
+    const { price } = filtered;
     
     console.clear();
-    console.log('selCurrency: ',state.selCurrency);
-    console.log('action.currency: ',action.currency);
+    // console.log('selCurrency: ',state.selCurrency);
+    // console.log('action.currency: ',action.currency);
+    // addedItem.price = state.selCurrency
+    // console.log(addedItem);
+    
       
 
     return {
       ...state,
       // currSymbol: symbol,
       selCurrency: action.currency,
-      price: filtered.price
+      price: price
     };
   } 
   

@@ -10,11 +10,16 @@
     img {
       cursor: pointer;
       margin-bottom: 4rem;
-      border: 1px solid #999;
       width: 15vmin;
       height: 15vmin;
       object-fit: cover;
       object-position: top;
+      border: 1px solid #fff;
+      transition: .5s;
+
+      &:hover{
+        border: 1px solid #999;
+      }
     }
   }
 
@@ -23,7 +28,6 @@
       height: 42vw;
       width: 46vw;
       margin-left: 6vmin;
-      // border: 1px solid #999;
     }
   }
 }

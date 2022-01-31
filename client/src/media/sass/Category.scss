@@ -25,6 +25,8 @@
             margin-bottom: 5.5rem;
             padding: 1rem;
             padding-bottom: 2rem;
+            border: none;
+            transition: 0.3s;
 
             &:hover{
                 box-shadow: 0 0 10px 0.5px rgba(0, 0, 0, 0.2);

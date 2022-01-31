@@ -117,7 +117,7 @@ class Product extends Component {
   };
 
   product() {
-    let p = this.props.products[0];
+    let p = this.props.products[0];    
 
     if (p) {
       return (
@@ -130,8 +130,8 @@ class Product extends Component {
           <div className="product__price">
             <h3 className="product__price--title">price</h3>
             <div className="product__price--amount">
-              {Helper.switchCurrency(p.prices[0].currency)}
-              {p.prices[0].amount}
+              {Helper.switchCurrency(this.props.selCurrency)}
+              {Helper.switchAmount(this.props.selCurrency, p.prices)}
             </div>
           </div>
           <NavLink
@@ -155,9 +155,11 @@ class Product extends Component {
   }
 
   render() {    
+    // console.log(this.props.products[0].gallery[0]);
+
     return (
       <div className="product">
-        <Slider images={this.props.images} />
+        <Slider images={this.props.images} bigImage={this.props.products}/>
         {this.product()}
       </div>
     );
@@ -165,8 +167,8 @@ class Product extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { attr, images } = state;
-  return { attr, images };
+  const { attr, images, selCurrency } = state;
+  return { attr, images, selCurrency };
 };
 
 export default connect(mapStateToProps, { selectAttribute })(Product);

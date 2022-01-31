@@ -10,7 +10,7 @@ class Slider extends Component {
   }
 
   slider = () => {
-    let image = this.props.image;
+    let addedImage = this.props.addedImage;
     let images = this.props.images;   
   
     if (images) {
@@ -19,7 +19,7 @@ class Slider extends Component {
           {images.map((img, ind) => <li key={ind}><img src={img} alt={ind} onClick={()=>this.props.selectImage(img)}/></li>)}
         </ul>
         <div className="slider__slides">
-          {<img src={image.length < 1 ? this.bigImage() : image}  alt=""/>}
+          {<img src={addedImage.length < 1 ? this.bigImage() : addedImage}  alt=""/>}
         </div>
       </div>
     } else {
@@ -30,7 +30,8 @@ class Slider extends Component {
 }
 
 const mapStateToProps = state => {    
-  return { images: state.images, image: state.addedImage } 
+  const { images, addedImage } = state;
+  return { images, addedImage } 
 }
 
 export default connect(mapStateToProps,{selectImage})(Slider);

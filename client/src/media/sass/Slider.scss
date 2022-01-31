@@ -1,6 +1,6 @@
 .slider {
   display: flex;
-  border: 1px solid #999;
+  // border: 1px solid #999;
 
   &__thumbnails {
     display: flex;
@@ -23,9 +23,7 @@
       height: 42vw;
       width: 46vw;
       margin-left: 6vmin;
-      border: 1px solid #999;
-      // object-fit: cover;
-      // object-position: center;
+      // border: 1px solid #999;
     }
   }
 }

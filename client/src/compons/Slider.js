@@ -24,8 +24,8 @@ export default class Slider extends Component {
       return <div className="slider">
         <ul className="slider__thumbnails">
           {gallery[0].map((img, ind) => 
-            <li key={ind} >
-              <img src={img} alt={ind} onClick={()=>this.selectImage(img, gallery)} onError={(event) => event.target.style.display = 'none'}/>
+            <li key={ind} onError={(e) => e.target.style.display='none'}>
+              <img src={img} alt={ind} onClick={()=>this.selectImage(img, gallery)}/>
             </li>)}
         </ul>
         <div className="slider__slides">

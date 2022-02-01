@@ -43,7 +43,8 @@ class Category extends Component {
           <li className="category__product--card" key={i} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
             <div className="category__product--image-wrapper" >
               <NavLink to="/product">
-                <img onClick={()=>{this.props.addImages(product.gallery)}}
+                {/* <img onClick={()=>{this.props.addImages(product.gallery)}} */}
+                <img
                   className="category__product--image"
                   src={product.gallery[0]}
                   alt={product.name}

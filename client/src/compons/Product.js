@@ -155,11 +155,9 @@ class Product extends Component {
   }
 
   render() {    
-    // console.log(this.props.products[0].gallery[0]);
-
     return (
       <div className="product">
-        <Slider images={this.props.images} bigImage={this.props.products}/>
+        <Slider images={this.props.images} products={this.props.products}/>
         {this.product()}
       </div>
     );

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import ProductSlider from "./ProductSlider";
-import Helper from "../../Helpers/Helper";
-import "./Product.scss";
 import { connect } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { selectAttribute } from "../../Redux/Actions";
+import ProductSlider from "./ProductSlider";
+import Helper from "../../Helpers/Helper";
+import "./Product.scss";
 
 class Product extends Component {
   constructor(props) {

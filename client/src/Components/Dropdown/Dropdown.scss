@@ -1,0 +1,72 @@
+@import "../../App/Base.scss";
+
+.dropdown {
+  margin-right: 1rem;
+  z-index: 99;
+
+  &__label{
+      margin-right: 0.3rem;
+  }
+
+  &__btn {
+    padding: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: lightgrey;
+      border-radius:20%;
+    }
+
+    &:after {
+      content: "";
+      padding: 0.2rem;
+      display: inline-block;  
+      border-bottom: 2px solid currentColor;
+      border-left: 2px solid currentColor;
+      border-bottom-left-radius: 2px;
+      transform: rotate(-45deg) translate(0%, 0%);
+      transform-origin: center center;
+      transition: transform ease-in-out 100ms;
+    }
+  }
+
+  &__content {
+    display: none;
+    background: white;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    margin-left: -2rem;
+    position: absolute;
+    width: 11.2rem;
+    overflow: hidden;
+    box-shadow: 0 0 10px 0.5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+
+    &>*{
+      padding: 1.2rem 1.2rem 2rem 1rem;
+    }
+  }  
+
+  &__options{
+
+    &--symbol{
+      margin-right: 0.9rem;
+    }
+
+    &:hover{
+      color: $--c-primary;
+      font-weight: 900;
+      cursor: pointer;
+    }
+  }
+}
+
+.arrow-spin:after {
+  transform: rotate(135deg) translate(0%, 0%);
+}
+
+.show {
+  display: block;
+}

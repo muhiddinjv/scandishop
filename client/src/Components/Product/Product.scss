@@ -1,0 +1,95 @@
+@import "../../App/Base.scss";
+
+.product {
+  font-family: "Raleway-Regular", sans-serif;
+  color: #333;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 9rem 5.5rem 0 5.5rem;
+  // border: 1px solid #999;
+
+  &__info {
+    // border: 1px solid #999;
+    width: 32.5rem;
+    height: 57.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__brand {
+    font-size: 3rem;
+    letter-spacing: 2px;
+  }
+
+  &__name {
+    font-size: 2.9rem;
+    letter-spacing: 2.3px;
+    margin: 1.4rem 0;
+  }
+
+  &__attr {
+    text-transform: uppercase;
+
+    &--title {
+      font-size: 2rem;
+    }
+
+    &--items {
+      display: flex;
+      margin-right: 0.4rem;
+    }
+
+    &--item {
+      display: flex;
+      border: 1px solid #999;
+      margin: 1rem 1rem 1.5rem 0;
+      justify-content: center;
+      align-items: center;
+      width: 7rem;
+      height: 5rem;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: 0.3s;
+      
+      &:hover{
+          background:#444;
+          color: white;
+      }
+    }
+  }
+  
+  &__price {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+
+    &--amount {
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+  }
+
+  &__btn {
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1px;
+    background: $--c-primary;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    padding: 2rem;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s;
+
+    &:hover{
+        background:#4ca564;
+    }
+  }
+
+  &__desc {
+    font-size: 1.6rem;
+    line-height: 1.8;
+  }
+}

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './compons/App';
+import App from './App/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import cartReducer from './reducers';
+import cartReducer from './Redux/Reducers';
 import {Provider} from 'react-redux';
 import { createStore } from 'redux';
 

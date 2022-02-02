@@ -1,0 +1,143 @@
+@import "../../App/Base.scss";
+
+.cart {
+  color: $--c-text;
+  font-size: 2rem;
+  padding: 0 5.5rem;
+
+  .active{
+    background: #333;
+    color: white;
+  }
+
+  &__page-name {
+    padding: 8rem 0 6rem 0;
+    text-transform: uppercase;
+    border-bottom: 1px solid lightgrey;
+    font-size: 3rem;
+  }
+
+  &__items {
+    margin-top: 2rem;
+  }
+
+  &__item {
+    display: flex;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid lightgrey;
+    justify-content: space-between;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &--brand {
+      font-size: 3rem;
+    }
+
+    &--left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &--name {
+      font-size: 2.7rem;
+      font-weight: 100;
+      margin-top: 0.8rem;
+    }
+
+    &--price {
+      font-size: 2.2rem;
+      margin: 1.8rem 0;
+    }
+
+    &--right {
+      display: flex;
+      font-size: 2.5rem;
+      margin-right: 10rem;
+      position: relative;
+    }
+
+    &--buttons {
+      display: flex;
+      margin-right: 1rem;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &--button {
+      color: $--c-text;
+      font-size: 6rem;
+      padding: 0 1rem;
+      line-height: 4.5rem;
+      border: 1px solid #999;
+    }
+
+    &--delete{
+      position: absolute;
+      top: 0.1rem;
+      left: 35rem;
+      padding: 1rem;
+      background: white;
+      font-weight: bold;
+      color: $--c-text;
+      font-size: 2rem;
+      line-height: 1.5rem;
+      border: 1px solid #999;
+      cursor: pointer;
+      &:hover{
+        background:#444;;
+        color: white;
+      }
+    }
+
+    &--quantity {
+      font-size: 3rem;
+      text-align: center;
+    }
+
+    &--image {
+      width: 18rem;
+    }
+  }
+
+  &__attr {
+    text-transform: uppercase;
+
+    &--items {
+      display: flex;
+      margin-right: 0.4rem;
+    }
+
+    &--item {
+      display: flex;
+      border: 1px solid #999;
+      margin: 0.2rem 1.4rem 0 0;
+      justify-content: center;
+      align-items: center;
+      width: 6rem;
+      height: 4.5rem;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: 0.3s;
+
+      
+
+      &:hover {
+        background: #444;
+        color: white;
+      }
+    }
+  }
+
+  &__attr2{
+    margin-top: 1rem;
+  }
+
+  &__total{
+    font-weight: bold;
+    font-size: 2rem;
+  }
+}

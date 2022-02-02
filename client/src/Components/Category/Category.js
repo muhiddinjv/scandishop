@@ -10,26 +10,24 @@ import { addImages } from '../../Redux/Actions';
 class Category extends Component {
   constructor(props) {
     super(props);
-    this.mouseEnter = this.mouseEnter.bind(this);
-    this.mouseLeave = this.mouseLeave.bind(this);
     this.state = {
       display: "none",
     };
   }
 
-  mouseEnter() {    
+  mouseEnter = () => {    
     this.setState(() => ({
       display: "block",
     }));
   }
 
-  mouseLeave() {
+  mouseLeave = () => {
     this.setState(() => ({
       display: "none",
     }));
   }
 
-  handleClick = (id)=>{
+  handleClick = (id) =>{
     this.props.addToCart(id);
   }
   

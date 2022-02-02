@@ -9,7 +9,6 @@ import "./Product.scss";
 class Product extends Component {
   constructor(props) {
     super(props);
-    // this.toggleClass= this.toggleClass.bind(this);
     this.state = { active: "", border: "" };
   }
 

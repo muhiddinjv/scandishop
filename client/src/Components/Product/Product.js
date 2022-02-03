@@ -3,20 +3,15 @@ import { connect } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { selectAttribute } from "../../Redux/Actions";
 import ProductSlider from "./ProductSlider";
+import SizeCapacity from "./SizeCapacity";
 import Helper from "../../Helpers/Helper";
 import "./Product.scss";
 
 class Product extends Component {
   constructor(props) {
     super(props);
-    this.state = { active: "", border: "" };
+    this.state = { border: "" };
   }
-
-  toggleClass = (item) => {   
-    this.setState(() => {
-      return { active: item };
-    });
-  };
 
   toggleBorder = (item) => {
     this.setState(() => {
@@ -55,58 +50,28 @@ class Product extends Component {
               {p.attributes[0].items.map((item, i) => this.roundBorder(item, i, p))}
             </div>
           </div>
-          <div className="product__attr2">
-            <h3 className="product__attr--title">{p.attributes[1].name}</h3>
-            <div className="product__attr--items">
-              {p.attributes[1].items.map((item, i) => {
-                return (
-                  <div
-                    key={i}
-                    style={
-                      item === this.state.active
-                        ? { background: "#333", color: "white" }
-                        : null
-                    }
-                    className="product__attr--item capacity"
-                    onClick={(e) => {
-                      this.toggleClass(item);
-                      this.props.selectAttribute(item.value, p.id, e);
-                    }}
-                  >
-                    {item.value}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          <SizeCapacity 
+            selectAttr={this.props.selectAttribute}
+            class={'product__attr2'} 
+            name={p.attributes[1].name} 
+            items={p.attributes[1].items} 
+            active={this.state.active}
+            identifier={'capacity'}
+            id={p.id}
+          />
         </div>
       );
     } else {
       return (
-        <div className="product__attr1">
-          <h3 className="product__attr--title">{p.attributes[0].name}</h3>
-          <div className="product__attr--items">
-            {p.attributes[0].items.map((item, i) => {
-              return (
-                <div
-                  key={i}
-                  style={
-                    item === this.state.active
-                      ? { background: "#333", color: "white" }
-                      : null
-                  }
-                  className="product__attr--item size"
-                  onClick={(e) => {
-                    this.toggleClass(item);
-                    this.props.selectAttribute(item.value, p.id, e);
-                  }}
-                >
-                  {item.value}
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <SizeCapacity 
+          selectAttr={this.props.selectAttribute}
+          class={'product__attr1'} 
+          name={p.attributes[0].name} 
+          items={p.attributes[0].items} 
+          active={this.state.active}
+          identifier={'size'}
+          id={p.id}
+        />
       );
     }
   };

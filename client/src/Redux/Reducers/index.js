@@ -50,6 +50,8 @@ const cartReducer = (state = initState, action) => {
   } 
   
   if (action.type === "ADD_TO_CART") {
+    console.log('attr: ', state.attributes);
+    
     const filtered = filterItem(action.id);
     const { price, addedItem } = filtered;
     
@@ -125,8 +127,10 @@ const cartReducer = (state = initState, action) => {
     const { addedItem } = filtered;
     const target = action.e.target.classList.value.includes("capacity") ? 1 : 0;    
     const addedAttr = addedItem.attributes[target].items.find(item=>item.value === action.attr)   
-    const x = {...state, attributes: [...state.attributes, addedAttr.value]}
-    const uniqueAttributes = {...state, attributes: [...new Set(x.attributes)]}
+    const duplicate = {...state, attributes: [...state.attributes, addedAttr.value]}
+    const uniqueAttributes = {...state, attributes: [...new Set(duplicate.attributes)]}
+    console.log(uniqueAttributes.attributes);
+    
         
     return uniqueAttributes;
   }

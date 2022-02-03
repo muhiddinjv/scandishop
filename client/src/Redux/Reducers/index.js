@@ -40,7 +40,6 @@ const cartReducer = (state = initState, action) => {
     
     let cost = addedItem.prices.filter(price=> price.currency === state.selectedCurrency ? price.amount : null);
     let new_items = state.addedItems.filter((item) => id !== item.id);
-    // let price = Math.round(cost[0].amount * 100) / 100;
     let price = cost[0].amount;
     return {addedItem, price, new_items}
   }
@@ -118,14 +117,16 @@ const cartReducer = (state = initState, action) => {
   }
 
   if (action.type === 'ATTRIBUTE_SELECTED'){
-    console.log('attr: ', state.attributes);
-
+    
     let filtered = filterItem(action.id);
-    const { addedItem } = filtered;
-    let target = action.e.target.classList.value.includes("capacity") ? 1 : 0;    
-    let addedAttr = addedItem.attributes[target].items.find(item=>item.value === action.attr)   
-     
-    return {...state, attributes: [...state.attributes, addedAttr.value]}
+    let { addedItem } = filtered;
+    const target = action.e.target.classList.value.includes("capacity") ? 1 : 0;    
+    const addedAttr = addedItem.attributes[target].items.find(item=>item.value === action.attr)   
+    const x = {...state, attributes: [...state.attributes, addedAttr.value]}
+    const uniqueAttributes = {...state, attributes: [...new Set(x.attributes)]}
+    console.log(uniqueAttributes.attributes);
+        
+    return uniqueAttributes;
   }
 
   if (action.type === 'ADD_IMAGES'){

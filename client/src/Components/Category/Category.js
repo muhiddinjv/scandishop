@@ -75,7 +75,7 @@ class Category extends Component {
       <div className="category">
         <div className="category__header">
           <h1 className="category__name">
-            {this.props.products.map((x) => x.category)}
+            {this.props.products ? this.props.products.map((x) => x.category): 'loading'}
           </h1>
         </div>
         <ul className="category__product">{this.generateProduct()}</ul>

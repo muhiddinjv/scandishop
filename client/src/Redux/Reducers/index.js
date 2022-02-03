@@ -6,7 +6,6 @@ const initState = {
   addedItems: [],
   addedImage: [],
   currencies: [],
-  // currSymbol: ["\u0024"],
   selectedCurrency: 'USD',
   price: [],
   attributes: [],
@@ -36,12 +35,13 @@ fetchData();
 const cartReducer = (state = initState, action) => {
 
   const filterItem = id => {
-    let addedItem = state.items.find((item) => item.id === id); 
-    
-    let cost = addedItem.prices.filter(price=> price.currency === state.selectedCurrency ? price.amount : null);
-    let new_items = state.addedItems.filter((item) => id !== item.id);
-    let price = cost[0].amount;
-    return {addedItem, price, new_items}
+    const addedItem = state.items.find((item) => item.id === id); 
+    const cost = addedItem.prices.filter(price=> price.currency === state.selectedCurrency ? price.amount : null);
+    const elemAttrValues = addedItem.attributes[0].items.map(item=>item.value)
+    const intersection = state.attributes.filter(element => !elemAttrValues.includes(element));
+    const new_items = state.addedItems.filter((item) => id !== item.id);
+    const price = cost[0].amount;
+    return {addedItem, price, new_items, intersection}
   }
   
 
@@ -50,11 +50,11 @@ const cartReducer = (state = initState, action) => {
   } 
   
   if (action.type === "ADD_TO_CART") {
-    let filtered = filterItem(action.id);
+    const filtered = filterItem(action.id);
     const { price, addedItem } = filtered;
     
     //check if the action id exists in the addedItems
-    let existed_item = state.addedItems.find((item) => action.id === item.id);
+    const existed_item = state.addedItems.find((item) => action.id === item.id);
     if (existed_item) {
       addedItem.quantity += 1;
       return {
@@ -64,7 +64,7 @@ const cartReducer = (state = initState, action) => {
     } else {   
       addedItem.quantity = 1;
       //calculating the total
-      let newTotal = state.total + price;
+      const newTotal = state.total + price;
       return {
         ...state,
         addedItems: [...state.addedItems, addedItem],
@@ -74,57 +74,59 @@ const cartReducer = (state = initState, action) => {
   }
   
   if (action.type === "REMOVE_ITEM") {
-    let itemToRemove = state.addedItems.find((item) => action.id === item.id);
-    let filtered = filterItem(action.id);
-    const { price, new_items } = filtered;
-
+    const itemToRemove = state.addedItems.find((item) => action.id === item.id);
+    const filtered = filterItem(action.id);
+    const { price, new_items, intersection } = filtered;   
+    
     //calculating the total
-    let newTotal = state.total - price * itemToRemove.quantity;
+    const newTotal = state.total - price * itemToRemove.quantity;
     return {
       ...state,
       addedItems: new_items,
       total: newTotal,
+      attributes: intersection
     };
   }
 
   //INSIDE CART COMPONENT
   if (action.type === "ADD_QUANTITY") {
-    let filtered = filterItem(action.id);
+    const filtered = filterItem(action.id);
     const { price, addedItem } = filtered;
 
     addedItem.quantity += 1;
-    let newTotal = state.total + price;
+    const newTotal = state.total + price;
     return {...state, total: newTotal};
   }
 
   if (action.type === "SUB_QUANTITY") {
-    let filtered = filterItem(action.id);
-    const { price, addedItem, new_items } = filtered;
+    const filtered = filterItem(action.id);
+    const { price, addedItem, new_items, intersection } = filtered;
     
     //if the qt == 0 then it should be removed
     if (addedItem.quantity === 1) {      
-      let newTotal = state.total - price;
+      const newTotal = state.total - price;
+
       return {
         ...state,
         addedItems: new_items,
         total: newTotal,
+        attributes: intersection
       };
-    } else {
+    } else { 
       addedItem.quantity -= 1;
-      let newTotal = state.total - price;
+      const newTotal = state.total - price;
       return {...state, total: newTotal};
     }
   }
 
   if (action.type === 'ATTRIBUTE_SELECTED'){
     
-    let filtered = filterItem(action.id);
-    let { addedItem } = filtered;
+    const filtered = filterItem(action.id);
+    const { addedItem } = filtered;
     const target = action.e.target.classList.value.includes("capacity") ? 1 : 0;    
     const addedAttr = addedItem.attributes[target].items.find(item=>item.value === action.attr)   
     const x = {...state, attributes: [...state.attributes, addedAttr.value]}
     const uniqueAttributes = {...state, attributes: [...new Set(x.attributes)]}
-    console.log(uniqueAttributes.attributes);
         
     return uniqueAttributes;
   }

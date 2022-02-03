@@ -76,6 +76,8 @@ const cartReducer = (state = initState, action) => {
   }
   
   if (action.type === "REMOVE_ITEM") {
+    console.log('rem item: ',state.attributes);
+    
     const itemToRemove = state.addedItems.find((item) => action.id === item.id);
     const filtered = filterItem(action.id);
     const { price, new_items, intersection } = filtered;   
@@ -131,17 +133,8 @@ const cartReducer = (state = initState, action) => {
     const uniqueAttributes = {...state, attributes: [...new Set(duplicate.attributes)]}
     console.log(uniqueAttributes.attributes);
     
-        
     return uniqueAttributes;
-  }
-
-  if (action.type === 'ADD_IMAGES'){
-    return {...state, images: action.images}
-  }
-
-  if (action.type === 'SELECT_IMAGE'){
-    return {...state, addedImage: action.image, images: state.images}
-  } else { return state }  
+  } else {return state}
 };
 
 export default cartReducer;

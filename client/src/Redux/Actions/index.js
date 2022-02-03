@@ -30,11 +30,3 @@ export const addQuantity = (id) => {
 export const selectAttribute = (attr, id,e) => {  
   return {type: "ATTRIBUTE_SELECTED",attr,id,e};
 };
-
-export const addImages = (images) => {  
-  return {type: "ADD_IMAGES",images};
-};
-
-export const selectImage = (image) => {
-  return {type: "SELECT_IMAGE",image};
-};

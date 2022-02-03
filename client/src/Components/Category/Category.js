@@ -4,7 +4,7 @@ import "./Category.scss";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as EmptyCart } from '../../Assets/icons/cart-white.svg';
 import { connect } from 'react-redux';
-import { addImages } from '../../Redux/Actions';
+// import { addImages } from '../../Redux/Actions';
 
 
 class Category extends Component {
@@ -85,8 +85,8 @@ class Category extends Component {
 }
 
 const mapStateToProps = state => {    
-  const {images, selectedCurrency } = state;
-  return { images, selectedCurrency   }
+  const { selectedCurrency } = state;
+  return { selectedCurrency }
 }
 
-export default connect(mapStateToProps,{addImages})(Category);
+export default connect(mapStateToProps)(Category);

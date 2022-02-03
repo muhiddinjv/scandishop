@@ -33,7 +33,7 @@ class Product extends Component {
             this.toggleBorder(item);
             this.props.selectAttribute(item.value, p.id, e);
           }}
-        ></div>
+        />
       );
     }
   }
@@ -55,7 +55,6 @@ class Product extends Component {
             class={'product__attr2'} 
             name={p.attributes[1].name} 
             items={p.attributes[1].items} 
-            active={this.state.active}
             identifier={'capacity'}
             id={p.id}
           />
@@ -68,7 +67,6 @@ class Product extends Component {
           class={'product__attr1'} 
           name={p.attributes[0].name} 
           items={p.attributes[0].items} 
-          active={this.state.active}
           identifier={'size'}
           id={p.id}
         />

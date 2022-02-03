@@ -58,8 +58,8 @@ class Category extends Component {
                 <NavLink to="/product">{product.name}</NavLink>
               </h2>
               <div  className="category__product--price">
-                {Helper.switchCurrency(this.props.selCurrency)}
-                {Helper.switchAmount(this.props.selCurrency, product.prices)}
+                {Helper.switchCurrency(this.props.selectedCurrency)}
+                {Helper.switchAmount(this.props.selectedCurrency, product.prices)}
               </div>
             </div>
           </li>
@@ -85,8 +85,8 @@ class Category extends Component {
 }
 
 const mapStateToProps = state => {    
-  const {images, selCurrency } = state;
-  return { images, selCurrency   }
+  const {images, selectedCurrency } = state;
+  return { images, selectedCurrency   }
 }
 
 export default connect(mapStateToProps,{addImages})(Category);

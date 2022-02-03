@@ -20,7 +20,7 @@ class CartOverlay extends Component {
   }
   // add active class to size attribute
   sizeActive(item){
-    for (const i of this.props.attr) {            
+    for (const i of this.props.attributes) {            
       if (item.value.includes('#')) {if (item.value === i) return '25%'} 
       if (item.value === i) return 'active';
     }     
@@ -77,7 +77,7 @@ class CartOverlay extends Component {
     let quantity = this.props.qty;
     let total = this.props.total;
     let items = this.props.addedItems;
-    let currency = this.props.selCurrency;    
+    let currency = this.props.selectedCurrency;    
 
     let addedItems = items.length ? (
       items.map((item) => {        
@@ -138,8 +138,8 @@ class CartOverlay extends Component {
 }
 
 const mapStateToProps = (state)=>{
-  const { addedItems, total, attr, selCurrency } = state;
-  return{ addedItems, total, attr, selCurrency }
+  const { addedItems, total, attributes, selectedCurrency } = state;
+  return{ addedItems, total, attributes, selectedCurrency }
 }
 
 const mapDispatchToProps = (dispatch)=>{

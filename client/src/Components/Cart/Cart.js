@@ -21,7 +21,7 @@ class Cart extends Component {
   }
   // add active class to size attribute
   sizeActive(item){
-    for (const i of this.props.attr) {            
+    for (const i of this.props.attributes) {            
       if (item.value.includes('#')) {if (item.value === i) return '25%'} 
       if (item.value === i) return 'active';
     }     
@@ -88,8 +88,8 @@ class Cart extends Component {
                 <h4 className="cart__item--name">{item.name}</h4>
               </div>
               <b className="cart__item--price">
-                {Helper.switchCurrency(this.props.selCurrency)}
-                {Helper.switchAmount(this.props.selCurrency, item.prices)}
+                {Helper.switchCurrency(this.props.selectedCurrency)}
+                {Helper.switchAmount(this.props.selectedCurrency, item.prices)}
               </b>
               {this.attributes(item)}
             </div>
@@ -118,15 +118,15 @@ class Cart extends Component {
       <div className="cart">
         <h1 className="cart__page-name">cart </h1>
         <ul className="cart__items">{addedItem}</ul>
-        <div className="cart__total">{items.length < 1 ? "" : `Total: ${Helper.switchCurrency(this.props.selCurrency)}${total.toFixed(2)}`}</div>
+        <div className="cart__total">{items.length < 1 ? "" : `Total: ${Helper.switchCurrency(this.props.selectedCurrency)}${total.toFixed(2)}`}</div>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state)=>{
-  const { addedItems, total, attr, selCurrency } = state;
-  return { addedItems, total, attr, selCurrency }
+  const { addedItems, total, attributes, selectedCurrency } = state;
+  return { addedItems, total, attributes, selectedCurrency }
 }
 
 const mapDispatchToProps = (dispatch)=>{

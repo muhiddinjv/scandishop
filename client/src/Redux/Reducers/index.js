@@ -7,9 +7,9 @@ const initState = {
   addedImage: [],
   currencies: [],
   // currSymbol: ["\u0024"],
-  selCurrency: 'USD',
+  selectedCurrency: 'USD',
   price: [],
-  attr: [],
+  attributes: [],
   total: 0,
 };
 
@@ -27,7 +27,6 @@ const fetchData = () => {
       data.data.category.products.map((ps) => initState.items.push(ps));
       data.data.currencies.map((c) => initState.currencies.push(c));
       data.data.category.products[0].gallery.map(i => initState.images.push(i)); 
-      // initState.price.push(data.data.category.products[0].prices[0].amount)     
     })
     .catch((error) => console.log(error));
 };
@@ -39,7 +38,7 @@ const cartReducer = (state = initState, action) => {
   const filterItem = id => {
     let addedItem = state.items.find((item) => item.id === id); 
     
-    let cost = addedItem.prices.filter(price=> price.currency === state.selCurrency ? price.amount : null);
+    let cost = addedItem.prices.filter(price=> price.currency === state.selectedCurrency ? price.amount : null);
     let new_items = state.addedItems.filter((item) => id !== item.id);
     // let price = Math.round(cost[0].amount * 100) / 100;
     let price = cost[0].amount;
@@ -47,15 +46,13 @@ const cartReducer = (state = initState, action) => {
   }
   
 
-  if (action.type === 'SELECT_CURRENCY'){ 
-    return {...state, selCurrency: action.currency };
+  if (action.type === 'SELECT_CURRENCY'){     
+    return {...state, selectedCurrency: action.currency };
   } 
   
   if (action.type === "ADD_TO_CART") {
     let filtered = filterItem(action.id);
     const { price, addedItem } = filtered;
-
-    // console.log("ADD_CART: ",price);
     
     //check if the action id exists in the addedItems
     let existed_item = state.addedItems.find((item) => action.id === item.id);
@@ -121,12 +118,14 @@ const cartReducer = (state = initState, action) => {
   }
 
   if (action.type === 'ATTRIBUTE_SELECTED'){
+    console.log('attr: ', state.attributes);
+
     let filtered = filterItem(action.id);
     const { addedItem } = filtered;
     let target = action.e.target.classList.value.includes("capacity") ? 1 : 0;    
     let addedAttr = addedItem.attributes[target].items.find(item=>item.value === action.attr)   
      
-    return {...state, attr: [...state.attr, addedAttr.value]}
+    return {...state, attributes: [...state.attributes, addedAttr.value]}
   }
 
   if (action.type === 'ADD_IMAGES'){

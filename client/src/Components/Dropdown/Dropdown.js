@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import { selectCurrency } from '../../Redux/Actions';
+import { connect } from 'react-redux';
 import Helper from '../../Helpers/Helper';
 import "./Dropdown.scss";
-import { connect } from 'react-redux';
-import { selectCurrency } from '../../Redux/Actions';
 
 class Dropdown extends Component {
   constructor(props) {
@@ -11,7 +11,6 @@ class Dropdown extends Component {
     this.dropContentRef = React.createRef();
     this.dropLabelRef = React.createRef();
     this.dropBtnRef = React.createRef();
-    this.myRef = React.createRef(); // stale closure solution
   }
   
   createDropdownList() {
@@ -20,7 +19,7 @@ class Dropdown extends Component {
       return currencies.map((currency) => (
         <li className="dropdown__options" key={currency}>
           <span className="dropdown__options--symbol" ref={this.dropListSignRef}>{Helper.switchCurrency(currency)}</span>
-          <span className="dropdown__options--currency" onClick={() =>{this.changeCurrency(currency)}} ref={this.myRef}>{currency}</span>
+          <span className="dropdown__options--currency" onClick={() =>{this.changeCurrency(currency)}}>{currency}</span>
         </li>
       ));
     }
@@ -33,7 +32,6 @@ class Dropdown extends Component {
 
   changeCurrency = (currency) => {
     this.dropBtnRef.current.classList.toggle("arrow-spin");    
-    // let x = this.myRef.current = currency;
     this.props.selectCurrency(currency, this.props.products[0].id)  
     this.dropLabelRef.current.innerText = Helper.switchCurrency(currency);
     this.dropContentRef.current.classList.toggle("show");
@@ -53,8 +51,6 @@ class Dropdown extends Component {
   }
 }
 
-const mapStateToProps = state => {    
-  return { currSymbol: state.currSymbol } 
-}
+const mapStateToProps = state => {return {}}
 
 export default connect(mapStateToProps,{selectCurrency})(Dropdown);

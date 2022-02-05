@@ -2,9 +2,7 @@ import LOAD_QUERY from "../../Graphql/Query";
 
 const initState = {
   items: [],
-  images:[],
   addedItems: [],
-  addedImage: [],
   currencies: [],
   selectedCurrency: 'USD',
   price: [],
@@ -25,7 +23,6 @@ const fetchData = () => {
     .then((data) => {
       data.data.category.products.map((ps) => initState.items.push(ps));
       data.data.currencies.map((c) => initState.currencies.push(c));
-      data.data.category.products[0].gallery.map(i => initState.images.push(i)); 
     })
     .catch((error) => console.log(error));
 };
@@ -124,11 +121,12 @@ const cartReducer = (state = initState, action) => {
   }
 
   if (action.type === 'ATTRIBUTE_SELECTED'){
-    
     const filtered = filterItem(action.id);
-    const { addedItem } = filtered;
+    const {addedItem} = filtered;
+
     const target = action.e.target.classList.value.includes("capacity") ? 1 : 0;    
     const addedAttr = addedItem.attributes[target].items.find(item=>item.value === action.attr)   
+
     const duplicate = {...state, attributes: [...state.attributes, addedAttr.value]}
     const uniqueAttributes = {...state, attributes: [...new Set(duplicate.attributes)]}
     console.log(uniqueAttributes.attributes);

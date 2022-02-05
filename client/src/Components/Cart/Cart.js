@@ -7,19 +7,18 @@ import CartSlider from "./CartSlider";
 import { removeItem,addQuantity,subtractQuantity} from '../../Redux/Actions';
 
 class Cart extends Component {
-  //to remove the item completely
   handleRemove = (id)=>{
     this.props.removeItem(id);
   }
-  //to add to the quantity
+
   handleAddQuantity = (id)=>{
       this.props.addQuantity(id);
   }
-  //to subtract from the quantity
+
   handleSubtractQuantity = (id)=>{
       this.props.subtractQuantity(id);
   }
-  // add active class to size attribute
+
   sizeActive(item){
     for (const i of this.props.attributes) {            
       if (item.value.includes('#')) {if (item.value === i) return '25%'} 

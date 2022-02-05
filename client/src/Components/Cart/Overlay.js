@@ -10,7 +10,7 @@ class Overlay extends Component {
   handleAddQuantity=(id)=>{this.props.addQuantity(id)}
   handleSubtractQuantity=(id)=>{this.props.subtractQuantity(id)}
 
-  sizeActive(item){
+  setAttributeActive(item){
     for (const i of this.props.attributes) {            
       if (item.value.includes('#')) {if (item.value === i) return '25%'} 
       if (item.value === i) return 'active';
@@ -28,7 +28,7 @@ class Overlay extends Component {
                 <div
                   key={i}
                   className="cartmini__attr--item" 
-                  style={{ background: it.value, borderRadius:this.sizeActive(it) }}
+                  style={{ background: it.value, borderRadius:this.setAttributeActive(it) }}
                 ></div>
               );
             } else {
@@ -45,7 +45,7 @@ class Overlay extends Component {
         <div className="cartmini__attr--items">
           {item.attributes[1].items.map((it, i) => {            
             return (
-              <div key={i} className={`cartmini__attr--item ${this.sizeActive(it)}`} >
+              <div key={i} className={`cartmini__attr--item ${this.setAttributeActive(it)}`} >
                 {it.value}
               </div>
             );
@@ -57,7 +57,7 @@ class Overlay extends Component {
       return <div className="cartmini__attr1">
         <div className="cartmini__attr--items">
           {item.attributes[0].items.map((it, i)=>{
-            return <div key={i} className={`cartmini__attr--item ${this.sizeActive(it)}`}  >{it.value}</div>
+            return <div key={i} className={`cartmini__attr--item ${this.setAttributeActive(it)}`}  >{it.value}</div>
           })}        
         </div>
       </div>

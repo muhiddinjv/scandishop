@@ -69,19 +69,25 @@ class Category extends Component {
   };
 
   render() {
-    // if (this.props.products){
-    //   throw new Error('Oops!')
-    // }
-    return (
-      <div className="category">
-        <div className="category__header">
-          <h1 className="category__name"> 
-            {this.props.products.map((x) =>x.category)}
-          </h1>
+    try {
+      // if (this.props.products) throw new Error('Oops!')
+      return (
+        <div className="category">
+          <div className="category__header">
+            <h1 className="category__name"> 
+              {this.props.products.map((x) =>x.category)}
+            </h1>
+          </div>
+          <ul className="category__product">{this.generateProduct()}</ul>
         </div>
-        <ul className="category__product">{this.generateProduct()}</ul>
+      );
+    } catch (error) {
+      return <div style={{textAlign:'center'}}>
+        <h1 style={{marginBottom:'20px'}}>{error.message} went wrong!</h1>
+        <div className="loader" />
       </div>
-    );
+    }
+    
   }
 }
 

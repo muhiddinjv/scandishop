@@ -3,22 +3,13 @@ import { connect } from "react-redux";
 import Helper from "../../Helpers/Helper";
 import "./Overlay.scss";
 import OverlaySlider from "./OverlaySlider";
-import {removeItem,addQuantity,subtractQuantity} from '../../Redux/Actions';
+import {addQuantity,subtractQuantity} from '../../Redux/Actions';
 
 class Overlay extends Component {
-  //to remove the item completely
-  handleRemove = (id)=>{
-    this.props.removeItem(id);
-  }
-  //to add to the quantity
-  handleAddQuantity = (id)=>{
-      this.props.addQuantity(id);
-  }
-  //to subtract from the quantity
-  handleSubtractQuantity = (id)=>{
-      this.props.subtractQuantity(id);
-  }
-  // add active class to size attribute
+
+  handleAddQuantity=(id)=>{this.props.addQuantity(id)}
+  handleSubtractQuantity=(id)=>{this.props.subtractQuantity(id)}
+
   sizeActive(item){
     for (const i of this.props.attributes) {            
       if (item.value.includes('#')) {if (item.value === i) return '25%'} 
@@ -105,7 +96,6 @@ class Overlay extends Component {
               </div>
               <div className="cartmini__item--slider">
                 <OverlaySlider slides={item.gallery} />
-                {/* <button className="cartmini__item--delete" onClick={()=>{this.handleRemove(item.id)}}>X</button> */}
               </div>
             </div>
           </li>
@@ -144,7 +134,6 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps = (dispatch)=>{
   return{
-      removeItem: (id)=>{dispatch(removeItem(id))},
       addQuantity: (id)=>{dispatch(addQuantity(id))},
       subtractQuantity: (id)=>{dispatch(subtractQuantity(id))},
   }

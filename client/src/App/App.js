@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import { addToCart } from '../Redux/Actions';
+import ErrorBoundary from "./ErrorBoundary";
 
 import { Navbar, Category, Product, Cart } from '../Components'
 
@@ -24,22 +25,26 @@ class App extends Component {
     const items = this.props.items;
     items.filter((p) => p.id === productId ? this.setState({ products: [p] }) : <div className="loader"/>)    
   };
-
+  
   render() {
     return (
       <div className="app">
-        <Navbar
-          curr={this.state.currencies}
-          filterProduct={this.filterProduct}
-          products={this.state.products}
-          qty={this.props.addedItems.map(x=>x.quantity)}
-        />
-        <Routes>
-          <Route exact path="/" element={<Category products={this.state.products} addToCart={this.props.addToCart}/>} />
-          <Route path="/product" element={<Product products={this.state.products} addToCart={this.props.addToCart} />} />
-          <Route exact path="/cart/*" element={<Cart/>} />
-        </Routes>
-        </div>
+        <ErrorBoundary>
+          <Navbar
+            curr={this.state.currencies}
+            filterProduct={this.filterProduct}
+            products={this.state.products}
+            qty={this.props.addedItems.map(x=>x.quantity)}
+          />
+        </ErrorBoundary>
+          <Routes>
+              <Route exact path="/" element={<ErrorBoundary>
+                <Category products={this.state.products} addToCart={this.props.addToCart} />
+              </ErrorBoundary>} />
+              <Route path="/product" element={<Product products={this.state.products} addToCart={this.props.addToCart} />} />
+              <Route exact path="/cart/*" element={<Cart />} />
+          </Routes>
+      </div>
     );
   }
 }

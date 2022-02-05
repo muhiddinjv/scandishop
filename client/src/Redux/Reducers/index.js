@@ -119,7 +119,6 @@ const cartReducer = (state = initState, action) => {
   if (action.type === 'ATTRIBUTE_SELECTED'){
     const filtered = filterItem(action.id);
     const {addedItem} = filtered;
-
     
     let attributeValues = addedItem.attributes.map(attribute=>attribute.items.find(item=>item.value === action.attr))
     let selectedAttribute = attributeValues.filter(attr => attr ? attr.value : '')

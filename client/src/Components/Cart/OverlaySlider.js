@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import "./CartOverlaySlider.scss";   
+import "./OverlaySlider.scss";   
 
-export default class CartOverlaySlider extends Component {
+export default class OverlaySlider extends Component {
   constructor(props) {
     super(props);
     this.state = { 

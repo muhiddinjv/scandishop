@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ReactComponent as Logo } from '../../Assets/icons/logo.svg';
 import { ReactComponent as EmptyCart } from '../../Assets/icons/empty-cart.svg';
 import { NavLink } from 'react-router-dom';
-import { Dropdown, CartOverlay } from '../index'
+import { Dropdown, Overlay } from '../index'
 import './Navbar.scss';
 
 export default class Navbar extends Component {
@@ -11,7 +11,7 @@ export default class Navbar extends Component {
     this.dropContentRef = React.createRef();
     }
 
-    showCartOverlay = () => {
+    showOverlay = () => {
         this.dropContentRef.current.classList.toggle("show");
     }
 
@@ -44,7 +44,7 @@ export default class Navbar extends Component {
                 <div className='navbar__actions'>
                     <Dropdown state={this.props.curr} products={this.props.products}/>
                     <div className="navbar__actions--cart">
-                        <EmptyCart onClick={() => this.showCartOverlay()} className="navbar__actions--icon"/>
+                        <EmptyCart onClick={() => this.showOverlay()} className="navbar__actions--icon"/>
                         <span className="navbar__actions--qty">{quantity === 0 ? "" : quantity}</span>
                     </div>
                     
@@ -52,7 +52,7 @@ export default class Navbar extends Component {
             </nav>
             <div className="navbar__minicart">
                 <div ref={this.dropContentRef} className='navbar__minicart--dropdown'>
-                  <CartOverlay qty={quantity} showCartOverlay={this.showCartOverlay}/>
+                  <Overlay qty={quantity} showOverlay={this.showOverlay}/>
                 </div>
             </div>
             </div>

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Helper from "../../Helpers/Helper";
-import "./CartOverlay.scss";
-import CartOverlaySlider from "./CartOverlaySlider";
+import "./Overlay.scss";
+import OverlaySlider from "./OverlaySlider";
 import {removeItem,addQuantity,subtractQuantity} from '../../Redux/Actions';
 
-class CartOverlay extends Component {
+class Overlay extends Component {
   //to remove the item completely
   handleRemove = (id)=>{
     this.props.removeItem(id);
@@ -104,7 +104,7 @@ class CartOverlay extends Component {
                 <div className="cartmini__item--button" onClick={()=>{this.handleSubtractQuantity(item.id)}}>-</div>
               </div>
               <div className="cartmini__item--slider">
-                <CartOverlaySlider slides={item.gallery} />
+                <OverlaySlider slides={item.gallery} />
                 {/* <button className="cartmini__item--delete" onClick={()=>{this.handleRemove(item.id)}}>X</button> */}
               </div>
             </div>
@@ -117,7 +117,7 @@ class CartOverlay extends Component {
 
     return (      
       <div className="cartmini">
-        <div className="cartmini__overlay" onClick={()=>this.props.showCartOverlay()}></div>
+        <div className="cartmini__overlay" onClick={()=>this.props.showOverlay()}></div>
         <div className="cartmini__dropdown">
           <h5 className="cartmini__page-name">my bag, {quantity} items</h5>
           <ul className="cartmini__items">{addedItems}</ul>
@@ -150,4 +150,4 @@ const mapDispatchToProps = (dispatch)=>{
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(CartOverlay)
+export default connect(mapStateToProps,mapDispatchToProps)(Overlay)

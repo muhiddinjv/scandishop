@@ -55,7 +55,6 @@ class Product extends Component {
             class={'product__attr2'} 
             name={p.attributes[1].name} 
             items={p.attributes[1].items} 
-            identifier={'capacity'}
             id={p.id}
           />
         </div>
@@ -66,8 +65,7 @@ class Product extends Component {
           selectAttr={this.props.selectAttribute}
           class={'product__attr1'} 
           name={p.attributes[0].name} 
-          items={p.attributes[0].items} 
-          identifier={'size'}
+          items={p.attributes[0].items}
           id={p.id}
         />
       );

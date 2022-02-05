@@ -20,7 +20,7 @@ export default class SizeCapacity extends Component {
             {this.props.items.map((item, i) => {
               return (
                 <div key={i} style={ item === this.state.active ? { background: "#333", color: "white" } : null}
-                  className={`product__attr--item ${this.props.identifier}`}
+                  className="product__attr--item"
                   onClick={(e)=>{ this.toggleClass(item); this.props.selectAttr(item.value, this.props.id, e)}}
                 >
                   {item.value}

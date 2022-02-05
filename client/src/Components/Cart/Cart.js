@@ -19,7 +19,7 @@ class Cart extends Component {
       this.props.subtractQuantity(id);
   }
 
-  sizeActive(item){
+  setAttrActive(item){
     for (const i of this.props.attributes) {            
       if (item.value.includes('#')) {if (item.value === i) return '25%'} 
       if (item.value === i) return 'active';
@@ -37,7 +37,7 @@ class Cart extends Component {
                 <div
                   key={i}
                   className="cart__attr--item" 
-                  style={{ background: it.value, borderRadius:this.sizeActive(it) }}
+                  style={{ background: it.value, borderRadius:this.setAttrActive(it) }}
                 ></div>
               );
             } else {
@@ -54,7 +54,7 @@ class Cart extends Component {
         <div className="cart__attr--items">
           {item.attributes[1].items.map((it, i) => {            
             return (
-              <div key={i} className={`cart__attr--item ${this.sizeActive(it)}`} >
+              <div key={i} className={`cart__attr--item ${this.setAttrActive(it)}`} >
                 {it.value}
               </div>
             );
@@ -66,7 +66,7 @@ class Cart extends Component {
       return <div className="cart__attr1">
         <div className="cart__attr--items">
           {item.attributes[0].items.map((it, i)=>{
-            return <div key={i} className={`cart__attr--item ${this.sizeActive(it)}`}  >{it.value}</div>
+            return <div key={i} className={`cart__attr--item ${this.setAttrActive(it)}`}  >{it.value}</div>
           })}        
         </div>
       </div>

@@ -120,13 +120,18 @@ const cartReducer = (state = initState, action) => {
     const filtered = filterItem(action.id);
     const {addedItem} = filtered;
 
-    // if selected attribute has a class of "capacity", then return 1
-    const targetAttrIndex = action.e.target.classList.value.includes("capacity") ? 1 : 0;
-    // targetAttrIndex: To sort attributes by class name and apply only 1 function on them
-    const addedAttr = addedItem.attributes[targetAttrIndex].items.find(item=>item.value === action.attr)   
+    
+    let attributeValues = addedItem.attributes.map(attribute=>attribute.items.find(item=>item.value === action.attr))
+    let selectedAttribute = attributeValues.filter(attr => attr ? attr.value : '')
+    console.log(selectedAttribute[0].value);  
 
-    const newAttributes = {...state, attributes: [...state.attributes, addedAttr.value]}
-    const uniqueAttributes = {...state, attributes: [...new Set(newAttributes.attributes)]}
+    // if selected attribute has a class of "capacity", then return 1
+    // const targetAttrIndex = action.e.target.classList.value.includes("capacity") ? 1 : 0;
+    // targetAttrIndex: To sort attributes by class name and apply only 1 function on them
+    // const addedAttr = addedItem.attributes[targetAttrIndex].items.find(item=>item.value === action.attr)   
+
+    const setAttributes = {...state, attributes: [...state.attributes, selectedAttribute[0].value]}
+    const uniqueAttributes = {...state, attributes: [...new Set(setAttributes.attributes)]}
     
     return uniqueAttributes;
   } else {return state}

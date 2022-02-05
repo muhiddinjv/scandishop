@@ -33,12 +33,12 @@ const cartReducer = (state = initState, action) => {
 
   const filterItem = id => {
     const addedItem = state.items.find((item) => item.id === id); 
-    const cost = addedItem.prices.filter(price=> price.currency === state.selectedCurrency ? price.amount : null);
-    const elemAttrValues = addedItem.attributes[0].items.map(item=>item.value)
-    const intersection = state.attributes.filter(element => !elemAttrValues.includes(element));
-    const new_items = state.addedItems.filter((item) => id !== item.id);
-    const price = cost[0].amount;
-    return {addedItem, price, new_items, intersection}
+    const priceNumbers = addedItem.prices.filter(price=> price.currency === state.selectedCurrency ? price.amount : null);
+    const addedItemAttributes = addedItem.attributes[0].items.map(item=>item.value)
+    const attributesInCart = state.attributes.filter(element => !addedItemAttributes.includes(element));
+    const newItems = state.addedItems.filter((item) => id !== item.id);
+    const price = priceNumbers[0].amount;
+    return {addedItem, price, newItems, attributesInCart}
   }
   
 
@@ -47,14 +47,12 @@ const cartReducer = (state = initState, action) => {
   } 
   
   if (action.type === "ADD_TO_CART") {
-    console.log('attr: ', state.attributes);
-    
     const filtered = filterItem(action.id);
     const { price, addedItem } = filtered;
     
     //check if the action id exists in the addedItems
-    const existed_item = state.addedItems.find((item) => action.id === item.id);
-    if (existed_item) {
+    const existedItem = state.addedItems.find((item) => action.id === item.id);
+    if (existedItem) {
       addedItem.quantity += 1;
       return {
         ...state,
@@ -72,20 +70,18 @@ const cartReducer = (state = initState, action) => {
     }
   }
   
-  if (action.type === "REMOVE_ITEM") {
-    console.log('rem item: ',state.attributes);
-    
+  if (action.type === "REMOVE_ITEM") {    
     const itemToRemove = state.addedItems.find((item) => action.id === item.id);
     const filtered = filterItem(action.id);
-    const { price, new_items, intersection } = filtered;   
+    const { price, newItems, attributesInCart } = filtered;   
     
     //calculating the total
     const newTotal = state.total - price * itemToRemove.quantity;
     return {
       ...state,
-      addedItems: new_items,
+      addedItems: newItems,
       total: newTotal,
-      attributes: intersection
+      attributes: attributesInCart
     };
   }
 
@@ -101,7 +97,7 @@ const cartReducer = (state = initState, action) => {
 
   if (action.type === "SUB_QUANTITY") {
     const filtered = filterItem(action.id);
-    const { price, addedItem, new_items, intersection } = filtered;
+    const { price, addedItem, newItems, attributesInCart } = filtered;
     
     //if the qt == 0 then it should be removed
     if (addedItem.quantity === 1) {      
@@ -109,9 +105,9 @@ const cartReducer = (state = initState, action) => {
 
       return {
         ...state,
-        addedItems: new_items,
+        addedItems: newItems,
         total: newTotal,
-        attributes: intersection
+        attributes: attributesInCart
       };
     } else { 
       addedItem.quantity -= 1;
@@ -124,12 +120,13 @@ const cartReducer = (state = initState, action) => {
     const filtered = filterItem(action.id);
     const {addedItem} = filtered;
 
-    const target = action.e.target.classList.value.includes("capacity") ? 1 : 0;    
-    const addedAttr = addedItem.attributes[target].items.find(item=>item.value === action.attr)   
+    // if selected attribute has a class of "capacity", then return 1
+    const targetAttrIndex = action.e.target.classList.value.includes("capacity") ? 1 : 0;
+    // targetAttrIndex: To sort attributes by class name and apply only 1 function on them
+    const addedAttr = addedItem.attributes[targetAttrIndex].items.find(item=>item.value === action.attr)   
 
-    const duplicate = {...state, attributes: [...state.attributes, addedAttr.value]}
-    const uniqueAttributes = {...state, attributes: [...new Set(duplicate.attributes)]}
-    console.log(uniqueAttributes.attributes);
+    const newAttributes = {...state, attributes: [...state.attributes, addedAttr.value]}
+    const uniqueAttributes = {...state, attributes: [...new Set(newAttributes.attributes)]}
     
     return uniqueAttributes;
   } else {return state}

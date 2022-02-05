@@ -123,7 +123,6 @@ const cartReducer = (state = initState, action) => {
     
     let attributeValues = addedItem.attributes.map(attribute=>attribute.items.find(item=>item.value === action.attr))
     let selectedAttribute = attributeValues.filter(attr => attr ? attr.value : '')
-    console.log(selectedAttribute[0].value);  
 
     // if selected attribute has a class of "capacity", then return 1
     // const targetAttrIndex = action.e.target.classList.value.includes("capacity") ? 1 : 0;

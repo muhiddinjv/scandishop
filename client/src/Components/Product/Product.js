@@ -38,7 +38,7 @@ class Product extends Component {
     }
   }
 
-  attributes = () => {
+  createAttributes = () => {
     let p = this.props.products[0];
 
     if (p.attributes.length > 1) {
@@ -86,7 +86,7 @@ class Product extends Component {
             <h1 className="product__brand">{p.brand}</h1>
             <h3 className="product__name">{p.name}</h3>
           </header>
-          {this.attributes()}
+          {this.createAttributes()}
           <div className="product__price">
             <h3 className="product__price--title">price</h3>
             <div className="product__price--amount">

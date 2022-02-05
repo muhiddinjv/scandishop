@@ -4,8 +4,6 @@ import "./Category.scss";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as EmptyCart } from '../../Assets/icons/cart-white.svg';
 import { connect } from 'react-redux';
-// import { addImages } from '../../Redux/Actions';
-
 
 class Category extends Component {
   constructor(props) {
@@ -27,7 +25,7 @@ class Category extends Component {
     }));
   }
 
-  handleClick = (id) =>{
+  handleAddToCart = (id) =>{
     this.props.addToCart(id);
   }
   
@@ -47,7 +45,7 @@ class Category extends Component {
                   alt={product.name}
                 />
               </NavLink>
-              <div  onClick={()=>{this.handleClick(product.id)}} className="category__product--cart" style={{display: this.state.display}} >
+              <div  onClick={()=>{this.handleAddToCart(product.id)}} className="category__product--cart" style={{display: this.state.display}} >
               <NavLink to="/cart">
                 <EmptyCart />
               </NavLink>
@@ -66,7 +64,7 @@ class Category extends Component {
         );
       });
     } else {
-      return <div className="loader"></div>;
+      return <div className="loader" />;
     }
   };
 
@@ -74,8 +72,8 @@ class Category extends Component {
     return (
       <div className="category">
         <div className="category__header">
-          <h1 className="category__name">
-            {this.props.products.map((x) => x.category)}
+          <h1 className="category__name"> 
+            {this.props.products.map((x) => x ? x.category : <div className="loader" />)}
           </h1>
         </div>
         <ul className="category__product">{this.generateProduct()}</ul>

@@ -26,7 +26,7 @@ class CartOverlay extends Component {
     }     
   }
 
-  attributes(item) {        
+  createAttributes(item) {        
     if (item.attributes.length > 1) { 
     return <div className="cartmini__attrs">
       <div className="cartmini__attr1">
@@ -92,7 +92,7 @@ class CartOverlay extends Component {
                 {Helper.switchCurrency(currency)}
                 {Helper.switchAmount(currency, item.prices)}
               </b>
-              {this.attributes(item)}
+              {this.createAttributes(item)}
             </div>
 
             <div className="cartmini__item--right">
@@ -117,7 +117,7 @@ class CartOverlay extends Component {
 
     return (      
       <div className="cartmini">
-        <div className="cartmini__overlay" onClick={()=>this.props.showMiniCart()}></div>
+        <div className="cartmini__overlay" onClick={()=>this.props.showCartOverlay()}></div>
         <div className="cartmini__dropdown">
           <h5 className="cartmini__page-name">my bag, {quantity} items</h5>
           <ul className="cartmini__items">{addedItems}</ul>

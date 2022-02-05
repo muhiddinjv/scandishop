@@ -11,7 +11,7 @@ export default class Navbar extends Component {
     this.dropContentRef = React.createRef();
     }
 
-    showMiniCart = () => {
+    showCartOverlay = () => {
         this.dropContentRef.current.classList.toggle("show");
     }
 
@@ -44,7 +44,7 @@ export default class Navbar extends Component {
                 <div className='navbar__actions'>
                     <Dropdown state={this.props.curr} products={this.props.products}/>
                     <div className="navbar__actions--cart">
-                        <EmptyCart onClick={() => this.showMiniCart()} className="navbar__actions--icon"/>
+                        <EmptyCart onClick={() => this.showCartOverlay()} className="navbar__actions--icon"/>
                         <span className="navbar__actions--qty">{quantity === 0 ? "" : quantity}</span>
                     </div>
                     
@@ -52,7 +52,7 @@ export default class Navbar extends Component {
             </nav>
             <div className="navbar__minicart">
                 <div ref={this.dropContentRef} className='navbar__minicart--dropdown'>
-                  <CartOverlay qty={quantity} showMiniCart={this.showMiniCart}/>
+                  <CartOverlay qty={quantity} showCartOverlay={this.showCartOverlay}/>
                 </div>
             </div>
             </div>

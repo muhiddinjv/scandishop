@@ -26,7 +26,7 @@ class Cart extends Component {
     }     
   }
 
-  attributes(item) {        
+  createAttributes(item) {        
     if (item.attributes.length > 1) { 
     return <div className="item__attrs">
       <div className="cart__attr1">
@@ -90,7 +90,7 @@ class Cart extends Component {
                 {Helper.switchCurrency(this.props.selectedCurrency)}
                 {Helper.switchAmount(this.props.selectedCurrency, item.prices)}
               </b>
-              {this.attributes(item)}
+              {this.createAttributes(item)}
             </div>
 
             <div className="cart__item--right">

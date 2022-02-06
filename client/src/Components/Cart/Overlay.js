@@ -20,6 +20,7 @@ class Overlay extends Component {
   createAttributes(item) {        
     if (item.attributes.length > 1) { 
     return <div className="cartmini__attrs">
+
       <div className="cartmini__attr1">
         <div className="cartmini__attr--items">
           {item.attributes[0].items.map((it, i) => {
@@ -41,6 +42,7 @@ class Overlay extends Component {
           })}
         </div>
       </div>
+
       <div className="cartmini__attr2">
         <div className="cartmini__attr--items">
           {item.attributes[1].items.map((it, i) => {            
@@ -52,6 +54,7 @@ class Overlay extends Component {
           })}
         </div>
       </div>
+
     </div>;
     } else {
       return <div className="cartmini__attr1">
@@ -74,6 +77,7 @@ class Overlay extends Component {
       items.map((item) => {        
         return (
           <li className="cartmini__item" key={item.id}>
+
             <div className="cartmini__item--left">
               <div className="cartmini__item--header">
                 <h5 className="cartmini__item--brand">{item.brand}</h5>
@@ -98,6 +102,7 @@ class Overlay extends Component {
                 <OverlaySlider slides={item.gallery} />
               </div>
             </div>
+
           </li>
         );
       })
@@ -108,9 +113,11 @@ class Overlay extends Component {
     return (      
       <div className="cartmini">
         <div className="cartmini__overlay" onClick={()=>this.props.showOverlay()}></div>
+
         <div className="cartmini__dropdown">
           <h5 className="cartmini__page-name">my bag, {quantity} items</h5>
           <ul className="cartmini__items">{addedItems}</ul>
+
           <div style={{display: quantity === 0 ? 'none':'block'}}>
             <div className="cartmini__total">
               <span>Total:</span>
@@ -121,7 +128,9 @@ class Overlay extends Component {
               <button className="cartmini__btn" onClick={()=>alert('Checked out!')}>check out</button>
             </div>
           </div>
+          
         </div>
+
       </div>
     );
   }

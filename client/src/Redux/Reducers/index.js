@@ -33,17 +33,33 @@ const cartReducer = (state = initState, action) => {
 
   const filterItem = id => {
     const addedItem = state.items.find((item) => item.id === id); 
+    const newItems = state.addedItems.filter((item) => id !== item.id);
+
     const priceNumbers = addedItem.prices.filter(price=> price.currency === state.selectedCurrency ? price.amount : null);
+    const price = priceNumbers[0].amount;
+    
     const addedItemAttributes = addedItem.attributes[0].items.map(item=>item.value)
     const attributesInCart = state.attributes.filter(element => !addedItemAttributes.includes(element));
-    const newItems = state.addedItems.filter((item) => id !== item.id);
-    const price = priceNumbers[0].amount;
+    
     return {addedItem, price, newItems, attributesInCart}
   }
   
 
   if (action.type === 'SELECT_CURRENCY'){     
     return {...state, selectedCurrency: action.currency };
+  } 
+
+  if (action.type === 'ATTRIBUTE_SELECTED'){
+    const filtered = filterItem(action.id);
+    const {addedItem} = filtered;
+    
+    let attributeValues = addedItem.attributes.map(attribute=>attribute.items.find(item=>item.value === action.attr))
+    let selectedAttribute = attributeValues.filter(attr => attr ? attr.value : '') 
+
+    const setAttributes = {...state, attributes: [...state.attributes, selectedAttribute[0].value]}
+    const uniqueAttributes = {...state, attributes: [...new Set(setAttributes.attributes)]}
+    
+    return uniqueAttributes;
   } 
   
   if (action.type === "ADD_TO_CART") {
@@ -114,19 +130,6 @@ const cartReducer = (state = initState, action) => {
       const newTotal = state.total - price;
       return {...state, total: newTotal};
     }
-  }
-
-  if (action.type === 'ATTRIBUTE_SELECTED'){
-    const filtered = filterItem(action.id);
-    const {addedItem} = filtered;
-    
-    let attributeValues = addedItem.attributes.map(attribute=>attribute.items.find(item=>item.value === action.attr))
-    let selectedAttribute = attributeValues.filter(attr => attr ? attr.value : '') 
-
-    const setAttributes = {...state, attributes: [...state.attributes, selectedAttribute[0].value]}
-    const uniqueAttributes = {...state, attributes: [...new Set(setAttributes.attributes)]}
-    
-    return uniqueAttributes;
   } else {return state}
 };
 

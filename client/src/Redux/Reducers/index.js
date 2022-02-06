@@ -48,7 +48,7 @@ const cartReducer = (state = initState, action) => {
   
   if (action.type === "ADD_TO_CART") {
     const filtered = filterItem(action.id);
-    const { price, addedItem } = filtered;
+    const {price, addedItem} = filtered;
     
     //check if the action id exists in the addedItems
     const existedItem = state.addedItems.find((item) => action.id === item.id);
@@ -73,7 +73,7 @@ const cartReducer = (state = initState, action) => {
   if (action.type === "REMOVE_ITEM") {    
     const itemToRemove = state.addedItems.find((item) => action.id === item.id);
     const filtered = filterItem(action.id);
-    const { price, newItems, attributesInCart } = filtered;   
+    const {price, newItems, attributesInCart} = filtered;   
     
     //calculating the total
     const newTotal = state.total - price * itemToRemove.quantity;

@@ -69,8 +69,7 @@ class Category extends Component {
   };
 
   render() {
-    try {
-      // if (this.props.products) throw new Error('Oops!')
+    try {// if (this.props.products) throw new Error('Oops')
       return (
         <div className="category">
           <div className="category__header">
@@ -83,8 +82,7 @@ class Category extends Component {
       );
     } catch (error) {
       return <div style={{textAlign:'center'}}>
-        <h1 style={{marginBottom:'20px'}}>{error.message} went wrong!</h1>
-        <div className="loader" />
+        <h1>{error.message}! Please, refresh the page!</h1>
       </div>
     }
     

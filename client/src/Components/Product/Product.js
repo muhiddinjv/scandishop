@@ -40,6 +40,7 @@ class Product extends Component {
 
   createAttributes = () => {
     let p = this.props.products[0];
+    console.log(this.props.attributes);
 
     if (p.attributes.length > 1) {
       return (
@@ -72,7 +73,7 @@ class Product extends Component {
     }
   };
 
-  handleClick = (id) => {
+  handleAddToCart = (id) => {
     this.props.addToCart(id);
   };
 
@@ -98,7 +99,7 @@ class Product extends Component {
             to="/cart"
             className="product__btn"
             onClick={() => {
-              this.handleClick(p.id);
+              this.handleAddToCart(p.id);
             }}
           >
             add to cart
@@ -125,8 +126,8 @@ class Product extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { attr, images, selectedCurrency } = state;
-  return { attr, images, selectedCurrency };
+  const { attributes, images, selectedCurrency } = state;
+  return { attributes, images, selectedCurrency };
 };
 
 export default connect(mapStateToProps, { selectAttribute })(Product);

@@ -39,9 +39,10 @@ class App extends Component {
         </ErrorBoundary>
           <Routes>
             <Route exact path="/" element={
-            <ErrorBoundary>
-              <Category products={this.state.products} addToCart={this.props.addToCart} />
-            </ErrorBoundary>} />
+              <ErrorBoundary>
+                <Category products={this.state.products} addToCart={this.props.addToCart} />
+              </ErrorBoundary>} 
+            />
             <Route path="/product" element={<Product products={this.state.products} addToCart={this.props.addToCart} />} />
             <Route exact path="/cart/*" element={<Cart />} />
           </Routes>

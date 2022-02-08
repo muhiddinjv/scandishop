@@ -69,14 +69,17 @@ const cartReducer = (state = initState, action) => {
 
     const setAttributes = {
       ...state,
-      attributes: [...state.attributes, selectedAttribute[0].value],
+      attributes: [selectedAttribute[0].value],
+      // attributes: [...state.attributes, selectedAttribute[0].value],
     };
-    const uniqueAttributes = {
-      ...state,
-      attributes: [...new Set(setAttributes.attributes)],
-    };
+    
+    //https://www.myntra.com/checkout/cart
+    // const uniqueAttributes = {
+    //   ...state,
+    //   attributes: [...new Set(setAttributes.attributes)],
+    // };
 
-    return uniqueAttributes;
+    return setAttributes;
   }
 
   if (action.type === "ADD_TO_CART") {

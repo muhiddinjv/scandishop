@@ -40,7 +40,7 @@ class Product extends Component {
 
   createAttributes = () => {
     let p = this.props.products[0];
-    console.log(this.props.attributes);
+    console.log('product: ',this.props.attributes);
 
     if (p.attributes.length > 1) {
       return (

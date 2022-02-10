@@ -7,7 +7,7 @@ const initState = {
   selectedCurrency: "USD",
   price: [],
   attributes: [{id:null,attr:null}],
-  // attributes: [],
+  attributes2: [],
   total: 0,
 };
 
@@ -73,21 +73,22 @@ const cartReducer = (state = initState, action) => {
     // let x = state.attributes.find(item => item.id === action.id);
 
     const selAttrVal = selectedAttribute[0].value;
-    const filterAttributes = () => {
+
+    
+    const addOrReplace = () => {
       for (const item of state.attributes) {
         if (item.id === action.id){
-          return {id: action.id, attr: selAttrVal}
+          return {...item, attr: selAttrVal}
         } else {
           return [...state.attributes, {id:action.id, attr: selAttrVal}]
         }
       }
-    };
-
-    filterAttributes()
+    };    
 
     const setAttributes = {
       ...state,
       attributes: [{id:action.id, attr:selectedAttribute[0].value}],
+      attributes2: addOrReplace(),
       // attributes: [selectedAttribute[0].value],
       // attributes: [...state.attributes, selectedAttribute[0].value],
     };

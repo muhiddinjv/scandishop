@@ -41,8 +41,8 @@ class Product extends Component {
   createAttributes = () => {
     let p = this.props.products[0];
     // console.log('product: ',this.props.attributes);
-    console.clear();
-    console.log('product: ',this.props.attributes2);
+    // console.clear();
+    // console.log('product: ',this.props.attributes2);
 
     if (p.attributes.length > 1) {
       return (
@@ -80,7 +80,7 @@ class Product extends Component {
   };
 
   product() {
-    let p = this.props.products[0];    
+    let p = this.props.products[0];  
 
     if (p) {
       return (
@@ -128,8 +128,8 @@ class Product extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { attributes, images, selectedCurrency, attributes2 } = state;
-  return { attributes, images, selectedCurrency, attributes2 };
+  const { attributes, images, selectedCurrency } = state;
+  return { attributes, images, selectedCurrency };
 };
 
 export default connect(mapStateToProps, { selectAttribute })(Product);

@@ -83,8 +83,11 @@ const cartReducer = (state = initState, action) => {
           return [...state.attributes, {id:action.id, attr: selAttrVal}]
         }
       }
-    };    
+    }; 
+    addedItem.attributes[0].selected  = selAttrVal;
+    console.log(addedItem.attributes[0]);
 
+    // console.log("addedItem: ",addedItem);
     const setAttributes = {
       ...state,
       attributes: [{id:action.id, attr:selectedAttribute[0].value}],

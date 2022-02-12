@@ -11,7 +11,6 @@
 - [x] Cart page + Cart overlay (minicart)
 
 ## Details
-See some more specific information on the main requirements below. Remember - if something is in the design, but is not explicitly described here or above, it should be implemented anyways.
 - [x] Ability to add/remove products and change their amounts in cart - on the cart page itself, "Category" and "Product" should be provided.
 - [x] For products that have various options (attributes) - the options should be selected.
 - [x] The selected options of added to cart products should be visible in cart overlay and in cart page.

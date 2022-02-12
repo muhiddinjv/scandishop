@@ -1,18 +1,12 @@
 # Scandishop
 
-## Required:
+## Tech Stack:
 - Class components.
 - Create-react-app to scaffold the application.
-
-## Allowed:
 - State management libraries (e.g. Redux, Recoil)
 - CSS-in-JS approach allowed (e.g. styled-components)
 
-## Prohibited:
-- UI libraries (e.g. Tailwind, Material UI, Ant Design)
-- Functional components
-
-## Functionality requirements
+## Functionality
 - [x] PLP - product listing page, a.k.a. category page
 - [x] PDP - product description page, a.k.a. product page
 - [x] Cart page + Cart overlay (minicart)

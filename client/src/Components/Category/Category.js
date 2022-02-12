@@ -56,8 +56,8 @@ class Category extends Component {
                 <NavLink to="/product">{product.name}</NavLink>
               </h2>
               <div  className="category__product--price">
-                {Helper.switchCurrency(this.props.selectedCurrency)}
-                {Helper.switchAmount(this.props.selectedCurrency, product.prices)}
+                {Helper.switchCurrency(this.props.selCurrency)}
+                {Helper.switchAmount(this.props.selCurrency, product.prices)}
               </div>
             </div>
           </li>
@@ -69,29 +69,22 @@ class Category extends Component {
   };
 
   render() {
-    try {// if (this.props.products) throw new Error('Oops')
-      return (
-        <div className="category">
-          <div className="category__header">
-            <h1 className="category__name"> 
-              {this.props.products.map((x) =>x.category)}
-            </h1>
-          </div>
-          <ul className="category__product">{this.generateProduct()}</ul>
+    return (
+      <div className="category">
+        <div className="category__header">
+          <h1 className="category__name"> 
+            {this.props.products.map((x) =>x.category)}
+          </h1>
         </div>
-      );
-    } catch (error) {
-      return <div style={{textAlign:'center'}}>
-        <h1>{error.message}! Please, refresh the page!</h1>
+        <ul className="category__product">{this.generateProduct()}</ul>
       </div>
-    }
-    
+    );
   }
 }
 
 const mapStateToProps = state => {    
-  const { selectedCurrency } = state;
-  return { selectedCurrency }
+  const { selCurrency } = state;
+  return { selCurrency }
 }
 
 export default connect(mapStateToProps)(Category);

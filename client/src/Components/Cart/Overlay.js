@@ -64,7 +64,7 @@ class Overlay extends Component {
     let quantity = this.props.qty;
     let total = this.props.total;
     let items = this.props.addedItems;
-    let currency = this.props.selectedCurrency;    
+    let currency = this.props.selCurrency;    
 
     let addedItems = items.length ? (
       items.map((item) => {        
@@ -130,8 +130,8 @@ class Overlay extends Component {
 }
 
 const mapStateToProps = (state)=>{
-  const { addedItems, total, selectedCurrency } = state;
-  return{ addedItems, total, selectedCurrency }
+  const { addedItems, total, selCurrency } = state;
+  return{ addedItems, total, selCurrency }
 }
 
 const mapDispatchToProps = (dispatch)=>{

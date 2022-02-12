@@ -93,8 +93,8 @@ class Product extends Component {
           <div className="product__price">
             <h3 className="product__price--title">price</h3>
             <div className="product__price--amount">
-              {Helper.switchCurrency(this.props.selectedCurrency)}
-              {Helper.switchAmount(this.props.selectedCurrency, p.prices)}
+              {Helper.switchCurrency(this.props.selCurrency)}
+              {Helper.switchAmount(this.props.selCurrency, p.prices)}
             </div>
           </div>
           <NavLink
@@ -128,8 +128,8 @@ class Product extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { images, selectedCurrency } = state;
-  return { images, selectedCurrency };
+  const { images, selCurrency } = state;
+  return { images, selCurrency };
 };
 
 export default connect(mapStateToProps, { selectAttribute })(Product);

@@ -4,7 +4,7 @@ const initState = {
   items: [],
   addedItems: [],
   currencies: [],
-  selectedCurrency: "USD",
+  selCurrency: "USD",
   price: [],
   total: 0,
 };
@@ -24,27 +24,27 @@ const fetchData = () => {
       data.data.currencies.map((c) => initState.currencies.push(c));
     })
     .catch((error) => console.log(error));
-};
-
-fetchData();
-
-const cartReducer = (state = initState, action) => {
-  const filterItem = (id) => {
-    // handle items = products (jacket, sneakers, ps5)
+  };
+  
+  fetchData();
+  
+  const cartReducer = (state = initState, action) => {
+    const filterItem = (id) => {
+      // handle items = products (jacket, sneakers, ps5)
     const addedItem = state.items.find((item) => item.id === id);
     const newItems = state.addedItems.filter((item) => id !== item.id);
 
     // handle price amount (e.g. 144.69)
     const priceNumbers = addedItem.prices.filter((price) =>
-      price.currency === state.selectedCurrency ? price.amount : null
+      price.currency === state.selCurrency ? price.amount : null
     );
 
     const price = priceNumbers[0].amount;
     return { addedItem, price, newItems };
   };
-
+    
   if (action.type === "SELECT_CURRENCY") {
-    return { ...state, selectedCurrency: action.currency };
+    return { ...state, selCurrency: action.currency };
   }
 
   if (action.type === "ATTRIBUTE_SELECTED") {

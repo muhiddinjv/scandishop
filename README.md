@@ -8,7 +8,7 @@
 ## Functionality
 - [x] PLP - product listing page, a.k.a. category page
 - [x] PDP - product description page, a.k.a. product page
-- [x] Cart page + Cart overlay (minicart)
+- [x] Cart page + Cart overlay
 
 ## Details
 - [x] Ability to add/remove products and change their amounts in cart - on the cart page itself, "Category" and "Product" should be provided.

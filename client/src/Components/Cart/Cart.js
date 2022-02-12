@@ -19,11 +19,6 @@ class Cart extends Component {
       this.props.subtractQuantity(id);
   }
 
-  setAttrActive(item, attribute){
-    if (item.value.includes('#')) {if (attribute.selected === item.value) return '25%'} 
-    if (attribute.selected === item.value) return 'active';  
-  }
-
   createAttributes(item) {        
     if (item.attributes.length > 1) { 
     return <div className="item__attrs">
@@ -35,7 +30,7 @@ class Cart extends Component {
                 <div
                   key={i}
                   className="cart__attr--item" 
-                  style={{ background: it.value, borderRadius:this.setAttrActive(it, item.attributes[0]) }}
+                  style={{ background: it.value, borderRadius:Helper.addActiveClass(it, item.attributes[0]) }}
                 />
               );
             } else {
@@ -51,9 +46,8 @@ class Cart extends Component {
       <div className="cart__attr2">
         <div className="cart__attr--items">
           {item.attributes[1].items.map((it, i) => {            
-            // console.log(item.attributes[1].selected);
             return (
-              <div key={i} className={`cart__attr--item ${this.setAttrActive(it,item.attributes[1])}`} >
+              <div key={i} className={`cart__attr--item ${Helper.addActiveClass(it,item.attributes[1])}`} >
                 {it.value}
               </div>
             );
@@ -65,7 +59,7 @@ class Cart extends Component {
       return <div className="cart__attr1">
         <div className="cart__attr--items">
           {item.attributes[0].items.map((it, i)=>{
-            return <div key={i} className={`cart__attr--item ${this.setAttrActive(it,item.attributes[0])}`}  >{it.value}</div>
+            return <div key={i} className={`cart__attr--item ${Helper.addActiveClass(it,item.attributes[0])}`}  >{it.value}</div>
           })}        
         </div>
       </div>

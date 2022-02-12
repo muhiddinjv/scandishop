@@ -1,10 +1,9 @@
 # Scandishop
 
 ## Tech Stack:
-- Class components.
-- Create-react-app to scaffold the application.
-- State management libraries (e.g. Redux, Recoil)
-- CSS-in-JS approach allowed (e.g. styled-components)
+- Focused on Class components
+- State management library: Redux
+- Backend: GraphQL
 
 ## Functionality
 - [x] PLP - product listing page, a.k.a. category page

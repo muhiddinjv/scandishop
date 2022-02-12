@@ -6,8 +6,6 @@ const initState = {
   currencies: [],
   selectedCurrency: "USD",
   price: [],
-  attributes: [{id:null,attr:null}],
-  attributes2: [],
   total: 0,
 };
 
@@ -40,17 +38,9 @@ const cartReducer = (state = initState, action) => {
     const priceNumbers = addedItem.prices.filter((price) =>
       price.currency === state.selectedCurrency ? price.amount : null
     );
+
     const price = priceNumbers[0].amount;
-
-    // handle attributes (color, size, capacity)
-    const addedItemAttributes = addedItem.attributes[0].items.map(
-      (item) => item.value
-    );
-    const attributesInCart = state.attributes.filter(
-      (element) => !addedItemAttributes.includes(element)
-    );
-
-    return { addedItem, price, newItems, attributesInCart };
+    return { addedItem, price, newItems };
   };
 
   if (action.type === "SELECT_CURRENCY") {
@@ -61,48 +51,11 @@ const cartReducer = (state = initState, action) => {
     const filtered = filterItem(action.id);
     const { addedItem } = filtered;
 
-    let attributeValues = addedItem.attributes.map((attribute) =>
-      attribute.items.find((item) => item.value === action.attr)
-    );
-    let selectedAttribute = attributeValues.filter((attr) =>
-      attr ? attr.value : ""
-    );
-
-    // let x = state.attributes[0].id === action.id ? state.attributes[0].attr = selectedAttribute[0].value : [...state.attributes, selectedAttribute[0].value];
-
-    // let x = state.attributes.find(item => item.id === action.id);
-
-    const selAttrVal = selectedAttribute[0].value;
-
+    addedItem.attributes.filter(attr => attr.name === action.name ? attr.selected = action.attr : null)
     
-    const addOrReplace = () => {
-      for (const item of state.attributes) {
-        if (item.id === action.id){
-          return {...item, attr: selAttrVal}
-        } else {
-          return [...state.attributes, {id:action.id, attr: selAttrVal}]
-        }
-      }
-    }; 
-    addedItem.attributes[0].selected  = selAttrVal;
-    console.log(addedItem.attributes[0]);
-
-    // console.log("addedItem: ",addedItem);
-    const setAttributes = {
-      ...state,
-      attributes: [{id:action.id, attr:selectedAttribute[0].value}],
-      attributes2: addOrReplace(),
-      // attributes: [selectedAttribute[0].value],
-      // attributes: [...state.attributes, selectedAttribute[0].value],
-    };
-    
-    //https://www.myntra.com/checkout/cart
-    // const uniqueAttributes = {
-    //   ...state,
-    //   attributes: [...new Set(setAttributes.attributes)],
-    // };
-
-    return setAttributes;
+    console.clear();
+    console.log('action.attr: ',action.attr);
+    console.log('action.name: ',action.name);
   }
 
   if (action.type === "ADD_TO_CART") {
@@ -132,15 +85,15 @@ const cartReducer = (state = initState, action) => {
   if (action.type === "REMOVE_ITEM") {
     const itemToRemove = state.addedItems.find((item) => action.id === item.id);
     const filtered = filterItem(action.id);
-    const { price, newItems, attributesInCart } = filtered;
+    const { price, newItems } = filtered;
 
     //calculating the total
     const newTotal = state.total - price * itemToRemove.quantity;
+    itemToRemove.attributes.map(x => x.selected = '')
     return {
       ...state,
       addedItems: newItems,
       total: newTotal,
-      attributes: attributesInCart,
     };
   }
 
@@ -156,17 +109,16 @@ const cartReducer = (state = initState, action) => {
 
   if (action.type === "SUB_QUANTITY") {
     const filtered = filterItem(action.id);
-    const { price, addedItem, newItems, attributesInCart } = filtered;
+    const { price, addedItem, newItems } = filtered;
 
     //if the qt == 0 then it should be removed
     if (addedItem.quantity === 1) {
       const newTotal = state.total - price;
-
+      addedItem.attributes.map(x => x.selected = '')
       return {
         ...state,
         addedItems: newItems,
         total: newTotal,
-        attributes: attributesInCart,
       };
     } else {
       addedItem.quantity -= 1;

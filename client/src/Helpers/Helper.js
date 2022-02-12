@@ -27,4 +27,9 @@ export default class Helper {
     let x = prices[0].filter(price => price.currency === currency ? price.amount : 0 )
     return x[0].amount;
   }
+
+  static addActiveClass(item, attribute){
+    if (item.value.includes('#')) {if (attribute.selected === item.value) return '25%'} 
+    if (attribute.selected === item.value) return 'active';  
+  }
 }

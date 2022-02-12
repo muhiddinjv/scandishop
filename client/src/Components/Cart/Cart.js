@@ -19,11 +19,9 @@ class Cart extends Component {
       this.props.subtractQuantity(id);
   }
 
-  setAttrActive(item){
-    for (const i of this.props.attributes) {            
-      if (item.value.includes('#')) {if (item.value === i) return '25%'} 
-      if (item.value === i) return 'active';
-    }     
+  setAttrActive(item, attribute){
+    if (item.value.includes('#')) {if (attribute.selected === item.value) return '25%'} 
+    if (attribute.selected === item.value) return 'active';  
   }
 
   createAttributes(item) {        
@@ -37,8 +35,8 @@ class Cart extends Component {
                 <div
                   key={i}
                   className="cart__attr--item" 
-                  style={{ background: it.value, borderRadius:this.setAttrActive(it) }}
-                ></div>
+                  style={{ background: it.value, borderRadius:this.setAttrActive(it, item.attributes[0]) }}
+                />
               );
             } else {
               return (
@@ -53,8 +51,9 @@ class Cart extends Component {
       <div className="cart__attr2">
         <div className="cart__attr--items">
           {item.attributes[1].items.map((it, i) => {            
+            // console.log(item.attributes[1].selected);
             return (
-              <div key={i} className={`cart__attr--item ${this.setAttrActive(it)}`} >
+              <div key={i} className={`cart__attr--item ${this.setAttrActive(it,item.attributes[1])}`} >
                 {it.value}
               </div>
             );
@@ -66,7 +65,7 @@ class Cart extends Component {
       return <div className="cart__attr1">
         <div className="cart__attr--items">
           {item.attributes[0].items.map((it, i)=>{
-            return <div key={i} className={`cart__attr--item ${this.setAttrActive(it)}`}  >{it.value}</div>
+            return <div key={i} className={`cart__attr--item ${this.setAttrActive(it,item.attributes[0])}`}  >{it.value}</div>
           })}        
         </div>
       </div>
@@ -124,8 +123,8 @@ class Cart extends Component {
 }
 
 const mapStateToProps = (state)=>{
-  const { addedItems, total, attributes, selectedCurrency } = state;
-  return { addedItems, total, attributes, selectedCurrency }
+  const { addedItems, total, selectedCurrency } = state;
+  return { addedItems, total, selectedCurrency }
 }
 
 const mapDispatchToProps = (dispatch)=>{

@@ -10,13 +10,6 @@ class Overlay extends Component {
   handleAddQuantity=(id)=>{this.props.addQuantity(id)}
   handleSubtractQuantity=(id)=>{this.props.subtractQuantity(id)}
 
-  setAttributeActive(item){
-    for (const i of this.props.attributes) {            
-      if (item.value.includes('#')) {if (item.value === i) return '25%'} 
-      if (item.value === i) return 'active';
-    }     
-  }
-
   createAttributes(item) {        
     if (item.attributes.length > 1) { 
     return <div className="cartmini__attrs">
@@ -29,7 +22,7 @@ class Overlay extends Component {
                 <div
                   key={i}
                   className="cartmini__attr--item" 
-                  style={{ background: it.value, borderRadius:this.setAttributeActive(it) }}
+                  style={{ background: it.value, borderRadius:Helper.addActiveClass(it,item.attributes[0]) }}
                 ></div>
               );
             } else {
@@ -47,7 +40,7 @@ class Overlay extends Component {
         <div className="cartmini__attr--items">
           {item.attributes[1].items.map((it, i) => {            
             return (
-              <div key={i} className={`cartmini__attr--item ${this.setAttributeActive(it)}`} >
+              <div key={i} className={`cartmini__attr--item ${Helper.addActiveClass(it,item.attributes[1])}`} >
                 {it.value}
               </div>
             );
@@ -60,7 +53,7 @@ class Overlay extends Component {
       return <div className="cartmini__attr1">
         <div className="cartmini__attr--items">
           {item.attributes[0].items.map((it, i)=>{
-            return <div key={i} className={`cartmini__attr--item ${this.setAttributeActive(it)}`}  >{it.value}</div>
+            return <div key={i} className={`cartmini__attr--item ${Helper.addActiveClass(it,item.attributes[0])}`}  >{it.value}</div>
           })}        
         </div>
       </div>
@@ -137,8 +130,8 @@ class Overlay extends Component {
 }
 
 const mapStateToProps = (state)=>{
-  const { addedItems, total, attributes, selectedCurrency } = state;
-  return{ addedItems, total, attributes, selectedCurrency }
+  const { addedItems, total, selectedCurrency } = state;
+  return{ addedItems, total, selectedCurrency }
 }
 
 const mapDispatchToProps = (dispatch)=>{

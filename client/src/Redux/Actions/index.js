@@ -5,8 +5,8 @@ export const selectCurrency = (currency) => {
   return {type: "SELECT_CURRENCY",currency}
 };
 
-export const selectAttribute = (attr,id,e) => {  
-  return {type: "ATTRIBUTE_SELECTED",attr,id,e};
+export const selectAttribute = (id,attr,name) => {  
+  return {type: "ATTRIBUTE_SELECTED",id,attr,name};
 };
 
 export const addToCart = (id) => {

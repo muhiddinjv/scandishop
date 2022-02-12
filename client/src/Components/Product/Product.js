@@ -19,19 +19,19 @@ class Product extends Component {
     });
   };
 
-  roundBorder = (item,i,p) => {
+  roundBorder = (item, p) => {
     if (item.value.includes("#")) {
       return (
         <div
-          key={i}
+          key={item.value}
           className="product__attr--item color"
           style={{
             background: item.value,
             borderRadius: item === this.state.border ? "25%" : null,
           }}
-          onClick={(e) => {
+          onClick={() => {
             this.toggleBorder(item);
-            this.props.selectAttribute(item.value, p.id, e);
+            this.props.selectAttribute(p.id, item.value, p.attributes[0].name);
           }}
         />
       );
@@ -40,9 +40,9 @@ class Product extends Component {
 
   createAttributes = () => {
     let p = this.props.products[0];
-    // console.log('product: ',this.props.attributes);
     // console.clear();
-    // console.log('product: ',this.props.attributes2);
+    // console.log('product: ',this.props.attributes2); 
+    // const selector = (arg) => {}
 
     if (p.attributes.length > 1) {
       return (
@@ -50,7 +50,7 @@ class Product extends Component {
           <div className="product__attr1">
             <h3 className="product__attr--title">{p.attributes[0].name}</h3>
             <div className="product__attr--items">
-              {p.attributes[0].items.map((item, i) => this.roundBorder(item, i, p))}
+              {p.attributes[0].items.map((item) => this.roundBorder(item, p))}
             </div>
           </div>
           <SizeCapacity 
@@ -128,8 +128,8 @@ class Product extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { attributes, images, selectedCurrency } = state;
-  return { attributes, images, selectedCurrency };
+  const { images, selectedCurrency } = state;
+  return { images, selectedCurrency };
 };
 
 export default connect(mapStateToProps, { selectAttribute })(Product);

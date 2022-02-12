@@ -12,22 +12,22 @@ class Overlay extends Component {
 
   createAttributes(item) {        
     if (item.attributes.length > 1) { 
-    return <div className="cartmini__attrs">
+    return <div className="overlay__attrs">
 
-      <div className="cartmini__attr1">
-        <div className="cartmini__attr--items">
+      <div className="overlay__attr1">
+        <div className="overlay__attr--items">
           {item.attributes[0].items.map((it, i) => {
             if (it.value.includes("#")) {
               return (
                 <div
                   key={i}
-                  className="cartmini__attr--item" 
+                  className="overlay__attr--item" 
                   style={{ background: it.value, borderRadius:Helper.addActiveClass(it,item.attributes[0]) }}
                 ></div>
               );
             } else {
               return (
-                <div  className="cartmini__attr--item" >
+                <div  className="overlay__attr--item" >
                   {it.value}
                 </div>
               );
@@ -36,11 +36,11 @@ class Overlay extends Component {
         </div>
       </div>
 
-      <div className="cartmini__attr2">
-        <div className="cartmini__attr--items">
+      <div className="overlay__attr2">
+        <div className="overlay__attr--items">
           {item.attributes[1].items.map((it, i) => {            
             return (
-              <div key={i} className={`cartmini__attr--item ${Helper.addActiveClass(it,item.attributes[1])}`} >
+              <div key={i} className={`overlay__attr--item ${Helper.addActiveClass(it,item.attributes[1])}`} >
                 {it.value}
               </div>
             );
@@ -50,10 +50,10 @@ class Overlay extends Component {
 
     </div>;
     } else {
-      return <div className="cartmini__attr1">
-        <div className="cartmini__attr--items">
+      return <div className="overlay__attr1">
+        <div className="overlay__attr--items">
           {item.attributes[0].items.map((it, i)=>{
-            return <div key={i} className={`cartmini__attr--item ${Helper.addActiveClass(it,item.attributes[0])}`}  >{it.value}</div>
+            return <div key={i} className={`overlay__attr--item ${Helper.addActiveClass(it,item.attributes[0])}`}  >{it.value}</div>
           })}        
         </div>
       </div>
@@ -69,29 +69,29 @@ class Overlay extends Component {
     let addedItems = items.length ? (
       items.map((item) => {        
         return (
-          <li className="cartmini__item" key={item.id}>
+          <li className="overlay__item" key={item.id}>
 
-            <div className="cartmini__item--left">
-              <div className="cartmini__item--header">
-                <h5 className="cartmini__item--brand">{item.brand}</h5>
-                <h5 className="cartmini__item--name">{item.name}</h5>
+            <div className="overlay__item--left">
+              <div className="overlay__item--header">
+                <h5 className="overlay__item--brand">{item.brand}</h5>
+                <h5 className="overlay__item--name">{item.name}</h5>
               </div>
-              <b className="cartmini__item--price">
+              <b className="overlay__item--price">
                 {Helper.switchCurrency(currency)}
                 {Helper.switchAmount(currency, item.prices)}
               </b>
               {this.createAttributes(item)}
             </div>
 
-            <div className="cartmini__item--right">
-              <div className="cartmini__item--buttons">
-                <div className="cartmini__item--button" onClick={()=>{this.handleAddQuantity(item.id)}}>+</div>
-                <div className="cartmini__item--quantity">
+            <div className="overlay__item--right">
+              <div className="overlay__item--buttons">
+                <div className="overlay__item--button" onClick={()=>{this.handleAddQuantity(item.id)}}>+</div>
+                <div className="overlay__item--quantity">
                   <b>{item.quantity}</b>
                 </div>
-                <div className="cartmini__item--button" onClick={()=>{this.handleSubtractQuantity(item.id)}}>-</div>
+                <div className="overlay__item--button" onClick={()=>{this.handleSubtractQuantity(item.id)}}>-</div>
               </div>
-              <div className="cartmini__item--slider">
+              <div className="overlay__item--slider">
                 <OverlaySlider slides={item.gallery} />
               </div>
             </div>
@@ -100,25 +100,25 @@ class Overlay extends Component {
         );
       })
     ) : (
-      <p className="cartmini__empty">The cart is empty</p>
+      <p className="overlay__empty">The cart is empty</p>
     );
 
     return (      
-      <div className="cartmini">
-        <div className="cartmini__overlay" onClick={()=>this.props.showOverlay()}></div>
+      <div className="overlay">
+        <div className="overlay__background" onClick={()=>this.props.showOverlay()}></div>
 
-        <div className="cartmini__dropdown">
-          <h5 className="cartmini__page-name">my bag, {quantity} items</h5>
-          <ul className="cartmini__items">{addedItems}</ul>
+        <div className="overlay__dropdown">
+          <h5 className="overlay__page-name">my bag, {quantity} items</h5>
+          <ul className="overlay__items">{addedItems}</ul>
 
           <div style={{display: quantity === 0 ? 'none':'block'}}>
-            <div className="cartmini__total">
+            <div className="overlay__total">
               <span>Total:</span>
               <span>{Helper.switchCurrency(currency)}{total.toFixed(2)}</span>
             </div>
-            <div className="cartmini__btns" >
-              <button className="cartmini__btn" onClick={()=>alert('Viewed the bag!')}>view bag</button>
-              <button className="cartmini__btn" onClick={()=>alert('Checked out!')}>check out</button>
+            <div className="overlay__btns" >
+              <button className="overlay__btn" onClick={()=>alert('Viewed the bag!')}>view bag</button>
+              <button className="overlay__btn" onClick={()=>alert('Checked out!')}>check out</button>
             </div>
           </div>
           

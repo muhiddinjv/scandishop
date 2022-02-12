@@ -1,11 +1,11 @@
 @import "../../App/Base.scss";
 
-.cartmini {
+.overlay {
   display: flex;
   justify-content: right;
   position:relative;
   
-  &__overlay{
+  &__background{
     top:0;left:0;
     position: fixed;
     background: rgba(153, 153, 153, 0.425);
@@ -22,7 +22,6 @@
     margin-right: 3rem;
     color: $--c-text;
     font-size: 2rem;
-    // border: 1px solid #999;
     height: fit-content;
     padding: 1rem 1.8rem 1.8rem 1.8rem;
     // transition: display 2s;

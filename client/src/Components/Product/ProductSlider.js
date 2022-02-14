@@ -7,7 +7,7 @@ export default class ProductSlider extends Component {
     this.state = { selectedImage: '' };
   }
 
-  bigImage = () => {
+  setBigImage = () => {
     let products = this.props.products[0];    
     if (products) return products.gallery[0]
   }
@@ -29,7 +29,7 @@ export default class ProductSlider extends Component {
             </li>)}
         </ul>
         <div className="slider__slides">
-          {<img src={this.state.selectedImage === '' ? this.bigImage() : this.state.selectedImage}  alt=""/>}
+          {<img src={this.state.selectedImage === '' ? this.setBigImage() : this.state.selectedImage}  alt=""/>}
         </div>
       </div>
     } else {

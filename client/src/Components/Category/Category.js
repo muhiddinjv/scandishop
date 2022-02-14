@@ -28,7 +28,6 @@ class Category extends Component {
   handleAddToCart = (id) =>{
     this.props.addToCart(id);
   }
-  
 
   generateProduct() {
     let products = this.props.products;

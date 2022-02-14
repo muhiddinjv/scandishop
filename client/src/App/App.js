@@ -17,7 +17,6 @@ class App extends Component {
     setTimeout(() => {
       this.setState({products: [this.props.items[0]]}) 
       this.setState({currencies: this.props.currencies}) 
-      this.setState({price: this.props.price}) 
     }, 500);     
   }
 

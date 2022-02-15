@@ -27,7 +27,7 @@ class Product extends Component {
           className="product__attr--item color"
           style={{
             background: item.value,
-            borderRadius: item === this.state.border ? "25%" : null,
+            borderRadius: item === this.state.border && "25%",
           }}
           onClick={() => {
             this.toggleBorder(item);

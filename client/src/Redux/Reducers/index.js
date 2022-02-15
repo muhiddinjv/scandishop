@@ -36,7 +36,7 @@ const fetchData = () => {
 
     // handle price amount (e.g. 144.69)
     const priceNumbers = addedItem.prices.filter((price) =>
-      price.currency === state.selCurrency ? price.amount : null
+      price.currency === state.selCurrency && price.amount
     );
 
     const price = priceNumbers[0].amount;

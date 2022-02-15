@@ -13,7 +13,7 @@ export default class ProductSlider extends Component {
   }
 
   selectImage = (image, images) => {
-    let filteredImage = images[0].filter(selected => selected === image ? image : null)
+    let filteredImage = images[0].filter(selected => selected === image && image)
     this.setState({selectedImage: filteredImage[0]})
   }
 

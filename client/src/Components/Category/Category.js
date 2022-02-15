@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { NavLink } from "react-router-dom";
 import Helper from "../../Helpers/Helper";
 import "./Category.scss";
-import { NavLink } from "react-router-dom";
 import { ReactComponent as EmptyCart } from '../../Assets/icons/cart-white.svg';
-import { connect } from 'react-redux';
 
 class Category extends Component {
   constructor(props) {

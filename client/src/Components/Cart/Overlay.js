@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Helper from "../../Helpers/Helper";
-import "./Overlay.scss";
 import OverlaySlider from "./OverlaySlider";
+import "./Overlay.scss";
 import {addQuantity,subtractQuantity} from '../../Redux/Actions';
 
 class Overlay extends Component {

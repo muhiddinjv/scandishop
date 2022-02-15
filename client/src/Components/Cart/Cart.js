@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+
 import "./Cart.scss";
 import Helper from "../../Helpers/Helper";
 import CartSlider from "./CartSlider";
+
 import { removeItem,addQuantity,subtractQuantity} from '../../Redux/Actions';
 
 class Cart extends Component {

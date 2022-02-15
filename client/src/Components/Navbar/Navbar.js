@@ -39,7 +39,7 @@ export default class Navbar extends Component {
                     </li>
                 </ul>
                 <div className='navbar__logo'>
-                    <NavLink to="/"><Logo /></NavLink>
+                    <NavLink to="/" title="navbar-logo"><Logo /></NavLink>
                 </div>
                 <div className='navbar__actions'>
                     <Dropdown state={this.props.curr} products={this.props.products}/>

@@ -27,7 +27,7 @@ class App extends Component {
   
   render() {
     return (
-      <div className="app">
+      <main className="app">
         <ErrorBoundary>
           <Navbar
             curr={this.state.currencies}
@@ -45,7 +45,7 @@ class App extends Component {
             <Route path="/product" element={<Product products={this.state.products} addToCart={this.props.addToCart} />} />
             <Route exact path="/cart/*" element={<Cart />} />
           </Routes>
-      </div>
+      </main>
     );
   }
 }

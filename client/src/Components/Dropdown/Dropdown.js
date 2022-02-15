@@ -42,7 +42,7 @@ class Dropdown extends Component {
     return (
       <div className="dropdown">
         <label className="dropdown__label" htmlFor="dropdown" ref={this.dropLabelRef}>$</label>
-        <button className="dropdown__btn" onClick={() => this.showCurrencies()} ref={this.dropBtnRef}></button>
+        <button className="dropdown__btn" title="dropdown__btn" onClick={() => this.showCurrencies()} ref={this.dropBtnRef}></button>
         <ul className="dropdown__content" ref={this.dropContentRef}>
           {this.createDropdownList()}
         </ul>

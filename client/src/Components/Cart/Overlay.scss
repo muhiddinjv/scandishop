@@ -5,7 +5,7 @@
   justify-content: right;
   position:relative;
   
-  &__background{
+  .background{
     top:0;left:0;
     position: fixed;
     background: rgba(153, 153, 153, 0.425);
@@ -15,7 +15,7 @@
     z-index:1;
   }
   
-  &__dropdown{
+  .dropdown{
     z-index: 2;
     background: white;
     position:absolute;
@@ -32,17 +32,17 @@
     color: white;
   }
 
-  &__page-name {
+  .page-name {
     text-transform: capitalize;
   }
 
-  &__items {
+  .items {
     margin-top: 2.5rem;
   }
 
-  &__empty{font-size: 1.6rem;}
+  .empty{font-size: 1.6rem;}
 
-  &__item {
+  .item {
     display: flex;
     margin-bottom: 1rem;
     padding-bottom: 3rem;
@@ -122,11 +122,7 @@
     }
   }
 
-  &__attrs{
-    // color: red;
-  }
-
-  &__attr {
+  .attr {
     text-transform: uppercase;
 
     &--items {
@@ -154,11 +150,11 @@
     }
   }
 
-  &__attr2{
+  .attr2{
     margin-top: 1rem;
   }
 
-  &__total{
+  .total{
     display: flex;
     justify-content: space-between;
     font-weight: bold;
@@ -166,12 +162,12 @@
     margin-bottom: 3.5rem;
   }
 
-  &__btns{
+  .btns{
     display: flex;
     justify-content: space-between;
   }
 
-  &__btn{
+  .btn{
     padding: 1.3rem;
     width: 14rem;
     text-transform: uppercase;

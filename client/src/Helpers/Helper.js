@@ -28,8 +28,19 @@ export default class Helper {
     return x[0].amount;
   }
 
-  static addActiveClass(item, attribute){
+  static addActiveClass = (item, attribute) => {
     if (item.value.includes('#')) {if (attribute.selected === item.value) return '25%'} 
     if (attribute.selected === item.value) return 'active';  
   }
+
+
+  static setBorderRadius = (attribute, index, item) => {
+    if (attribute.value.includes("#")) { 
+      return (<div key={index} className="attr--item"
+          style={{ background: attribute.value, borderRadius: this.addActiveClass(attribute,item.attributes[0]) }}
+        />
+      );
+    } 
+  }
+  
 }

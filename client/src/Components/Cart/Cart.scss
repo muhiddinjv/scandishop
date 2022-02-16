@@ -10,18 +10,18 @@
     color: white;
   }
 
-  &__page-name {
+  .page-name {
     padding: 8rem 0 6rem 0;
     text-transform: uppercase;
     border-bottom: 1px solid lightgrey;
     font-size: 3rem;
   }
 
-  &__items {
+  .items {
     margin-top: 2rem;
   }
 
-  &__item {
+  .item {
     display: flex;
     margin-bottom: 2rem;
     padding-bottom: 2rem;
@@ -103,7 +103,7 @@
     }
   }
 
-  &__attr {
+  .attr {
     text-transform: uppercase;
 
     &--items {
@@ -132,11 +132,11 @@
     }
   }
 
-  &__attr2{
+  .attr2{
     margin-top: 1rem;
   }
 
-  &__total{
+  .total{
     font-weight: bold;
     font-size: 2rem;
   }

@@ -13,7 +13,7 @@ class Cart extends Component {
     return (      
       <div className="cart">
         <h1 className="page-name">cart </h1>
-        <ul className="items"><AddedItem sliderName='cart-slider'/></ul>
+        <ul className="items"><AddedItem sliderName='cart-slider' qty={this.props.qty}/></ul>
         <div className="total">{items.length < 1 ? "" : `Total: ${Helper.switchCurrency(this.props.selCurrency)}${total.toFixed(2)}`}</div>
       </div>
     );

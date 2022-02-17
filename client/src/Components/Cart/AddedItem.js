@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import Helper from "../../Helpers/Helper";
-import AddedAttribute from "./AddedAttribute";
 import Slider from "./Slider";
-import { removeItem, addQuantity,subtractQuantity} from '../../Redux/Actions';
+import { removeItem, addQuantity, subtractQuantity} from '../../Redux/Actions';
 
 class AddedItem extends Component {
   handleRemove = (id)=>{
@@ -18,10 +17,26 @@ class AddedItem extends Component {
     this.props.subtractQuantity(id);
   }
 
+  handleAttribute = (added) => {
+    const ind = added.attributes.length > 1 ? 1 : 0;
+    return (
+      <>
+        {added.attributes[ind].items.map((attribute, index) => {
+          if (attribute.value.includes("#")) {
+            // eslint-disable-next-line no-lone-blocks
+            return (<div key={index} className="attr--item" style={{background: attribute.value,}}/>);
+          } else {
+            return (<div key={index} className={`attr--item ${Helper.addActiveClass(attribute,added.attributes[ind])}`}>
+                {attribute.value}</div>)
+          }
+        })}
+      </>
+    );
+  }
+
   createAttributes(item) {        
     if (item.attributes.length > 1) { 
     return <div className="attrs">
-
       <div className="attr1">
         <div className="attr--items">
           {item.attributes[0].items.map((attribute, index) => 
@@ -32,14 +47,14 @@ class AddedItem extends Component {
 
       <div className="attr2">
         <div className="attr--items">
-          <AddedAttribute added={item}/>
+          {this.handleAttribute(item)}
         </div>
       </div>
     </div>;
     } else {
       return <div className="attr1">
         <div className="attr--items">
-          <AddedAttribute added={item}/>
+          {this.handleAttribute(item)}
         </div>
       </div>
     }
@@ -48,11 +63,11 @@ class AddedItem extends Component {
   render() {
     let items = this.props.addedItems;
     let currency = this.props.selCurrency; 
+    // let quantity = this.props.qty;
     
     let addedItems = items.length ? (
       items.map((item) => {        
         const deleteButton = <button className="item--delete" onClick={()=>{this.handleRemove(item.id)}}>X</button>
-        
         return (
           <li className="item" key={item.id}>
             <div className="item--left">
@@ -69,9 +84,9 @@ class AddedItem extends Component {
 
             <div className="item--right">
               <div className="item--buttons">
-                <div className="item--button" onClick={()=>{this.handleAddQuantity(item.id)}}>+</div>
+                <div to="/cart" className="item--button" onClick={()=>{this.handleAddQuantity(item.id)}}>+</div>
                 <div className="item--quantity">
-                  <b>{item.quantity}</b>
+                  <b>{item.quantity}</b> 
                 </div>
                 <div className="item--button" onClick={()=>{this.handleSubtractQuantity(item.id)}}>-</div>
               </div>

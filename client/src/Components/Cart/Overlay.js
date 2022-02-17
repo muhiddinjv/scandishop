@@ -16,7 +16,7 @@ class Overlay extends Component {
 
         <div className="dropdown">
           <h5 className="page-name">my bag, {quantity} items</h5>
-          <ul className="items"><AddedItem sliderName='overlay-slider' /></ul>
+          <ul className="items"><AddedItem sliderName='overlay-slider' qty={quantity} /></ul>
 
           <div style={{display: quantity === 0 ? 'none':'block'}}>
             <div className="total">

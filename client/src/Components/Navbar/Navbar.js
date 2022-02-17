@@ -16,7 +16,7 @@ export default class Navbar extends Component {
     }
 
     render() {
-        let quantity = this.props.qty.reduce((sum, a) => sum + a, 0);
+        const quantity = this.props.qty;
         
         return (
             <div>

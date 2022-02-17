@@ -33,7 +33,6 @@ export default class Helper {
     if (attribute.selected === item.value) return 'active';  
   }
 
-
   static setBorderRadius = (attribute, index, item) => {
     if (attribute.value.includes("#")) { 
       return (<div key={index} className="attr--item"
@@ -41,6 +40,5 @@ export default class Helper {
         />
       );
     } 
-  }
-  
+  }  
 }

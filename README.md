@@ -26,6 +26,6 @@
 - [ ] Not possible to add different product attributes to cart
 - [ ] Out of stock product logic is not implemented
 - [ ] Prefer to use PureComponent instead Component
-- [ ] Prefer to use const instead let and var
+- [x] Prefer to use const instead let and var
 - [ ] Please use variable destructuring
 - [ ] Not added cart page

@@ -11,7 +11,7 @@ export default class Slider extends Component {
   }
   
   prevSlide() {
-    let slide = this.state.activeSlide - 1 < 0
+    const slide = this.state.activeSlide - 1 < 0
       ? this.props.slides.length - 1
       : this.state.activeSlide - 1;
     this.setState({
@@ -19,7 +19,7 @@ export default class Slider extends Component {
     });
   }
   nextSlide() {
-    let slide = this.state.activeSlide + 1 < this.props.slides.length
+    const slide = this.state.activeSlide + 1 < this.props.slides.length
       ? this.state.activeSlide + 1
       : 0;
     this.setState({

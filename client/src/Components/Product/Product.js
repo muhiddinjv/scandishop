@@ -39,7 +39,7 @@ class Product extends Component {
   }
 
   createAttributes = () => {
-    let p = this.props.products[0];
+    const p = this.props.products[0];
 
     if (p.attributes.length > 1) {
       return (
@@ -77,7 +77,7 @@ class Product extends Component {
   };
 
   product() {
-    let p = this.props.products[0];  
+    const p = this.props.products[0];  
 
     if (p) {
       return (

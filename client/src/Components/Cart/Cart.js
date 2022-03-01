@@ -7,8 +7,8 @@ import AddedItem from "./AddedItem";
 class Cart extends Component {
 
   render() {
-    let total = this.props.total;
-    let items = this.props.addedItems;
+    const total = this.props.total;
+    const items = this.props.addedItems;
     
     return (      
       <div className="cart">

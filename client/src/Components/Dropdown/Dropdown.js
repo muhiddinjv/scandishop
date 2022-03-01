@@ -14,7 +14,7 @@ class Dropdown extends Component {
   }
   
   createDropdownList() {
-    let currencies = this.props.state; //data received from server
+    const currencies = this.props.state; //data received from server
     if (currencies) {
       return currencies.map((currency) => (
         <li className="dropdown__options" key={currency}>

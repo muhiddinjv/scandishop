@@ -6,9 +6,9 @@ import "./Overlay.scss";
 
 class Overlay extends Component {
   render() {    
-    let quantity = this.props.qty;
-    let total = this.props.total;
-    let currency = this.props.selCurrency; 
+    const quantity = this.props.qty;
+    const total = this.props.total;
+    const currency = this.props.selCurrency; 
 
     return (      
       <div className="overlay">

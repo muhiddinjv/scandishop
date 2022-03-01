@@ -30,7 +30,7 @@ class Category extends Component {
   }
 
   generateProduct() {
-    let products = this.props.products;
+    const products = this.props.products;
         
     if (products) {
       return products.map((product, i) => {         

@@ -8,17 +8,17 @@ export default class ProductSlider extends Component {
   }
 
   setBigImage = () => {
-    let products = this.props.products[0];    
+    const products = this.props.products[0];    
     if (products) return products.gallery[0]
   }
 
   selectImage = (image, images) => {
-    let filteredImage = images[0].filter(selected => selected === image && image)
+    const filteredImage = images[0].filter(selected => selected === image && image)
     this.setState({selectedImage: filteredImage[0]})
   }
 
   slider = () => { 
-    let gallery = this.props.products.map(x=>x.gallery);
+    const gallery = this.props.products.map(x=>x.gallery);
   
     if (gallery[0]) {
       return <div className="slider">

@@ -61,11 +61,11 @@ class AddedItem extends Component {
   }
   
   render() {
-    let items = this.props.addedItems;
-    let currency = this.props.selCurrency; 
-    // let quantity = this.props.qty;
+    const items = this.props.addedItems;
+    const currency = this.props.selCurrency; 
+    // const quantity = this.props.qty;
     
-    let addedItems = items.length ? (
+    const addedItems = items.length ? (
       items.map((item) => {        
         const deleteButton = <button className="item--delete" onClick={()=>{this.handleRemove(item.id)}}>X</button>
         return (

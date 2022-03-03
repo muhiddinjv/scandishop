@@ -1,3 +1,5 @@
+// import axios from 'axios';
+
 export default class Helper {
   static switchCurrency = (currency) => {
     let symbol;
@@ -41,4 +43,13 @@ export default class Helper {
       );
     } 
   }  
+
+  // static fetchData = () => {
+  //     return axios.create({
+  //       baseURL: 'https://www.googleapis.com/youtube/v3',
+  //       params: {
+  //           part:'snippet',
+  //       }
+  //   })
+  // }
 }

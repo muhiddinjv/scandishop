@@ -1,7 +1,11 @@
 // Action creators (customers with forms)
 
+export const changeCategory = (categoryName) => {  
+  // returns action (form to give to departments)  
+  return {type: "CHANGE_CATEGORY",categoryName};
+};
+
 export const selectCurrency = (currency) => {
-// returns action (form to give to departments)  
   return {type: "SELECT_CURRENCY",currency}
 };
 

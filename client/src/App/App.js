@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
 import { connect } from 'react-redux';
-import { addToCart } from '../Redux/Actions';
+import { addToCart, changeCategory } from '../Redux/Actions';
 import ErrorBoundary from "./ErrorBoundary";
 
 import { Navbar, Category, Product, Cart } from '../Components'
@@ -26,6 +26,7 @@ class App extends Component {
   };
   
   render() {
+    console.log(this.props.items);
     const quantity = this.props.addedItems.map(x=>x.quantity).reduce((sum, a) => sum + a, 0);
     return (
       <main className="app">
@@ -58,7 +59,9 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps= (dispatch)=>{
   return{
-    addToCart: (id)=>{dispatch(addToCart(id))}
+    addToCart: (id)=>{dispatch(addToCart(id))},
+    changeCategory: (categoryName)=>{dispatch(changeCategory(categoryName))}
+
   }
 }
 

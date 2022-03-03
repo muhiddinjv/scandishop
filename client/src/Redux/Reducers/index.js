@@ -7,6 +7,7 @@ const initState = {
   selCurrency: "USD",
   price: [],
   total: 0,
+  category: ''
 };
 
 const fetchData = () => {
@@ -15,7 +16,7 @@ const fetchData = () => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       query: LOAD_QUERY,
-      variables: { input: { title: "" } },
+      variables: { input: { title: initState.category } },
     }),
   })
     .then((res) => res.json())
@@ -24,11 +25,13 @@ const fetchData = () => {
       data.data.currencies.map((c) => initState.currencies.push(c));
     })
     .catch((error) => console.log(error));
-  };
+};
+
+fetchData();
   
-  fetchData();
-  
-  const cartReducer = (state = initState, action) => {
+
+const cartReducer = (state = initState, action) => {
+
     const filterItem = (id) => {
       // handle items = products (jacket, sneakers, ps5)
     const addedItem = state.items.find((item) => item.id === id);
@@ -42,6 +45,12 @@ const fetchData = () => {
     const price = priceNumbers[0].amount;
     return { addedItem, price, newItems };
   };
+
+  if (action.type === "CHANGE_CATEGORY") {
+    console.log('reducer: ',action.categoryName);
+
+    return { ...state, category: action.categoryName };
+  }
     
   if (action.type === "SELECT_CURRENCY") {
     return { ...state, selCurrency: action.currency };

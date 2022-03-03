@@ -34,7 +34,7 @@ export default class Navbar extends Component {
                     </li>
                     <li className="navbar__nav--link" onClick={()=>this.props.filterProduct('ps-5')}>
                         <NavLink className="link" to="/">
-                           kids
+                           tech
                         </NavLink>
                     </li>
                 </ul>

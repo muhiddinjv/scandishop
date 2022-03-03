@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
 import { connect } from 'react-redux';
+// import axios from 'axios';
+import LOAD_QUERY from "../Graphql/Query";
 import { addToCart, changeCategory } from '../Redux/Actions';
 import ErrorBoundary from "./ErrorBoundary";
 
@@ -10,15 +12,36 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.filterProduct = this.filterProduct.bind(this);
-    this.state = { products: [], currencies:[] };
+    this.state = { products: [], currencies:[], items: [], selectedItem: [] };
   }
 
   componentDidMount() {
     setTimeout(() => {
       this.setState({products: [this.props.items[0]]}) 
       this.setState({currencies: this.props.currencies}) 
+      this.changeCategory('');
     }, 500);     
   }
+
+  changeCategory = async (title) => {
+   const response = await fetch("http://localhost:4000/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        query: LOAD_QUERY,
+        variables: { input: { title } },
+      }),
+    })
+    const data = await response.json();
+    console.log(data.data.category.products);
+      // .then((res) => res.json())
+      // .then(data=>console.log(data.data.category.products))
+      // .then((data) => {
+      //   data.data.category.products.map((ps) => initState.items.push(ps));
+      //   data.data.currencies.map((c) => initState.currencies.push(c));
+      // })
+      // .catch((error) => console.log(error));
+  };
 
   filterProduct = (productId) => {
     const items = this.props.items;
@@ -26,12 +49,13 @@ class App extends Component {
   };
   
   render() {
-    console.log(this.props.items);
+    // console.log('render: ',this.props.items);
     const quantity = this.props.addedItems.map(x=>x.quantity).reduce((sum, a) => sum + a, 0);
     return (
       <main className="app">
         <ErrorBoundary>
           <Navbar
+            changeCategory={this.changeCategory}
             curr={this.state.currencies}
             filterProduct={this.filterProduct}
             products={this.state.products}

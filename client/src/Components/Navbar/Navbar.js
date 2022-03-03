@@ -27,12 +27,12 @@ export default class Navbar extends Component {
                            women
                         </NavLink>
                     </li>
-                    <li className="navbar__nav--link" onClick={()=>this.props.filterProduct('huarache-x-stussy-le')}>
+                    <li className="navbar__nav--link" onClick={()=>this.props.changeCategory('clothes')}>
                         <NavLink className="link" to="/">
-                           men
+                           clothes
                         </NavLink>
                     </li>
-                    <li className="navbar__nav--link" onClick={()=>this.props.filterProduct('ps-5')}>
+                    <li className="navbar__nav--link" onClick={()=>this.props.changeCategory('tech')}>
                         <NavLink className="link" to="/">
                            tech
                         </NavLink>

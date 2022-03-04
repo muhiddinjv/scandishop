@@ -30,7 +30,7 @@ class Category extends Component {
   }
 
   generateProduct() {
-    const products = this.props.products;
+    const products = this.props.category.products;
         
     if (products) {
       return products.map((product, i) => {         
@@ -68,11 +68,12 @@ class Category extends Component {
   };
 
   render() {
+    console.log(this.props.category);
     return (
       <div className="category">
         <div className="category__header">
           <h1 className="category__name"> 
-            {this.props.products.map((x) =>x.category)}
+            {this.props.category.name}
           </h1>
         </div>
         <ul className="category__product">{this.generateProduct()}</ul>

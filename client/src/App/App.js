@@ -8,7 +8,7 @@ import ErrorBoundary from "./ErrorBoundary";
 import { Navbar, Category, Product, Cart } from '../Components'
 
 class App extends Component {
-  state = { products: [], currencies:[] };
+  state = { category: [], currencies:[] };
 
   componentDidMount() {
     // setTimeout(() => {
@@ -26,13 +26,14 @@ class App extends Component {
       }),
     })
     const all = await response.json();
-    this.setState({products: all.data.category.products})
+    this.setState({category: all.data.category})
     this.setState({currencies: all.data.currencies})
     this.props.setData(all.data)
+    console.log(all.data.category);
   };
   
   render() {
-    // console.log('state: ',this.state.products);
+    // console.log('state: ',this.state.category);
     const quantity = this.props.addedItems.map(x=>x.quantity).reduce((sum, a) => sum + a, 0);
     return (
       <main className="app">
@@ -40,17 +41,17 @@ class App extends Component {
           <Navbar
             changeCategory={this.changeCategory}
             curr={this.state.currencies}
-            products={this.state.products}
+            products={this.state.category.products}
             qty={quantity}
           />
         </ErrorBoundary>
           <Routes>
             <Route exact path="/" element={
               <ErrorBoundary>
-                <Category products={this.state.products} addToCart={this.props.addToCart} />
+                <Category category={this.state.category} addToCart={this.props.addToCart} />
               </ErrorBoundary>} 
             />
-            <Route path="/product" element={<Product products={this.state.products} addToCart={this.props.addToCart} />} />
+            <Route path="/product" element={<Product products={this.state.category.products} addToCart={this.props.addToCart} />} />
             <Route exact path="/cart/*" element={<Cart qty={quantity} />} />
           </Routes>
       </main>

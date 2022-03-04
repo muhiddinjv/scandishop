@@ -12,7 +12,7 @@ class App extends Component {
 
   componentDidMount() {
     // setTimeout(() => {
-      this.changeCategory('');
+      this.changeCategory('clothes');
     // });     
   }
 
@@ -29,7 +29,6 @@ class App extends Component {
     this.setState({category: all.data.category})
     this.setState({currencies: all.data.currencies})
     this.props.setData(all.data)
-    console.log(all.data.category);
   };
   
   render() {
@@ -51,7 +50,10 @@ class App extends Component {
                 <Category category={this.state.category} addToCart={this.props.addToCart} />
               </ErrorBoundary>} 
             />
-            <Route path="/product" element={<Product products={this.state.category.products} addToCart={this.props.addToCart} />} />
+            <Route path="/product" element={<Product 
+              products={this.state.category.products} 
+              addToCart={this.props.addToCart} />} 
+            />
             <Route exact path="/cart/*" element={<Cart qty={quantity} />} />
           </Routes>
       </main>

@@ -1,7 +1,6 @@
 const initState = {
   items: [],
   addedItems: [],
-  currencies: [],
   selCurrency: "USD",
   price: [],
   total: 0,
@@ -25,20 +24,15 @@ const cartReducer = (state = initState, action) => {
   };
 
   if (action.type === "SET_DATA") {
-    console.clear(); console.log('set_data: ',action.items);
-
-    return { ...state, 
-      items: action.items.category.products,
-      currencies: action.items.currencies 
-    };
+    return {...state, items: action.items.category.products};
   }
 
   if (action.type === "CHANGE_CATEGORY") {
-    return { ...state, category: action.categoryName };
+    return {...state, category: action.categoryName};
   }
     
   if (action.type === "SELECT_CURRENCY") {
-    return { ...state, selCurrency: action.currency };
+    return {...state, selCurrency: action.currency};
   }
 
   if (action.type === "ATTRIBUTE_SELECTED") {

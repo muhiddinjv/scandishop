@@ -31,11 +31,6 @@ class App extends Component {
     this.props.setData(all.data)
   };
   
-  // filterProduct = (productId) => {
-  //   const items = this.props.items;
-  //   items.filter((p) => p.id === productId ? this.setState({ products: [p] }) : <div className="loader"/>)    
-  // };
-  
   render() {
     // console.log('state: ',this.state.products);
     const quantity = this.props.addedItems.map(x=>x.quantity).reduce((sum, a) => sum + a, 0);

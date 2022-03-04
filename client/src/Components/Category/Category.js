@@ -5,7 +5,7 @@ import Helper from "../../Helpers/Helper";
 import "./Category.scss";
 import { ReactComponent as EmptyCart } from '../../Assets/icons/cart-white.svg';
 
-class Category extends Component {
+class ProductCard extends Component {
   state = { display: "none"};
 
   mouseEnter = (e) => { 
@@ -27,9 +27,8 @@ class Category extends Component {
   }
   
   render() {
-    const product = this.props.product;
-    console.log(product.prices);
-
+    const {product, selCurrency } = this.props;
+    
     return (
       <li className="category__product--card" onMouseOver={this.mouseEnter.bind(this)} onMouseOut ={this.mouseLeave.bind(this)}>
         <div className="category__product--image-wrapper" >
@@ -52,8 +51,8 @@ class Category extends Component {
             <NavLink to="/product">{product.name}</NavLink>
           </h2>
           <div  className="category__product--price">
-            {Helper.switchCurrency(this.props.selCurrency)}
-            {/* {Helper.switchAmount(this.props.selCurrency, product.prices)} */}
+            {Helper.switchCurrency(selCurrency)}
+            {/* {Helper.switchAmount(selCurrency, product.prices)} */}
           </div>
         </div>
       </li>
@@ -62,9 +61,9 @@ class Category extends Component {
 }
 
 
-class DisplayCart extends Component {
+class Category extends Component {
   render() {
-    const products = this.props.category.products;
+    const { products } = this.props.category;
 
     return (
       <div className="category">
@@ -75,7 +74,7 @@ class DisplayCart extends Component {
         </div>
         <ul className="category__product">
           {products?.map((product, i) => {
-            return <Category product={product} key={i} />
+            return <ProductCard product={product} key={i} />
           })}
         </ul>
       </div>
@@ -89,4 +88,4 @@ const mapStateToProps = state => {
   return { selCurrency }
 }
 
-export default connect(mapStateToProps)(DisplayCart);
+export default connect(mapStateToProps)(Category);

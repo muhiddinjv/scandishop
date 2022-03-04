@@ -1,5 +1,3 @@
-import LOAD_QUERY from "../../Graphql/Query";
-
 const initState = {
   items: [],
   addedItems: [],
@@ -8,27 +6,7 @@ const initState = {
   price: [],
   total: 0,
   category: ''
-};
-
-const fetchData = () => {
-  fetch("http://localhost:4000/", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      query: LOAD_QUERY,
-      variables: { input: { title: initState.category } },
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      data.data.category.products.map((ps) => initState.items.push(ps));
-      data.data.currencies.map((c) => initState.currencies.push(c));
-    })
-    .catch((error) => console.log(error));
-};
-
-fetchData();
-  
+};  
 
 const cartReducer = (state = initState, action) => {
 
@@ -46,9 +24,16 @@ const cartReducer = (state = initState, action) => {
     return { addedItem, price, newItems };
   };
 
-  if (action.type === "CHANGE_CATEGORY") {
-    console.log('reducer: ',action.categoryName);
+  if (action.type === "SET_DATA") {
+    console.clear(); console.log('set_data: ',action.items);
 
+    return { ...state, 
+      items: action.items.category.products,
+      currencies: action.items.currencies 
+    };
+  }
+
+  if (action.type === "CHANGE_CATEGORY") {
     return { ...state, category: action.categoryName };
   }
     

@@ -7,13 +7,13 @@ import { ReactComponent as EmptyCart } from "../../Assets/icons/cart-white.svg";
 export default class ProductCard extends Component {
   state = { display: "none" };
 
-  mouseEnter = () => {
+  mouseEnter = () => () => {
     this.setState(() => ({
       display: "block",
     }));
   };
 
-  mouseLeave = () => {
+  mouseLeave = () => () => {
     this.setState(() => ({
       display: "none",
     }));
@@ -37,9 +37,7 @@ export default class ProductCard extends Component {
             />
           </NavLink>
           <div
-            onClick={() => {
-              onAddToCart(product.id);
-            }}
+            onClick={() => onAddToCart(product.id)}
             className="category__product--cart"
             style={{ display: this.state.display }}
           >

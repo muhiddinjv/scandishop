@@ -16,16 +16,19 @@
 
     &__product  {
         margin: 0 1.5rem;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 7.5rem;
-
+        display: flex;
+        flex-wrap: wrap;
+        // justify-content: space-between;
+        // display: grid;
+        // grid-template-columns: repeat(3, 1fr);
+        // grid-gap: 5rem;
+        
         &--card{
             border: 1px solid #999;
+            margin-right: 2.7rem;
             margin-bottom: 5.5rem;
             padding: 1rem;
             padding-bottom: 2rem;
-            border: none;
             transition: 0.3s;
 
             &:hover{

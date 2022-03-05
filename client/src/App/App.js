@@ -8,11 +8,11 @@ import ErrorBoundary from "./ErrorBoundary";
 import { Navbar, Category, Product, Cart } from '../Components'
 
 class App extends Component {
-  state = { category: [], currencies:[] };
+  state = { category: [], currencies:[], selectedProduct: [] };
 
   componentDidMount() {
     // setTimeout(() => {
-      this.changeCategory('clothes');
+      this.changeCategory('');
     // });     
   }
 
@@ -30,29 +30,38 @@ class App extends Component {
     this.setState({currencies: all.data.currencies})
     this.props.setData(all.data)
   };
+
+  selectProduct = (productId) => {
+    const items = this.props.items;
+    items.filter((p) => p.id === productId ? this.setState({ selectedProduct: [p] }) : <div className="loader"/>)   
+  };
+
   
   render() {
+    const { currencies, category, selectedProduct } = this.state;
+    const { addedItems, addToCart } = this.props;
     // console.log('state: ',this.state.category);
-    const quantity = this.props.addedItems.map(x=>x.quantity).reduce((sum, a) => sum + a, 0);
+    const quantity = addedItems.map(x=>x.quantity).reduce((sum, a) => sum + a, 0);
     return (
       <main className="app">
         <ErrorBoundary>
           <Navbar
             changeCategory={this.changeCategory}
-            curr={this.state.currencies}
-            products={this.state.category.products}
+            curr={currencies}
+            products={category.products}
             qty={quantity}
           />
         </ErrorBoundary>
           <Routes>
             <Route exact path="/" element={
               <ErrorBoundary>
-                <Category category={this.state.category} addToCart={this.props.addToCart} />
+                <Category category={category} addToCart={addToCart} selectProduct={this.selectProduct}
+/>
               </ErrorBoundary>} 
             />
             <Route path="/product" element={<Product 
-              products={this.state.category.products} 
-              addToCart={this.props.addToCart} />} 
+              products={selectedProduct} 
+              addToCart={addToCart} />} 
             />
             <Route exact path="/cart/*" element={<Cart qty={quantity} />} />
           </Routes>

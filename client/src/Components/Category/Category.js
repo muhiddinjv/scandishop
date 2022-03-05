@@ -23,6 +23,7 @@ class Category extends Component {
                 product={product}
                 selCurrency={selCurrency}
                 onAddToCart={this.onAddToCart}
+                selectProduct={this.props.selectProduct}
               />
             );
           })}

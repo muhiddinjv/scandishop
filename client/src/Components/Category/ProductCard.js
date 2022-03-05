@@ -20,8 +20,7 @@ export default class ProductCard extends Component {
   };
 
   render() {
-    const { product, selCurrency, onAddToCart } = this.props;
-
+    const { product, selCurrency, onAddToCart, selectProduct } = this.props;
     return (
       <li
         className="category__product--card"
@@ -32,6 +31,7 @@ export default class ProductCard extends Component {
           <NavLink to="/product">
             <img
               className="category__product--image"
+              selectProduct={selectProduct(product.id)}
               src={product.gallery[0]}
               alt={product.name}
             />

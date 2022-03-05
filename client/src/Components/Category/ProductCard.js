@@ -31,7 +31,7 @@ export default class ProductCard extends Component {
           <NavLink to="/product">
             <img
               className="category__product--image"
-              selectProduct={selectProduct(product.id)}
+              onClick={selectProduct(product.id)}
               src={product.gallery[0]}
               alt={product.name}
             />

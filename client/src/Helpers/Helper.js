@@ -26,10 +26,7 @@ export default class Helper {
   }
 
   static switchAmount = (currency, ...prices) => {
-    console.log(prices);
-    console.log(currency);
     const x = prices[0].filter(price => price.currency === currency ? price.amount : 0 )
-    console.log(x);
     return x[0].amount;
   }
 

@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 
 export default class Attributes extends Component {
-    constructor(props) {
-      super(props);
-      this.state = { active: "" };
-    }
+    state = { active: "" };
   
     toggleClass = (item) => {   
       this.setState(() => {
@@ -13,15 +10,16 @@ export default class Attributes extends Component {
     };
   
     render() {
+      const { classNam, id, name, items, selectAttr } = this.props;
       return (
-        <div className={this.props.class}>
-          <h3 className="product__attr--title">{this.props.name}</h3>
+        <div className={classNam}>
+          <h3 className="product__attr--title">{name}</h3>
           <div className="product__attr--items">
-            {this.props.items.map((item, i) => {
+            {items.map((item, i) => {
               return (
                 <div key={i} style={ item === this.state.active ? { background: "#333", color: "white" } : null}
                   className="product__attr--item"
-                  onClick={(e)=>{ this.toggleClass(item); this.props.selectAttr(this.props.id,item.value,this.props.name)}}
+                  onClick={(e)=>{ this.toggleClass(item); selectAttr(id,item.value,name)}}
                 >
                   {item.value}
                 </div>

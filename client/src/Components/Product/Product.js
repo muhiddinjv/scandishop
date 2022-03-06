@@ -53,7 +53,7 @@ class Product extends Component {
           </div>
           <Attributes 
             selectAttr={this.props.selectAttribute}
-            class={'product__attr2'} 
+            classNam={'product__attr2'} 
             name={p.attributes[1].name} 
             items={p.attributes[1].items} 
             id={p.id}
@@ -64,7 +64,7 @@ class Product extends Component {
       return (
         <Attributes 
           selectAttr={this.props.selectAttribute}
-          class={'product__attr1'} 
+          classNam={'product__attr1'} 
           name={p.attributes[0].name} 
           items={p.attributes[0].items}
           id={p.id}

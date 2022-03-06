@@ -8,10 +8,7 @@ import Helper from "../../Helpers/Helper";
 import "./Product.scss";
 
 class Product extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { border: "" };
-  }
+  state = { border: "" };
 
   toggleBorder = (item) => {
     this.setState(() => {
@@ -39,8 +36,12 @@ class Product extends Component {
   }
 
   createAttributes = () => {
-    const p = this.props.products[0];
-    console.log(p);
+    const { products, selectAttribute } = this.props;
+    const p = products[0];
+    console.log('product-comp: ',p.attributes);
+    // ps-5 & xbox: color > capacity
+    // iphone: capacity > color
+    // imac: capacity > usb > touch
 
     if (p.attributes.length > 1) {
       return (
@@ -52,7 +53,7 @@ class Product extends Component {
             </div>
           </div>
           <Attributes 
-            selectAttr={this.props.selectAttribute}
+            selectAttr={selectAttribute}
             classNam={'product__attr2'} 
             name={p.attributes[1].name} 
             items={p.attributes[1].items} 
@@ -63,7 +64,7 @@ class Product extends Component {
     } else {
       return (
         <Attributes 
-          selectAttr={this.props.selectAttribute}
+          selectAttr={selectAttribute}
           classNam={'product__attr1'} 
           name={p.attributes[0].name} 
           items={p.attributes[0].items}

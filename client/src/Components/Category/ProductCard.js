@@ -6,28 +6,12 @@ import { ReactComponent as EmptyCart } from "../../Assets/icons/cart-white.svg";
 
 export default class ProductCard extends Component {
   state = { display: "none" }
-  // this.mouseEnter = this.mouseEnter.bind(this);
-  // this.mouseLeave = this.mouseLeave.bind(this);
-
-  mouseEnter = () => {
-    this.setState(() => ({
-      display: "block",
-    }));
-  };
-
-  mouseLeave = () => {
-    this.setState(() => ({
-      display: "none",
-    }));
-  };
 
   render() {
     const { product, selCurrency, onAddToCart, selectProduct } = this.props;
     return (
       <li
         className="category__product--card"
-        onMouseOver={this.mouseEnter.bind(this)}
-        onMouseOut={this.mouseLeave.bind(this)}
       >
         <div className="category__product--image-wrapper">
           <NavLink to="/product">
@@ -40,8 +24,7 @@ export default class ProductCard extends Component {
           </NavLink>
           <div
             onClick={() => onAddToCart(product.id)}
-            className="category__product--cart"
-            style={{ display: this.state.display }}
+            className="category__product--cart show-cart"
           >
             <NavLink to="/cart">
               <EmptyCart />

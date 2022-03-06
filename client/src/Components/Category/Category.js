@@ -7,21 +7,16 @@ class Category extends Component {
     this.props.addToCart(id);
   };
 
-  // spaceEvenly = () => {
-  //   const length = this.props.category.products?.length
-  //   if (length) return length === 2 ? 'flex-start' :'space-evenly';
-  // }
-
   render() {
     const { category, selCurrency } = this.props;
-    const spaceEvenly = category.products?.length === 2 ? 'flex-start' :'space-evenly';
+    console.log(category);
 
     return (
       <div className="category">
         <div className="category__header">
           <h1 className="category__name">{category.name}</h1>
         </div>
-        <ul className="category__product" style={{justifyContent: spaceEvenly}}>
+        <ul className="category__product">
           {category.products?.map((product, i) => {
             return (
               <ProductCard

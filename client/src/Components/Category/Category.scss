@@ -18,14 +18,13 @@
         margin: 0 1.5rem;
         display: flex;
         flex-wrap: wrap;
-        // justify-content: space-evenly;
         // display: grid;
-        // grid-template-columns: repeat(3, 1fr);
         // grid-gap: 5rem;
+        // grid-template-columns: repeat(3, 1fr);
         
         &--card{
             border: 1px solid #999;
-            margin-right: 2.7rem;
+            margin-right: 3rem;
             margin-bottom: 5.5rem;
             padding: 1rem;
             padding-bottom: 2rem;
@@ -33,6 +32,10 @@
 
             &:hover{
                 box-shadow: 0 0 10px 0.5px rgba(0, 0, 0, 0.2);
+
+                .show-cart{
+                    display: block;
+                }
             }
         }
 
@@ -52,8 +55,9 @@
             border-radius: 50%;
             padding: 1rem;
             position: absolute;
+            display: none;
             top: 315px;
-            left: 295px;
+            left: 295px
         }
 
         &--price{

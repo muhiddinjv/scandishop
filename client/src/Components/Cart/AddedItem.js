@@ -18,20 +18,23 @@ class AddedItem extends Component {
   }
 
   handleAttribute = (added) => {
+    console.log('added: ',added.attributes.length);
     const ind = added.attributes.length > 1 ? 1 : 0;
-    return (
-      <>
-        {added.attributes[ind].items.map((attribute, index) => {
-          if (attribute.value.includes("#")) {
-            // eslint-disable-next-line no-lone-blocks
-            return (<div key={index} className="attr--item" style={{background: attribute.value,}}/>);
-          } else {
-            return (<div key={index} className={`attr--item ${Helper.addActiveClass(attribute,added.attributes[ind])}`}>
-                {attribute.value}</div>)
-          }
-        })}
-      </>
-    );
+    if (added.attributes.length){
+      return (
+        <>
+          {added.attributes[ind].items.map((attribute, index) => {
+            if (attribute.value.includes("#")) {
+              // eslint-disable-next-line no-lone-blocks
+              return (<div key={index} className="attr--item" style={{background: attribute.value,}}/>);
+            } else {
+              return (<div key={index} className={`attr--item ${Helper.addActiveClass(attribute,added.attributes[ind])}`}>
+                  {attribute.value}</div>)
+            }
+          })}
+        </>
+      );
+    }
   }
 
   createAttributes(item) {        

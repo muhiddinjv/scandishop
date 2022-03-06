@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class SizeCapacity extends Component {
+export default class Attributes extends Component {
     constructor(props) {
       super(props);
       this.state = { active: "" };

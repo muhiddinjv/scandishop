@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import LOAD_QUERY from "../Graphql/Query";
-import { addToCart, setData } from '../Redux/Actions';
+import { addToCart, setReduxData } from '../Redux/Actions';
 import ErrorBoundary from "./ErrorBoundary";
 
 import { Navbar, Category, Product, Cart } from '../Components'
@@ -13,7 +13,7 @@ class App extends Component {
   componentDidMount() {
     // setTimeout(() => {
       this.changeCategory('tech');
-    // });     
+    // },500);     
   }
 
   changeCategory = async (title) => {
@@ -28,7 +28,7 @@ class App extends Component {
     const all = await response.json();
     this.setState({category: all.data.category})
     this.setState({currencies: all.data.currencies})
-    this.props.setData(all.data)
+    this.props.setReduxData(all.data)
   };
 
   selectProduct = (productId) => {
@@ -40,7 +40,7 @@ class App extends Component {
   render() {
     const { currencies, category, selectedProduct } = this.state;
     const { addedItems, addToCart } = this.props;
-    // console.log('state: ',this.state.category);
+
     const quantity = addedItems.map(x=>x.quantity).reduce((sum, a) => sum + a, 0);
     return (
       <main className="app">
@@ -78,7 +78,7 @@ const mapStateToProps = (state)=>{
 const mapDispatchToProps= (dispatch)=>{
   return{
     addToCart: (id)=>{dispatch(addToCart(id))},
-    setData: (items)=>{dispatch(setData(items))},
+    setReduxData: (items)=>{dispatch(setReduxData(items))},
   }
 }
 

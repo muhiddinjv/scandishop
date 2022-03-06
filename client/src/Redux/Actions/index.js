@@ -1,8 +1,8 @@
 // Action creators (customers with forms)
 
-export const setData = (items) => {  
+export const setReduxData = (items) => {  
   // returns action (form to give to departments)  
-  return {type: "SET_DATA",items};
+  return {type: "SET_REDUX_DATA",items};
 };
 
 export const selectCurrency = (currency) => {

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { selectAttribute } from "../../Redux/Actions";
 import ProductSlider from "./ProductSlider";
-import SizeCapacity from "./SizeCapacity";
+import Attributes from "./Attributes";
 import Helper from "../../Helpers/Helper";
 import "./Product.scss";
 
@@ -40,6 +40,7 @@ class Product extends Component {
 
   createAttributes = () => {
     const p = this.props.products[0];
+    console.log(p);
 
     if (p.attributes.length > 1) {
       return (
@@ -50,7 +51,7 @@ class Product extends Component {
               {p.attributes[0].items.map((item) => this.roundBorder(item, p))}
             </div>
           </div>
-          <SizeCapacity 
+          <Attributes 
             selectAttr={this.props.selectAttribute}
             class={'product__attr2'} 
             name={p.attributes[1].name} 
@@ -61,7 +62,7 @@ class Product extends Component {
       );
     } else {
       return (
-        <SizeCapacity 
+        <Attributes 
           selectAttr={this.props.selectAttribute}
           class={'product__attr1'} 
           name={p.attributes[0].name} 

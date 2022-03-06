@@ -23,7 +23,7 @@ const cartReducer = (state = initState, action) => {
     return { addedItem, price, newItems };
   };
 
-  if (action.type === "SET_DATA") {
+  if (action.type === "SET_REDUX_DATA") {
     return {...state, items: action.items.category.products};
   }
 

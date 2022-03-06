@@ -5,15 +5,17 @@ import "./Category.scss";
 import { ReactComponent as EmptyCart } from "../../Assets/icons/cart-white.svg";
 
 export default class ProductCard extends Component {
-  state = { display: "none" };
+  state = { display: "none" }
+  // this.mouseEnter = this.mouseEnter.bind(this);
+  // this.mouseLeave = this.mouseLeave.bind(this);
 
-  mouseEnter = () => () => {
+  mouseEnter = () => {
     this.setState(() => ({
       display: "block",
     }));
   };
 
-  mouseLeave = () => () => {
+  mouseLeave = () => {
     this.setState(() => ({
       display: "none",
     }));

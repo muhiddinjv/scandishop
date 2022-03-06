@@ -19,7 +19,7 @@ export default class Attributes extends Component {
               return (
                 <div key={i} style={ item === this.state.active ? { background: "#333", color: "white" } : null}
                   className="product__attr--item"
-                  onClick={(e)=>{ this.toggleClass(item); selectAttr(id,item.value,name)}}
+                  onClick={()=>{ this.toggleClass(item); selectAttr(id,item.value,name)}}
                 >
                   {item.value}
                 </div>

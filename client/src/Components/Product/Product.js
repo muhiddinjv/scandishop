@@ -38,7 +38,7 @@ class Product extends Component {
   createAttributes = () => {
     const { products, selectAttribute } = this.props;
     const p = products[0];
-    console.log('product-comp: ',p.attributes);
+    // console.log('product-comp: ',p.attributes);
     // ps-5 & xbox: color > capacity
     // iphone: capacity > color
     // imac: capacity > usb > touch

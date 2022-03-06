@@ -18,9 +18,9 @@ class AddedItem extends Component {
   }
 
   handleAttribute = (added) => {
-    console.log('added: ',added.attributes.length);
+    // console.log('added: ',added.attributes.length);
     const ind = added.attributes.length > 1 ? 1 : 0;
-    if (added.attributes.length){
+    // if (added.attributes.length){
       return (
         <>
           {added.attributes[ind].items.map((attribute, index) => {
@@ -34,7 +34,7 @@ class AddedItem extends Component {
           })}
         </>
       );
-    }
+    // }
   }
 
   createAttributes(item) {        

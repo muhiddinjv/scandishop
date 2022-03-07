@@ -1,14 +1,20 @@
 @import "../../App/Base.scss";
 
+
+
 .product {
   font-family: "Raleway-Regular", sans-serif;
   color: #333;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 9rem 5.5rem 0 5.5rem;
-  // border: 1px solid #999;
+  padding: 9rem 5.5rem 0 5.5rem;  
 
+  .active{
+    background: #333;
+    color: white;
+  }
+  
   &__info {
     // border: 1px solid #999;
     width: 32.5rem;
@@ -31,7 +37,7 @@
 
   &__attr {
     text-transform: uppercase;
-
+    
     &--title {
       font-size: 2rem;
     }
@@ -40,7 +46,7 @@
       display: flex;
       margin-right: 0.4rem;
     }
-
+    
     &--item {
       display: flex;
       border: 1px solid #999;
@@ -52,6 +58,8 @@
       font-size: 2rem;
       cursor: pointer;
       transition: 0.3s;
+
+      
       
       &:hover{
           background:#444;
@@ -93,5 +101,7 @@
     line-height: 1.8;
     height: 30rem; 
     overflow-y: auto;
+    border: 1px solid red;
   }
 }
+

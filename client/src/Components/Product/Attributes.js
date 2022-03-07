@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import Helper from "../../Helpers/Helper";
 
 export default class Attributes extends Component {
     state = { active: "" };
@@ -15,10 +16,10 @@ export default class Attributes extends Component {
         <div className={classNam}>
           <h3 className="product__attr--title">{name}</h3>
           <div className="product__attr--items">
-            {items?.map((item, i) => {
+            {items?.map((item, index) => {
               return (
-                <div key={i} style={ item === this.state.active ? { background: "#333", color: "white" } : null}
-                  className="product__attr--item"
+                <div key={index}
+                  className={`product__attr--item ${item === this.state.active && 'active'}`}
                   onClick={()=>{ this.toggleClass(item); selectAttr(id,item.value,name)}}
                 >
                   {item.value}

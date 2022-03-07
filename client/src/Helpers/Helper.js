@@ -35,9 +35,9 @@ export default class Helper {
     if (attribute.selected === item.value) return 'active';  
   }
 
-  static setBorderRadius = (attribute, index, item) => {
+  static setBorderRadius = (attribute, index, item, klassName) => {
     if (attribute.value.includes("#")) { 
-      return (<div key={index} className="attr--item"
+      return (<div key={index} className={klassName}
           style={{ background: attribute.value, borderRadius: this.addActiveClass(attribute,item.attributes[0]) }}
         />
       );

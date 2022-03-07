@@ -16,19 +16,16 @@ class Product extends Component {
     });
   };
 
-  roundBorder = (item, p) => {
-    if (item.value.includes("#")) {
+  roundBorder = (attribute, p) => {
+    if (attribute.value.includes("#")) {
       return (
-        <div
-          key={item.value}
-          className="product__attr--item color"
-          style={{
-            background: item.value,
-            borderRadius: item === this.state.border && "25%",
+        <div key={attribute.value}
+          className="product__attr--item"
+          style={{ background: attribute.value,
+          borderRadius: attribute === this.state.border && "25%",
           }}
-          onClick={() => {
-            this.toggleBorder(item);
-            this.props.selectAttribute(p.id, item.value, p.attributes[0].name);
+          onClick={() => { this.toggleBorder(attribute);
+            this.props.selectAttribute(p.id, attribute.value, p.attributes[0].name);
           }}
         />
       );
@@ -38,41 +35,48 @@ class Product extends Component {
   createAttributes = () => {
     const { products, selectAttribute } = this.props;
     const p = products[0];
-    console.log('product-comp: ',p.attributes);
+    console.clear();
+    console.log('attrs: ',p.attributes);
+    console.log('?. ',p?.attributes[2]);
     // air-pods & air-tags attributes = []
+    // Nike & shirt: size = capacity = usb = touch
     // ps-5 & xbox: color > capacity
     // iphone 12: capacity > color
     // iMac: capacity > usb > touch
+    // 1) size,capacity,usb,touch: black
+    // 2) color: rounded corner
 
-    if (p.attributes.length > 1) {
       return (
         <div className="product__attrs">
           <div className="product__attr1">
-            <h3 className="product__attr--title">{p.attributes[0].name}</h3>
+            <h3 className="product__attr--title">{p.attributes[0]?.name}</h3>
             <div className="product__attr--items">
-              {p.attributes[0].items.map((item) => this.roundBorder(item, p))}
+              {p.attributes[0]?.items.map((attribute) => this.roundBorder(attribute, p))}
             </div>
           </div>
+          <Attributes
+            selectAttr={selectAttribute}
+            classNam={'product__attr1'} 
+            name={p.attributes[0]?.name} 
+            items={p.attributes[0]?.items}
+            id={p.id}
+          />
           <Attributes 
             selectAttr={selectAttribute}
             classNam={'product__attr2'} 
-            name={p.attributes[1].name} 
-            items={p.attributes[1].items} 
+            name={p.attributes[1]?.name} 
+            items={p.attributes[1]?.items} 
+            id={p.id}
+          />
+          <Attributes 
+            selectAttr={selectAttribute}
+            classNam={'product__attr2'} 
+            name={p.attributes[2]?.name} 
+            items={p.attributes[2]?.items} 
             id={p.id}
           />
         </div>
       );
-    } else {
-      return (
-        <Attributes 
-          selectAttr={selectAttribute}
-          classNam={'product__attr1'} 
-          name={p.attributes[0]?.name} 
-          items={p.attributes[0]?.items}
-          id={p.id}
-        />
-      );
-    }
   };
 
   handleAddToCart = (id) => {

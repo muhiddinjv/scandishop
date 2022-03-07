@@ -12,7 +12,7 @@ class App extends Component {
 
   componentDidMount() {
     // setTimeout(() => {
-      this.changeCategory('');
+      this.changeCategory('tech');
     // },500);     
   }
 

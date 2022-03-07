@@ -40,7 +40,7 @@ class AddedItem extends Component {
       <div className="attr1">
         <div className="attr--items">
           {item.attributes[0].items.map((attribute, index) => 
-            Helper.setBorderRadius(attribute, index, item)
+            Helper.setBorderRadius(attribute, index, item, 'attr--item')
           )}
         </div>
       </div>

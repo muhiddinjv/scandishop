@@ -28,7 +28,7 @@ class App extends Component {
     const all = await response.json();
     this.setState({category: all.data.category})
     this.setState({currencies: all.data.currencies})
-    this.setState({selectedProduct: [all.data.category.products[2]]})
+    this.setState({selectedProduct: [all.data.category.products[0]]})
     this.props.setReduxData(all.data)
   };
 

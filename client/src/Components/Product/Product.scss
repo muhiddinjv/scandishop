@@ -1,7 +1,5 @@
 @import "../../App/Base.scss";
 
-
-
 .product {
   font-family: "Raleway-Regular", sans-serif;
   color: #333;
@@ -13,6 +11,10 @@
   .active{
     background: #333;
     color: white;
+  }
+
+  .border{
+    border-radius: 25%;
   }
   
   &__info {
@@ -101,7 +103,8 @@
     line-height: 1.8;
     height: 30rem; 
     overflow-y: auto;
-    border: 1px solid red;
+    padding: 1rem;
+    // border: 1px solid #999;
   }
 }
 

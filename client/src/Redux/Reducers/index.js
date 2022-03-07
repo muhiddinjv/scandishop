@@ -41,7 +41,7 @@ const cartReducer = (state = initState, action) => {
 
     addedItem.attributes.filter(attr => attr.name === action.name ? attr.selected = action.attr : null)
     
-    console.clear();
+    // console.clear();
     console.log('action.attr: ',action.attr);
     console.log('action.name: ',action.name);
   }

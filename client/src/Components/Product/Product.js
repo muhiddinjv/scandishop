@@ -8,34 +8,11 @@ import Helper from "../../Helpers/Helper";
 import "./Product.scss";
 
 class Product extends Component {
-  state = { border: "" };
-
-  toggleBorder = (item) => {
-    this.setState(() => {
-      return { border: item };
-    });
-  };
-
-  roundBorder = (attribute, p) => {
-    if (attribute.value.includes("#")) {
-      return (
-        <div key={attribute.value}
-          className="product__attr--item"
-          style={{ background: attribute.value,
-          borderRadius: attribute === this.state.border && "25%",
-          }}
-          onClick={() => { this.toggleBorder(attribute);
-            this.props.selectAttribute(p.id, attribute.value, p.attributes[0].name);
-          }}
-        />
-      );
-    }
-  }
 
   createAttributes = () => {
     const { products, selectAttribute } = this.props;
     const p = products[0];
-    console.clear();
+    // console.clear();
     console.log('attrs: ',p.attributes);
     console.log('?. ',p?.attributes[2]);
     // air-pods & air-tags attributes = []
@@ -48,28 +25,22 @@ class Product extends Component {
 
       return (
         <div className="product__attrs">
-          <div className="product__attr1">
-            <h3 className="product__attr--title">{p.attributes[0]?.name}</h3>
-            <div className="product__attr--items">
-              {p.attributes[0]?.items.map((attribute) => this.roundBorder(attribute, p))}
-            </div>
-          </div>
           <Attributes
-            selectAttr={selectAttribute}
+            selectAttribute={selectAttribute}
             classNam={'product__attr1'} 
             name={p.attributes[0]?.name} 
             items={p.attributes[0]?.items}
             id={p.id}
           />
           <Attributes 
-            selectAttr={selectAttribute}
+            selectAttribute={selectAttribute}
             classNam={'product__attr2'} 
             name={p.attributes[1]?.name} 
             items={p.attributes[1]?.items} 
             id={p.id}
           />
           <Attributes 
-            selectAttr={selectAttribute}
+            selectAttribute={selectAttribute}
             classNam={'product__attr2'} 
             name={p.attributes[2]?.name} 
             items={p.attributes[2]?.items} 
@@ -110,7 +81,6 @@ class Product extends Component {
           >
             add to cart
           </NavLink>
-          {/* <textarea className="product__desc" id="description" cols="30" rows="10" defaultValue={p.description}/> */}
           <div className="product__desc"
             dangerouslySetInnerHTML={{ __html: p.description }}
           />
@@ -121,7 +91,7 @@ class Product extends Component {
     }
   }
 
-  render() {    
+  render() {   
     return (
       <div className="product">
         <ProductSlider images={this.props.images} products={this.props.products}/>

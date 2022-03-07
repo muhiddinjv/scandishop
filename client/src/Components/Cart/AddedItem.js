@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import Helper from "../../Helpers/Helper";
 import Slider from "./Slider";
+// import Attributes from '../Product/Attributes';
 import { removeItem, addQuantity, subtractQuantity} from '../../Redux/Actions';
 
 class AddedItem extends Component {
@@ -25,8 +26,7 @@ class AddedItem extends Component {
             if (attribute.value.includes("#")) {
               return (<div key={index} className="attr--item" style={{background: attribute.value}}/>);
             } else {
-              return (<div key={index} className={`attr--item ${Helper.addActiveClass(attribute,added.attributes[ind])}`}>
-                  {attribute.value}</div>)
+              return (<div key={index} className={`attr--item ${Helper.addActiveClass(attribute,added.attributes[ind])}`}>{attribute.value}</div>)
             }
           })}
         </>

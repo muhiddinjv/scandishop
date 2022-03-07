@@ -38,10 +38,11 @@ class Product extends Component {
   createAttributes = () => {
     const { products, selectAttribute } = this.props;
     const p = products[0];
-    // console.log('product-comp: ',p.attributes);
+    console.log('product-comp: ',p.attributes);
+    // air-pods & air-tags attributes = []
     // ps-5 & xbox: color > capacity
-    // iphone: capacity > color
-    // imac: capacity > usb > touch
+    // iphone 12: capacity > color
+    // iMac: capacity > usb > touch
 
     if (p.attributes.length > 1) {
       return (
@@ -66,8 +67,8 @@ class Product extends Component {
         <Attributes 
           selectAttr={selectAttribute}
           classNam={'product__attr1'} 
-          name={p.attributes[0].name} 
-          items={p.attributes[0].items}
+          name={p.attributes[0]?.name} 
+          items={p.attributes[0]?.items}
           id={p.id}
         />
       );
@@ -79,7 +80,7 @@ class Product extends Component {
   };
 
   product() {
-    const p = this.props.products[0];  
+    const p = this.props.products[0]; 
 
     if (p) {
       return (
@@ -105,10 +106,10 @@ class Product extends Component {
           >
             add to cart
           </NavLink>
-          <div
-            className="product__desc"
+          {/* <textarea className="product__desc" id="description" cols="30" rows="10" defaultValue={p.description}/> */}
+          <div className="product__desc"
             dangerouslySetInnerHTML={{ __html: p.description }}
-          ></div>
+          />
         </div>
       );
     } else {

@@ -15,7 +15,7 @@ export default class Attributes extends Component {
         <div className={classNam}>
           <h3 className="product__attr--title">{name}</h3>
           <div className="product__attr--items">
-            {items.map((item, i) => {
+            {items?.map((item, i) => {
               return (
                 <div key={i} style={ item === this.state.active ? { background: "#333", color: "white" } : null}
                   className="product__attr--item"

@@ -91,5 +91,7 @@
   &__desc {
     font-size: 1.6rem;
     line-height: 1.8;
+    height: 30rem; 
+    overflow-y: auto;
   }
 }

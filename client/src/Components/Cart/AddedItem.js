@@ -23,8 +23,7 @@ class AddedItem extends Component {
         <>
           {added.attributes[ind]?.items.map((attribute, index) => {
             if (attribute.value.includes("#")) {
-              // eslint-disable-next-line no-lone-blocks
-              return (<div key={index} className="attr--item" style={{background: attribute.value,}}/>);
+              return (<div key={index} className="attr--item" style={{background: attribute.value}}/>);
             } else {
               return (<div key={index} className={`attr--item ${Helper.addActiveClass(attribute,added.attributes[ind])}`}>
                   {attribute.value}</div>)

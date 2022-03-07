@@ -12,7 +12,7 @@ class App extends Component {
 
   componentDidMount() {
     // setTimeout(() => {
-      this.changeCategory('tech');
+      this.changeCategory('');
     // },500);     
   }
 
@@ -28,6 +28,7 @@ class App extends Component {
     const all = await response.json();
     this.setState({category: all.data.category})
     this.setState({currencies: all.data.currencies})
+    this.setState({selectedProduct: [all.data.category.products[2]]})
     this.props.setReduxData(all.data)
   };
 

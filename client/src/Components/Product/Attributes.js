@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-// import Helper from "../../Helpers/Helper";
+import { connect } from "react-redux";
+import { selectAttribute } from "../../Redux/Actions";
 
-export default class Attributes extends Component {
+class Attributes extends Component {
     state = { active: '' };
   
     toggleClass = (item) => {   
@@ -13,22 +14,22 @@ export default class Attributes extends Component {
     render() {
       const { classNam, id, name, items, selectAttribute } = this.props;
       return (
-        <div className={classNam}>
-          <h3 className="product__attr--title">{name}</h3>
-          <div className="product__attr--items">
+        <div >
+          <h3 className={`${classNam}--title`}>{name}</h3>
+          <div className={`${classNam}--items`}>
             {items?.map((item, index) => {
               if (item.value.includes("#")) { 
                 return (
                   <div key={index} 
                   style={{ background: item.value }}
                   onClick={()=>{this.toggleClass(item)}}
-                  className={`product__attr--item ${item === this.state.active && 'border'}`}
+                  className={`${classNam}--item ${item === this.state.active && 'border'}`}
                   />
                 );
               } else {
                 return (
                   <div key={index}
-                    className={`product__attr--item ${item === this.state.active && 'active'}`}
+                    className={`${classNam}--item ${item === this.state.active && 'active'}`}
                     onClick={()=>{this.toggleClass(item); selectAttribute(id,item.value,name)}}>
                     {item.value}
                   </div>
@@ -40,3 +41,7 @@ export default class Attributes extends Component {
       )
     }
   }
+
+  const mapStateToProps = () => { return {} };
+
+  export default connect(mapStateToProps, { selectAttribute })(Attributes);

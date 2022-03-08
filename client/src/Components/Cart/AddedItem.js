@@ -37,19 +37,15 @@ class AddedItem extends Component {
   createAttributes(item) {        
     if (item.attributes.length > 1) { 
     return <div className="attrs">
-      <div className="attr1">
         <div className="attr--items">
           {item.attributes[0].items.map((attribute, index) => 
             Helper.setBorderRadius(attribute, index, item, 'attr--item')
           )}
         </div>
-      </div>
 
-      <div className="attr2">
         <div className="attr--items">
           {this.handleAttribute(item)}
         </div>
-      </div>
     </div>;
     } else {
       return <div className="attr1">
@@ -64,6 +60,7 @@ class AddedItem extends Component {
     const items = this.props.addedItems;
     const currency = this.props.selCurrency; 
     // const quantity = this.props.qty;
+    console.log(items)
     
     const addedItems = items.length ? (
       items.map((item) => {        

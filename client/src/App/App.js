@@ -56,13 +56,11 @@ class App extends Component {
           <Routes>
             <Route exact path="/" element={
               <ErrorBoundary>
-                <Category category={category} addToCart={addToCart} selectProduct={this.selectProduct}
-/>
+                <Category category={category} addToCart={addToCart} selectProduct={this.selectProduct}/>
               </ErrorBoundary>} 
             />
             <Route path="/product" element={<Product 
-              products={selectedProduct} 
-              addToCart={addToCart} />} 
+              products={selectedProduct} />} 
             />
             <Route exact path="/cart/*" element={<Cart qty={quantity} />} />
           </Routes>

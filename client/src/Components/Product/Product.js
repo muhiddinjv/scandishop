@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from 'react-router-dom';
+import { addToCart } from '../../Redux/Actions';
 import ProductSlider from "./ProductSlider";
 import Attributes from "./Attributes";
 import Helper from "../../Helpers/Helper";
@@ -9,47 +10,15 @@ import "./Product.scss";
 class Product extends Component {
 
   createAttributes = () => {
-    const { products } = this.props;
-    const p = products[0];
-    console.clear();
-    console.log(products)
-    console.log('attrs: ',p.attributes);
-    console.log('?. ',p?.attributes[2]);
-    // air-pods & air-tags attributes = []
-    // Nike & shirt: size = capacity = usb = touch
-    // ps-5 & xbox: color > capacity
-    // iphone 12: capacity > color
-    // iMac: capacity > usb > touch
-    // 1) size,capacity,usb,touch: black
-    // 2) color: rounded corner
-
+    const p = this.props.products[0];
       return (
         <div className="product__attrs">
           {p.attributes.map((attribute, index) => {
             return <Attributes key={index}
-            classNam={'product__attr'} 
-            name={attribute?.name} 
-            items={attribute?.items}
+            attributeName={attribute?.name} 
+            attributes={attribute?.items}
             id={p.id}
           />})}
-          {/* <Attributes
-            classNam={'product__attr1'} 
-            name={p.attributes[0]?.name} 
-            items={p.attributes[0]?.items}
-            id={p.id}
-          />
-          <Attributes 
-            classNam={'product__attr2'} 
-            name={p.attributes[1]?.name} 
-            items={p.attributes[1]?.items} 
-            id={p.id}
-          />
-          <Attributes 
-            classNam={'product__attr2'} 
-            name={p.attributes[2]?.name} 
-            items={p.attributes[2]?.items} 
-            id={p.id}
-          /> */}
         </div>
       );
   };
@@ -110,4 +79,4 @@ const mapStateToProps = (state) => {
   return { images, selCurrency };
 };
 
-export default connect(mapStateToProps)(Product);
+export default connect(mapStateToProps, {addToCart})(Product);

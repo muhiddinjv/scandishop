@@ -8,14 +8,15 @@ const initState = {
 };  
 
 const cartReducer = (state = initState, action) => {
+  // console.log(state.items);
 
     const filterItem = (id) => {
       // handle items = products (jacket, sneakers, ps5)
     const addedItem = state.items.find((item) => item.id === id);
     const newItems = state.addedItems.filter((item) => id !== item.id);
 
-    // handle price amount (e.g. 144.69)
-    const priceNumbers = addedItem.prices.filter((price) =>
+    // handle price amount (e.g. 144.69) PROBLEM HERE
+    const priceNumbers = addedItem?.prices.filter((price) =>
       price.currency === state.selCurrency && price.amount
     );
 
@@ -32,6 +33,7 @@ const cartReducer = (state = initState, action) => {
   }
     
   if (action.type === "SELECT_CURRENCY") {
+    console.log(state.addedItems)
     return {...state, selCurrency: action.currency};
   }
 
@@ -42,16 +44,20 @@ const cartReducer = (state = initState, action) => {
     addedItem.attributes.filter(attr => attr.name === action.name ? attr.selected = action.attr : null)
     
     // console.clear();
-    console.log('action.attr: ',action.attr);
-    console.log('action.name: ',action.name);
+    // console.log('action.attr: ',action.attr);
+    // console.log('action.name: ',action.name);
   }
-
   if (action.type === "ADD_TO_CART") {
     const filtered = filterItem(action.id);
     const { price, addedItem } = filtered;
-
+    
     //check if the action id exists in the addedItems
     const existedItem = state.addedItems.find((item) => action.id === item.id);
+    // console.log(action.id);
+    // console.log(existedItem);
+    // console.log(addedItem);
+    console.log(addedItem);
+
     if (existedItem) {
       addedItem.quantity += 1;
       return {

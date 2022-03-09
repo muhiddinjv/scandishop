@@ -12,25 +12,25 @@ class Attributes extends Component {
     };
   
     render() {
-      const { classNam, id, name, items, selectAttribute } = this.props;
+      const { id, attributeName, attributes, selectAttribute } = this.props;
       return (
-        <div >
-          <h3 className={`${classNam}--title`}>{name}</h3>
-          <div className={`${classNam}--items`}>
-            {items?.map((item, index) => {
+        <div>
+          <h3 className="product__attr--title">{attributeName}</h3>
+          <div className="product__attr--items">
+            {attributes?.map((item, index) => {
               if (item.value.includes("#")) { 
                 return (
                   <div key={index} 
                   style={{ background: item.value }}
-                  onClick={()=>{this.toggleClass(item)}}
-                  className={`${classNam}--item ${item === this.state.active && 'border'}`}
+                  onClick={()=>{this.toggleClass(item); selectAttribute(id,item.value,attributeName)}}
+                  className={`product__attr--item ${item === this.state.active && 'border'}`}
                   />
                 );
               } else {
                 return (
                   <div key={index}
-                    className={`${classNam}--item ${item === this.state.active && 'active'}`}
-                    onClick={()=>{this.toggleClass(item); selectAttribute(id,item.value,name)}}>
+                    className={`product__attr--item ${item === this.state.active && 'active'}`}
+                    onClick={()=>{this.toggleClass(item); selectAttribute(id,item.value,attributeName)}}>
                     {item.value}
                   </div>
                 );

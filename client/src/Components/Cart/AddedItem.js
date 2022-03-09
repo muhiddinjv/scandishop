@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import Helper from "../../Helpers/Helper";
 import Slider from "./Slider";
-// import Attributes from '../Product/Attributes';
+import CartAttributes from './CartAttributes';
 import { removeItem, addQuantity, subtractQuantity} from '../../Redux/Actions';
 
 class AddedItem extends Component {
@@ -20,26 +20,27 @@ class AddedItem extends Component {
 
   handleAttribute = (added) => {
     const ind = added.attributes.length > 1 ? 1 : 0;
-      return (
-        <>
-          {added.attributes[ind]?.items.map((attribute, index) => {
-            if (attribute.value.includes("#")) {
-              return (<div key={index} className="attr--item" style={{background: attribute.value}}/>);
-            } else {
-              return (<div key={index} className={`attr--item ${Helper.addActiveClass(attribute,added.attributes[ind])}`}>{attribute.value}</div>)
-            }
-          })}
-        </>
-      );
-    // }
+    return (
+      <>
+        {added.attributes[ind]?.items.map((attribute, index) => {
+          if (attribute.value.includes("#")) {
+            return (<div key={index} className="attr--item" style={{background: attribute.value}}/>);
+          } else {
+            return (<div key={index} className={`attr--item ${Helper.addActiveClass(attribute,added.attributes[ind])}`}>{attribute.value}</div>)
+          }
+        })}
+      </>
+    );
   }
 
-  createAttributes(item) {        
+  createAttributes(item) {  
+    // console.clear();
+    // console.log(item.attributes);
     if (item.attributes.length > 1) { 
     return <div className="attrs">
         <div className="attr--items">
           {item.attributes[0].items.map((attribute, index) => 
-            Helper.setBorderRadius(attribute, index, item, 'attr--item')
+            Helper.setBorderRadius(attribute, index, item)
           )}
         </div>
 
@@ -49,9 +50,11 @@ class AddedItem extends Component {
     </div>;
     } else {
       return <div className="attr1">
-        <div className="attr--items">
-          {this.handleAttribute(item)}
-        </div>
+        {item.attributes.map((attribute, index) => {
+            return <CartAttributes key={index}
+            product={item}
+            attributes={attribute?.items}
+          />})}
       </div>
     }
   }
@@ -59,8 +62,6 @@ class AddedItem extends Component {
   render() {
     const items = this.props.addedItems;
     const currency = this.props.selCurrency; 
-    // const quantity = this.props.qty;
-    console.log(items)
     
     const addedItems = items.length ? (
       items.map((item) => {        

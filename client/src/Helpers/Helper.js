@@ -31,14 +31,14 @@ export default class Helper {
   }
 
   static addActiveClass = (item, attribute) => {
-    if (item.value.includes('#')) {if (attribute.selected === item.value) return '25%'} 
-    if (attribute.selected === item.value) return 'active';  
+    if (item.value.includes('#')) {if (attribute?.selected === item.value) return 'round-border'} 
+    if (attribute?.selected === item.value) return 'active';  
   }
 
-  static setBorderRadius = (attribute, index, item, classNam) => {
+  static setBorderRadius = (attribute, index, item) => {
     if (attribute.value.includes("#")) { 
-      return (<div key={index} className={classNam}
-          style={{ background: attribute.value, borderRadius: this.addActiveClass(attribute,item.attributes[0]) }}
+      return (<div key={index} className={`attr--item ${this.addActiveClass(attribute,item.attributes[0])}`}
+          style={{ background: attribute.value }}
         />
       );
     } 

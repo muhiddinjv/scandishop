@@ -8,9 +8,8 @@ const initState = {
 };  
 
 const cartReducer = (state = initState, action) => {
-  // console.log(state.items);
-
-    const filterItem = (id) => {
+  
+  const filterItem = (id) => {
       // handle items = products (jacket, sneakers, ps5)
     const addedItem = state.items.find((item) => item.id === id);
     const newItems = state.addedItems.filter((item) => id !== item.id);
@@ -33,7 +32,7 @@ const cartReducer = (state = initState, action) => {
   }
     
   if (action.type === "SELECT_CURRENCY") {
-    console.log(state.addedItems)
+    console.log(state.addedItems[0].attributes)
     return {...state, selCurrency: action.currency};
   }
 
@@ -42,6 +41,7 @@ const cartReducer = (state = initState, action) => {
     const { addedItem } = filtered;
 
     addedItem.attributes.filter(attr => attr.name === action.name ? attr.selected = action.attr : null)
+    addedItem.selectedAttribute = 'blue';
     
     // console.clear();
     // console.log('action.attr: ',action.attr);
@@ -56,7 +56,7 @@ const cartReducer = (state = initState, action) => {
     // console.log(action.id);
     // console.log(existedItem);
     // console.log(addedItem);
-    console.log(addedItem);
+    console.log('addedItem sel-attr: ',addedItem);
 
     if (existedItem) {
       addedItem.quantity += 1;

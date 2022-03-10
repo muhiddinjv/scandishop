@@ -42,7 +42,7 @@ class App extends Component {
     const { currencies, category, selectedProduct } = this.state;
     const { addedItems, addToCart } = this.props;
 
-    const quantity = addedItems.map(x=>x.quantity).reduce((sum, a) => sum + a, 0);
+    const quantity = addedItems?.map(x=>x.quantity).reduce((sum, a) => sum + a, 0);
     return (
       <main className="app">
         <ErrorBoundary>

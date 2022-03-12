@@ -4,6 +4,7 @@ import Helper from "../../Helpers/Helper";
 export default class CartAttributes extends Component {
     render() {
       const { attributes, product } = this.props;
+      // console.log('product :>> ', product);
       
       return (
         <div>

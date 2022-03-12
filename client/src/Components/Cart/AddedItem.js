@@ -64,10 +64,10 @@ class AddedItem extends Component {
     const currency = this.props.selCurrency; 
     
     const addedItems = items.length ? (
-      items.map((item) => {        
+      items.map((item,index) => {        
         const deleteButton = <button className="item--delete" onClick={()=>{this.handleRemove(item.id)}}>X</button>
         return (
-          <li className="item" key={item.id}>
+          <li className="item" key={index}>
             <div className="item--left">
               <div className="item--header">
                 <h5 className="item--brand">{item.brand}</h5>

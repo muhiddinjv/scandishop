@@ -1,26 +1,39 @@
 const initState = {
+  total: 0,
   items: [],
+  price: [],
+  category: '',
+  newItems: [],
+  addedItem: [],
   addedItems: [],
   selCurrency: "USD",
-  price: [],
-  total: 0,
-  category: ''
 };  
 
 const cartReducer = (state = initState, action) => {
   
   const filterItem = (id) => {
-      // handle items = products (jacket, sneakers, ps5)
+    // handle items = products (jacket, sneakers, ps5)
     const addedItem = state.items.find((item) => item.id === id);
     const newItems = state.addedItems.filter((item) => id !== item.id);
 
+    console.clear();
+    console.log('state.items :>> ', state.items);
+    console.log('addedItem in filterItem:>> ', addedItem);
     // handle price amount (e.g. 144.69) PROBLEM HERE
     const priceNumbers = addedItem?.prices.filter((price) =>
       price.currency === state.selCurrency && price.amount
     );
 
     const price = priceNumbers[0].amount;
-    return { addedItem, price, newItems };
+    return { ...state, addedItem, price, newItems };
+    // return { addedItem, price, newItems };
+
+    // return {
+    //   ...state,
+    //   addedItem: addedItem,
+    //   newItems: newItems,
+    //   price: price
+    // };
   };
 
   if (action.type === "SET_REDUX_DATA") {
@@ -32,7 +45,7 @@ const cartReducer = (state = initState, action) => {
   }
     
   if (action.type === "SELECT_CURRENCY") {
-    console.log(state.addedItems[0].attributes)
+    console.log(state.addedItems)
     return {...state, selCurrency: action.currency};
   }
 
@@ -41,31 +54,31 @@ const cartReducer = (state = initState, action) => {
     const { addedItem } = filtered;
 
     addedItem.attributes.filter(attr => attr.name === action.name ? attr.selected = action.attr : null)
-    addedItem.selectedAttribute = 'blue';
     
-    // console.clear();
+    console.clear();
     // console.log('action.attr: ',action.attr);
     // console.log('action.name: ',action.name);
+    console.log('addedItem.attributes :>> ', addedItem.attributes);
   }
+
   if (action.type === "ADD_TO_CART") {
     const filtered = filterItem(action.id);
     const { price, addedItem } = filtered;
-    
     //check if the action id exists in the addedItems
     const existedItem = state.addedItems.find((item) => action.id === item.id);
-    // console.log(action.id);
-    // console.log(existedItem);
-    // console.log(addedItem);
-    console.log('addedItem sel-attr: ',addedItem);
-
+    console.log('existedItem :>> ', existedItem === true);
     if (existedItem) {
+      console.log('addedItem.quantity :>> ', addedItem.quantity);
       addedItem.quantity += 1;
+      // debugger;
       return {
         ...state,
         total: state.total + price,
+        // addedItems: [...state.addedItems, addedItem],
       };
     } else {
       addedItem.quantity = 1;
+      console.log('addedItem.quantity :>> ', addedItem.quantity);
       //calculating the total
       const newTotal = state.total + price;
       return {

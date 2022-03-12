@@ -12,7 +12,7 @@ class App extends Component {
 
   componentDidMount() {
     // setTimeout(() => {
-      this.changeCategory('tech');
+      this.changeCategory('clothes');
     // },500);     
   }
 
@@ -37,19 +37,26 @@ class App extends Component {
     items.filter((p) => p.id === productId ? this.setState({ selectedProduct: [p] }) : <div className="loader"/>)   
   };
 
+  // onChangeCategory = (catName) => {
+  //   const { items } = this.props; console.log('catName :>> ', catName);
+  //   let x = items.filter(p => p.category === catName)
+  //   this.setState({category: x})
+  // }
+
   
   render() {
     const { currencies, category, selectedProduct } = this.state;
     const { addedItems, addToCart } = this.props;
 
     const quantity = addedItems?.map(x=>x.quantity).reduce((sum, a) => sum + a, 0);
+    // console.log(quantity);
     return (
       <main className="app">
         <ErrorBoundary>
           <Navbar
             changeCategory={this.changeCategory}
-            curr={currencies}
             products={category.products}
+            curr={currencies}
             qty={quantity}
           />
         </ErrorBoundary>

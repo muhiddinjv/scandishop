@@ -24,8 +24,8 @@
 - [ ] Hard to click on currencies in currency switcher, please make clickable area bigger
 - [ ] Categories should be ‘all’,'clothes' and ‘tech’ and should be listed all products
 - [ ] Not possible to add different product attributes to cart
-- [ ] Out of stock product logic is not implemented
 - [ ] Prefer to use PureComponent instead Component
+- [ ] Out of stock product logic is not implemented
 - [x] Prefer to use const instead let and var
 - [ ] Please use variable destructuring
 - [ ] Not added cart page

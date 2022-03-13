@@ -11,10 +11,20 @@ class Dropdown extends Component {
     this.dropContentRef = React.createRef();
     this.dropLabelRef = React.createRef();
     this.dropBtnRef = React.createRef();
+
+    this.state = {
+      currencies: '',
+    }
+  }
+
+  componentDidMount(){
+    setTimeout(() => {
+      this.setState({currencies: this.props.currencies})
+    }, 500);
   }
   
   createDropdownList() {
-    const {currencies} = this.props;
+    const {currencies} = this.state;
 
     if (currencies) {
       return currencies.map((currency) => (

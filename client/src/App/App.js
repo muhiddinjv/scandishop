@@ -12,22 +12,24 @@ state = { products:[], selectedProduct:[],};
 componentDidMount() {
   setTimeout(() => {
     this.setState({products: this.props.items}) 
+    // console.log('this.props.items :>> ', this.props.items[0]);
+    this.setState({selectedProduct: [this.props.items[0]]}) 
   },500);     
 }
 
   selectProduct = (productId) => {
-    const items = this.props.items;
+    const {items} = this.props;
     items.filter((p) => p.id === productId ? this.setState({ selectedProduct: [p] }) : <div className="loader"/>)   
   };
 
   changeCategory = (catName) => {
-    const products = this.props.items
+    const {items} = this.props;
 
     if (catName === 'all'){
-      products.name = catName;
-      this.setState({products: products})
+      items.name = catName;
+      this.setState({products: items})
     } else {
-      let category = products.filter(p => p.category === catName && p)
+      let category = items.filter(p => p.category === catName && p)
       category.name = catName;
       this.setState({products: category})
     }
@@ -45,7 +47,7 @@ componentDidMount() {
         <ErrorBoundary>
           <Navbar
             changeCategory={this.changeCategory}
-            qty={quantity}
+            quantity={quantity}
           />
         </ErrorBoundary>
           <Routes>

@@ -1,13 +1,32 @@
+import LOAD_QUERY from "../../Graphql/Query";
+
 const initState = {
   total: 0,
   items: [],
   price: [],
-  category: '',
-  newItems: [],
-  addedItem: [],
+  currencies: [],
   addedItems: [],
   selCurrency: "USD",
 };  
+
+const fetchData = () => {
+  fetch("http://localhost:4000/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      query: LOAD_QUERY,
+      variables: { input: { title: '' } },
+    }),
+  })
+    .then((res) => res.json())
+    .then((all) => {
+      all.data.category.products.map((ps) => initState.items.push(ps));
+      all.data.currencies.map((c) => initState.currencies.push(c));
+    })
+    .catch((error) => console.log(error));
+};
+
+fetchData();
 
 const cartReducer = (state = initState, action) => {
   
@@ -16,29 +35,14 @@ const cartReducer = (state = initState, action) => {
     const addedItem = state.items.find((item) => item.id === id);
     const newItems = state.addedItems.filter((item) => id !== item.id);
 
-    console.clear();
-    console.log('state.items :>> ', state.items);
-    console.log('addedItem in filterItem:>> ', addedItem);
     // handle price amount (e.g. 144.69) PROBLEM HERE
     const priceNumbers = addedItem?.prices.filter((price) =>
       price.currency === state.selCurrency && price.amount
     );
 
     const price = priceNumbers[0].amount;
-    return { ...state, addedItem, price, newItems };
-    // return { addedItem, price, newItems };
-
-    // return {
-    //   ...state,
-    //   addedItem: addedItem,
-    //   newItems: newItems,
-    //   price: price
-    // };
+    return { addedItem, price, newItems };
   };
-
-  if (action.type === "SET_REDUX_DATA") {
-    return {...state, items: action.items.category.products};
-  }
 
   if (action.type === "CHANGE_CATEGORY") {
     return {...state, category: action.categoryName};
@@ -54,11 +58,6 @@ const cartReducer = (state = initState, action) => {
     const { addedItem } = filtered;
 
     addedItem.attributes.filter(attr => attr.name === action.name ? attr.selected = action.attr : null)
-    
-    console.clear();
-    // console.log('action.attr: ',action.attr);
-    // console.log('action.name: ',action.name);
-    console.log('addedItem.attributes :>> ', addedItem.attributes);
   }
 
   if (action.type === "ADD_TO_CART") {
@@ -66,9 +65,7 @@ const cartReducer = (state = initState, action) => {
     const { price, addedItem } = filtered;
     //check if the action id exists in the addedItems
     const existedItem = state.addedItems.find((item) => action.id === item.id);
-    console.log('existedItem :>> ', existedItem === true);
     if (existedItem) {
-      console.log('addedItem.quantity :>> ', addedItem.quantity);
       addedItem.quantity += 1;
       // debugger;
       return {
@@ -78,7 +75,6 @@ const cartReducer = (state = initState, action) => {
       };
     } else {
       addedItem.quantity = 1;
-      console.log('addedItem.quantity :>> ', addedItem.quantity);
       //calculating the total
       const newTotal = state.total + price;
       return {

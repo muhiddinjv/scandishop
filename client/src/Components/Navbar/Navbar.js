@@ -22,7 +22,7 @@ export default class Navbar extends Component {
             <div>
                 <nav className='navbar'>
                 <ul className='navbar__nav'>
-                    <li className="navbar__nav--link" onClick={()=>this.props.changeCategory('')}>
+                    <li className="navbar__nav--link" onClick={()=>this.props.changeCategory('all')}>
                         <NavLink className="link" to="/">
                            all
                         </NavLink>

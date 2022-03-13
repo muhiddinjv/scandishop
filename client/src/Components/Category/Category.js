@@ -8,15 +8,15 @@ class Category extends Component {
   };
 
   render() {
-    const { category, selCurrency } = this.props;
-
+    const { products, selCurrency } = this.props;
+    
     return (
       <div className="category">
         <div className="category__header">
-          <h1 className="category__name">{category.name}</h1>
+          <h1 className="category__name">{products.name ? products.name : 'all'}</h1>
         </div>
         <ul className="category__product">
-          {category.products?.map((product, i) => {
+          {products.map((product, i) => {
             return (
               <ProductCard
                 key={i}

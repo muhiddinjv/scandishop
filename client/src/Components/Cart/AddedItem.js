@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import Helper from "../../Helpers/Helper";
 import Slider from "./Slider";
-import CartAttributes from './CartAttributes';
 import { removeItem, addQuantity, subtractQuantity} from '../../Redux/Actions';
 
 class AddedItem extends Component {
@@ -49,22 +48,17 @@ class AddedItem extends Component {
         </div>
     </div>;
     } else {
-      return <div className="attr1">
-        {item.attributes.map((attribute, index) => {
-            return <CartAttributes key={index}
-            product={item}
-            attributes={attribute?.items}
-          />})}
-      </div>
+      return <div className="attr--items">
+          {this.handleAttribute(item)}
+        </div>
     }
   }
   
   render() {
-    const items = this.props.addedItems;
-    const currency = this.props.selCurrency; 
+    const {sliderName, addedItems, selCurrency} = this.props;
     
-    const addedItems = items.length ? (
-      items.map((item,index) => {        
+    const addedItem = addedItems.length ? (
+      addedItems.map((item,index) => {        
         const deleteButton = <button className="item--delete" onClick={()=>{this.handleRemove(item.id)}}>X</button>
         return (
           <li className="item" key={index}>
@@ -74,8 +68,8 @@ class AddedItem extends Component {
                 <h5 className="item--name">{item.name}</h5>
               </div>
               <b className="item--price">
-                {Helper.switchCurrency(currency)}
-                {Helper.switchAmount(currency, item.prices)}
+                {Helper.switchCurrency(selCurrency)}
+                {Helper.switchAmount(selCurrency, item.prices)}
               </b>
               {this.createAttributes(item)}
             </div>
@@ -89,8 +83,8 @@ class AddedItem extends Component {
                 <div className="item--button" onClick={()=>{this.handleSubtractQuantity(item.id)}}>-</div>
               </div>
               <div className="item--slider">
-                <Slider sliderName={this.props.sliderName} slides={item.gallery} />
-                {this.props.sliderName === 'cart-slider' && deleteButton}
+                <Slider sliderName={sliderName} slides={item.gallery} />
+                {sliderName === 'cart-slider' && deleteButton}
               </div>
             </div>
 
@@ -101,7 +95,7 @@ class AddedItem extends Component {
       <p className="empty">The cart is empty</p>
     );
     return (
-      <>{addedItems}</>
+      <>{addedItem}</>
     )
   }
 }

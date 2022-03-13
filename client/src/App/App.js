@@ -7,11 +7,10 @@ import ErrorBoundary from "./ErrorBoundary";
 import { Navbar, Category, Product, Cart } from '../Components'
 
 class App extends Component {
-state = { currencies:[], products:[], selectedProduct:[],};
+state = { products:[], selectedProduct:[],};
 
 componentDidMount() {
   setTimeout(() => {
-    this.setState({currencies: this.props.currencies}) 
     this.setState({products: this.props.items}) 
   },500);     
 }
@@ -36,7 +35,7 @@ componentDidMount() {
 
   
   render() {
-    const { currencies, products, selectedProduct } = this.state;
+    const { products, selectedProduct } = this.state;
     const { addedItems, addToCart } = this.props;
 
     const quantity = addedItems?.map(x=>x.quantity).reduce((sum, a) => sum + a, 0);
@@ -46,8 +45,6 @@ componentDidMount() {
         <ErrorBoundary>
           <Navbar
             changeCategory={this.changeCategory}
-            products={products}
-            curr={currencies}
             qty={quantity}
           />
         </ErrorBoundary>
@@ -68,8 +65,8 @@ componentDidMount() {
 }
 
 const mapStateToProps = (state)=>{
-  const {items, category, addedItems, total} = state;
-  return {items, category, addedItems, total}
+  const {items, addedItems, total} = state;
+  return {items, addedItems, total}
   }
 
 const mapDispatchToProps= (dispatch)=>{

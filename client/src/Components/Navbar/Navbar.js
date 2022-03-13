@@ -17,7 +17,6 @@ export default class Navbar extends Component {
 
     render() {
         const quantity = this.props.qty;
-        
         return (
             <div>
                 <nav className='navbar'>
@@ -42,7 +41,7 @@ export default class Navbar extends Component {
                     <a href="https://github.com/muhiddinjv/scandishop" title="github-muhiddinjv" target="__blank"><Logo /></a>
                 </div>
                 <div className='navbar__actions'>
-                    <Dropdown state={this.props.curr} products={this.props.products}/>
+                    <Dropdown />
                     <div className="navbar__actions--cart">
                         <EmptyCart onClick={() => this.showOverlay()} className="navbar__actions--icon"/>
                         <span className="navbar__actions--qty">{quantity === 0 ? "" : quantity}</span>

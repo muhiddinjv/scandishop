@@ -14,7 +14,8 @@ class Dropdown extends Component {
   }
   
   createDropdownList() {
-    const currencies = this.props.state; //data received from server
+    const {currencies} = this.props;
+
     if (currencies) {
       return currencies.map((currency) => (
         <li className="dropdown__options" key={currency}>
@@ -31,8 +32,9 @@ class Dropdown extends Component {
   }
 
   changeCurrency = (currency) => {
+    const {selectCurrency, items} = this.props;
     this.dropBtnRef.current.classList.toggle("arrow-spin");    
-    this.props.selectCurrency(currency, this.props.products[0].id)  
+    selectCurrency(currency, items[0].id)  
     this.dropLabelRef.current.innerText = Helper.switchCurrency(currency);
     this.dropContentRef.current.classList.toggle("show");
   }
@@ -51,6 +53,9 @@ class Dropdown extends Component {
   }
 }
 
-const mapStateToProps = state => {return {}}
+const mapStateToProps = state => {
+  const {currencies, items} = state;
+  return {currencies, items}
+}
 
 export default connect(mapStateToProps,{selectCurrency})(Dropdown);

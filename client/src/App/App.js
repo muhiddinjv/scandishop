@@ -12,7 +12,6 @@ state = { products:[], selectedProduct:[],};
 componentDidMount() {
   setTimeout(() => {
     this.setState({products: this.props.items}) 
-    // console.log('this.props.items :>> ', this.props.items[0]);
     this.setState({selectedProduct: [this.props.items[0]]}) 
   },500);     
 }
@@ -38,7 +37,7 @@ componentDidMount() {
   
   render() {
     const { products, selectedProduct } = this.state;
-    const { addedItems, addToCart } = this.props;
+    const { addedItems } = this.props;
 
     const quantity = addedItems?.map(x=>x.quantity).reduce((sum, a) => sum + a, 0);
     // console.log(quantity);
@@ -53,7 +52,7 @@ componentDidMount() {
           <Routes>
             <Route exact path="/" element={
               <ErrorBoundary>
-                <Category products={products} addToCart={addToCart} selectProduct={this.selectProduct}/>
+                <Category products={products} selectProduct={this.selectProduct}/>
               </ErrorBoundary>} 
             />
             <Route path="/product" element={<Product 
@@ -71,10 +70,5 @@ const mapStateToProps = (state)=>{
   return {items, addedItems, total}
   }
 
-const mapDispatchToProps= (dispatch)=>{
-  return{
-    addToCart: (id)=>{dispatch(addToCart(id))},
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps)(App)

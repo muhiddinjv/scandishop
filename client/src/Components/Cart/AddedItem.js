@@ -105,12 +105,12 @@ const mapStateToProps = (state)=>{
     return{ addedItems, selCurrency }
   }
   
-  const mapDispatchToProps = (dispatch)=>{
-    return{
-        removeItem: (id)=>{dispatch(removeItem(id))},
-        addQuantity: (id)=>{dispatch(addQuantity(id))},
-        subtractQuantity: (id)=>{dispatch(subtractQuantity(id))},
-    }
-  }
+  // const mapDispatchToProps = (dispatch)=>{
+  //   return{
+  //       removeItem: (id)=>{dispatch(removeItem(id))},
+  //       addQuantity: (id)=>{dispatch(addQuantity(id))},
+  //       subtractQuantity: (id)=>{dispatch(subtractQuantity(id))},
+  //   }
+  // }
   
-  export default connect(mapStateToProps,mapDispatchToProps)(AddedItem)
+  export default connect(mapStateToProps,{removeItem, addQuantity, subtractQuantity})(AddedItem)

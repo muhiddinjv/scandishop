@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import { addToCart } from '../../Redux/Actions';
+import { connect } from 'react-redux';
 import Helper from "../../Helpers/Helper";
 import "./Category.scss";
 import { ReactComponent as EmptyCart } from "../../Assets/icons/cart-white.svg";
 
-export default class ProductCard extends Component {
+class ProductCard extends Component {
 
   render() {
-    const { product, selCurrency, onAddToCart, selectProduct } = this.props;
+    const { product, selCurrency, addToCart, selectProduct } = this.props;
     
     return (
       <li className="category__product--card">
@@ -20,7 +22,7 @@ export default class ProductCard extends Component {
               alt={product.name} />
           </NavLink>
 
-          <div onClick={() => onAddToCart(product.id)}
+          <div onClick={() => addToCart(product.id)}
             className="category__product--cart show-cart">
             <NavLink to="/cart">
               <EmptyCart />
@@ -42,3 +44,7 @@ export default class ProductCard extends Component {
     );
   }
 }
+
+const mapStateToProps = (state)=>{ return {}}
+
+export default connect(mapStateToProps, {addToCart})(ProductCard)

@@ -16,22 +16,23 @@ export default class Navbar extends Component {
     }
 
     render() {
-        const quantity = this.props.qty;
+        const {quantity, changeCategory} = this.props;
+        
         return (
             <div>
                 <nav className='navbar'>
                 <ul className='navbar__nav'>
-                    <li className="navbar__nav--link" onClick={()=>this.props.changeCategory('all')}>
+                    <li className="navbar__nav--link" onClick={()=>changeCategory('all')}>
                         <NavLink className="link" to="/">
                            all
                         </NavLink>
                     </li>
-                    <li className="navbar__nav--link" onClick={()=>this.props.changeCategory('clothes')}>
+                    <li className="navbar__nav--link" onClick={()=>changeCategory('clothes')}>
                         <NavLink className="link" to="/">
                            clothes
                         </NavLink>
                     </li>
-                    <li className="navbar__nav--link" onClick={()=>this.props.changeCategory('tech')}>
+                    <li className="navbar__nav--link" onClick={()=>changeCategory('tech')}>
                         <NavLink className="link" to="/">
                            tech
                         </NavLink>

@@ -4,22 +4,21 @@ import Helper from "../../Helpers/Helper";
 export default class CartAttributes extends Component {
     render() {
       const { attributes, product } = this.props;
-      // console.log('product :>> ', product);
-      
+
       return (
         <div>
           <div className="attr--items">
-            {attributes?.map((item, index) => {
-              if (item.value.includes("#")) { 
+            {attributes?.map((attribute, index) => {
+              if (attribute.value.includes("#")) { 
                 return (
-                  <div key={index} style={{ background: item.value }}
-                  className={`attr--item ${Helper.addActiveClass(item, product.attributes[index])}`}
+                  <div key={index} style={{ background: attribute.value }}
+                  className={`attr--item ${Helper.addActiveClass(product.attributes)}`}
                   />
                 );
               } else {
                 return (
-                  <div key={index} className={`attr--item ${Helper.addActiveClass(item, product.attributes[index])}`}>
-                    {item.value}
+                  <div key={index} className={`attr--item ${Helper.addActiveClass(product.attributes)}`}>
+                    {attribute.value}
                   </div>
                 );
               }

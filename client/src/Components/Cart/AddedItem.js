@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import Helper from "../../Helpers/Helper";
 import Slider from "./Slider";
+import CartAttributes from "./CartAttributes";
 import { removeItem, addQuantity, subtractQuantity} from '../../Redux/Actions';
 
 class AddedItem extends Component {
@@ -37,19 +38,28 @@ class AddedItem extends Component {
     // console.log(item.attributes);
     if (item.attributes.length > 1) { 
     return <div className="attrs">
-        <div className="attr--items">
+        {/* <div className="attr--items">
           {item.attributes[0].items.map((attribute, index) => 
             Helper.setBorderRadius(attribute, index, item)
           )}
-        </div>
+        </div> */}
 
         <div className="attr--items">
-          {this.handleAttribute(item)}
+          {item.attributes.map((attribute, index) => {
+            return <CartAttributes key={index}
+            product={item}
+            attributes={attribute?.items}
+          />})}
         </div>
     </div>;
     } else {
       return <div className="attr--items">
-          {this.handleAttribute(item)}
+          {/* {this.handleAttribute(item)} */}
+          {item.attributes.map((attribute, index) => {
+            return <CartAttributes key={index}
+            product={item}
+            attributes={attribute?.items}
+          />})}
         </div>
     }
   }
@@ -105,12 +115,4 @@ const mapStateToProps = (state)=>{
     return{ addedItems, selCurrency }
   }
   
-  // const mapDispatchToProps = (dispatch)=>{
-  //   return{
-  //       removeItem: (id)=>{dispatch(removeItem(id))},
-  //       addQuantity: (id)=>{dispatch(addQuantity(id))},
-  //       subtractQuantity: (id)=>{dispatch(subtractQuantity(id))},
-  //   }
-  // }
-  
-  export default connect(mapStateToProps,{removeItem, addQuantity, subtractQuantity})(AddedItem)
+export default connect(mapStateToProps,{removeItem, addQuantity, subtractQuantity})(AddedItem)

@@ -1,24 +1,23 @@
 import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
 import { connect } from 'react-redux';
-import { addToCart } from '../Redux/Actions';
 import ErrorBoundary from "./ErrorBoundary";
 
 import { Navbar, Category, Product, Cart } from '../Components'
 
 class App extends Component {
-state = { products:[], selectedProduct:[],};
+  state = { products:[], selectedProduct:[],};
 
-componentDidMount() {
-  setTimeout(() => {
-    this.setState({products: this.props.items}) 
-    this.setState({selectedProduct: [this.props.items[0]]}) 
-  },500);     
-}
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({products: this.props.items}) 
+      this.setState({selectedProduct: [this.props.items[0]]}) 
+    },500);     
+  }
 
   selectProduct = (productId) => {
     const {items} = this.props;
-    items.filter((p) => p.id === productId ? this.setState({ selectedProduct: [p] }) : <div className="loader"/>)   
+    items.filter((p) => p.id === productId && this.setState({ selectedProduct: [p] }))   
   };
 
   changeCategory = (category) => {
@@ -40,7 +39,7 @@ componentDidMount() {
     const { addedItems } = this.props;
 
     const quantity = addedItems?.map(x=>x.quantity).reduce((sum, a) => sum + a, 0);
-    // console.log(quantity);
+    
     return (
       <main className="app">
         <ErrorBoundary>

@@ -22,16 +22,16 @@ componentDidMount() {
     items.filter((p) => p.id === productId ? this.setState({ selectedProduct: [p] }) : <div className="loader"/>)   
   };
 
-  changeCategory = (catName) => {
+  changeCategory = (category) => {
     const {items} = this.props;
 
-    if (catName === 'all'){
-      items.name = catName;
+    if (category === 'all'){
+      items.category = category;
       this.setState({products: items})
     } else {
-      let category = items.filter(p => p.category === catName && p)
-      category.name = catName;
-      this.setState({products: category})
+      let products = items.filter(p => p.category === category && p)
+      products.category = category;
+      this.setState({products: products})
     }
   }
 

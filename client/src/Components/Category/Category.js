@@ -13,7 +13,7 @@ class Category extends Component {
     return (
       <div className="category">
         <div className="category__header">
-          <h1 className="category__name">{products.name}</h1>
+          <h1 className="category__name">{products.category}</h1>
         </div>
         <ul className="category__product">
           {products.map((product, i) => {

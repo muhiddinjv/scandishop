@@ -24,8 +24,7 @@ class Attributes extends Component {
             {attributeItems?.map((item, index) => {
               if (item.value.includes("#")) { 
                 return (
-                  <div key={index} 
-                  style={{ background: item.value }}
+                  <div key={index} style={{ background: item.value }}
                   className={`product__attr--item ${this.selectedAttribute(item, attributeName, attributes)}`}
                   />
                 );

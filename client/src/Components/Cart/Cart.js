@@ -7,14 +7,13 @@ import AddedItem from "./AddedItem";
 class Cart extends Component {
 
   render() {
-    const total = this.props.total;
-    const items = this.props.addedItems;
+    const {total, addedItems} = this.props;
     
     return (      
       <div className="cart">
-        <h1 className="page-name">cart </h1>
-        <ul className="items"><AddedItem sliderName='cart-slider' qty={this.props.qty}/></ul>
-        <div className="total">{items.length < 1 ? "" : `Total: ${Helper.switchCurrency(this.props.selCurrency)}${total.toFixed(2)}`}</div>
+        <h1 className="cart__page-name">cart </h1>
+        <ul className="cart__items"><AddedItem sliderName='cart-slider' qty={this.props.qty}/></ul>
+        <div className="cart__total">{addedItems.length < 1 ? "" : `Total: ${Helper.switchCurrency(this.props.selCurrency)}${total.toFixed(2)}`}</div>
       </div>
     );
   }

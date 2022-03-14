@@ -49,7 +49,6 @@ const cartReducer = (state = initState, action) => {
   }
     
   if (action.type === "SELECT_CURRENCY") {
-    console.log(state.addedItems)
     return {...state, selCurrency: action.currency};
   }
 

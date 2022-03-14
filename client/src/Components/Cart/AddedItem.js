@@ -35,16 +35,16 @@ class AddedItem extends Component {
 
   createAttributes = (product) => {
     return (
-      <div className="attrs">
+      <>
         {product.attributes.map((attribute, index) => {
           return <Attributes key={index}
             attributeName={attribute.name} 
             attributeItems={attribute.items}
             attributes={product.attributes}
-            classNam={"attr--items"}
+            componentName={"cart"}
             id={product.id}
         />})}
-      </div>
+      </>
     );
   };
 

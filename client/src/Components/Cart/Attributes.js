@@ -16,22 +16,22 @@ class Attributes extends Component {
     }
   
     render() {
-      const { attributeName, attributeItems, attributes } = this.props;
+      const { attributeName, attributeItems, attributes, componentName } = this.props;
       return (
         <div>
-          <h3 className="product__attr--title">{attributeName}</h3>
-          <div className="product__attr--items">
+          <h3 className={`${componentName}__attr--title`}>{attributeName}</h3>
+          <div className={`${componentName}__attr--items`}>
             {attributeItems?.map((item, index) => {
               if (item.value.includes("#")) { 
                 return (
                   <div key={index} style={{ background: item.value }}
-                  className={`product__attr--item ${this.selectedAttribute(item, attributeName, attributes)}`}
+                  className={`${componentName}__attr--item ${this.selectedAttribute(item, attributeName, attributes)}`}
                   />
                 );
               } else {
                 return (
                   <div key={index}
-                    className={`product__attr--item ${this.selectedAttribute(item, attributeName, attributes)}`}
+                    className={`${componentName}__attr--item ${this.selectedAttribute(item, attributeName, attributes)}`}
                     >
                     {item.value}
                   </div>

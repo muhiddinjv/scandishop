@@ -27,7 +27,7 @@ class ProductCard extends PureComponent {
           </NavLink>
 
           <div onClick={() => addToCart(product.id)}
-            className="category__product--cart show-cart">
+            className={`category__product--cart ${product.inStock && 'show-cart'}`}>
             <NavLink to="/cart">
               <EmptyCart />
             </NavLink>

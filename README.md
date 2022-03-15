@@ -20,12 +20,12 @@
 - [x] Ability to change the currency of the store to one of the available currencies
 
 ## Updated Details
-- [ ] Endpoint for that test was updated, please check and add changes to fetch latest endpoint
+- [ ] Add changes to fetch the latest (updated) endpoint
 - [x] Hard to click on currencies in currency switcher, please make clickable area bigger
 - [x] Categories should be ‘all’,'clothes' and ‘tech’ and should be listed all products
-- [ ] Not possible to add different product attributes to cart
-- [x] Prefer to use PureComponent instead Component
-- [x] Out of stock product logic is not implemented
-- [x] Prefer to use const instead let and var
-- [x] Please use variable destructuring
-- [x] Not added cart page
+- [ ] Add different product attributes to cart
+- [x] Use PureComponent instead Component
+- [x] Out of stock product logic is implemented
+- [x] Use const instead let and var
+- [x] Use variable destructuring
+- [x] Added cart page

@@ -7,12 +7,16 @@ import "./Category.scss";
 import { ReactComponent as EmptyCart } from "../../Assets/icons/cart-white.svg";
 
 class ProductCard extends Component {
+  outOfStock = (inStock) => {
+    return !inStock && <div className="out-of-stock">out of stock</div>
+  }
 
   render() {
     const { product, selCurrency, addToCart, selectProduct } = this.props;
     
     return (
       <li className="category__product--card">
+        {this.outOfStock(product.inStock)}
         <div className="category__product--image-wrapper">
 
           <NavLink to="/product">

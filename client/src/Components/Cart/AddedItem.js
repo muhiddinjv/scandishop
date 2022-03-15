@@ -38,10 +38,8 @@ class AddedItem extends Component {
       <>
         {product.attributes.map((attribute, index) => {
           return <Attributes key={index}
-            attributeName={attribute.name} 
-            attributeItems={attribute.items}
             attributes={product.attributes}
-            componentName={"cart"}
+            attribute={attribute} 
             id={product.id}
         />})}
       </>

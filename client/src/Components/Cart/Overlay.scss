@@ -4,6 +4,15 @@
   display: flex;
   justify-content: right;
   position:relative;
+
+  .active{
+    background: #333;
+    color: white;
+  }
+
+  .round-border{
+    border-radius: 25%;
+  }
   
   .background{
     top:0;left:0;
@@ -25,11 +34,6 @@
     height: fit-content;
     padding: 1rem 1.8rem 1.8rem 1.8rem;
     // transition: display 2s;
-  }
-
-  .active{
-    background: #333;
-    color: white;
   }
 
   .page-name {
@@ -92,6 +96,10 @@
       line-height: 2.2rem;
       border: 1px solid #999;
       cursor: pointer;
+      &:hover{
+        background:#444;;
+        color: white;
+      }
     }
 
     &--delete{
@@ -125,33 +133,26 @@
   .attr {
     text-transform: uppercase;
 
+    &--title{
+      font-size: 1.4rem;
+      margin: 2rem 0 0.5rem 0;
+    }
+
     &--items {
       display: flex;
       margin-right: 0.4rem;
-      margin-top: 2.8rem;
     }
 
     &--item {
-      cursor: pointer;
       display: flex;
       border: 1px solid #999;
       margin: 0.2rem 0.6rem 0 0;
       justify-content: center;
       align-items: center;
-      width: 3rem;
+      width: 3.8rem;
       height: 2.5rem;
-      font-size: 1.2rem;
-      transition: 0.3s;
-
-      &:hover {
-        background: #444;
-        color: white;
-      }
+      font-size: 1rem;
     }
-  }
-
-  .attr2{
-    margin-top: 1rem;
   }
 
   .total{

@@ -74,10 +74,14 @@
     &--button {
       color: $--c-text;
       font-size: 6rem;
-      padding: 0 1rem;
+      padding: 0 .5rem;
       line-height: 4.5rem;
       border: 1px solid #999;
       cursor: pointer;
+      &:hover{
+        background:#444;;
+        color: white;
+      }
     }
 
     &--delete{
@@ -108,7 +112,7 @@
     }
   }
 
-  &__attr {
+  .attr {
     text-transform: uppercase;
 
     &--title{
@@ -123,13 +127,13 @@
 
     &--item {
       display: flex;
+      justify-content: center;
       border: 1px solid #999;
       margin: 1rem 1rem 0 0;  
-      justify-content: center;
       align-items: center;
-      width: 6rem;
-      height: 4.5rem;
-      font-size: 1.6rem;
+      width: 5rem;
+      height: 4rem;
+      font-size: 1.5rem;
     }
   }
 

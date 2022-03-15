@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { NavLink } from "react-router-dom";
 import { addToCart } from '../../Redux/Actions';
 import { connect } from 'react-redux';
@@ -6,7 +6,7 @@ import Helper from "../../Helpers/Helper";
 import "./Category.scss";
 import { ReactComponent as EmptyCart } from "../../Assets/icons/cart-white.svg";
 
-class ProductCard extends Component {
+class ProductCard extends PureComponent {
   outOfStock = (inStock) => {
     return !inStock && <div className="out-of-stock">out of stock</div>
   }

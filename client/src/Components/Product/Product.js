@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { addToCart } from '../../Redux/Actions';
@@ -7,7 +7,7 @@ import Attributes from "./Attributes";
 import Helper from "../../Helpers/Helper";
 import "./Product.scss";
 
-class Product extends Component {
+class Product extends PureComponent {
 
   createAttributes = () => {
     const p = this.props.products[0];

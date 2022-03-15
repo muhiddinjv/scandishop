@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import "./OverlaySlider.scss";   
 import "./CartSlider.scss";   
 
-export default class Slider extends Component {
+export default class Slider extends PureComponent {
   constructor(props) {
     super(props);
     this.state = { 

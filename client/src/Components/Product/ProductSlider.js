@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import "./ProductSlider.scss";
 
-export default class ProductSlider extends Component {
+export default class ProductSlider extends PureComponent {
   constructor(props) {
     super(props);
     this.state = { selectedImage: '' };

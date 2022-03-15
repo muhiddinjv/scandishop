@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import ProductCard from "./ProductCard";
 
-class Category extends Component {
+class Category extends PureComponent {
   onAddToCart = (id) => {
     this.props.addToCart(id);
   };

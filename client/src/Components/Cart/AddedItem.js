@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from "react-redux";
 import Helper from "../../Helpers/Helper";
 import Slider from "./Slider";
 import Attributes from "./Attributes";
 import { removeItem, addQuantity, subtractQuantity} from '../../Redux/Actions';
 
-class AddedItem extends Component {
+class AddedItem extends PureComponent {
   handleRemove = (id)=>{
     this.props.removeItem(id);
   }

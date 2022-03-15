@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Dropdown, Overlay } from '../index'
 import './Navbar.scss';
 import { ReactComponent as Logo } from '../../Assets/icons/logo.svg';
 import { ReactComponent as EmptyCart } from '../../Assets/icons/empty-cart.svg';
 
-export default class Navbar extends Component {
+export default class Navbar extends PureComponent {
     constructor(props) {
     super(props);
     this.dropContentRef = React.createRef();

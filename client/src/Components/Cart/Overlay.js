@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import Helper from "../../Helpers/Helper";
 import AddedItem from "./AddedItem";
 import "./Overlay.scss";
 
-class Overlay extends Component {
+class Overlay extends PureComponent {
   render() {     
     const {selCurrency, total, quantity, showOverlay } = this.props;
 

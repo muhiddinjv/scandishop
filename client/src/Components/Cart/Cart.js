@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import "./Cart.scss";
 import Helper from "../../Helpers/Helper";
 import AddedItem from "./AddedItem";
 
-class Cart extends Component {
+class Cart extends PureComponent {
 
   render() {
     const {total, addedItems} = this.props;

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { selectAttribute } from "../../Redux/Actions";
 
-class Attributes extends Component {
+class Attributes extends PureComponent {
 
     selectedAttribute = (item, attributeName, attributes) => {
       for (const attr of attributes) {

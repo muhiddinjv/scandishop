@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { selectCurrency } from '../../Redux/Actions';
 import { connect } from 'react-redux';
 import Helper from '../../Helpers/Helper';
 import "./Dropdown.scss";
 
-class Dropdown extends Component {
+class Dropdown extends PureComponent {
   constructor(props) {
     super(props);
     this.dropListSignRef = React.createRef();

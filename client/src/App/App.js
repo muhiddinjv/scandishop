@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Routes, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import ErrorBoundary from "./ErrorBoundary";
 
 import { Navbar, Category, Product, Cart } from '../Components'
 
-class App extends Component {
+class App extends PureComponent {
   state = { products:[], selectedProduct:[],};
 
   componentDidMount() {

@@ -44,7 +44,9 @@ export default class Navbar extends Component {
                 <div className='navbar__actions'>
                     <Dropdown />
                     <div className="navbar__actions--cart">
-                        <EmptyCart onClick={() => this.showOverlay()} className="navbar__actions--icon"/>
+                        <NavLink className="link" to="/cart">
+                            <EmptyCart onClick={() => this.showOverlay()} className="navbar__actions--icon"/>
+                        </NavLink>
                         <span className="navbar__actions--qty">{quantity === 0 ? "" : quantity}</span>
                     </div>
                     

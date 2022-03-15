@@ -28,9 +28,9 @@ class Dropdown extends PureComponent {
 
     if (currencies) {
       return currencies.map((currency) => (
-        <li className="dropdown__options" key={currency}>
+        <li className="dropdown__options" key={currency} onClick={() =>{this.changeCurrency(currency)}}>
           <span className="dropdown__options--symbol" ref={this.dropListSignRef}>{Helper.switchCurrency(currency)}</span>
-          <span className="dropdown__options--currency" onClick={() =>{this.changeCurrency(currency)}}>{currency}</span>
+          <span className="dropdown__options--currency">{currency}</span>
         </li>
       ));
     }

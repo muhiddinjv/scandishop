@@ -21,11 +21,11 @@
 
 ## Updated Details
 - [ ] Endpoint for that test was updated, please check and add changes to fetch latest endpoint
-- [ ] Hard to click on currencies in currency switcher, please make clickable area bigger
+- [x] Hard to click on currencies in currency switcher, please make clickable area bigger
 - [x] Categories should be ‘all’,'clothes' and ‘tech’ and should be listed all products
 - [ ] Not possible to add different product attributes to cart
-- [ ] Prefer to use PureComponent instead Component
-- [ ] Out of stock product logic is not implemented
+- [x] Prefer to use PureComponent instead Component
+- [x] Out of stock product logic is not implemented
 - [x] Prefer to use const instead let and var
 - [x] Please use variable destructuring
-- [ ] Not added cart page
+- [x] Not added cart page

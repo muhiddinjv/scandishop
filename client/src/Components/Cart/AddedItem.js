@@ -18,21 +18,6 @@ class AddedItem extends Component {
     this.props.subtractQuantity(id);
   }
 
-  // handleAttribute = (added) => {
-  //   const ind = added.attributes.length > 1 ? 1 : 0;
-  //   return (
-  //     <>
-  //       {added.attributes[ind]?.items.map((attribute, index) => {
-  //         if (attribute.value.includes("#")) {
-  //           return (<div key={index} className="attr--item" style={{background: attribute.value}}/>);
-  //         } else {
-  //           return (<div key={index} className={`attr--item ${Helper.addActiveClass(attribute,added.attributes[ind])}`}>{attribute.value}</div>)
-  //         }
-  //       })}
-  //     </>
-  //   );
-  // }
-
   createAttributes = (product) => {
     return (
       <>
@@ -45,29 +30,6 @@ class AddedItem extends Component {
       </>
     );
   };
-
-  
-
-  // createAttributes(item) {  
-  //   // console.clear();
-  //   if (item.attributes.length > 1) { 
-  //   return <div className="attrs">
-  //       <div className="attr--items">
-  //         {item.attributes[0].items.map((attribute, index) => 
-  //           Helper.setBorderRadius(attribute, index, item)
-  //         )}
-  //       </div>
-
-  //       <div className="attr--items">
-  //         {this.handleAttribute(item)}
-  //       </div>
-  //   </div>;
-  //   } else {
-  //     return <div className="attr--items">
-  //         {this.handleAttribute(item)}
-  //       </div>
-  //   }
-  // }
   
   render() {
     const {sliderName, addedItems, selCurrency} = this.props;

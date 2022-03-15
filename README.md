@@ -21,8 +21,8 @@
 
 ## Updated Details
 - [ ] Add changes to fetch the latest (updated) endpoint
-- [x] Hard to click on currencies in currency switcher, please make clickable area bigger
-- [x] Categories should be ‘all’,'clothes' and ‘tech’ and should be listed all products
+- [x] Make the clickable area in currency switcher bigger
+- [x] All products in ‘all’,'clothes' and ‘tech’ are listed
 - [ ] Add different product attributes to cart
 - [x] Use PureComponent instead Component
 - [x] Out of stock product logic is implemented

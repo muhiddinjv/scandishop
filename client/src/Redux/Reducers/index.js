@@ -20,7 +20,7 @@ const fetchData = () => {
   })
     .then((res) => res.json())
     .then((all) => {
-      all.data.category.products.map((ps) => initState.items.push(ps));
+      all.data.category.products.map((p) => initState.items.push(p));
       all.data.currencies.map((c) => initState.currencies.push(c));
     })
     .catch((error) => console.log(error));
@@ -64,20 +64,73 @@ const cartReducer = (state = initState, action) => {
     const filtered = filterItem(action.id);
     const { price, addedItem } = filtered;
     //check if the action id exists in the addedItems
-    // const existedItem = state.addedItems.find((item) => action.id === item.id);
-    let attributeMatch = false;
 
-    for (const addItem of state.addedItems) {
-      for (const attribute of addItem.attributes) {
-        for (const item of attribute.items) {
-          if (addItem.id === action.id && item.value === attribute.selected){
-            attributeMatch = true;
-          }
-        }
-      }
-    }
+    const existedItem = state.addedItems.find((item) => action.id === item.id);
+    // let attributeMatch = false;
+    // for (const addItem of state.addedItems) {
+    //   for (const attribute of addItem.attributes) {
+    //     for (const item of attribute.items) {
+    //       if (addItem.id === action.id && item.value === attribute.selected){
+    //         attributeMatch = true;
+    //       }
+    //     }
+    //   }
+    // }
+    // state.addedItems.filter(addItem=> {
+    //   return addItem.attributes.some(attr => console.log('attr', attr))
+    // })
 
-    if (attributeMatch) {
+    /** 
+      * My method 
+      * * important info is highlighted
+      * ! Old method! do not use!
+      * ? should this method be exposed in the public API?
+      * TODO: refactor this method so that it conforms to the API
+      * @param myParam is the parameter for this method
+    **/
+   
+      //* important info
+      //! old method be careful
+      //? is it really necessary?
+      //TODO: refactor this part
+      //@param myParam 
+      //MORE THAN 3 SLASHES = ////CROSS OUT
+
+    // const posts = [
+    //   {
+    //     "categories": [
+    //       {
+    //         "title": "tag1"
+    //       },
+    //       {
+    //         "title": "tag2"
+    //       },
+    //       {
+    //         "title": "tag3"
+    //       }
+    //     ],
+    //     "title": "First post"
+    //   },
+    //   {
+    //     "categories": [
+    //       {
+    //         "title": "tag2"
+    //       },
+    //       {
+    //         "title": "tag3"
+    //       }
+    //     ],
+    //     "title": "Second Post"
+    //   }
+    // ];
+    
+    // const filter = "tag1";
+    
+    // const filtered = posts.filter(post => {
+    //   return post.categories.some(cat => cat.title === filter)
+    // });
+
+    if (existedItem) {
       addedItem.quantity += 1;
       return {
         ...state,
@@ -117,8 +170,6 @@ const cartReducer = (state = initState, action) => {
     addedItem.quantity += 1;
     const newTotal = state.total + price;
 
-    console.log("addedItem.attributes :>> ", addedItem.attributes);
-
     return { ...state, total: newTotal };
   }
 
@@ -146,3 +197,22 @@ const cartReducer = (state = initState, action) => {
 };
 
 export default cartReducer;
+
+
+// items: [
+//   {
+//     productId: 1,
+//     options: [
+//       {
+//         size: 41,
+//         color: 'white',
+//         count: 1
+//       },
+//       {
+//         size: 42,
+//         color: 'black',
+//         count: 1
+//       }
+//     ]
+//   }
+// ],

@@ -49,15 +49,6 @@ const cartReducer = (state = initState, action) => {
   }
 
   if (action.type === "SELECT_CURRENCY") {
-    let findDeep = (data, category) => {
-      return data.some((e) => {
-        if (e.category === category) return true;
-        else if (e.attributes) return findDeep(e.attributes, category);
-      });
-    };
-    
-    console.log(findDeep(state.addedItems, "clothes"));
-
     return { ...state, selCurrency: action.currency };
   }
 

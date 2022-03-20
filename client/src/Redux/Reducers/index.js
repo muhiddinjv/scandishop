@@ -2,12 +2,13 @@ import LOAD_QUERY from "../../Graphql/Query";
 
 const initState = {
   total: 0,
+  cart: {},
   items: [],
   price: [],
   currencies: [],
   addedItems: [],
+  selAttribute: [],
   selCurrency: "USD",
-  selAttribute: []
 };
 
 const fetchData = () => {
@@ -51,58 +52,81 @@ const cartReducer = (state = initState, action) => {
   if (action.type === "SELECT_CURRENCY") {
     return { ...state, selCurrency: action.currency };
   }
-
+  
   if (action.type === "ATTRIBUTE_SELECTED") {
     const filtered = filterItem(action.id);
     const { addedItem } = filtered;
+    
 
-    console.log('action.attr :>> ', action.attr);
+    /*
+    cart = {
+      '12': {
+        attrs: [
+          {
+            [action.name]: action.attr,
+            count: 0
+          }
+        ]
+      }
+    }
+    */
 
     addedItem.attributes.filter(
-      // (attr) => attr.name === action.name && state.selAttribute.push(action.attr)
       (attr) => attr.name === action.name && (attr.selected = action.attr)
-    );
-  }
+      );
+    
 
+    const copyCart = {...state.cart};
+    // const id = action.id;
+    // const name = action.name;
+    // const value = action.attr;
+    const { id, name, attr, index } = action;
+
+    console.log('index :>> ', index);
+
+    if(!copyCart[id]) {
+        copyCart[id]={
+          attrs: [{
+              id: 1,
+              [name]: attr,
+              count: 0
+            }]
+        };
+
+        return {
+          ...state,
+          cart: copyCart
+        };
+    } else {
+      let copyAttrs = [...copyCart[id].attrs];
+      const found = copyAttrs.find(item => item[name] === attr);
+      if (!found) {
+        copyAttrs = [...copyAttrs, {id: 1, [name]: attr, count: 0}]
+      }
+
+      copyCart[id].attrs = copyAttrs;
+
+      return {
+        ...state,
+        cart: copyCart
+      };
+    }
+  }    
+    
+    
   if (action.type === "ADD_TO_CART") {
     const filtered = filterItem(action.id);
     const { price, addedItem } = filtered;
-    //check if the action id exists in the addedItems
 
+    // console.clear(); 
+    console.log('state.cart :>> ', state.cart);
+
+    //check if the action id exists in the addedItems
     const existedItem = state.addedItems.find((item) => action.id === item.id);
 
-    let attributeMatch = false;
-    // let selectedAttribute = '';
-
-    // for (const addItem of state.addedItems) {
-    //   for (const attribute of addItem.attributes) {
-    //     for (const item of attribute.items) {
-    //       if (addItem.id === action.id && item.value === attribute.selected){
-    //         // selectedAttribute = attribute.selected;
-    //         attributeMatch = true;
-    //       }
-    //     }
-    //   }
-    // }
-
-    const filterAttributes = (addedItem) => {
-      if (addedItem.id === action.id && addedItem.value === addedItem.selected){
-        attributeMatch = true;
-        return
-      }
-      state.addedItems.forEach(item => {
-        console.log('item :>> ', item);
-        // this is RECURSION baby!
-        filterAttributes(item)
-      })
-    }
-
-    filterAttributes(state.addedItems);
-
-    console.log('attributeMatch :>> ', attributeMatch);
-
-    if (attributeMatch) {
-      addedItem.quantity += 1;
+    if (existedItem) {
+      addedItem.quantity += 1
+      
       return {
         ...state,
         total: state.total + price,
@@ -170,23 +194,6 @@ const cartReducer = (state = initState, action) => {
 
 export default cartReducer;
 
-// items: [
-//   {
-//     productId: 1,
-//     options: [
-//       {
-//         size: 41,
-//         color: 'white',
-//         count: 1
-//       },
-//       {
-//         size: 42,
-//         color: 'black',
-//         count: 1
-//       }
-//     ]
-//   }
-// ],
 
 // const treeData = {
 //   id: 1,
@@ -234,23 +241,23 @@ export default cartReducer;
 
 // console.log('updatedTreeData: ',updatedTreeData)
 
-const activityItems = [
-  { name: "Sunday", items: [{ name: "Gym", activity: "weights" }] },
-  {
-    name: "Monday",
-    items: [
-      { name: "Track", activity: "race" },
-      { name: "Work", activity: "meeting" },
-      {
-        name: "Swim",
-        items: [
-          { name: "Beach", activity: "scuba diving" },
-          { name: "Pool", activity: "back stroke" },
-        ],
-      },
-    ],
-  },
-];
+// const activityItems = [
+//   { name: "Sunday", items: [{ name: "Gym", activity: "weights" }] },
+//   {
+//     name: "Monday",
+//     items: [
+//       { name: "Track", activity: "race" },
+//       { name: "Work", activity: "meeting" },
+//       {
+//         name: "Swim",
+//         items: [
+//           { name: "Beach", activity: "scuba diving" },
+//           { name: "Pool", activity: "back stroke" },
+//         ],
+//       },
+//     ],
+//   },
+// ];
 
 // let findDeep = (data, activity) => {
 //   return data.some((e) => {
@@ -311,3 +318,32 @@ const activityItems = [
     // const filtered = posts.filter(post => {
     //   return post.categories.some(cat => cat.title === filter)
     // });
+
+// const findIndex = function (array, cb) {     
+//   if (array) {         
+//     for (let i = 0; i < array.length; i++) {             
+//       if (true === cb(array[i])) return i;         
+//     }    
+//   }     
+//   return -1; 
+// }
+
+// const someFunction = () => {
+//   const productId = action.product.id;
+//   const size = action.size;
+
+//   if (findIndex(state.cart, product => (product.id === productId && product.size === size)) !== -1) {
+//     const cart = state.cart.reduce((cartAcc, product) => {
+//         if (product.id === productId  && product.size === size) {
+//             cartAcc.push({ ...product, size: size, qty: parseInt(product.qty) 
+//               + parseInt(action.qty), sum: (product.discount ? product.salePrice : product.price) 
+//               * (parseInt(product.qty) + parseInt(action.qty)) }) // Increment qty
+//         } else {
+//             cartAcc.push(product)
+//         }
+//         return cartAcc
+//     }, [])
+
+//   return { ...state, cart }
+//   }
+// }

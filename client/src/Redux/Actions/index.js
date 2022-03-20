@@ -5,12 +5,12 @@ export const selectCurrency = (currency) => {
   return {type: "SELECT_CURRENCY",currency}
 };
 
-export const selectAttribute = (id,attr,name) => {  
-  return {type: "ATTRIBUTE_SELECTED",id,attr,name};
+export const selectAttribute = (id,attr,name,index) => {  
+  return {type: "ATTRIBUTE_SELECTED",id,attr,name,index};
 };
 
-export const addToCart = (id) => {
-  return {type: "ADD_TO_CART",id}};
+export const addToCart = (id, attr) => {
+  return {type: "ADD_TO_CART",id, attr}};
 
 export const removeItem = (id) => {  
   return {type: "REMOVE_ITEM",id};

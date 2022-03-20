@@ -23,12 +23,14 @@ class Product extends PureComponent {
       );
   };
 
-  handleAddToCart = (id) => {
-    this.props.addToCart(id);
+  handleAddToCart = (id, attrNames) => {
+    this.props.addToCart(id, attrNames);
   };
 
   product() {
     const p = this.props.products[0]; 
+    const attrNames = p?.attributes.map(attr => attr.name);
+    const { selCurrency } = this.props;
 
     if (p) {
       return (
@@ -41,18 +43,14 @@ class Product extends PureComponent {
           <div className="product__price">
             <h3 className="product__price--title">price</h3>
             <div className="product__price--amount">
-              {Helper.switchCurrency(this.props.selCurrency)}
-              {Helper.switchAmount(this.props.selCurrency, p.prices)}
+              {Helper.switchCurrency(selCurrency)}
+              {Helper.switchAmount(selCurrency, p.prices)}
             </div>
           </div>
-          <NavLink
-            to="/cart"
-            className="product__btn"
-            onClick={() => {
-              this.handleAddToCart(p.id);
-            }}
-          >
-            add to cart
+          <NavLink to="/cart">
+            <button onClick={() => {
+              this.handleAddToCart(p.id, attrNames);
+            }} className="product__btn" type="submit">add to cart</button>
           </NavLink>
           <div className="product__desc"
             dangerouslySetInnerHTML={{ __html: p.description }}
@@ -65,9 +63,10 @@ class Product extends PureComponent {
   }
 
   render() {   
+    const { images, products } = this.props;
     return (
       <div className="product">
-        <ProductSlider images={this.props.images} products={this.props.products}/>
+        <ProductSlider images={images} products={products}/>
         {this.product()}
       </div>
     );

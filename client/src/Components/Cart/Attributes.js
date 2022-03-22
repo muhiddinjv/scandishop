@@ -24,13 +24,13 @@ class Attributes extends PureComponent {
             {attribute.items?.map((item, index) => {
               if (item.value.includes("#")) { 
                 return (
-                  <div key={index} style={{ background: item.value }}
+                  <div key={index} id={index} style={{ background: item.value }}
                   className={`attr--item ${this.selectedAttribute(item, attribute.name, attributes)}`}
                   />
                 );
               } else {
                 return (
-                  <div key={index}
+                  <div key={index} id={index}
                     className={`attr--item ${this.selectedAttribute(item, attribute.name, attributes)}`}
                     >
                     {item.value}

@@ -2,7 +2,7 @@ import LOAD_QUERY from "../../Graphql/Query";
 
 const initState = {
   total: 0,
-  cart: {},
+  cart: [],
   items: [],
   price: [],
   currencies: [],
@@ -80,28 +80,65 @@ const cartReducer = (state = initState, action) => {
     // const id = action.id;
     // const name = action.name;
     // const value = action.attr;
-    const { id, name, attr, index } = action;
+    const { id, name, attr } = action;
+    console.clear();
+    console.log('id :>> ', id);
+    console.log('name :>> ', name);
+    console.log('attr :>> ', attr);
+    // console.log('index :>> ', index);
 
-    console.log('index :>> ', index);
+    // if(!copyCart[id]) {
+    //     copyCart[id]={
+    //       attrs: [{
+    //           id: index,
+    //           [name]: attr,
+    //           count: 0
+    //         }]
+    //     };
+
+    //     return {
+    //       ...state,
+    //       cart: copyCart
+    //     };
+    // } else {
+    //   let copyAttrs = [...copyCart[id].attrs];
+    //   const found = copyAttrs.find(item => item[name] === attr);
+
+    //   if (!found) {
+    //     copyAttrs = [...copyAttrs, {id: index, [name]: attr, count: 0}]
+    //   }
+
+    //   copyCart[id].attrs = copyAttrs;
+
+    //   return {
+    //     ...state,
+    //     cart: copyCart
+    //   };
+    // }
+    //find(1), every(all), some(true)
 
     if(!copyCart[id]) {
         copyCart[id]={
+          id: id,
+          count: 1,
           attrs: [{
-              id: 1,
-              [name]: attr,
-              count: 0
+              name: name,
+              value: attr,
             }]
-        };
-
+        }
+        
         return {
           ...state,
           cart: copyCart
         };
     } else {
       let copyAttrs = [...copyCart[id].attrs];
+      console.log('copyAttrs', copyCart[id])
+      
       const found = copyAttrs.find(item => item[name] === attr);
+
       if (!found) {
-        copyAttrs = [...copyAttrs, {id: 1, [name]: attr, count: 0}]
+        copyAttrs = [...copyAttrs, {name: name, value: attr}]
       }
 
       copyCart[id].attrs = copyAttrs;
@@ -111,14 +148,13 @@ const cartReducer = (state = initState, action) => {
         cart: copyCart
       };
     }
-  }    
+  }   
     
-    
+  
   if (action.type === "ADD_TO_CART") {
     const filtered = filterItem(action.id);
     const { price, addedItem } = filtered;
-
-    // console.clear(); 
+    
     console.log('state.cart :>> ', state.cart);
 
     //check if the action id exists in the addedItems
@@ -130,6 +166,8 @@ const cartReducer = (state = initState, action) => {
       return {
         ...state,
         total: state.total + price,
+        addedItems: [...state.addedItems, addedItem],
+
       };
     } else {
       addedItem.quantity = 1;
@@ -347,3 +385,21 @@ export default cartReducer;
 //   return { ...state, cart }
 //   }
 // }
+
+// const items = [
+//   {
+//     productId: 1,
+//     options: [
+//       {
+//         size: '41',
+//         color: 'white',
+//         count: 1
+//       },
+//       {
+//         size: '42',
+//         color: 'black',
+//         count: 1
+//       }
+//     ]
+//   }
+// ]

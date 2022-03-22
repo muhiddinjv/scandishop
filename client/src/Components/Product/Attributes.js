@@ -21,9 +21,9 @@ class Attributes extends PureComponent {
             {attributes?.map((item, index) => {
               if (item.value.includes("#")) { 
                 return (
-                  <div key={index} 
+                  <div key={index}
                   style={{ background: item.value }}
-                  onClick={()=>{this.toggleClass(item); selectAttribute(id,item.value,attributeName,index)}}
+                  onClick={()=>{this.toggleClass(item); selectAttribute(id,item.value,attributeName)}}
                   className={`product__attr--item ${item === this.state.active && 'border'}`}
                   /> 
                 );
@@ -31,7 +31,7 @@ class Attributes extends PureComponent {
                 return (
                   <div key={index}
                     className={`product__attr--item ${item === this.state.active && 'active'}`}
-                    onClick={()=>{this.toggleClass(item); selectAttribute(id,item.value,attributeName,index)}}>
+                    onClick={()=>{this.toggleClass(item); selectAttribute(id,item.value,attributeName)}}>
                     {item.value}
                   </div>
                   // <div key={index}>

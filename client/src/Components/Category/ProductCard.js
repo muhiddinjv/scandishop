@@ -15,7 +15,7 @@ class ProductCard extends PureComponent {
     const { product, selCurrency, addToCart, selectProduct } = this.props;
     
     return (
-      <li className={`category__product--card ${product.inStock && 'card-shadow'}`}>
+      <li className={`category__product--card ${product.inStock && 'hover-on'}`}>
         {this.outOfStock(product.inStock)}
         <div className="category__product--image-wrapper">
 

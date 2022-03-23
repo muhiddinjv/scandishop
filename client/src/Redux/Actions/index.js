@@ -6,11 +6,11 @@ export const selectCurrency = (currency) => {
 };
 
 export const selectAttribute = (id,attr,name) => {  
-  return {type: "ATTRIBUTE_SELECTED",id,attr,name};
+  return {type: "SELECT_ATTRIBUTE",id,attr,name};
 };
 
-export const addToCart = (id, attr) => {
-  return {type: "ADD_TO_CART",id, attr}};
+export const addToCart = (id, values) => {
+  return {type: "ADD_TO_CART",id, values}};
 
 export const removeItem = (id) => {  
   return {type: "REMOVE_ITEM",id};

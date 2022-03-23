@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { selectAttribute } from "../../Redux/Actions";
+import {withFormik} from 'formik'
 
 class Attributes extends PureComponent {
     state = { active: ''};
@@ -12,18 +13,22 @@ class Attributes extends PureComponent {
     };
   
     render() {
-      const { id, attributeName, attributes, selectAttribute } = this.props;
-      // console.log('attributes :>> ', attributes);
+      const { id, attribute, selectAttribute, setFieldValue } = this.props;
+      // console.log('this.props ', this.props)
       return (
         <div className="container">
-          <label className="product__attr--title">{attributeName}</label>
+          <label className="product__attr--title">{attribute.name}</label>
           <div className="product__attr--items">
-            {attributes?.map((item, index) => {
+            {(attribute?.items || [])?.map((item, index) => {
               if (item.value.includes("#")) { 
                 return (
                   <div key={index}
                   style={{ background: item.value }}
-                  onClick={()=>{this.toggleClass(item); selectAttribute(id,item.value,attributeName)}}
+                  onClick={()=>{
+                    this.toggleClass(item); 
+                    setFieldValue(attribute.name, item.value)
+                    // selectAttribute(id,item.value,attribute.name)
+                  }}
                   className={`product__attr--item ${item === this.state.active && 'border'}`}
                   /> 
                 );
@@ -31,13 +36,14 @@ class Attributes extends PureComponent {
                 return (
                   <div key={index}
                     className={`product__attr--item ${item === this.state.active && 'active'}`}
-                    onClick={()=>{this.toggleClass(item); selectAttribute(id,item.value,attributeName)}}>
+                    onClick={()=>{
+                      this.toggleClass(item); 
+                      setFieldValue(attribute.name, item.value)
+                      // selectAttribute(id,item.value,attribute.name)
+                    }}
+                    >
                     {item.value}
                   </div>
-                  // <div key={index}>
-                  //   <input type="radio"name="radio"/>
-                  //   <span onClick={()=>{this.toggleClass(item); selectAttribute(id,item.value,attributeName)}} className={`product__attr--item ${item === this.state.active && 'active'}`}>{item.value}</span>
-                  //  </div>
                 );
               }
             })}

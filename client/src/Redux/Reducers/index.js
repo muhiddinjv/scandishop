@@ -2,7 +2,7 @@ import LOAD_QUERY from "../../Graphql/Query";
 
 const initState = {
   total: 0,
-  cart: [],
+  cart:{},
   items: [],
   price: [],
   currencies: [],
@@ -53,27 +53,13 @@ const cartReducer = (state = initState, action) => {
     return { ...state, selCurrency: action.currency };
   }
   
-  if (action.type === "ATTRIBUTE_SELECTED") {
-    const filtered = filterItem(action.id);
-    const { addedItem } = filtered;
-    
+  if (action.type === "SELECT_ATTRIBUTE") {
+    // const filtered = filterItem(action.id);
+    // const { addedItem } = filtered;
 
-    /*
-    cart = {
-      '12': {
-        attrs: [
-          {
-            [action.name]: action.attr,
-            count: 0
-          }
-        ]
-      }
-    }
-    */
-
-    addedItem.attributes.filter(
-      (attr) => attr.name === action.name && (attr.selected = action.attr)
-      );
+    // addedItem.attributes.filter(
+    //   (attr) => attr.name === action.name && (attr.selected = action.attr)
+    //   );
     
 
     const copyCart = {...state.cart};
@@ -85,62 +71,27 @@ const cartReducer = (state = initState, action) => {
     console.log('id :>> ', id);
     console.log('name :>> ', name);
     console.log('attr :>> ', attr);
-    // console.log('index :>> ', index);
-
-    // if(!copyCart[id]) {
-    //     copyCart[id]={
-    //       attrs: [{
-    //           id: index,
-    //           [name]: attr,
-    //           count: 0
-    //         }]
-    //     };
-
-    //     return {
-    //       ...state,
-    //       cart: copyCart
-    //     };
-    // } else {
-    //   let copyAttrs = [...copyCart[id].attrs];
-    //   const found = copyAttrs.find(item => item[name] === attr);
-
-    //   if (!found) {
-    //     copyAttrs = [...copyAttrs, {id: index, [name]: attr, count: 0}]
-    //   }
-
-    //   copyCart[id].attrs = copyAttrs;
-
-    //   return {
-    //     ...state,
-    //     cart: copyCart
-    //   };
-    // }
-    //find(1), every(all), some(true)
-
+    
     if(!copyCart[id]) {
-        copyCart[id]={
-          id: id,
-          count: 1,
-          attrs: [{
-              name: name,
-              value: attr,
-            }]
-        }
-        
-        return {
-          ...state,
-          cart: copyCart
-        };
-    } else {
-      let copyAttrs = [...copyCart[id].attrs];
-      console.log('copyAttrs', copyCart[id])
+      copyCart[id]={
+        attrs: [{
+            [name]: attr,
+            count: 0
+          }]
+      };
       
+      return {
+        ...state,
+        cart: copyCart
+      };
+    } else {
+      console.log('copyCart', copyCart)
+      let copyAttrs = [...copyCart[id].attrs];
       const found = copyAttrs.find(item => item[name] === attr);
 
       if (!found) {
-        copyAttrs = [...copyAttrs, {name: name, value: attr}]
+        copyAttrs = [...copyAttrs, {[name]: attr, count: 0}] 
       }
-
       copyCart[id].attrs = copyAttrs;
 
       return {
@@ -148,39 +99,62 @@ const cartReducer = (state = initState, action) => {
         cart: copyCart
       };
     }
+    //find(1), every(all), some(true)
   }   
     
   
   if (action.type === "ADD_TO_CART") {
-    const filtered = filterItem(action.id);
-    const { price, addedItem } = filtered;
-    
-    console.log('state.cart :>> ', state.cart);
+    // const filtered = filterItem(action.id);
+    // const { price, addedItem } = filtered;
 
-    //check if the action id exists in the addedItems
-    const existedItem = state.addedItems.find((item) => action.id === item.id);
+    const prId = action.id;
+    const values = action.values;  
 
-    if (existedItem) {
-      addedItem.quantity += 1
-      
-      return {
-        ...state,
-        total: state.total + price,
-        addedItems: [...state.addedItems, addedItem],
+    const cartCopy = { ...state.cart };
 
+    if (!cartCopy[prId]) {
+      cartCopy[prId] = {
+        items: [{ ...values, count: 1 }],
+        totalCount: 1
       };
+      
     } else {
-      addedItem.quantity = 1;
-      const newTotal = state.total + price;
-      
-      return {
-        ...state,
-        addedItems: [...state.addedItems, addedItem],
-        total: newTotal,
-      };
+      const itemsCp = [...cartCopy[prId].items];
+
+      // const obj = {name: 'a', age: 21}
+      // const arr = Object.values(obj); // ['a', 21]
+
+      const foundIndex = itemsCp.findIndex((item) => {
+        return Object.values(values).every((i) =>
+          Object.values(item).includes(i)
+        );
+
+
+      });
+
+      if (foundIndex > -1) {
+        const found = itemsCp[foundIndex];
+        itemsCp[foundIndex] = { ...found, count: found.count + 1 };
+      } else {
+        itemsCp.push({ ...values, count: 1 });
+      }
+
+
+      // items = [{conunt: 1}, {count: 3}]
+      cartCopy[prId].items = itemsCp;
+      cartCopy[prId].totalCount = itemsCp.reduce(
+        (acc, curr) => acc + curr.count,
+        0
+      );
+    }
+
+    return {
+      ...state,
+      cart: cartCopy
     }
   }
-
+  
+  
   if (action.type === "REMOVE_ITEM") {
     const itemToRemove = state.addedItems.find((item) => action.id === item.id);
     const filtered = filterItem(action.id);

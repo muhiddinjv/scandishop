@@ -29,13 +29,22 @@ class Product extends PureComponent {
     this.props.addToCart(id, attrNames);
   };
 
+  updateUI = () => {
+    const { items, cart } = this.props;
+    const values = Object.values(cart);
+    
+    return values.map((val, i) => val.items.map(item => 
+      <div key={i} style={{padding: '20px', margin: '10px 0', border: '1px solid #999'}}>
+          <h3>{Object.keys(item).map(key=>key !== 'count' && ` - ${key}`)}</h3>
+          <h1>{Object.values(item).map(val => ` - ${val}`)}</h1>
+      </div>
+    ))
+        
+  }
+
   product() {
     const p = this.props.products[0]; 
-    const attrNames = p?.attributes.map(attr => attr.name);
-    // console.log('...p?.attributes :>> ', ...p?.attributes);
-    // console.log('attrNames :>> ', attrNames);
     const { selCurrency } = this.props;
-
 
     if (p) {
       const initialValues = (p?.attributes || []).reduce(
@@ -76,6 +85,7 @@ class Product extends PureComponent {
                   <div className="product__desc"
                     dangerouslySetInnerHTML={{ __html: p.description }}
                   />
+                  <div>{this.updateUI()}</div>
                 </div>
               </Form>
             }
@@ -90,8 +100,6 @@ class Product extends PureComponent {
 
   render() {   
     const { images, products } = this.props;
-    // console.clear();
-    console.log('this.props.cart :>> ', this.props.cart);
     return (
       <div className="product">
         <ProductSlider images={images} products={products}/>
@@ -102,8 +110,8 @@ class Product extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { images, selCurrency, cart } = state;
-  return { images, selCurrency, cart };
+  const { images, selCurrency, cart, items } = state;
+  return { images, selCurrency, cart, items };
 };
 
 export default connect(mapStateToProps, {addToCart})(Product);

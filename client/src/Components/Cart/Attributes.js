@@ -16,7 +16,8 @@ class Attributes extends PureComponent {
     }
   
     render() {
-      const { attribute, attributes } = this.props;
+      const { attribute, product } = this.props;
+      console.log('cart :>> ', this.props.cart);
       return (
         <div>
           <h3 className="attr--title">{attribute.name}</h3>
@@ -25,13 +26,13 @@ class Attributes extends PureComponent {
               if (item.value.includes("#")) { 
                 return (
                   <div key={index} id={index} style={{ background: item.value }}
-                  className={`attr--item ${this.selectedAttribute(item, attribute.name, attributes)}`}
+                  className={`attr--item ${this.selectedAttribute(item, attribute.name, product.attributes)}`}
                   />
                 );
               } else {
                 return (
                   <div key={index} id={index}
-                    className={`attr--item ${this.selectedAttribute(item, attribute.name, attributes)}`}
+                    className={`attr--item ${this.selectedAttribute(item, attribute.name, product.attributes)}`}
                     >
                     {item.value}
                   </div>
@@ -44,6 +45,8 @@ class Attributes extends PureComponent {
     }
   }
 
-  const mapStateToProps = () => { return {} };
+  const mapStateToProps = (state) => { 
+    return state.cart
+   };
 
   export default connect(mapStateToProps, { selectAttribute })(Attributes);

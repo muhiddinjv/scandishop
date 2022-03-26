@@ -11,7 +11,7 @@ class App extends PureComponent {
   componentDidMount() {
     setTimeout(() => {
       this.setState({products: this.props.items}) 
-      this.setState({selectedProduct: [this.props.items[0]]}) 
+      this.setState({selectedProduct: [this.props.items[4]]}) 
     },500);     
   }
 

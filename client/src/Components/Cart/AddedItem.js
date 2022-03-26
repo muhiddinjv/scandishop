@@ -23,16 +23,15 @@ class AddedItem extends PureComponent {
       <>
         {product.attributes.map((attribute, index) => {
           return <Attributes key={index}
-            attributes={product.attributes}
+            product={product}
             attribute={attribute} 
-            id={product.id}
         />})}
       </>
     );
   };
   
   render() {
-    const {sliderName, addedItems, selCurrency} = this.props;
+    const {sliderName, addedItems, selCurrency, items, cart} = this.props;
     
     const addedItem = addedItems.length ? (
       addedItems.map((item,index) => {        
@@ -78,8 +77,8 @@ class AddedItem extends PureComponent {
 }
 
 const mapStateToProps = (state)=>{
-    const { addedItems, selCurrency } = state;
-    return{ addedItems, selCurrency }
+    const { addedItems, selCurrency, cart, items } = state;
+    return{ addedItems, selCurrency, cart, items }
   }
   
 export default connect(mapStateToProps,{removeItem, addQuantity, subtractQuantity})(AddedItem)

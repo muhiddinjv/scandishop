@@ -18,7 +18,7 @@ export default class ProductSlider extends PureComponent {
   }
 
   slider = () => { 
-    const gallery = this.props?.products?.map(x=>x.gallery);
+    const gallery = this.props.products.map(x=>x?.gallery);
   
     if (gallery[0]) {
       return <div className="slider">

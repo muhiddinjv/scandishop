@@ -67,10 +67,6 @@ const cartReducer = (state = initState, action) => {
     // const name = action.name;
     // const value = action.attr;
     const { id, name, attr } = action;
-    console.clear();
-    console.log('id :>> ', id);
-    console.log('name :>> ', name);
-    console.log('attr :>> ', attr);
     
     if(!copyCart[id]) {
       copyCart[id]={
@@ -99,7 +95,6 @@ const cartReducer = (state = initState, action) => {
         cart: copyCart
       };
     }
-    //find(1), every(all), some(true)
   }   
     
   
@@ -107,47 +102,42 @@ const cartReducer = (state = initState, action) => {
     // const filtered = filterItem(action.id);
     // const { price, addedItem } = filtered;
 
-    const prId = action.id;
+    const productId = action.id;
     const values = action.values;  
-
     const cartCopy = { ...state.cart };
-
-    if (!cartCopy[prId]) {
-      cartCopy[prId] = {
+    
+    if (!cartCopy[productId]) {
+      cartCopy[productId] = {
         items: [{ ...values, count: 1 }],
         totalCount: 1
       };
       
     } else {
-      const itemsCp = [...cartCopy[prId].items];
-
+      const itemsCopy = [...cartCopy[productId].items];
       // const obj = {name: 'a', age: 21}
       // const arr = Object.values(obj); // ['a', 21]
 
-      const foundIndex = itemsCp.findIndex((item) => {
+      const foundIndex = itemsCopy.findIndex((item) => {
         return Object.values(values).every((i) =>
           Object.values(item).includes(i)
         );
-
-
       });
 
       if (foundIndex > -1) {
-        const found = itemsCp[foundIndex];
-        itemsCp[foundIndex] = { ...found, count: found.count + 1 };
+        const found = itemsCopy[foundIndex];
+        itemsCopy[foundIndex] = { ...found, count: found.count + 1 };
       } else {
-        itemsCp.push({ ...values, count: 1 });
+        itemsCopy.push({ ...values, count: 1 });
       }
 
-
       // items = [{conunt: 1}, {count: 3}]
-      cartCopy[prId].items = itemsCp;
-      cartCopy[prId].totalCount = itemsCp.reduce(
+      cartCopy[productId].items = itemsCopy;
+      cartCopy[productId].totalCount = itemsCopy.reduce(
         (acc, curr) => acc + curr.count,
         0
       );
     }
-
+    
     return {
       ...state,
       cart: cartCopy

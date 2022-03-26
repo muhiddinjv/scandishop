@@ -33,9 +33,9 @@ class Product extends PureComponent {
     const { items, cart } = this.props;
     const values = Object.values(cart);
     
-    return values.map((val, i) => val.items.map(item => 
+    return values.map(val => val.items.map((item, i) => 
       <div key={i} style={{padding: '20px', margin: '10px 0', border: '1px solid #999'}}>
-          <h3>{Object.keys(item).map(key=>key !== 'count' && ` - ${key}`)}</h3>
+          <h3>{Object.keys(item).map(key => key !== 'count' && ` - ${key}`)}</h3>
           <h1>{Object.values(item).map(val => ` - ${val}`)}</h1>
       </div>
     ))
@@ -57,7 +57,7 @@ class Product extends PureComponent {
         {}
       );
 
-      //validation =  {Size: yup.string().requ(), Color: yup.string().req()}
+      //validation =  {Size: yup.string().req(), Color: yup.string().req()}
       return  <Formik initialValues={{...initialValues}} 
       validateOnMount
       validationSchema={yup.object().shape({ ...validationSchema })}
@@ -91,11 +91,7 @@ class Product extends PureComponent {
             }
           }
         </Formik>
-       
-      
-    } else {
-      return <div className="loader"></div>;
-    }
+    } 
   }
 
   render() {   

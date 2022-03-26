@@ -122,6 +122,8 @@ const cartReducer = (state = initState, action) => {
           Object.values(item).includes(i)
         );
       });
+      console.log('foundIndex :>> ', foundIndex);
+      console.log('foundIndex', itemsCopy[foundIndex]);
 
       if (foundIndex > -1) {
         const found = itemsCopy[foundIndex];

@@ -29,12 +29,45 @@ class AddedItem extends PureComponent {
       </>
     );
   };
+
+  updateUI = () => {
+    const { items, cart } = this.props;
+    const values = Object.values(cart);
+    const keys = Object.keys(cart);
+    // console.log('items :>> ', items);
+    // console.log('values :>> ', values);
+    // console.log('keys :>> ', keys);
+    
+    // values.map(val => val.items.map((item, i) => 
+    //   <div key={i} style={{display: 'flex', justifyContent:'space-between', padding: '20px', margin: '10px 0', border: '1px solid #999'}}>
+    //       <div>{Object.keys(item).map(key => <h2>{key}</h2>)}</div>
+    //       <div>{Object.values(item).map(val => <h2>{val}</h2>)}</div>
+    //   </div>
+    // ))
+
+    // values.map(val => val.items.map((item, i) => {
+    //   Object.keys(item).map(key => console.log('key', key))
+    //   Object.values(item).map(val => console.log('val', val))
+    // }))
+        
+  }
+  
+  
   
   render() {
+    this.updateUI();
     const {sliderName, addedItems, selCurrency, items, cart} = this.props;
-    
-    const addedItem = addedItems.length ? (
-      addedItems.map((item,index) => {        
+    const attrValues = Object.values(cart);
+    const keys = Object.keys(cart);
+
+    // console.clear();
+    console.log('keys :>> ', keys);
+
+    const addedProducts = items.filter(item => keys.find(key => key===item.id));
+    console.log('addedProducts :>> ', addedProducts);
+        
+    const addedItem = attrValues.length ? (
+      addedProducts.map((item,index) => {        
         const deleteButton = <button className="item--delete" onClick={()=>{this.handleRemove(item.id)}}>X</button>
         return (
           <li className="item" key={index}>
@@ -77,8 +110,8 @@ class AddedItem extends PureComponent {
 }
 
 const mapStateToProps = (state)=>{
-    const { addedItems, selCurrency, cart, items } = state;
-    return{ addedItems, selCurrency, cart, items }
+    const { addedItems, selCurrency, items, cart } = state;
+    return{ addedItems, selCurrency, items, cart }
   }
   
 export default connect(mapStateToProps,{removeItem, addQuantity, subtractQuantity})(AddedItem)

@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
+import { Navigate } from 'react-router-dom';
 import { connect } from "react-redux";
-import { NavLink } from 'react-router-dom';
 import { addToCart } from '../../Redux/Actions';
 import ProductSlider from "./ProductSlider";
 import Attributes from "./Attributes";
@@ -9,7 +9,8 @@ import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import "./Product.scss";
 
-class Product extends PureComponent {
+class Product extends PureComponent {  
+  state = {navigate: false};
 
   createAttributes = ({setFieldValue}) => {
     const p = this.props.products[0];
@@ -27,16 +28,22 @@ class Product extends PureComponent {
 
   handleAddToCart = (id, attrNames) => {
     this.props.addToCart(id, attrNames);
+    this.setState({navigate: true})
   };
+  
 
   updateUI = () => {
     const { items, cart } = this.props;
     const values = Object.values(cart);
+    const keys = Object.keys(cart);
+    // console.log('items :>> ', items);
+    // console.log('values :>> ', values);
+    // console.log('keys :>> ', keys);
     
     return values.map(val => val.items.map((item, i) => 
-      <div key={i} style={{padding: '20px', margin: '10px 0', border: '1px solid #999'}}>
-          <h3>{Object.keys(item).map(key => key !== 'count' && ` - ${key}`)}</h3>
-          <h1>{Object.values(item).map(val => ` - ${val}`)}</h1>
+      <div key={i} style={{display: 'flex', justifyContent:'space-between', padding: '20px', margin: '10px 0', border: '1px solid #999'}}>
+          <div>{Object.keys(item).map(key => <h2>{key}</h2>)}</div>
+          <div>{Object.values(item).map(val => <h2>{val}</h2>)}</div>
       </div>
     ))
         
@@ -62,7 +69,7 @@ class Product extends PureComponent {
       validateOnMount
       validationSchema={yup.object().shape({ ...validationSchema })}
       onSubmit={values=> {this.handleAddToCart(p.id, values)}}>
-          {
+          { 
             ({setFieldValue, isValid}) => {
               return <Form>
                  <div className="product__info">
@@ -79,9 +86,9 @@ class Product extends PureComponent {
                     </div>
                   </div>
                   {/* <div style={{width: 40, background: 'red'}} onClick={() => setFieldValue('Size', '40')}>size: 40</div> */}
-                  {/* <NavLink to="/cart"> */}
-                    <button disabled={!isValid} className={`product__btn ${isValid && 'btn-hover'}`} type="submit">add to cart</button>
-                  {/* </NavLink> */}
+                    <button type="submit" className={`product__btn ${isValid && 'btn-hover'}`} disabled={!isValid}>
+                        add to cart
+                    </button>
                   <div className="product__desc"
                     dangerouslySetInnerHTML={{ __html: p.description }}
                   />
@@ -96,6 +103,9 @@ class Product extends PureComponent {
 
   render() {   
     const { images, products } = this.props;
+    if (this.state.navigate) {return <Navigate to="/cart" />};
+    
+    
     return (
       <div className="product">
         <ProductSlider images={images} products={products}/>

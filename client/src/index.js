@@ -9,10 +9,10 @@ import { createStore } from 'redux';
 const store = createStore(cartReducer);
 
 ReactDOM.render(
-  <BrowserRouter>
   <Provider store={store}>
-    <App />
-  </Provider>
-  </BrowserRouter>,
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );

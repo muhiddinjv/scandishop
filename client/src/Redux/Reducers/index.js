@@ -81,7 +81,6 @@ const cartReducer = (state = initState, action) => {
         cart: copyCart
       };
     } else {
-      console.log('copyCart', copyCart)
       let copyAttrs = [...copyCart[id].attrs];
       const found = copyAttrs.find(item => item[name] === attr);
 
@@ -101,6 +100,16 @@ const cartReducer = (state = initState, action) => {
   if (action.type === "ADD_TO_CART") {
     // const filtered = filterItem(action.id);
     // const { price, addedItem } = filtered;
+
+    // const selected = state.items.reduce((sel, item)=>{
+    //   console.log('item.id :>> ', item.id);
+    //   if (sel[item.id] == null) sel[item.id] = [];
+    //   const x = sel[item.id].push(item);
+    //   console.log('x', x)
+    //   return x;
+    // }, {})
+
+    // console.log('selected :>> ', selected);
 
     const productId = action.id;
     const values = action.values;  
@@ -122,8 +131,8 @@ const cartReducer = (state = initState, action) => {
           Object.values(item).includes(i)
         );
       });
-      console.log('foundIndex :>> ', foundIndex);
-      console.log('foundIndex', itemsCopy[foundIndex]);
+      // console.log('foundIndex :>> ', foundIndex);
+      // console.log('foundIndex', itemsCopy[foundIndex]);
 
       if (foundIndex > -1) {
         const found = itemsCopy[foundIndex];

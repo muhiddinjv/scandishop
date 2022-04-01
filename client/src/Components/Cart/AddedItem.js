@@ -61,7 +61,6 @@ class AddedItem extends PureComponent {
     const keys = Object.keys(cart);
 
     // console.clear();
-    console.log('keys :>> ', keys);
 
     const addedProducts = items.filter(item => keys.find(key => key===item.id));
     console.log('addedProducts :>> ', addedProducts);

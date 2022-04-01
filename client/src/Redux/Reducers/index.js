@@ -45,10 +45,6 @@ const cartReducer = (state = initState, action) => {
     return { addedItem, price, newItems };
   };
 
-  if (action.type === "CHANGE_CATEGORY") {
-    return { ...state, category: action.categoryName };
-  }
-
   if (action.type === "SELECT_CURRENCY") {
     return { ...state, selCurrency: action.currency };
   }

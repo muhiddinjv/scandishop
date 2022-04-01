@@ -34,18 +34,36 @@ class Product extends PureComponent {
 
   updateUI = () => {
     const { items, cart } = this.props;
-    const values = Object.values(cart);
-    const keys = Object.keys(cart);
-    // console.log('items :>> ', items);
-    // console.log('values :>> ', values);
-    // console.log('keys :>> ', keys);
+    // const values = Object.values(cart);
+    // const keys = Object.keys(cart);
+    // const addedProducts = items.filter(item => keys.find(key => key===item.id)).map(prod => prod.attributes);
+    // console.clear();
+    // console.table('addedProducts :>> ', addedProducts);
+    // console.table('values :>> ', values);
+
+    // for (const [key, value] of Object.entries(cart)) {
+    //   console.log(key + ":" + value)
+    // }
+
+    Object.entries(cart).forEach(([key, value]) => {
+      console.log('key', key)
+      console.log('value', value)
+    })
+
+    // items.map(item => console.log('cart[item.id]', cart[item.id]?.items))
+
     
-    return values.map(val => val.items.map((item, i) => 
-      <div key={i} style={{display: 'flex', justifyContent:'space-between', padding: '20px', margin: '10px 0', border: '1px solid #999'}}>
-          <div>{Object.keys(item).map(key => <h2>{key}</h2>)}</div>
-          <div>{Object.values(item).map(val => <h2>{val}</h2>)}</div>
-      </div>
-    ))
+    // return values.map(val => val.items.map((item, i) => 
+    //   <div key={i} style={{display: 'flex', justifyContent:'space-between', padding: '20px', margin: '10px 0', border: '1px solid #999'}}>
+
+    //       <div>{Object.keys(item).map(key => <h2>{key}</h2>)}</div>
+    //       <div>{Object.values(item).map(val => <h2>{val}</h2>)}</div>
+    //       <div>{Object.entries(item).map((key, value)=> {
+    //         console.log('key', key)
+    //         console.log('value :>> ', value);
+    //       })}</div>          
+    //   </div>
+    // ))
         
   }
 
@@ -103,7 +121,7 @@ class Product extends PureComponent {
 
   render() {   
     const { images, products } = this.props;
-    if (this.state.navigate) {return <Navigate to="/cart" />};
+    // if (this.state.navigate) {return <Navigate to="/cart" />};
     
     
     return (

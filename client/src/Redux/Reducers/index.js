@@ -94,52 +94,41 @@ const cartReducer = (state = initState, action) => {
     
   
   if (action.type === "ADD_TO_CART") {
-    // const filtered = filterItem(action.id);
-    // const { price, addedItem } = filtered;
-
-    // const selected = state.items.reduce((sel, item)=>{
-    //   console.log('item.id :>> ', item.id);
-    //   if (sel[item.id] == null) sel[item.id] = [];
-    //   const x = sel[item.id].push(item);
-    //   console.log('x', x)
-    //   return x;
-    // }, {})
-
-    // console.log('selected :>> ', selected);
-
-    const productId = action.id;
-    const values = action.values;  
+    const { product: {id, name, brand, prices, attributes, gallery}, values } = action;
     const cartCopy = { ...state.cart };
     
-    if (!cartCopy[productId]) {
-      cartCopy[productId] = {
-        items: [{ ...values, count: 1 }],
+    if (!cartCopy[id]) {
+      cartCopy[id] = {
+        name: name,
+        brand: brand,
+        addedAttrs: [{ ...values, count: 1 }],
+        attributes: attributes,
+        gallery: gallery,
+        prices: prices,
         totalCount: 1
       };
       
     } else {
-      const itemsCopy = [...cartCopy[productId].items];
+      const addedAttrsCopy = [...cartCopy[id].addedAttrs];
       // const obj = {name: 'a', age: 21}
       // const arr = Object.values(obj); // ['a', 21]
 
-      const foundIndex = itemsCopy.findIndex((item) => {
+      const foundIndex = addedAttrsCopy.findIndex((item) => {
         return Object.values(values).every((i) =>
           Object.values(item).includes(i)
         );
       });
-      // console.log('foundIndex :>> ', foundIndex);
-      // console.log('foundIndex', itemsCopy[foundIndex]);
 
       if (foundIndex > -1) {
-        const found = itemsCopy[foundIndex];
-        itemsCopy[foundIndex] = { ...found, count: found.count + 1 };
+        const found = addedAttrsCopy[foundIndex];
+        addedAttrsCopy[foundIndex] = { ...found, count: found.count + 1 };
       } else {
-        itemsCopy.push({ ...values, count: 1 });
+        addedAttrsCopy.push({ ...values, count: 1 });
       }
 
       // items = [{conunt: 1}, {count: 3}]
-      cartCopy[productId].items = itemsCopy;
-      cartCopy[productId].totalCount = itemsCopy.reduce(
+      cartCopy[id].addedAttrs = addedAttrsCopy;
+      cartCopy[id].totalCount = addedAttrsCopy.reduce(
         (acc, curr) => acc + curr.count,
         0
       );
@@ -153,7 +142,7 @@ const cartReducer = (state = initState, action) => {
   
   
   if (action.type === "REMOVE_ITEM") {
-    const itemToRemove = state.addedItems.find((item) => action.id === item.id);
+    const itemToRemove = state.addedAttrs.find((item) => action.id === item.id);
     const filtered = filterItem(action.id);
     const { price, newItems } = filtered;
 
@@ -278,14 +267,7 @@ export default cartReducer;
 // console.log(findDeep(activityItems, "scuba diving"));
 
 
- /**
-     * My method
-     * * important info is highlighted
-     * ! Old method! do not use!
-     * ? should this method be exposed in the public API?
-     * TODO: refactor this method so that it conforms to the API
-     * @param myParam is the parameter for this method
-     **/
+ 
 
     //* important info
     //! old method be careful

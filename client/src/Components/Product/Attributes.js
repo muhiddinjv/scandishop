@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { selectAttribute } from "../../Redux/Actions";
-import {withFormik} from 'formik'
+// import {withFormik} from 'formik'
 
 class Attributes extends PureComponent {
     state = { active: ''};
@@ -13,8 +13,7 @@ class Attributes extends PureComponent {
     };
   
     render() {
-      const { id, attribute, selectAttribute, setFieldValue } = this.props;
-      // console.log('this.props ', this.props)
+      const { attribute, setFieldValue } = this.props;
       return (
         <div className="container">
           <label className="product__attr--title">{attribute.name}</label>
@@ -27,7 +26,6 @@ class Attributes extends PureComponent {
                   onClick={()=>{
                     this.toggleClass(item); 
                     setFieldValue(attribute.name, item.value)
-                    // selectAttribute(id,item.value,attribute.name)
                   }}
                   className={`product__attr--item ${item === this.state.active && 'border'}`}
                   /> 
@@ -39,7 +37,6 @@ class Attributes extends PureComponent {
                     onClick={()=>{
                       this.toggleClass(item); 
                       setFieldValue(attribute.name, item.value)
-                      // selectAttribute(id,item.value,attribute.name)
                     }}
                     >
                     {item.value}

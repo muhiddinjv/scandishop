@@ -32,7 +32,7 @@ export default class Slider extends PureComponent {
     
     return (
       <div className={sliderName}>
-        {slides.map((slide, index) => <div key={index} className={`${sliderName}--image`} data-active={index === this.state.activeSlide} style={{ backgroundImage: `url( ${slide})` }}>
+        {slides?.map((slide, index) => <div key={index} className={`${sliderName}--image`} data-active={index === this.state.activeSlide} style={{ backgroundImage: `url( ${slide})` }}>
         </div>)}
         <div className={`${sliderName}--prev`} onClick={this.prevSlide.bind(this)}>&#10094;</div>
         <div className={`${sliderName}--next`} onClick={this.nextSlide.bind(this)}>&#10095;</div>

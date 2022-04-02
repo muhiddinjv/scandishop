@@ -16,12 +16,8 @@ class Product extends PureComponent {
     const p = this.props.products[0];
       return (
         <div className="product__attrs">
-          {p.attributes.map((attribute, index) => {
-            return <Attributes key={index}
-            setFieldValue={setFieldValue}
-            attribute={attribute} 
-            id={p.id}
-          />})}
+          {p.attributes.map(attribute => 
+            <Attributes setFieldValue={setFieldValue} attribute={attribute}/>)}
         </div>
       );
   };
@@ -29,43 +25,7 @@ class Product extends PureComponent {
   handleAddToCart = (id, attrNames) => {
     this.props.addToCart(id, attrNames);
     this.setState({navigate: true})
-  };
-  
-
-  updateUI = () => {
-    const { items, cart } = this.props;
-    // const values = Object.values(cart);
-    // const keys = Object.keys(cart);
-    // const addedProducts = items.filter(item => keys.find(key => key===item.id)).map(prod => prod.attributes);
-    // console.clear();
-    // console.table('addedProducts :>> ', addedProducts);
-    // console.table('values :>> ', values);
-
-    // for (const [key, value] of Object.entries(cart)) {
-    //   console.log(key + ":" + value)
-    // }
-
-    Object.entries(cart).forEach(([key, value]) => {
-      console.log('key', key)
-      console.log('value', value)
-    })
-
-    // items.map(item => console.log('cart[item.id]', cart[item.id]?.items))
-
-    
-    // return values.map(val => val.items.map((item, i) => 
-    //   <div key={i} style={{display: 'flex', justifyContent:'space-between', padding: '20px', margin: '10px 0', border: '1px solid #999'}}>
-
-    //       <div>{Object.keys(item).map(key => <h2>{key}</h2>)}</div>
-    //       <div>{Object.values(item).map(val => <h2>{val}</h2>)}</div>
-    //       <div>{Object.entries(item).map((key, value)=> {
-    //         console.log('key', key)
-    //         console.log('value :>> ', value);
-    //       })}</div>          
-    //   </div>
-    // ))
-        
-  }
+  };  
 
   product() {
     const p = this.props.products[0]; 
@@ -86,7 +46,7 @@ class Product extends PureComponent {
       return  <Formik initialValues={{...initialValues}} 
       validateOnMount
       validationSchema={yup.object().shape({ ...validationSchema })}
-      onSubmit={values=> {this.handleAddToCart(p.id, values)}}>
+      onSubmit={values=> {this.handleAddToCart(p, values)}}>
           { 
             ({setFieldValue, isValid}) => {
               return <Form>
@@ -110,7 +70,6 @@ class Product extends PureComponent {
                   <div className="product__desc"
                     dangerouslySetInnerHTML={{ __html: p.description }}
                   />
-                  <div>{this.updateUI()}</div>
                 </div>
               </Form>
             }
@@ -121,8 +80,7 @@ class Product extends PureComponent {
 
   render() {   
     const { images, products } = this.props;
-    // if (this.state.navigate) {return <Navigate to="/cart" />};
-    
+    if (this.state.navigate) {return <Navigate to="/cart" />};
     
     return (
       <div className="product">
@@ -139,3 +97,13 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {addToCart})(Product);
+
+// findAllByKey = (obj, keyToFind) => {
+//   return Object.entries(obj)
+//     .reduce((acc, [key, value]) => (key === keyToFind)
+//       ? acc.concat(value)
+//       : (typeof value === 'object')
+//       ? acc.concat(this.findAllByKey(value, keyToFind))
+//       : acc
+//     , [])
+// }

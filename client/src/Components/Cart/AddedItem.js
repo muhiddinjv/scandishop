@@ -25,11 +25,10 @@ class AddedItem extends PureComponent {
 
   render() {
     const {sliderName, selCurrency, cart} = this.props;
-    console.log('cart :>> ', cart);
-    // const quantity = cart?.map(x=>x.totalCount).reduce((sum, a) => sum + a, 0);
-    // console.log('quantity :>> ', quantity);
-
+    
     const products = Object.values(cart);
+    const quantity = products?.map(x=>x.totalCount).reduce((sum, a) => sum + a, 0);
+    console.log('products', quantity)
         
     const addedItem = products.length ? (
       products.map(item => { 
@@ -80,9 +79,10 @@ class AddedItem extends PureComponent {
     ) : (
       <p className="empty">The cart is empty</p>
     );
-    return (
-      <div>{addedItem}</div>
-    )
+    return <>
+    <div>{addedItem}</div>
+    <div>Total: {quantity}</div>
+    </>
   }
 }
 

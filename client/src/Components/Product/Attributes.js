@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { selectAttribute } from "../../Redux/Actions";
-// import {withFormik} from 'formik'
 
 class Attributes extends PureComponent {
     state = { active: ''};

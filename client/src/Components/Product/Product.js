@@ -51,7 +51,7 @@ class Product extends PureComponent {
             ({setFieldValue, isValid}) => {
               return <Form>
                  <div className="product__info">
-                  <header className="product__header" key={"hi"}>
+                  <header className="product__header">
                     <h1 className="product__brand">{p.brand}</h1>
                     <h3 className="product__name">{p.name}</h3>
                   </header>

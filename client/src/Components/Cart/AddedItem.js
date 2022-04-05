@@ -27,8 +27,6 @@ class AddedItem extends PureComponent {
     const {sliderName, selCurrency, cart} = this.props;
     
     const products = Object.values(cart);
-    const quantity = products?.map(x=>x.totalCount).reduce((sum, a) => sum + a, 0);
-    console.log('products', quantity)
         
     const addedItem = products.length ? (
       products.map(item => { 
@@ -81,7 +79,7 @@ class AddedItem extends PureComponent {
     );
     return <>
     <div>{addedItem}</div>
-    <div>Total: {quantity}</div>
+    <div className="cart__total">Total: {this.props.total} $</div>
     </>
   }
 }

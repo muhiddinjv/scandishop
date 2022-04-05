@@ -6,7 +6,11 @@ import "./Overlay.scss";
 
 class Overlay extends PureComponent {
   render() {     
-    const {selCurrency, total, quantity, showOverlay } = this.props;
+    const {selCurrency, total, showOverlay, cart } = this.props;
+
+    const products = Object.values(cart);
+    const quantity = products?.map(x=>x.totalCount).reduce((sum, a) => sum + a, 0);
+    console.log('products', quantity)
 
     return (      
       <div className="overlay">
@@ -35,8 +39,8 @@ class Overlay extends PureComponent {
 }
 
 const mapStateToProps = (state)=>{
-  const { total, selCurrency } = state;
-  return{ total, selCurrency }
+  const { total, selCurrency, cart } = state;
+  return{ total, selCurrency, cart }
 }
 
 export default connect(mapStateToProps)(Overlay)

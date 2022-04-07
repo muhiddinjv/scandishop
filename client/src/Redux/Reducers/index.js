@@ -2,7 +2,7 @@ import LOAD_QUERY from "../../Graphql/Query";
 
 const initState = {
   total: 0,
-  cart:{},
+  cart: {},
   items: [],
   price: [],
   currencies: [],
@@ -48,71 +48,69 @@ const cartReducer = (state = initState, action) => {
   if (action.type === "SELECT_CURRENCY") {
     return { ...state, selCurrency: action.currency };
   }
-  
+
   if (action.type === "SELECT_ATTRIBUTE") {
-    // const filtered = filterItem(action.id);
-    // const { addedItem } = filtered;
-
-    // addedItem.attributes.filter(
-    //   (attr) => attr.name === action.name && (attr.selected = action.attr)
-    //   );
-    
-
-    const copyCart = {...state.cart};
-    // const id = action.id;
-    // const name = action.name;
-    // const value = action.attr;
+    const copyCart = { ...state.cart };
     const { id, name, attr } = action;
-    
-    if(!copyCart[id]) {
-      copyCart[id]={
-        attrs: [{
+
+    if (!copyCart[id]) {
+      copyCart[id] = {
+        attrs: [
+          {
             [name]: attr,
-            count: 0
-          }]
+            count: 0,
+          },
+        ],
       };
-      
+
       return {
         ...state,
-        cart: copyCart
+        cart: copyCart,
       };
     } else {
       let copyAttrs = [...copyCart[id].attrs];
-      const found = copyAttrs.find(item => item[name] === attr);
+      const found = copyAttrs.find((item) => item[name] === attr);
 
       if (!found) {
-        copyAttrs = [...copyAttrs, {[name]: attr, count: 0}] 
+        copyAttrs = [...copyAttrs, { [name]: attr, count: 0 }];
       }
       copyCart[id].attrs = copyAttrs;
 
       return {
         ...state,
-        cart: copyCart
+        cart: copyCart,
       };
     }
-  }   
-    
-  
+  }
+
   if (action.type === "ADD_TO_CART") {
-    const { product: {id, name, brand, prices, attributes, gallery}, values } = action;
+    const {
+      product: { id, name, brand, prices, attributes, gallery },
+      values,
+    } = action;
     const cartCopy = { ...state.cart };
-    
+
+    const uuid = () => {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r && 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
+
     if (!cartCopy[id]) {
       cartCopy[id] = {
         name: name,
         brand: brand,
-        addedAttrs: [{ ...values, count: 1 }],
+        addedAttrs: [{ ...values, count: 1, id: uuid() }],
         attributes: attributes,
         gallery: gallery,
         prices: prices,
-        totalCount: 1
+        totalCount: 1,
       };
-      
     } else {
       const addedAttrsCopy = [...cartCopy[id].addedAttrs];
       // const obj = {name: 'a', age: 21}
       // const arr = Object.values(obj); // ['a', 21]
-
       const foundIndex = addedAttrsCopy.findIndex((item) => {
         return Object.values(values).every((i) =>
           Object.values(item).includes(i)
@@ -133,14 +131,22 @@ const cartReducer = (state = initState, action) => {
         0
       );
     }
-    
+
+    const addedPricesCopy = [...cartCopy[id].prices];
+    const priceDetails = addedPricesCopy?.filter(
+      (price) => price.currency === state.selCurrency && price.amount
+    );
+
+    const price = priceDetails[0].amount;
+    const newTotal = state.total + price;
+
     return {
       ...state,
-      cart: cartCopy
-    }
+      cart: cartCopy,
+      total: newTotal
+    };
   }
-  
-  
+
   if (action.type === "REMOVE_ITEM") {
     const itemToRemove = state.addedAttrs.find((item) => action.id === item.id);
     const filtered = filterItem(action.id);
@@ -157,41 +163,115 @@ const cartReducer = (state = initState, action) => {
   }
 
   //INSIDE CART COMPONENT
-  if (action.type === "ADD_QUANTITY") {
-    const filtered = filterItem(action.id);
-    const { price, addedItem } = filtered;
+  // if (action.type === "ADD_QUANTITY") {
+  //   const filtered = filterItem(action.id);
+  //   const { price, addedItem } = filtered;
 
-    addedItem.quantity += 1;
+  //   addedItem.quantity += 1;
+  //   const newTotal = state.total + price;
+
+  //   return { ...state, total: newTotal };
+  // }
+
+  if (action.type === "ADD_QUANTITY") {
+    const { selProducts: { id, prices }, attr } = action;  
+    console.log('state.cart', state.cart) 
+
+    const cartCopy = { ...state.cart };
+    const addedAttrsCopy = [...cartCopy[id].addedAttrs];
+    const addedPricesCopy = [...cartCopy[id].prices];
+
+    const foundIndex = addedAttrsCopy.findIndex((item) => {
+      console.log('item :>> ', item);
+      return Object.values(attr).every((i) => Object.values(item).includes(i));
+    });
+
+    if (foundIndex > -1) {
+      const found = addedAttrsCopy[foundIndex];
+      addedAttrsCopy[foundIndex] = { ...found, count: found.count + 1 };
+    }
+
+    cartCopy[id].addedAttrs = addedAttrsCopy;
+    cartCopy[id].totalCount = addedAttrsCopy.reduce(
+      (acc, curr) => acc + curr.count,
+      0
+    );
+
+    const priceDetails = addedPricesCopy?.filter(
+      (price) => price.currency === state.selCurrency && price.amount
+    );
+
+    const price = priceDetails[0].amount;
     const newTotal = state.total + price;
 
-    return { ...state, total: newTotal };
+    return {
+      ...state,
+      cart: cartCopy,
+      total: newTotal
+    };
   }
 
   if (action.type === "SUB_QUANTITY") {
-    const filtered = filterItem(action.id);
-    const { price, addedItem, newItems } = filtered;
+    const { selProducts: { id, prices }, attr } = action;    
+    const cartCopy = { ...state.cart };
+    const addedAttrsCopy = [...cartCopy[id].addedAttrs];
+    const addedPricesCopy = [...cartCopy[id].prices];
 
-    //if the qt == 0 then it should be removed
-    if (addedItem.quantity === 1) {
-      const newTotal = state.total - price;
-      addedItem.attributes.map((x) => (x.selected = ""));
-      return {
-        ...state,
-        addedItems: newItems,
-        total: newTotal,
-      };
-    } else {
-      addedItem.quantity -= 1;
-      const newTotal = state.total - price;
-      return { ...state, total: newTotal };
+    const foundIndex = addedAttrsCopy.findIndex((item) => {
+      return Object.values(attr).every((i) => Object.values(item).includes(i));
+    });
+
+    if (foundIndex > -1) {
+      const found = addedAttrsCopy[foundIndex];
+      addedAttrsCopy[foundIndex] = { ...found, count: found.count - 1 };
     }
+
+    cartCopy[id].addedAttrs = addedAttrsCopy;
+    cartCopy[id].totalCount = addedAttrsCopy.reduce(
+      (acc, curr) => acc - curr.count,
+      0
+    );
+
+    const priceDetails = addedPricesCopy?.filter(
+      (price) => price.currency === state.selCurrency && price.amount
+    );
+
+    const price = priceDetails[0].amount;
+    const newTotal = state.total - price;
+
+    return {
+      ...state,
+      cart: cartCopy,
+      total: newTotal
+    };
   } else {
     return state;
   }
+
+  // if (action.type === "SU_QUANTITY") {
+  //   const filtered = filterItem(action.id);
+  //   const { price, addedItem, newItems } = filtered;
+  //   //if the qt == 0 then it should be removed
+  
+  //   if (addedItem.quantity === 1) {
+  //     const newTotal = state.total - price;
+  //     addedItem.attributes.map((x) => (x.selected = ""));
+  //     return {
+  //       ...state,
+  //       addedItems: newItems,
+  //       total: newTotal,
+  //     };
+  //   } else {
+  //     addedItem.quantity -= 1;
+  //     const newTotal = state.total - price;
+  //     return { ...state, total: newTotal };
+  //   }
+  // } else {
+  //   return state;
+  // }
 };
 
 export default cartReducer;
-
 
 // const treeData = {
 //   id: 1,
@@ -266,57 +346,54 @@ export default cartReducer;
 
 // console.log(findDeep(activityItems, "scuba diving"));
 
+//* important info
+//! old method be careful
+//? is it really necessary?
+//TODO: refactor this part
+//@param myParam
+//MORE THAN 3 SLASHES = ////CROSS OUT
 
- 
+// const posts = [
+//   {
+//     "categories": [
+//       {
+//         "title": "tag1"
+//       },
+//       {
+//         "title": "tag2"
+//       },
+//       {
+//         "title": "tag3"
+//       }
+//     ],
+//     "title": "First post"
+//   },
+//   {
+//     "categories": [
+//       {
+//         "title": "tag2"
+//       },
+//       {
+//         "title": "tag3"
+//       }
+//     ],
+//     "title": "Second Post"
+//   }
+// ];
 
-    //* important info
-    //! old method be careful
-    //? is it really necessary?
-    //TODO: refactor this part
-    //@param myParam
-    //MORE THAN 3 SLASHES = ////CROSS OUT
+// const filter = "tag1";
 
-    // const posts = [
-    //   {
-    //     "categories": [
-    //       {
-    //         "title": "tag1"
-    //       },
-    //       {
-    //         "title": "tag2"
-    //       },
-    //       {
-    //         "title": "tag3"
-    //       }
-    //     ],
-    //     "title": "First post"
-    //   },
-    //   {
-    //     "categories": [
-    //       {
-    //         "title": "tag2"
-    //       },
-    //       {
-    //         "title": "tag3"
-    //       }
-    //     ],
-    //     "title": "Second Post"
-    //   }
-    // ];
+// const filtered = posts.filter(post => {
+//   return post.categories.some(cat => cat.title === filter)
+// });
 
-    // const filter = "tag1";
-
-    // const filtered = posts.filter(post => {
-    //   return post.categories.some(cat => cat.title === filter)
-    // });
-
-// const findIndex = function (array, cb) {     
-//   if (array) {         
-//     for (let i = 0; i < array.length; i++) {             
-//       if (true === cb(array[i])) return i;         
-//     }    
-//   }     
-//   return -1; 
+// const findIndex = function (array, cb) {
+//   if (array) {
+//     for (let i = 0; i < array.length; i++) {
+//       if (true === cb(array[i])) return i;
+//     }
+//   }
+//   return -1;
 // }
 
 // const someFunction = () => {
@@ -326,8 +403,8 @@ export default cartReducer;
 //   if (findIndex(state.cart, product => (product.id === productId && product.size === size)) !== -1) {
 //     const cart = state.cart.reduce((cartAcc, product) => {
 //         if (product.id === productId  && product.size === size) {
-//             cartAcc.push({ ...product, size: size, qty: parseInt(product.qty) 
-//               + parseInt(action.qty), sum: (product.discount ? product.salePrice : product.price) 
+//             cartAcc.push({ ...product, size: size, qty: parseInt(product.qty)
+//               + parseInt(action.qty), sum: (product.discount ? product.salePrice : product.price)
 //               * (parseInt(product.qty) + parseInt(action.qty)) }) // Increment qty
 //         } else {
 //             cartAcc.push(product)

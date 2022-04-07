@@ -16,8 +16,8 @@ class Product extends PureComponent {
     const p = this.props.products[0];
       return (
         <div className="product__attrs">
-          {p.attributes.map(attribute => 
-            <Attributes setFieldValue={setFieldValue} attribute={attribute}/>)}
+          {p.attributes.map((attribute, i) => 
+            <Attributes key={i} setFieldValue={setFieldValue} attribute={attribute}/>)}
         </div>
       );
   };
@@ -50,7 +50,7 @@ class Product extends PureComponent {
           { 
             ({setFieldValue, isValid}) => {
               return <Form>
-                 <div className="product__info">
+                <div className="product__info">
                   <header className="product__header">
                     <h1 className="product__brand">{p.brand}</h1>
                     <h3 className="product__name">{p.name}</h3>

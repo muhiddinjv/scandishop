@@ -16,10 +16,10 @@ export const removeItem = (id) => {
   return {type: "REMOVE_ITEM",id};
 };
 
-export const subtractQuantity = (id) => {
-  return {type: "SUB_QUANTITY",id};
+export const subtractQuantity = (attr, selProducts) => {
+  return {type: "SUB_QUANTITY",attr, selProducts};
 };
 
-export const addQuantity = (id) => {  
-  return {type: "ADD_QUANTITY",id};
+export const addQuantity = (attr, selProducts) => {  
+  return {type: "ADD_QUANTITY",attr, selProducts};
 };

@@ -9,12 +9,12 @@ class AddedItem extends PureComponent {
     this.props.removeItem(id);
   }
 
-  handleAddQuantity = (id)=>{
-    this.props.addQuantity(id);
+  handleAddQuantity = (attr, selProducts, addedAttr)=>{
+    this.props.addQuantity(attr, selProducts, addedAttr);
   }
 
-  handleSubtractQuantity = (id)=>{
-    this.props.subtractQuantity(id);
+  handleSubtractQuantity = (attr, selProducts)=>{
+    this.props.subtractQuantity(attr, selProducts);
   }
 
   darkBgOrRoundBorder = (item, value) =>{
@@ -23,9 +23,12 @@ class AddedItem extends PureComponent {
     if (item.value === value && includesHash) return 'round-border';
   }
 
+  myFunc = e => {
+    console.log('e.timeStamp :>> ', e.timeStamp);
+  }
+
   render() {
-    const {sliderName, selCurrency, cart} = this.props;
-    
+    const {sliderName, selCurrency, cart, selProducts} = this.props;
     const products = Object.values(cart);
         
     const addedItem = products.length ? (
@@ -44,8 +47,8 @@ class AddedItem extends PureComponent {
                 {Helper.switchAmount(selCurrency, item.prices)}
               </b>
               {Object.entries(attr).map(([key, value]) => 
-                <div>
-                  <h3 className="attr--title" style={{display: key === 'count' && 'none'}}>{key}</h3>
+                <div key={Math.random()}>
+                  <h3 className="attr--title" style={{display: key === 'count' | key === 'id' && 'none'}}>{key}</h3>
                   <div className="attr--items">
                     {item.attributes.map(attr=> attr.name === key &&
                       attr.items.map(item =>{ const includesHash = item.value.includes("#");
@@ -58,13 +61,13 @@ class AddedItem extends PureComponent {
               )}
             </div>
 
-            <div className="item--right">
+            <div className="item--right" >
               <div className="item--buttons">
-                <div to="/cart" className="item--button" onClick={()=>{this.handleAddQuantity(item.id)}}>+</div>
+                <div to="/cart" className="item--button" onClick={(e)=>{this.handleAddQuantity(attr, selProducts, e)}}>+</div>
                 <div className="item--quantity">
                   <b>{Object.entries(attr).map(([key, value]) => key === 'count' && value)}</b> 
                 </div>
-                <div className="item--button" onClick={()=>{this.handleSubtractQuantity(item.id)}}>-</div>
+                <div className="item--button" onClick={()=>{this.handleSubtractQuantity(attr, selProducts)}}>-</div>
               </div>
               <div className="item--slider">
                 <Slider sliderName={sliderName} slides={item.gallery} />
@@ -77,16 +80,13 @@ class AddedItem extends PureComponent {
     ) : (
       <p className="empty">The cart is empty</p>
     );
-    return <>
-    <div>{addedItem}</div>
-    <div className="cart__total">Total: {this.props.total} $</div>
-    </>
+    return <>{addedItem}</>
   }
 }
 
 const mapStateToProps = (state)=>{
-    const { selCurrency, cart } = state;
-    return{ selCurrency, cart }
+    const { selCurrency, cart, total } = state;
+    return{ selCurrency, cart, total }
   }
   
 export default connect(mapStateToProps,{removeItem, addQuantity, subtractQuantity})(AddedItem)

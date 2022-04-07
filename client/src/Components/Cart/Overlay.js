@@ -10,7 +10,6 @@ class Overlay extends PureComponent {
 
     const products = Object.values(cart);
     const quantity = products?.map(x=>x.totalCount).reduce((sum, a) => sum + a, 0);
-    console.log('products', quantity)
 
     return (      
       <div className="overlay">

@@ -1,5 +1,3 @@
-// import axios from 'axios';
-
 export default class Helper {
   static switchCurrency = (currency) => {
     let symbol;

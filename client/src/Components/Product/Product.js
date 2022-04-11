@@ -22,8 +22,8 @@ class Product extends PureComponent {
       );
   };
 
-  handleAddToCart = (id, attrNames) => {
-    this.props.addToCart(id, attrNames);
+  handleAddToCart = (product, attrNames) => {
+    this.props.addToCart(product, attrNames);
     this.setState({navigate: true})
   };  
 
@@ -36,7 +36,7 @@ class Product extends PureComponent {
         (acc, curr) => ({ ...acc, [curr.name]: "" }),
         {}
       );
-      // initialValues = {Size: '', Colro: ''}
+      // initialValues = {Size: '', Color: ''}
       const validationSchema = (p?.attributes || []).reduce(
         (acc, curr) => ({ ...acc, [curr.name]: yup.string().required() }),
         {}
@@ -92,18 +92,8 @@ class Product extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { images, selCurrency, cart, items } = state;
-  return { images, selCurrency, cart, items };
+  const { images, selCurrency, cart } = state;
+  return { images, selCurrency, cart };
 };
 
 export default connect(mapStateToProps, {addToCart})(Product);
-
-// findAllByKey = (obj, keyToFind) => {
-//   return Object.entries(obj)
-//     .reduce((acc, [key, value]) => (key === keyToFind)
-//       ? acc.concat(value)
-//       : (typeof value === 'object')
-//       ? acc.concat(this.findAllByKey(value, keyToFind))
-//       : acc
-//     , [])
-// }

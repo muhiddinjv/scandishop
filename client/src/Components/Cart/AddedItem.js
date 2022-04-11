@@ -9,30 +9,26 @@ class AddedItem extends PureComponent {
     this.props.removeItem(id);
   }
 
-  handleAddQuantity = (attr, selProducts, addedAttr)=>{
-    this.props.addQuantity(attr, selProducts, addedAttr);
+  handleAddQuantity = (attr)=>{
+    this.props.addQuantity(attr);
   }
 
-  handleSubtractQuantity = (attr, selProducts)=>{
-    this.props.subtractQuantity(attr, selProducts);
+  handleSubtractQuantity = (attr)=>{
+    this.props.subtractQuantity(attr);
   }
 
-  darkBgOrRoundBorder = (item, value) =>{
+  setActiveOrRoundBorder = (item, value) =>{
     const includesHash = item.value.includes("#");
     if (item.value === value && !includesHash) return 'active';
     if (item.value === value && includesHash) return 'round-border';
   }
 
-  myFunc = e => {
-    console.log('e.timeStamp :>> ', e.timeStamp);
-  }
-
   render() {
-    const {sliderName, selCurrency, cart, selProducts} = this.props;
+    const {sliderName, selCurrency, cart} = this.props;
     const products = Object.values(cart);
         
     const addedItem = products.length ? (
-      products.map(item => { 
+      products.map((item, ind) => { 
         const deleteButton = <button className="item--delete" onClick={()=>{this.handleRemove(item.id)}}>X</button>
         return (
           item.addedAttrs.map((attr,i) => 
@@ -51,9 +47,9 @@ class AddedItem extends PureComponent {
                   <h3 className="attr--title" style={{display: key === 'count' | key === 'id' && 'none'}}>{key}</h3>
                   <div className="attr--items">
                     {item.attributes.map(attr=> attr.name === key &&
-                      attr.items.map(item =>{ const includesHash = item.value.includes("#");
+                      attr.items.map((item, index) =>{ const includesHash = item.value.includes("#");
                         return (
-                        <div className={`attr--item ${this.darkBgOrRoundBorder(item, value)}`} style={{ background: includesHash && item.value }}>{!includesHash && item.value}</div>
+                        <div key={index} className={`attr--item ${this.setActiveOrRoundBorder(item, value)}`} style={{ background: includesHash && item.value }}>{!includesHash && item.value}</div>
                         )}
                       ))}
                   </div>
@@ -61,13 +57,13 @@ class AddedItem extends PureComponent {
               )}
             </div>
 
-            <div className="item--right" >
+            <div className="item--right">
               <div className="item--buttons">
-                <div to="/cart" className="item--button" onClick={(e)=>{this.handleAddQuantity(attr, selProducts, e)}}>+</div>
+                <div to="/cart" className="item--button" onClick={()=>{this.handleAddQuantity(attr)}}>+</div>
                 <div className="item--quantity">
                   <b>{Object.entries(attr).map(([key, value]) => key === 'count' && value)}</b> 
                 </div>
-                <div className="item--button" onClick={()=>{this.handleSubtractQuantity(attr, selProducts)}}>-</div>
+                <div className="item--button" onClick={()=>{this.handleSubtractQuantity(attr)}}>-</div>
               </div>
               <div className="item--slider">
                 <Slider sliderName={sliderName} slides={item.gallery} />

@@ -24,7 +24,7 @@
 - [x] Make the clickable area in currency switcher bigger
 - [ ] Add changes to fetch the latest (updated) endpoint
 - [x] Out of stock product logic is implemented
-- [ ] Add different product attributes to cart
+- [x] Add different product attributes to cart
 - [x] Use PureComponent instead Component
 - [x] Use const instead let and var
 - [x] Use variable destructuring

@@ -9,12 +9,12 @@ class AddedItem extends PureComponent {
     this.props.removeItem(id);
   }
 
-  handleAddQuantity = (attr)=>{
-    this.props.addQuantity(attr);
+  handleAddQuantity = (id, prices)=>{
+    this.props.addQuantity(id, prices);
   }
 
-  handleSubtractQuantity = (attr)=>{
-    this.props.subtractQuantity(attr);
+  handleSubtractQuantity = (id, prices)=>{
+    this.props.subtractQuantity(id, prices);
   }
 
   setActiveOrRoundBorder = (item, value) =>{
@@ -59,11 +59,11 @@ class AddedItem extends PureComponent {
 
             <div className="item--right">
               <div className="item--buttons">
-                <div to="/cart" className="item--button" onClick={()=>{this.handleAddQuantity(attr)}}>+</div>
+                <div to="/cart" className="item--button" onClick={()=>{this.handleAddQuantity(attr.id,item.prices)}}>+</div>
                 <div className="item--quantity">
                   <b>{Object.entries(attr).map(([key, value]) => key === 'count' && value)}</b> 
                 </div>
-                <div className="item--button" onClick={()=>{this.handleSubtractQuantity(attr)}}>-</div>
+                <div className="item--button" onClick={()=>{this.handleSubtractQuantity(attr.id, item.prices)}}>-</div>
               </div>
               <div className="item--slider">
                 <Slider sliderName={sliderName} slides={item.gallery} />

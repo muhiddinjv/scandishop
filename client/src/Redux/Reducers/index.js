@@ -2,7 +2,7 @@ import LOAD_QUERY from "../../Graphql/Query";
 
 const initState = {
   total: 0,
-  cart: {},
+  cart: [],
   items: [],
   price: [],
   currencies: [],
@@ -118,6 +118,7 @@ const cartReducer = (state = initState, action) => {
 
     const price = priceDetails[0].amount;
     const newTotal = state.total + price;
+    console.log('state.cart', state.cart)
 
     return {
       ...state,
@@ -153,21 +154,20 @@ const cartReducer = (state = initState, action) => {
   // }
 
   if (action.type === "ADD_QUANTITY") {  
-    let priceDetails;
+    // let priceDetails;
 
     for (const values of Object.values(state.cart)) {
       for (const attribute of values.addedAttrs) {
-        if (attribute.id === action.attr.id){
+        if (attribute.id === action.id){
           attribute.count++
         }
       }
-      values.totalCount = values.addedAttrs.reduce((acc, curr)=> acc + curr.count, 0);
-
-      priceDetails = values.prices.find(
-        price => price.currency === state.selCurrency
-      );
+      values.totalCount = values.addedAttrs.reduce((acc, curr)=> acc + curr.count, 0);      
     }
-    // console.log('priceDetails :>> ', priceDetails);
+
+    const priceDetails = action.prices.find(
+      price => price.currency === state.selCurrency
+    );
 
     const newTotal = state.total + priceDetails.amount;
 
@@ -178,25 +178,23 @@ const cartReducer = (state = initState, action) => {
   }
 
   if (action.type === "SUB_QUANTITY") {  
-    let priceDetails;
-
     for (const values of Object.values(state.cart)) {
       for (const attribute of values.addedAttrs) {
-        if (attribute.id === action.attr.id){
+        if (attribute.id === action.id){
           attribute.count--
 
           if (attribute.count === 0){
-            const newItems = values.addedAttrs.filter((attribute) => action.attr.id !== attribute.id);
+            const newItems = values.addedAttrs.filter((attribute) => action.id !== attribute.id);
             values.addedAttrs = newItems;
           }
         }
       }
       values.totalCount = values.addedAttrs.reduce((acc, curr)=> acc - curr.count, 0);
-
-      priceDetails = values.prices.find(
-        price => price.currency === state.selCurrency
-      );
     }
+
+    const priceDetails = action.prices.find(
+      price => price.currency === state.selCurrency
+    );
 
     const newTotal = state.total - priceDetails.amount;
 

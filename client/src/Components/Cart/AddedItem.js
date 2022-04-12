@@ -5,8 +5,8 @@ import Slider from "./Slider";
 import { removeItem, addQuantity, subtractQuantity} from '../../Redux/Actions';
 
 class AddedItem extends PureComponent {
-  handleRemove = (id)=>{
-    this.props.removeItem(id);
+  handleRemove = (id, prices)=>{
+    this.props.removeItem(id, prices);
   }
 
   handleAddQuantity = (id, prices)=>{
@@ -29,10 +29,12 @@ class AddedItem extends PureComponent {
         
     const addedItem = products.length ? (
       products.map((item, ind) => { 
-        const deleteButton = <button className="item--delete" onClick={()=>{this.handleRemove(item.id)}}>X</button>
+        
         return (
           item.addedAttrs.map((attr,i) => 
-          <li className="item" key={i}>
+          {
+            const deleteButton = <button className="item--delete" onClick={()=>{this.handleRemove(attr.id, item.prices)}}>X</button>
+            return <li className="item" key={i}>
             <div className="item--left">
               <div className="item--header">
                 <h5 className="item--brand">{item.brand}</h5>
@@ -70,7 +72,7 @@ class AddedItem extends PureComponent {
                 {sliderName === 'cart-slider' && deleteButton}
               </div>
             </div>
-          </li>)
+          </li>})
         );
       })
     ) : (

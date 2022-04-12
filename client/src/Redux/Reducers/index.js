@@ -127,35 +127,48 @@ const cartReducer = (state = initState, action) => {
     };
   }
 
-  if (action.type === "REMOVE_ITEM") {
-    const itemToRemove = state.addedAttrs.find((item) => action.id === item.id);
-    const filtered = filterItem(action.id);
-    const { price, newItems } = filtered;
-
-    //calculating the total
-    const newTotal = state.total - price * itemToRemove.quantity;
-    itemToRemove.attributes.map((x) => (x.selected = ""));
-    return {
-      ...state,
-      addedItems: newItems,
-      total: newTotal,
-    };
-  }
-
-  //INSIDE CART COMPONENT
-  // if (action.type === "ADD_QUANTITY") {
+  // if (action.type === "REMOV_ITEM") {
+  //   const itemToRemove = state.addedAttrs.find((item) => action.id === item.id);
   //   const filtered = filterItem(action.id);
-  //   const { price, addedItem } = filtered;
+  //   const { price, newItems } = filtered;
 
-  //   addedItem.quantity += 1;
-  //   const newTotal = state.total + price;
-
-  //   return { ...state, total: newTotal };
+  //   //calculating the total
+  //   const newTotal = state.total - price * itemToRemove.quantity;
+  //   itemToRemove.attributes.map((x) => (x.selected = ""));
+  //   return {
+  //     ...state,
+  //     addedItems: newItems,
+  //     total: newTotal,
+  //   };
   // }
+
+  if (action.type === "REMOVE_ITEM") {  
+    for (const values of Object.values(state.cart)) {
+      for (const attribute of values.addedAttrs) {
+        if (attribute.id === action.id){
+
+          const newItems = values.addedAttrs.filter((attribute) => action.id !== attribute.id);
+          values.addedAttrs = newItems;
+
+          const priceDetails = action.prices.find(
+            price => price.currency === state.selCurrency
+          );
+      
+          const newTotal = state.total - priceDetails.amount * attribute.count;
+
+          values.totalCount = values.addedAttrs.reduce((acc, curr)=> acc - curr.count, 0);      
+      
+          return {
+            ...state,
+            total: newTotal
+          }; 
+        }
+      }
+    }
+  }
 
   if (action.type === "ADD_QUANTITY") {  
     // let priceDetails;
-
     for (const values of Object.values(state.cart)) {
       for (const attribute of values.addedAttrs) {
         if (attribute.id === action.id){

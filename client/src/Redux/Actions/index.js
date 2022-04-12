@@ -8,8 +8,8 @@ export const addToCart = (product, values) => {
   return {type: "ADD_TO_CART",product, values}
 };
 
-export const removeItem = (id) => {  
-  return {type: "REMOVE_ITEM",id};
+export const removeItem = (id, prices) => {  
+  return {type: "REMOVE_ITEM",id, prices};
 };
 
 export const subtractQuantity = (id, prices) => {

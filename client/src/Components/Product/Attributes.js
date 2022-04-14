@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-// import { selectAttribute } from "../../Redux/Actions";
 
 class Attributes extends PureComponent {
     state = { active: ''};
@@ -14,7 +13,7 @@ class Attributes extends PureComponent {
     render() {
       const { attribute, setFieldValue } = this.props;
       return (
-        <div className="container">
+        <div className="product__attr">
           <label className="product__attr--title">{attribute.name}</label>
           <div className="product__attr--items">
             {(attribute?.items || [])?.map((item, index) => {
@@ -51,4 +50,4 @@ class Attributes extends PureComponent {
 
   const mapStateToProps = () => { return {} };
 
-  export default connect(mapStateToProps, { /* selectAttribute */ })(Attributes);
+  export default connect(mapStateToProps)(Attributes);

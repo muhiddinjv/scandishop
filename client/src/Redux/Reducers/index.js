@@ -147,8 +147,7 @@ const cartReducer = (state = initState, action) => {
       for (const attribute of values.addedAttrs) {
         if (attribute.id === action.id){
 
-          const newItems = values.addedAttrs.filter((attribute) => action.id !== attribute.id);
-          values.addedAttrs = newItems;
+          values.addedAttrs = values.addedAttrs.filter((attribute) => action.id !== attribute.id);
 
           const priceDetails = action.prices.find(
             price => price.currency === state.selCurrency
@@ -168,7 +167,6 @@ const cartReducer = (state = initState, action) => {
   }
 
   if (action.type === "ADD_QUANTITY") {  
-    // let priceDetails;
     for (const values of Object.values(state.cart)) {
       for (const attribute of values.addedAttrs) {
         if (attribute.id === action.id){
@@ -197,8 +195,7 @@ const cartReducer = (state = initState, action) => {
           attribute.count--
 
           if (attribute.count === 0){
-            const newItems = values.addedAttrs.filter((attribute) => action.id !== attribute.id);
-            values.addedAttrs = newItems;
+            values.addedAttrs = values.addedAttrs.filter((attribute) => action.id !== attribute.id);
           }
         }
       }

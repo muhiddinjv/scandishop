@@ -5,7 +5,7 @@
   color: #333;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  // justify-content: space-between;
   padding: 9rem 5.5rem 0 5.5rem;  
 
   .active{
@@ -18,9 +18,10 @@
   }
   
   &__info {
+    margin-left: 10.5rem;
     // border: 1px solid #999;
     width: 32.5rem;
-    height: 57.5rem;
+    // height: 57.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -38,10 +39,12 @@
   }
 
   &__attr {
+    margin: 2.8rem 0;
     text-transform: uppercase;
     
     &--title {
       font-size: 2rem;
+      font-weight: bold;
     }
 
     &--items {
@@ -60,13 +63,6 @@
       font-size: 2rem;
       cursor: pointer;
       transition: 0.3s;
-
-      
-      
-      // &:hover{
-      //     background:#444;
-      //     color: white;
-      // }
     }
   }
   
@@ -75,12 +71,14 @@
     text-transform: uppercase;
 
     &--amount {
+      margin-top: 2rem;
       font-size: 2.5rem;
       letter-spacing: 1px;
     }
   }
 
   &__btn {
+    margin: 3rem 0;
     text-transform: uppercase;
     text-align: center;
     letter-spacing: 1px;
@@ -103,8 +101,6 @@
     background:#4ca564;
   }
 
-  
-
   &__desc {
     font-size: 1.6rem;
     line-height: 1.8;
@@ -112,42 +108,5 @@
     overflow-y: auto;
     padding: 1rem;
     // border: 1px solid #999;
-  }
-}
-
-
-/* The container */
-.container {
-  position: relative;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-
-  /* Hide the browser's default radio button */
-  input {
-    opacity: 0;
-    position: absolute;
-    cursor: pointer;
-    
-    /* When the radio button is checked, add a blue background */
-    &:checked ~ .check-mark {
-      background-color: #2196F3;
-    }
-  }
-
-  /* Create a custom radio button */
-  .check-mark {
-    // position: absolute;
-    // top: 0;
-    // left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;  
-  }
-
-  /* On mouse-over, add a grey background color */
-  &:hover input ~ .check-mark {
-    // background-color: #ccc;
   }
 }

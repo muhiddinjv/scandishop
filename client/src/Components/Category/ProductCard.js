@@ -12,23 +12,20 @@ class ProductCard extends PureComponent {
   }
 
   render() {
-    const { product, selCurrency, addToCart, selectProduct } = this.props;
+    const { product, selCurrency, selectProduct } = this.props;
     
     return (
       <li className={`category__product--card ${product.inStock && 'hover-on'}`}>
         {this.outOfStock(product.inStock)}
         <div className="category__product--image-wrapper">
 
-          <NavLink to="/product">
-            <img className="category__product--image"
-              onClick={()=>selectProduct(product.id)}
-              src={product.gallery[0]}
-              alt={product.name} />
-          </NavLink>
+          <img className="category__product--image"
+            src={product.gallery[0]}
+            alt={product.name} />
 
-          <div onClick={() => addToCart(product.id)}
+          <div onClick={()=>selectProduct(product.id)}
             className="category__product--cart show-cart">
-            <NavLink to="/cart">
+            <NavLink to="/product">
               <EmptyCart />
             </NavLink>
           </div>
@@ -49,6 +46,8 @@ class ProductCard extends PureComponent {
   }
 }
 
-const mapStateToProps = (state)=>{ return {}}
+const mapStateToProps = (state)=>{
+  return state.cart
+}
 
 export default connect(mapStateToProps, {addToCart})(ProductCard)

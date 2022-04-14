@@ -83,8 +83,8 @@ class AddedItem extends PureComponent {
 }
 
 const mapStateToProps = (state)=>{
-    const { selCurrency, cart, total } = state;
-    return{ selCurrency, cart, total }
-  }
+  const { selCurrency, cart, total } = state;
+  return{ selCurrency, cart, total }
+}
   
 export default connect(mapStateToProps,{removeItem, addQuantity, subtractQuantity})(AddedItem)

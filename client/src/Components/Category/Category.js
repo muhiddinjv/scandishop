@@ -15,7 +15,7 @@ class Category extends PureComponent {
         <div className="category__header">
           <h1 className="category__name">{products.category}</h1>
         </div>
-        <ul className="category__product">
+        <ul className="category__product" >
           {products.map((product, i) => {
             return (
               <ProductCard

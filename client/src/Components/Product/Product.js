@@ -22,8 +22,8 @@ class Product extends PureComponent {
       );
   };
 
-  handleAddToCart = (product, attrNames) => {
-    this.props.addToCart(product, attrNames);
+  handleAddToCart = (product, attrValues) => {
+    this.props.addToCart(product, attrValues);
     this.setState({navigate: true})
   };  
 
@@ -47,7 +47,7 @@ class Product extends PureComponent {
       validateOnMount
       validationSchema={yup.object().shape({ ...validationSchema })}
       onSubmit={values=> {this.handleAddToCart(p, values)}}>
-          { 
+          {  
             ({setFieldValue, isValid}) => {
               return <Form>
                 <div className="product__info">

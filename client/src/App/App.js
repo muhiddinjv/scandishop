@@ -45,7 +45,7 @@ class App extends PureComponent {
         <Routes>
           <Route exact path="/" element={
             <ErrorBoundary>
-              <Category products={products} selectProduct={this.selectProduct}/>
+              <Category products={products} selectProduct={this.selectProduct} selectedProduct={selectedProduct}/>
             </ErrorBoundary>} 
           />
           <Route path="/product" element={<Product products={selectedProduct} />} />

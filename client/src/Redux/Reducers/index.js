@@ -30,20 +30,6 @@ const fetchData = () => {
 fetchData();
 
 const cartReducer = (state = initState, action) => {
-  const filterItem = (id) => {
-    // handle items = products (jacket, sneakers, ps5)
-    const addedItem = state.items.find((item) => item.id === id);
-    const newItems = state.addedItems.filter((item) => id !== item.id);
-
-    // handle price amount (e.g. 144.69) PROBLEM HERE
-    const priceNumbers = addedItem?.prices.filter(
-      (price) => price.currency === state.selCurrency && price.amount
-    );
-
-    const price = priceNumbers[0].amount;
-    return { addedItem, price, newItems };
-  };
-
   const uuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
       var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r && 0x3 | 0x8);
@@ -84,15 +70,12 @@ const cartReducer = (state = initState, action) => {
       };
     } else {
       const addedAttrsCopy = [...cartCopy[id].addedAttrs];
-      // console.log('addedAttrsCopy :>> ', addedAttrsCopy);
-      // addedAttrsCopy.findIndex(i=> console.log('i', i));
-      // console.log('values :>> ', values);
       // const obj = {name: 'a', age: 21}
       // const arr = Object.values(obj); // ['a', 21]
-
       const foundIndex = addedAttrsCopy.findIndex((item) => {
-        return Object.values(values).every((i) =>
-          Object.values(item).includes(i)
+        return Object.values(values).forEach((i) => {
+            return Object.values(item).includes(i)
+          }
         );
       });
 
@@ -118,7 +101,7 @@ const cartReducer = (state = initState, action) => {
 
     const price = priceDetails[0].amount;
     const newTotal = state.total + price;
-    console.log('state.cart', state.cart)
+    // console.log('state.cart', state.cart)
 
     return {
       ...state,
@@ -126,21 +109,6 @@ const cartReducer = (state = initState, action) => {
       total: newTotal
     };
   }
-
-  // if (action.type === "REMOV_ITEM") {
-  //   const itemToRemove = state.addedAttrs.find((item) => action.id === item.id);
-  //   const filtered = filterItem(action.id);
-  //   const { price, newItems } = filtered;
-
-  //   //calculating the total
-  //   const newTotal = state.total - price * itemToRemove.quantity;
-  //   itemToRemove.attributes.map((x) => (x.selected = ""));
-  //   return {
-  //     ...state,
-  //     addedItems: newItems,
-  //     total: newTotal,
-  //   };
-  // }
 
   if (action.type === "REMOVE_ITEM") {  
     for (const values of Object.values(state.cart)) {
@@ -216,6 +184,25 @@ const cartReducer = (state = initState, action) => {
     return state;
   }
 
+};
+
+export default cartReducer;
+
+  // if (action.type === "REMOV_ITEM") {
+  //   const itemToRemove = state.addedAttrs.find((item) => action.id === item.id);
+  //   const filtered = filterItem(action.id);
+  //   const { price, newItems } = filtered;
+
+  //   //calculating the total
+  //   const newTotal = state.total - price * itemToRemove.quantity;
+  //   itemToRemove.attributes.map((x) => (x.selected = ""));
+  //   return {
+  //     ...state,
+  //     addedItems: newItems,
+  //     total: newTotal,
+  //   };
+  // }
+
   // if (action.type === "SU_QUANTITY") {
   //   const filtered = filterItem(action.id);
   //   const { price, addedItem, newItems } = filtered;
@@ -236,9 +223,6 @@ const cartReducer = (state = initState, action) => {
   // } else {
   //   return state;
   // }
-};
-
-export default cartReducer;
 
 // if (action.type === "SELECT_ATTRIBUTE") {
 //   const copyCart = { ...state.cart };

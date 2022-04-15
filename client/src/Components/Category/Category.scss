@@ -17,6 +17,7 @@
     &__product  {
         display: flex;
         flex-wrap: wrap;
+        gap: 0 5rem;
 
         .hover-on:hover{
             box-shadow: 0 0 10px 0.5px rgba(0, 0, 0, 0.2);
@@ -28,7 +29,7 @@
         
         &--card{
             margin-bottom: 5.5rem;
-            margin-right: 4rem;
+            border: 1px solid #999;
             padding: 1rem;
             padding-bottom: 2rem;
             transition: 0.3s;

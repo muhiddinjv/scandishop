@@ -18,11 +18,7 @@ class ProductCard extends PureComponent {
       <li className={`category__product--card ${product.inStock && 'hover-on'}`}>
         {this.outOfStock(product.inStock)}
         <div className="category__product--image-wrapper">
-
-          <img className="category__product--image"
-            src={product.gallery[0]}
-            alt={product.name} />
-
+          <img className="category__product--image" src={product.gallery[0]} alt={product.name} onError={Helper.addDefaultSrc}/>
           <div onClick={()=>selectProduct(product.id)}
             className="category__product--cart show-cart">
             <NavLink to="/product">
@@ -47,7 +43,8 @@ class ProductCard extends PureComponent {
 }
 
 const mapStateToProps = (state)=>{
-  return state.cart
+  const { cart } = state;
+  return { cart }
 }
 
 export default connect(mapStateToProps, {addToCart})(ProductCard)

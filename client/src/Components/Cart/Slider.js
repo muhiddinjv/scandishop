@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import defaultImage from '../../Assets/loading2.gif'
 import "./OverlaySlider.scss";   
 import "./CartSlider.scss";   
 
@@ -7,6 +8,7 @@ export default class Slider extends PureComponent {
     super(props);
     this.state = { 
       activeSlide: 0,
+      loaded: false
      };
   }
   
@@ -26,14 +28,33 @@ export default class Slider extends PureComponent {
       activeSlide: slide
     });
   }
+
+  // checkImage(url) {
+  //   var request = new XMLHttpRequest();
+  //   request.open("GET", url, true);
+  //   request.send();
+  //   request.onload = function() {
+  //     status = request.status;
+  //     if (request.status === 200) //if(statusText == OK)
+  //     {
+  //       console.log("image exists");
+  //     } else {
+  //       console.log("image doesn't exist");
+  //     }
+  //   }
+  // }
+ 
   
   render() {    
     const { sliderName, slides } = this.props;
+    slides.map(s => console.log('s', s))
+    
+    
+    
     
     return (
       <div className={sliderName}>
-        {slides?.map((slide, index) => <div key={index} className={`${sliderName}--image`} data-active={index === this.state.activeSlide} style={{ backgroundImage: `url( ${slide})` }}>
-        </div>)}
+        {slides?.map((slide, index) => <div key={index} className={`${sliderName}--image`} data-active={index === this.state.activeSlide} style={{ backgroundImage: `url( ${slide ? slide : defaultImage})` }} />)}
         <div className={`${sliderName}--prev`} onClick={this.prevSlide.bind(this)}>&#10094;</div>
         <div className={`${sliderName}--next`} onClick={this.nextSlide.bind(this)}>&#10095;</div>
       </div>

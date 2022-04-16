@@ -80,7 +80,7 @@ class Product extends PureComponent {
 
   render() {   
     const { images, products } = this.props;
-    if (this.state.navigate) {return <Navigate to="/cart" />};
+    if (this.state.navigate) {return <Navigate to="/cart"/>};
     
     return (
       <div className="product">

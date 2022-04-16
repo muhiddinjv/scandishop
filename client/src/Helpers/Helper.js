@@ -1,3 +1,4 @@
+import defaultImage from '../Assets/loading2.gif'
 export default class Helper {
   static switchCurrency = (currency) => {
     let symbol;
@@ -26,5 +27,14 @@ export default class Helper {
   static switchAmount = (currency, ...prices) => {
     const x = prices[0].filter(price => price.currency === currency ? price.amount : 0 )
     return x[0].amount;
+  }
+
+  static addDefaultSrc = (ev) => {
+    if (ev.target.src){
+      ev.target.onerror = null;
+      ev.target.src = defaultImage;
+    } else {
+      return defaultImage;
+    }
   }
 }

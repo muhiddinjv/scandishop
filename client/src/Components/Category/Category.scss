@@ -29,11 +29,13 @@
         
         &--card{
             margin-bottom: 5.5rem;
-            border: 1px solid #999;
+            // border: 1px solid #999;
             padding: 1rem;
             padding-bottom: 2rem;
             transition: 0.3s;
             position: relative;
+            min-width: 37rem;
+            min-height: 44rem;
 
             .out-of-stock{
                 top:0;left:0;
@@ -55,12 +57,18 @@
 
         &--image-wrapper{
             position: relative;
+            // min-height: 35rem;
+            
+            // border: 1px solid #999;
+
         }
         
         &--image{
             height: 33.5rem;
             width: 35rem;
             margin-bottom: 2.5rem;
+            background: rgb(245, 245, 245);
+            // border: 1px solid #999;
         }
 
         &--cart{

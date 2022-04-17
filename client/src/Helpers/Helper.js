@@ -30,11 +30,7 @@ export default class Helper {
   }
 
   static addDefaultSrc = (ev) => {
-    if (ev.target.src){
-      ev.target.onerror = null;
-      ev.target.src = defaultImage;
-    } else {
-      return defaultImage;
-    }
+    ev.target.onerror = null;
+    ev.target.src = defaultImage;
   }
 }

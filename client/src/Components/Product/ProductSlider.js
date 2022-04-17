@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import Helper from "../../Helpers/Helper";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import "./ProductSlider.scss";
 
 export default class ProductSlider extends PureComponent {
@@ -26,11 +27,11 @@ export default class ProductSlider extends PureComponent {
         <ul className="slider__thumbnails">
           {gallery[0].map((img, ind) => 
             <li key={ind} onError={(e) => e.target.style.display='none'}>
-              <img src={img} alt={ind} onClick={()=>this.selectImage(img, gallery)} onError={Helper.addDefaultSrc}/>
+              <LazyLoadImage effect="blur" src={img} alt={ind} onClick={()=>this.selectImage(img, gallery)} onError={Helper.addDefaultSrc}/>
             </li>)}
         </ul>
         <div className="slider__slides">
-          {<img src={this.state.selectedImage === '' ? this.setBigImage() : this.state.selectedImage} onError={Helper.addDefaultSrc}  alt=""/>}
+          {<LazyLoadImage effect="blur" src={this.state.selectedImage === '' ? this.setBigImage() : this.state.selectedImage} onError={Helper.addDefaultSrc}  alt=""/>}
         </div>
       </div>
     } else {

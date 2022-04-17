@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import defaultImage from '../../Assets/loading2.gif'
+import defaultImage from '../../Assets/loading2.gif';
 import "./OverlaySlider.scss";   
 import "./CartSlider.scss";   
 
@@ -31,11 +31,11 @@ export default class Slider extends PureComponent {
   
   render() {    
     const { sliderName, slides } = this.props;
-    slides.map(s => console.log('s', s))    
+    // style={{ backgroundImage: `url( ${navigator.onLine ? slide : defaultImage})` }}
     
     return (
       <div className={sliderName}>
-        {slides?.map((slide, index) => <div key={index} className={`${sliderName}--image`} data-active={index === this.state.activeSlide} style={{ backgroundImage: `url( ${navigator.onLine ? slide : defaultImage})` }} />)}
+        {slides?.map((slide, index) => <div key={index} className={`${sliderName}--image`} data-active={index === this.state.activeSlide} style={{ backgroundImage: `url(${slide}), url(${defaultImage})` }} />)}
         <div className={`${sliderName}--prev`} onClick={this.prevSlide.bind(this)}>&#10094;</div>
         <div className={`${sliderName}--next`} onClick={this.nextSlide.bind(this)}>&#10095;</div>
       </div>

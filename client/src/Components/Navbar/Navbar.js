@@ -39,7 +39,7 @@ export default class Navbar extends PureComponent {
                     </li>
                 </ul>
                 <div className='navbar__logo'>
-                    <a href="https://github.com/muhiddinjv/scandishop" title="github-muhiddinjv" target="__blank"><Logo /></a>
+                    <a href="https://github.com/muhiddinjv" title="github-muhiddinjv" target="__blank"><Logo /></a>
                 </div>
                 <div className='navbar__actions'>
                     <Dropdown />

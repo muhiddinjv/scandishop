@@ -16,7 +16,7 @@ export default class Navbar extends PureComponent {
     }
 
     render() {
-        const {quantity, changeCategory} = this.props;
+        const {changeCategory, quantity} = this.props;
         
         return (
             <div>
@@ -47,7 +47,7 @@ export default class Navbar extends PureComponent {
                         <NavLink className="link" to="/cart">
                             <EmptyCart onClick={() => this.showOverlay()} className="navbar__actions--icon"/>
                         </NavLink>
-                        <span className="navbar__actions--qty">{quantity === 0 ? "" : quantity}</span>
+                        <span className="navbar__actions--qty">{quantity === 0 ? "" : Math.abs(quantity)}</span>
                     </div>
                     
                 </div>

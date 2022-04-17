@@ -36,11 +36,14 @@ class App extends PureComponent {
   
   render() {
     const { products, selectedProduct } = this.state;
+    const cart = Object.values(this.props.cart);
+    const totalCount = cart?.map(x=>x.totalCount).reduce((sum, a) => sum + a, 0);
+    const quantity = Math.abs(totalCount);
     
     return (
       <main className="app">
         <ErrorBoundary>
-          <Navbar changeCategory={this.changeCategory} />
+          <Navbar changeCategory={this.changeCategory} quantity={quantity}/>
         </ErrorBoundary>
         <Routes>
           <Route exact path="/" element={
@@ -57,8 +60,8 @@ class App extends PureComponent {
 }
 
 const mapStateToProps = (state)=>{
-  const {items, total} = state;
-  return {items, total}
+  const {items, total, cart} = state;
+  return {items, total, cart}
   }
 
 

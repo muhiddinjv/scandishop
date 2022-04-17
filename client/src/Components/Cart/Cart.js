@@ -12,7 +12,7 @@ class Cart extends PureComponent {
     return (      
       <div className="cart">
         <h1 className="cart__page-name">cart </h1>
-        <ul className="cart__items"><AddedItem sliderName='cart-slider' /></ul>
+        <ul className="cart__items"><AddedItem sliderName='cart-slider'/></ul>
         <div className="cart__total">{total < 1 ? "" : `Total: ${Helper.switchCurrency(selCurrency)}${total.toFixed(2)}`}</div>
       </div>
     );

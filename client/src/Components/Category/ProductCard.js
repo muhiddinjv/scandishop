@@ -20,12 +20,12 @@ class ProductCard extends PureComponent {
         {this.outOfStock(product.inStock)}
         <div className="category__product--image-wrapper">
           <LazyLoadImage effect="blur" className="category__product--image" src={product.gallery[0]} alt={product.name} onError={Helper.addDefaultSrc}/>
-          <div onClick={()=>selectProduct(product.id)}
-            className="category__product--cart show-cart">
-            <NavLink to="/product">
-              <EmptyCart />
-            </NavLink>
-          </div>
+          <NavLink to="/product">
+            <div onClick={()=>selectProduct(product.id)}
+              className="category__product--cart show-cart">
+                <EmptyCart />
+            </div>
+          </NavLink>
 
         </div>
         <div className="category__product--body">

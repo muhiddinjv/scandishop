@@ -31,7 +31,6 @@ export default class Slider extends PureComponent {
   
   render() {    
     const { sliderName, slides } = this.props;
-    // style={{ backgroundImage: `url( ${navigator.onLine ? slide : defaultImage})` }}
     
     return (
       <div className={sliderName}>

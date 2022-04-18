@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import Helper from "../../Helpers/Helper";
+import Helper from "../../Helpers";
 import "./ProductSlider.scss";
 
 export default class ProductSlider extends PureComponent {

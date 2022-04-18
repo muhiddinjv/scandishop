@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { NavLink } from "react-router-dom";
 import { addToCart } from '../../Redux/Actions';
 import { connect } from 'react-redux';
-import Helper from "../../Helpers/Helper";
+import Helper from "../../Helpers";
 import "./Category.scss";
 import { ReactComponent as EmptyCart } from "../../Assets/icons/cart-white.svg";
 import { LazyLoadImage } from 'react-lazy-load-image-component';

@@ -1,5 +1,5 @@
 import LOAD_QUERY from "../../Graphql/Query";
-import Helper from '../../Helpers/Helper'
+import Helper from '../../Helpers'
 
 const initState = {
   total: 0,
@@ -7,7 +7,6 @@ const initState = {
   items: [],
   price: [],
   currencies: [],
-  addedItems: [],
   selCurrency: "USD",
 };
 

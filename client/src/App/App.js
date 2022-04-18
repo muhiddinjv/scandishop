@@ -2,7 +2,6 @@ import React, { PureComponent } from "react";
 import { Routes, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import ErrorBoundary from "./ErrorBoundary";
-import Helper from '../Helpers/Helper'
 
 import { Navbar, Category, Product, Cart } from '../Components'
 
@@ -37,8 +36,8 @@ class App extends PureComponent {
   render() {
     const { products, selectedProduct } = this.state;
     const cart = Object.values(this.props.cart);
-    const totalCount = cart?.map(x=>x.totalCount).reduce((sum, a) => sum + a, 0);
-    const quantity = Math.abs(totalCount);
+    const quantity = cart?.map(x=>x.totalCount).reduce((sum, a) => sum + a, 0);
+    // const quantity = Math.abs(qty);
     
     return (
       <main className="app">

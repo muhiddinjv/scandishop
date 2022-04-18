@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import Helper from "../../Helpers/Helper";
+import Helper from "../../Helpers";
 import AddedItem from "./AddedItem";
 import "./Overlay.scss";
 

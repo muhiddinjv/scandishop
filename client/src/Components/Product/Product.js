@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { addToCart } from '../../Redux/Actions';
 import ProductSlider from "./ProductSlider";
 import Attributes from "./Attributes";
-import Helper from "../../Helpers/Helper";
+import Helper from "../../Helpers";
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import "./Product.scss";

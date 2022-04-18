@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { selectCurrency } from '../../Redux/Actions';
 import { connect } from 'react-redux';
-import Helper from '../../Helpers/Helper';
+import Helper from '../../Helpers';
 import "./Dropdown.scss";
 
 class Dropdown extends PureComponent {

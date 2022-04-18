@@ -1,4 +1,5 @@
 import LOAD_QUERY from "../../Graphql/Query";
+import Helper from '../../Helpers/Helper'
 
 const initState = {
   total: 0,
@@ -21,31 +22,22 @@ const fetchData = () => {
   })
     .then((res) => res.json())
     .then((all) => {
-      all.data.category.products.map((p) => initState.items.push(p));
-      all.data.currencies.map((c) => initState.currencies.push(c));
+      const { category: {products}, currencies } = all.data;
+      products.map((p) => initState.items.push(p));
+      currencies.map((c) => initState.currencies.push(c));
     })
     .catch((error) => console.log(error));
 };
 
 fetchData();
 
-const cartReducer = (state = initState, action) => {
-  const uuid = () => {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r && 0x3 | 0x8);
-      return v.toString(16);
-    });
-  }
+// if(localStorage.getItem('cart')){
+//   initState.cart = JSON.parse(localStorage.getItem('cart'));
+// } else {
+//   initState.cart = [];
+// }
 
-  // const findAllByKey = (obj, keyToFind) => {
-  //   return Object.entries(obj)
-  //     .reduce((acc, [key, value]) => (key === keyToFind)
-  //       ? acc.concat(value)
-  //       : (typeof value === 'object')
-  //       ? acc.concat(this.findAllByKey(value, keyToFind))
-  //       : acc
-  //     , [])
-  // }
+const cartReducer = (state = initState, action) => {
 
   if (action.type === "SELECT_CURRENCY") {
     return { ...state, selCurrency: action.currency };
@@ -62,28 +54,37 @@ const cartReducer = (state = initState, action) => {
       cartCopy[id] = {
         name: name,
         brand: brand,
-        addedAttrs: [{ ...values, count: 1, id: uuid() }],
+        addedAttrs: [{ ...values, count: 1, id: Helper.uuid() }],
         attributes: attributes,
         gallery: gallery,
         prices: prices,
         totalCount: 1,
       };
+
+      // localStorage.setItem('cart',JSON.stringify(state.cart));
+
     } else {
       const addedAttrsCopy = [...cartCopy[id].addedAttrs];
       // const obj = {name: 'a', age: 21}
       // const arr = Object.values(obj); // ['a', 21]
-      const foundIndex = addedAttrsCopy.findIndex((item) => {
-        return Object.values(values).forEach((i) => {
-            return Object.values(item).includes(i)
-          }
-        );
+      // const foundIndex = addedAttrsCopy.findIndex((item) => {
+      //   return Object.values(values).every((i) => {
+      //       return Object.values(item).includes(i)
+      //     }
+      //   );
+      // });
+      const foundIndex = addedAttrsCopy.findIndex(item => {
+        return Object.keys(values).every(key => {
+          const newValue = values[key];
+          return item[key] === newValue;
+        })
       });
 
       if (foundIndex > -1) {
         const found = addedAttrsCopy[foundIndex];
         addedAttrsCopy[foundIndex] = { ...found, count: found.count + 1 };
       } else {
-        addedAttrsCopy.push({ ...values, count: 1, id: uuid() });
+        addedAttrsCopy.push({ ...values, count: 1, id: Helper.uuid() });
       }
 
       // items = [{conunt: 1}, {count: 3}]
@@ -101,7 +102,6 @@ const cartReducer = (state = initState, action) => {
 
     const price = priceDetails[0].amount;
     const newTotal = state.total + price;
-    // console.log('state.cart', state.cart)
 
     return {
       ...state,

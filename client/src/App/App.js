@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import { Routes, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import ErrorBoundary from "./ErrorBoundary";
+import Helper from '../Helpers/Helper'
 
 import { Navbar, Category, Product, Cart } from '../Components'
 
@@ -17,12 +18,11 @@ class App extends PureComponent {
 
   selectProduct = (productId) => {
     const {items} = this.props;
-    items.filter((p) => p.id === productId && this.setState({ selectedProduct: [p] }))   
+    items.filter((p) => p.id === productId && this.setState({ selectedProduct: [p] }))  
   };
 
   changeCategory = (category) => {
     const {items} = this.props;
-
     if (category === 'all'){
       items.category = category;
       this.setState({products: items})

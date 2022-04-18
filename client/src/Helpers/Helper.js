@@ -33,4 +33,21 @@ export default class Helper {
     ev.target.onerror = null;
     ev.target.src = defaultImage;
   }
+
+  static uuid = () => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r && 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+  static findAllByKey = (obj, keyToFind) => {
+    return Object.entries(obj)
+      .reduce((acc, [key, value]) => (key === keyToFind)
+        ? acc.concat(value)
+        : (typeof value === 'object')
+        ? acc.concat(this.findAllByKey(value, keyToFind))
+        : acc
+      , [])
+  }
 }

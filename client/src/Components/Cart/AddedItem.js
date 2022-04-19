@@ -26,10 +26,10 @@ class AddedItem extends PureComponent {
   render() {
     const {sliderName, selCurrency, cart} = this.props;
     const products = Object.values(cart);
-        
-    const addedItem = products.length ? (
-      products.map((item, ind) => { 
-        
+    const cartEmpty = products.every(p =>  p.addedAttrs.length === 0)
+
+    const addedItem = !cartEmpty ? (
+      products.map((item) => { 
         return (
           item.addedAttrs.map((attr,i) => 
           {
@@ -84,7 +84,7 @@ class AddedItem extends PureComponent {
 
 const mapStateToProps = (state)=>{
   const { selCurrency, cart, total } = state;
-  return{ selCurrency, cart, total }
+  return { selCurrency, cart, total }
 }
   
 export default connect(mapStateToProps,{removeItem, addQuantity, subtractQuantity})(AddedItem)

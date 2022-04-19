@@ -9,13 +9,15 @@ class Category extends PureComponent {
 
   render() {
     const { products, selCurrency } = this.props;
+
+    
     
     return (
       <div className="category">
         <div className="category__header">
           <h1 className="category__name">{products.category}</h1>
         </div>
-        <ul className="category__product" >
+        <ul className="category__product">
           {products.map((product, i) => {
             return (
               <ProductCard

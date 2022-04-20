@@ -46,7 +46,6 @@ const cartReducer = (state = initState, action) => {
     for (const values of Object.values(state.cart)) {
       for (const attribute of values.addedAttrs) {
         if (attribute.id === id){
-          // console.log('attribute :>> ', attribute);
           act === 'subtract' && attribute.count--;
           act === 'add' && attribute.count++;
           
@@ -75,6 +74,7 @@ const cartReducer = (state = initState, action) => {
   }
 
   if (action.type === "ADD_TO_CART") {
+    
     const {
       product: { id, name, brand, prices, attributes, gallery },
       values,
@@ -98,18 +98,18 @@ const cartReducer = (state = initState, action) => {
       const addedAttrsCopy = [...cartCopy[id].addedAttrs];
       // const obj = {name: 'a', age: 21}
       // const arr = Object.values(obj); // ['a', 21]
-      const foundIndex = addedAttrsCopy.findIndex((item) => {
-        return Object.values(values).every((i) => {
-            return Object.values(item).includes(i)
-          }
-        );
-      });
-      // const foundIndex = addedAttrsCopy.findIndex(item => {
-      //   return Object.keys(values).every(key => {
-      //     const newValue = values[key];
-      //     return item[key] === newValue;
-      //   })
+      // const foundIndex = addedAttrsCopy.findIndex((item) => {
+      //   return Object.values(values).every((i) => {
+      //       return Object.values(item).includes(i)
+      //     }
+      //   );
       // });
+      const foundIndex = addedAttrsCopy.findIndex(item => {
+        return Object.keys(values).every(key => {
+          const newValue = values[key];
+          return item[key] === newValue;
+        })
+      });
 
       if (foundIndex > -1) {
         const found = addedAttrsCopy[foundIndex];
@@ -165,7 +165,6 @@ const cartReducer = (state = initState, action) => {
 
   if (action.type === "ADD_QUANTITY") {  
     for (const values of Object.values(state.cart)) {
-      // console.log('cart item :>> ', values);
       for (const attribute of values.addedAttrs) {
         if (attribute.id === action.id){
           attribute.count++;

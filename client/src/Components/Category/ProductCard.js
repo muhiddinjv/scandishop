@@ -1,13 +1,11 @@
 import React, { PureComponent } from "react";
 import { NavLink } from "react-router-dom";
-import { addToCart } from '../../Redux/Actions';
-import { connect } from 'react-redux';
 import Helper from "../../Helpers";
 import "./Category.scss";
 import { ReactComponent as EmptyCart } from "../../Assets/icons/cart-white.svg";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-class ProductCard extends PureComponent {
+export default class ProductCard extends PureComponent {
   outOfStock = (inStock) => {
     return !inStock && <div className="out-of-stock">out of stock</div>
   }
@@ -42,10 +40,3 @@ class ProductCard extends PureComponent {
     );
   }
 }
-
-const mapStateToProps = (state)=>{
-  const { cart } = state;
-  return { cart }
-}
-
-export default connect(mapStateToProps, {addToCart})(ProductCard)

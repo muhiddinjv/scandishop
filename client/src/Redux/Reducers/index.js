@@ -1,4 +1,4 @@
-import LOAD_QUERY from "../../Graphql/Query";
+import LOAD_QUERY from "../../Graphql";
 import Helper from '../../Helpers'
 
 const initState = {
@@ -30,51 +30,13 @@ const fetchData = () => {
 
 fetchData();
 
-// if(localStorage.getItem('cart')){
-//   initState.cart = JSON.parse(localStorage.getItem('cart'));
-// } else {
-//   initState.cart = [];
-// }
-
 const cartReducer = (state = initState, action) => {
-
-  const subtractAddDelete = (op, act, id, prices) => {
-    const operators = {
-      '+': (a, b) => a + b,
-      '-': (a, b) => a - b,
-    };
-    for (const values of Object.values(state.cart)) {
-      for (const attribute of values.addedAttrs) {
-        if (attribute.id === id){
-          act === 'subtract' && attribute.count--;
-          act === 'add' && attribute.count++;
-          
-          if (attribute.count === 0){
-            values.addedAttrs = values.addedAttrs.filter((attribute) => id !== attribute.id);
-          }
-          values.totalCount = values.addedAttrs.reduce((acc, curr)=> acc + curr.count, 0);
-
-          const priceDetails = prices.find(
-            price => price.currency === state.selCurrency
-          );
-          const newTotal = operators[op](state.total, priceDetails.amount)
-          // const newTotal = state.total - priceDetails.amount;      
-          return {
-            ...state,
-            total: newTotal
-          };
-        }
-      }
-    }
-  }
-
 
   if (action.type === "SELECT_CURRENCY") {
     return { ...state, selCurrency: action.currency };
   }
 
   if (action.type === "ADD_TO_CART") {
-    
     const {
       product: { id, name, brand, prices, attributes, gallery },
       values,
@@ -91,13 +53,8 @@ const cartReducer = (state = initState, action) => {
         prices: prices,
         totalCount: 1,
       };
-
-      // localStorage.setItem('cart',JSON.stringify(state.cart));
-
     } else {
       const addedAttrsCopy = [...cartCopy[id].addedAttrs];
-      // const obj = {name: 'a', age: 21}
-      // const arr = Object.values(obj); // ['a', 21]
       // const foundIndex = addedAttrsCopy.findIndex((item) => {
       //   return Object.values(values).every((i) => {
       //       return Object.values(item).includes(i)
@@ -118,7 +75,6 @@ const cartReducer = (state = initState, action) => {
         addedAttrsCopy.push({ ...values, count: 1, id: Helper.uuid() });
       }
 
-      // items = [{conunt: 1}, {count: 3}]
       cartCopy[id].addedAttrs = addedAttrsCopy;
       cartCopy[id].totalCount = addedAttrsCopy.reduce(
         (acc, curr) => acc + curr.count,
@@ -163,7 +119,7 @@ const cartReducer = (state = initState, action) => {
     }
   }
 
-  if (action.type === "ADD_QUANTITY") {  
+  if (action.type === "ADD_QUANTITY") {
     for (const values of Object.values(state.cart)) {
       for (const attribute of values.addedAttrs) {
         if (attribute.id === action.id){
@@ -183,7 +139,6 @@ const cartReducer = (state = initState, action) => {
         }
       }
     }
-    // subtractAddDelete('+', 'add', action.id, action.prices)
   }
 
   if (action.type === "SUB_QUANTITY") {  
@@ -216,3 +171,33 @@ const cartReducer = (state = initState, action) => {
 };
 
 export default cartReducer;
+
+// const subtractAddDelete = (op, act, id, prices) => {
+//   const operators = {
+//     '+': (a, b) => a + b,
+//     '-': (a, b) => a - b,
+//   };
+//   for (const values of Object.values(state.cart)) {
+//     for (const attribute of values.addedAttrs) {
+//       if (attribute.id === id){
+//         act === 'subtract' && attribute.count--;
+//         act === 'add' && attribute.count++;
+        
+//         if (attribute.count === 0){
+//           values.addedAttrs = values.addedAttrs.filter((attribute) => id !== attribute.id);
+//         }
+//         values.totalCount = values.addedAttrs.reduce((acc, curr)=> acc + curr.count, 0);
+
+//         const priceDetails = prices.find(
+//           price => price.currency === state.selCurrency
+//         );
+//         const newTotal = operators[op](state.total, priceDetails.amount)
+//         return {
+//           ...state,
+//           total: newTotal
+//         };
+//       }
+//     }
+//   }
+// }
+// subtractAddDelete('+', 'add', action.id, action.prices)

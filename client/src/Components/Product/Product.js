@@ -36,13 +36,11 @@ class Product extends PureComponent {
         (acc, curr) => ({ ...acc, [curr.name]: "" }),
         {}
       );
-      // initialValues = {Size: '', Color: ''}
       const validationSchema = (p?.attributes || []).reduce(
         (acc, curr) => ({ ...acc, [curr.name]: yup.string().required() }),
         {}
       );
 
-      //validation =  {Size: yup.string().req(), Color: yup.string().req()}
       return  <Formik initialValues={{...initialValues}} 
       validateOnMount
       validationSchema={yup.object().shape({ ...validationSchema })}
@@ -63,7 +61,6 @@ class Product extends PureComponent {
                       {Helper.switchAmount(selCurrency, p.prices)}
                     </div>
                   </div>
-                  {/* <div style={{width: 40, background: 'red'}} onClick={() => setFieldValue('Size', '40')}>size: 40</div> */}
                     <button type="submit" className={`product__btn ${isValid && 'btn-hover'}`} disabled={!isValid}>
                         add to cart
                     </button>

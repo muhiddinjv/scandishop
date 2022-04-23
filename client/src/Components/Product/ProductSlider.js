@@ -19,13 +19,14 @@ export default class ProductSlider extends PureComponent {
   }
 
   slider = () => { 
+    //<li key={ind} onError={(e) => e.target.style.display='none'}>
     const gallery = this.props.products.map(x=>x?.gallery);
   
     if (gallery[0]) {
       return <div className="slider">
         <ul className="slider__thumbnails">
           {gallery[0].map((img, ind) => 
-            <li key={ind} onError={(e) => e.target.style.display='none'}>
+            <li key={ind}>
               <img src={img} alt={ind} onClick={()=>this.selectImage(img, gallery)} onError={Helper.addDefaultSrc}/>
             </li>)}
         </ul>

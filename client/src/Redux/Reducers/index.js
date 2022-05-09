@@ -1,5 +1,6 @@
-import LOAD_QUERY from "../../Graphql";
-import Helper from '../../Helpers'
+// import LOAD_QUERY from "../../Graphql";
+import Helper from '../../Helpers';
+const jsonData = require('./data.json');
 
 const initState = {
   total: 0,
@@ -10,22 +11,29 @@ const initState = {
   selCurrency: "USD",
 };
 
+// const fetchData = () => {
+//   fetch("http://localhost:4000", {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({
+//       query: LOAD_QUERY,
+//       variables: { input: { title: "" } },
+//     }),
+//   })
+//     .then((res) => res.json())
+//     .then((all) => {
+//       console.log('all :>> ', all);
+//       const { category: {products}, currencies } = all.data;
+//       products.map((p) => initState.items.push(p));
+//       currencies.map((c) => initState.currencies.push(c));
+//     })
+//     .catch((error) => console.log(error));
+// };
+
 const fetchData = () => {
-  fetch("http://localhost:4000", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      query: LOAD_QUERY,
-      variables: { input: { title: "" } },
-    }),
-  })
-    .then((res) => res.json())
-    .then((all) => {
-      const { category: {products}, currencies } = all.data;
-      products.map((p) => initState.items.push(p));
-      currencies.map((c) => initState.currencies.push(c));
-    })
-    .catch((error) => console.log(error));
+  const { category: {products}, currencies } = jsonData.data;
+  products.map((p) => initState.items.push(p));
+  currencies.map((c) => initState.currencies.push(c));
 };
 
 fetchData();

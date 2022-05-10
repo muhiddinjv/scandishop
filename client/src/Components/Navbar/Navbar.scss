@@ -1,5 +1,101 @@
 @import "../../App/Base.scss";
 
+// https://codepen.io/alvarotrigo/pen/yLzaPVJ
+
+.menu {
+  display: none;
+  @media only screen and (max-width: $bp-small) {
+    display: block;
+  }
+  
+  #menu__toggle {
+    opacity: 0;
+
+    &:checked + .menu__btn > span {
+      transform: rotate(45deg);
+    }
+    &:checked + .menu__btn > span::before {
+      top: 0;
+      transform: rotate(0deg);
+    }
+    &:checked + .menu__btn > span::after {
+      top: 0;
+      transform: rotate(90deg);
+    }
+    &:checked ~ .menu__box {
+      left: 0 !important;
+    }
+  }
+
+  &__btn {
+    position:fixed;
+    top: 20px;
+    left: 20px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    z-index: 4;
+  }
+
+  &__btn > span,
+  &__btn > span::before,
+  &__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #616161;
+    transition-duration: 0.25s;
+  }
+  &__btn > span::before {
+    content: "";
+    top: -8px;
+  }
+  &__btn > span::after {
+    content: "";
+    top: 8px;
+  }
+  &__box {
+    z-index: 3;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 15rem;
+    height: 25rem;
+    margin: 0;
+    padding: 6rem 0;
+    list-style: none;
+    background-color: #eceff1;
+    // background: rgba(153, 153, 153, 0.425);
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+    border-bottom-right-radius: 80px 80px;
+    transition-duration: 0.25s;
+  }
+  &__item {
+    display: block;
+    padding: 12px 24px;
+    color: #333;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+    transition-duration: 0.25s;
+
+    &:hover {
+      background: #cfd8dc;
+      color: white;
+      border-top-right-radius: 20%;
+      border-bottom-right-radius: 20%;
+      width: fit-content;
+    }
+  }
+}
+
+.nav-wrapper{
+  // position: absolute;
+}
+
 .navbar {
   display: flex;
   font-family: "Raleway-Regular", sans-serif;
@@ -7,14 +103,22 @@
   font-size: 1.6rem;
   padding: 2.4rem 5.5rem 0 5.5rem;
   text-transform: uppercase;
-  position:relative;
-  background:white;
-  z-index:9;
+  position: relative;
+  background: white;
+  z-index: 2;
 
-  &__minicart{
-    .show { display: block; }
-    
-    &--dropdown{
+  @media only screen and (max-width: $bp-small) {
+    & {
+      padding: 1.4rem 3.5rem 0 1.5rem;
+    }
+  }
+
+  &__minicart {
+    .show {
+      display: block;
+    }
+
+    &--dropdown {
       display: none;
     }
   }
@@ -26,9 +130,13 @@
     width: 20rem;
     height: 5rem;
 
-    .link{
+    @media only screen and (max-width: $bp-small) {
+      display: none;
+    }
+
+    .link {
       color: $--c-text;
-      &:hover{
+      &:hover {
         color: $--c-primary;
       }
     }
@@ -40,34 +148,47 @@
         font-family: "Raleway-SemiBold", sans-serif;
         cursor: pointer;
       }
+
+      @media only screen and (max-width: $bp-small) {
+        & {
+          align-self: auto;
+          border: 1px solid #999;
+        }
+      }
     }
   }
 
   &__logo {
     margin-right: 16.4rem;
     margin-top: -0.5rem;
+
+    @media only screen and (max-width: $bp-small) {
+      & {
+        margin: -0.5rem 0 0 9rem;
+      }
+    }
   }
 
-  &__actions{
-      display:flex;
-      align-items:center;
-      margin-top: -0.5rem;
-      height:4rem;
-      position: relative;
-      
-      &--icon{
-        cursor: pointer;
-      }
+  &__actions {
+    display: flex;
+    align-items: center;
+    margin-top: -0.5rem;
+    height: 4rem;
+    position: relative;
 
-      &--qty{
-        position: absolute;
-        background: #444;
-        color: white;
-        border-radius: 50%;
-        text-align: center;
-        width: 2rem;
-        left: 6.3rem;
-        top:0;
-      }
+    &--icon {
+      cursor: pointer;
+    }
+
+    &--qty {
+      position: absolute;
+      background: #444;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      width: 2rem;
+      left: 6.3rem;
+      top: 0;
+    }
   }
 }

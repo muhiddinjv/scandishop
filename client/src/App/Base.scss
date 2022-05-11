@@ -2,7 +2,6 @@
 @font-face {
     font-family: 'Raleway-Regular';
     src: local('Raleway'), url(../Assets/Raleway/static/Raleway-Regular.ttf) format('truetype');
-    // src: local('Raleway'), url(../Raleway/static/Raleway-Regular.ttf) format('truetype');
     font-weight:400;
 };
 
@@ -28,6 +27,7 @@ $bp-small: 36rem; // 481px
 $--c-primary:#5ECE7B;
 $--c-text:#1D1F22;
 $--c-black:#1E1F23;
+$--box-shadow: 0 0 10px 0.5px rgba(0, 0, 0, 0.2);
 
 *,
 *::before,

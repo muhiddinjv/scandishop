@@ -20,17 +20,28 @@ export default class Navbar extends PureComponent {
 
     return (
       <div className="nav-wrapper">
-
         <nav className="navbar">
           <div className="menu">
             <input id="menu__toggle" type="checkbox" />
-            <label className="menu__btn" for="menu__toggle">
+            <label className="menu__btn" htmlFor="menu__toggle">
               <span></span>
             </label>
             <ul className="menu__box">
-              <li onClick={() => changeCategory("all")}><NavLink className="menu__item" to="/">all</NavLink></li>
-              <li onClick={() => changeCategory("clothes")}><NavLink className="menu__item" to="/">clothes</NavLink></li>
-              <li onClick={() => changeCategory("tech")}><NavLink className="menu__item" to="/">tech</NavLink></li>
+              <li onClick={() => changeCategory("all")}>
+                <NavLink className="menu__item" to="/">
+                  all
+                </NavLink>
+              </li>
+              <li onClick={() => changeCategory("clothes")}>
+                <NavLink className="menu__item" to="/">
+                  clothes
+                </NavLink>
+              </li>
+              <li onClick={() => changeCategory("tech")}>
+                <NavLink className="menu__item" to="/">
+                  tech
+                </NavLink>
+              </li>
             </ul>
           </div>
 
@@ -84,14 +95,12 @@ export default class Navbar extends PureComponent {
               </span>
             </div>
           </div>
-          
         </nav>
         <div className="navbar__minicart">
-            <div ref={this.dropContentRef} className="navbar__minicart--dropdown">
-              <Overlay quantity={quantity} showOverlay={this.showOverlay} />
-            </div>
+          <div ref={this.dropContentRef} className="navbar__minicart--dropdown">
+            <Overlay quantity={quantity} showOverlay={this.showOverlay} />
+          </div>
         </div>
-        
       </div>
     );
   }

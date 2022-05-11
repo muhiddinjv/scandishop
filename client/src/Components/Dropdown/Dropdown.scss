@@ -2,13 +2,11 @@
 
 .dropdown {
   margin-right: 1rem;
-  z-index: 99;
 
   &__label{
       margin-right: 0.3rem;
       font-size: 2rem;
-      font-weight: bold;
-      color: #666;
+      color: #444;
   }
 
   &__btn {
@@ -44,8 +42,8 @@
     position: absolute;
     width: 11.2rem;
     overflow: hidden;
-    box-shadow: 0 0 10px 0.5px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    box-shadow: $--box-shadow;
+    // z-index: 1;
 
     &>*{
       padding: 1.2rem 1.2rem 2rem 1rem;

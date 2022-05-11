@@ -27,57 +27,39 @@ export default class Navbar extends PureComponent {
               <span></span>
             </label>
             <ul className="menu__box">
-              <li onClick={() => changeCategory("all")}>
+              <li
+                className="menu__box--link"
+                onClick={() => changeCategory("all")}
+              >
                 <NavLink className="menu__item" to="/">
                   all
                 </NavLink>
               </li>
-              <li onClick={() => changeCategory("clothes")}>
+              <li
+                className="menu__box--link"
+                onClick={() => changeCategory("clothes")}
+              >
                 <NavLink className="menu__item" to="/">
                   clothes
                 </NavLink>
               </li>
-              <li onClick={() => changeCategory("tech")}>
+              <li
+                className="menu__box--link"
+                onClick={() => changeCategory("tech")}
+              >
                 <NavLink className="menu__item" to="/">
                   tech
                 </NavLink>
               </li>
             </ul>
           </div>
-
-          <ul className="navbar__nav">
-            <li
-              className="navbar__nav--link"
-              onClick={() => changeCategory("all")}
-            >
-              <NavLink className="link" to="/">
-                all
-              </NavLink>
-            </li>
-            <li
-              className="navbar__nav--link"
-              onClick={() => changeCategory("clothes")}
-            >
-              <NavLink className="link" to="/">
-                clothes
-              </NavLink>
-            </li>
-            <li
-              className="navbar__nav--link"
-              onClick={() => changeCategory("tech")}
-            >
-              <NavLink className="link" to="/">
-                tech
-              </NavLink>
-            </li>
-          </ul>
-          <div className="navbar__logo">
+          <div >
             <a
               href="https://github.com/muhiddinjv/scandishop"
               title="github-muhiddinjv"
               target="__blank"
             >
-              <Logo />
+              <Logo className="navbar__logo" />
             </a>
           </div>
 

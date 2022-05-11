@@ -1,85 +1,95 @@
 @import "../../App/Base.scss";
 
-.category{
-    font-family: "Raleway-Regular", sans-serif;
-    // border: 1px solid #999;
-    color: $--c-text;
-    padding: 0 5.5rem;
+.category {
+  font-family: "Raleway-Regular", sans-serif;
+  color: $--c-text;
+  padding: 0 5.5rem;
 
+  &__name {
+    font-size: 4rem;
+    font-weight: lighter;
+    margin: 8.5rem 0 12.5rem 0;
+    text-transform: capitalize;
+  }
 
-    &__name{
-        font-size: 4rem;
-        font-weight: lighter;
-        margin: 8.5rem 0 12.5rem 0;
-        text-transform: capitalize;
+  &__product {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 3.8%;
+
+    @media only screen and (max-width: $bp-small) {
+      display: block;
+      margin: 0 auto;
+      width: fit-content;
     }
 
-    &__product  {
+    .hover-on:hover {
+      box-shadow: $--box-shadow;
+
+      .show-cart {
+        display: block;
+      }
+    }
+
+    &--card {
+      margin-bottom: 5.5rem;
+      padding: 1rem;
+      padding-bottom: 2rem;
+      transition: 0.3s;
+      position: relative;
+      min-width: 37rem;
+      min-height: 44rem;
+
+      .out-of-stock {
+        top: 0;
+        left: 0;
         display: flex;
-        flex-wrap: wrap;
-        gap: 0 3.8%;
-
-        .hover-on:hover{
-            box-shadow: $--box-shadow;
-            
-            .show-cart{
-                display: block;
-            }
-        }
-        
-        &--card{
-            margin-bottom: 5.5rem;
-            padding: 1rem;
-            padding-bottom: 2rem;
-            transition: 0.3s;
-            position: relative;
-            min-width: 37rem;
-            min-height: 44rem;
-
-            .out-of-stock{
-                top:0;left:0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 2rem;
-                color: #888;
-                text-transform: uppercase;
-                position: absolute;
-                background: rgba(255, 255, 255, 0.438);
-                width: 100%;
-                height: 100%;
-                z-index:1;
-            }
-
-            
-        }
-
-        &--image-wrapper{
-            position: relative;
-        }
-        
-        &--image{
-            height: 33.5rem;
-            width: 35rem;
-            margin-bottom: 2.5rem;
-            background: rgb(245, 245, 245);
-        }
-
-        &--cart{
-            background: $--c-primary;
-            border-radius: 50%;
-            padding: 1rem;
-            position: absolute;
-            display: none;
-            top: 315px;
-            left: 295px
-        }
-
-        &--price{
-            margin-top: 1.4rem;
-            font-size: 1.6rem;
-        }
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        color: #888;
+        text-transform: uppercase;
+        position: absolute;
+        background: rgba(255, 255, 255, 0.438);
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
     }
+
+    &--image-wrapper {
+      position: relative;
+    }
+
+    &--image {
+      height: 33.5rem;
+      width: 35rem;
+      margin-bottom: 2.5rem;
+      background: rgb(245, 245, 245);
+    }
+
+    &--cart {
+      position: absolute;
+      background: $--c-primary;
+      border-radius: 50%;
+      padding: 1rem;
+      display: none;
+      top: 315px;
+      left: 295px;
+
+      @media only screen and (max-width: $bp-medium) {
+        top: 31rem;
+        left: 29rem;
+      }
+    }
+
+    &--price {
+      margin-top: 1.4rem;
+      font-size: 1.6rem;
+    }
+  }
 }
 
-.show { display: block }
+.show {
+  display: block;
+}

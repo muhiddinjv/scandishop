@@ -1,15 +1,33 @@
+@import "../../App/Base.scss";
+
 .slider {
   display: flex;
   margin-bottom: 6rem;
+
+  @media only screen and (max-width: $bp-small) {
+    display: block;
+    margin-bottom: 4rem;
+
+    .slider__thumbnails{
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      img{
+        width: 15vmin;
+        height: 15vmin;
+      }
+    }
+  }
 
   &__thumbnails {
     display: flex;
     flex-direction: column;
     line-height: 0;
+    gap: 1rem;
 
     img {
       cursor: pointer;
-      margin-bottom: 4rem;
       width: 13vmin;
       height: 13vmin;
       object-fit: cover;
@@ -24,11 +42,25 @@
   }
 
   &__slides {
+    margin-top: 4rem;
+    
+    @media only screen and (max-width: $bp-small) {
+      display: flex;
+      justify-content: center;
+
+      img {
+        margin-left: 0 !important;
+        height: 80% !important;
+        width: 80% !important;
+      }
+    }
+
     img {
       height: 38vw;
       width: 45vw;
       margin-left: 6vmin;
       background: rgb(245, 245, 245);
+  
     }
   }
 }

@@ -6,16 +6,16 @@ import { ReactComponent as EmptyCart } from "../../Assets/icons/cart-white.svg";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default class ProductCard extends PureComponent {
-  outOfStock = (inStock) => {
-    return !inStock && <div className="out-of-stock">out of stock</div>
-  }
-
+  // outOfStock = (inStock) => {
+  //   return !inStock && <div className="out-of-stock">out of stock</div>
+  // }
   render() {
     const { product, selCurrency, selectProduct } = this.props;
     
     return (
-      <li className={`category__product--card ${product.inStock && 'hover-on'}`}>
-        {this.outOfStock(product.inStock)}
+      <li className='category__product--card hover-on'>
+      {/* <li className={`category__product--card ${product.inStock && 'hover-on'}`}> */}
+        {/* {this.outOfStock(product.inStock)} */}
         <div className="category__product--image-wrapper">
           <LazyLoadImage effect="blur" className="category__product--image" src={product.gallery[0]} alt={product.name} onError={Helper.addDefaultSrc}/>
           <NavLink to="/product">

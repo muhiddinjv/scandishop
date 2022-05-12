@@ -1,11 +1,11 @@
 @import "../../App/Base.scss";
 
 .nav-wrapper {
-  position: sticky;
-  width: 100%;
-  top: 0;
-  right: 0;
-  z-index: 99;
+  // position: sticky;
+  // width: 100%;
+  // top: 0;
+  // right: 0;
+  // z-index: 99;
 
   .navbar {
     background: white;
@@ -20,7 +20,7 @@
     z-index: 2;
 
     @media only screen and (max-width: $bp-small) {
-      padding: 1.4rem 1.5rem 0 1.5rem;
+      padding: 1.4rem 2.5rem 0 1.5rem;
     }
 
     &__minicart {
@@ -63,7 +63,7 @@
         &__btn {
           position: fixed;
           top: 3rem;
-          left: 2rem;
+          left: 3rem;
           width: 3rem;
           height: 2.6rem;
           cursor: pointer;

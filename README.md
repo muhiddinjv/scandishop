@@ -4,7 +4,7 @@
 - Focused on Class components
 - State management library: Redux
 - Backend: GraphQL
-- www.scandis.web.app
+- [scandis.web.app](https://scandis.web.app/)
 
 ## Functionality
 - [x] PLP - product listing page, a.k.a. category page
